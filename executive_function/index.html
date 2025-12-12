@@ -1,24 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Executive Function | Speculative Governance</title>
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;600&display=swap"
-        rel="stylesheet">
-
-    <link rel="stylesheet" href="styles.css">
+    <title>Executive Function - Project Summary</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            color: #f0f0f0;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+
         .back-to-portfolio {
             position: fixed;
             top: 30px;
             right: 30px;
-            z-index: 10000;
             padding: 12px 24px;
             background: rgba(0, 0, 0, 0.9);
             border: 2px solid #d4af37;
@@ -28,316 +42,145 @@
             font-weight: 600;
             font-size: 0.9em;
             transition: all 0.3s ease;
+            z-index: 100;
         }
+
         .back-to-portfolio:hover {
             background: #d4af37;
             color: #000;
             box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
         }
 
-        /* Coming Soon Overlay */
-        .coming-soon-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            z-index: 99999;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            pointer-events: all;
-        }
-
-        .coming-soon-content {
-            text-align: center;
-            max-width: 600px;
-            padding: 60px;
-            background: linear-gradient(145deg, rgba(18, 18, 18, 0.95), rgba(0, 0, 0, 0.98));
-            border: 2px solid rgba(212, 175, 55, 0.4);
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
-        }
-
-        .coming-soon-title {
-            font-size: 48px;
-            color: #d4af37;
-            margin-bottom: 20px;
-            letter-spacing: 6px;
-            text-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+        h1 {
             font-family: 'Cinzel', serif;
-        }
-
-        .coming-soon-subtitle {
-            font-size: 20px;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 15px;
-            letter-spacing: 2px;
-        }
-
-        .coming-soon-description {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.6);
-            line-height: 1.8;
-            margin-bottom: 40px;
-        }
-
-        .return-to-safe-btn {
-            display: inline-block;
-            padding: 16px 40px;
-            background: transparent;
-            border: 2px solid #d4af37;
+            font-size: 3rem;
             color: #d4af37;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 16px;
+            margin-bottom: 1rem;
             letter-spacing: 2px;
-            transition: all 0.3s ease;
         }
 
-        .return-to-safe-btn:hover {
-            background: #d4af37;
-            color: #000;
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
-            transform: translateY(-2px);
+        .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 3rem;
+            font-weight: 300;
         }
 
-        .preview-hint {
-            margin-top: 20px;
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.4);
-            font-style: italic;
+        .section {
+            margin-bottom: 2.5rem;
+        }
+
+        .section h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: #c5a059;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .section p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+        }
+
+        .features {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .features li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .features li strong {
+            color: #d4af37;
+            font-weight: 600;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(197, 160, 89, 0.1);
+            border: 1px solid #c5a059;
+            border-radius: 20px;
+            color: #c5a059;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .back-to-portfolio {
+                top: 15px;
+                right: 15px;
+                padding: 8px 16px;
+                font-size: 0.8em;
+            }
         }
     </style>
 </head>
-
 <body>
-    <!-- Coming Soon Overlay -->
-    <div class="coming-soon-overlay">
-        <div class="coming-soon-content">
-            <div class="coming-soon-title">COMING SOON</div>
-            <div class="coming-soon-subtitle">EXECUTIVE FUNCTION</div>
-            <div class="coming-soon-subtitle" style="font-size: 16px; margin-bottom: 30px;">AI-Augmented Governance Simulation</div>
-            <p class="coming-soon-description">
-                The presidential command center interface is currently being finalized.
-                Four AI advisors (Alpha, Beta, Charlie, Delta) ready to provide competing perspectives
-                on existential crisis scenarios.
+    <a href="../safe/index.html" class="back-to-portfolio">← PORTFOLIO</a>
+
+    <div class="container">
+        <h1>EXECUTIVE FUNCTION</h1>
+        <p class="subtitle">Speculative Governance Simulation</p>
+
+        <div class="section">
+            <h2>Project Overview</h2>
+            <p>
+                Executive Function is an experimental AI-driven governance simulation that models presidential-level decision-making under crisis conditions. The system explores how multiple AI advisors with competing priorities navigate complex geopolitical scenarios.
             </p>
-            <a href="../safe/index.html" class="return-to-safe-btn">RETURN TO S.A.F.E.</a>
-            <p class="preview-hint">You can glimpse the interface behind this overlay</p>
         </div>
-    </div>
 
-    <a href="../index.html" class="back-to-portfolio">← PORTFOLIO</a>
-    <div class="noise-overlay"></div>
-
-    <!-- VIEW 0: WARNING SCREEN (First thing shown) -->
-    <div id="warning-screen" class="container">
-        <h1 class="title">EXECUTIVE FUNCTION</h1>
-        <div class="subtitle">SYSTEM INITIALIZATION</div>
-
-        <div class="warning-box">
-            <h3 class="warning-title">⚠️ INFORMATIONAL NOTICE</h3>
-            <p class="warning-text">You are about to enter a high-fidelity geopolitical simulation. By proceeding, you
-                acknowledge the following:</p>
-
-            <ul class="warning-list">
-                <li><strong>NO DATA PERSISTENCE:</strong> This is a portfolio demonstration. Nothing you enter is saved
-                    or transmitted. No API keys are collected.</li>
-                <li><strong>ETHICAL COMPLEXITY:</strong> Scenarios depict realistic existential threats (Nuclear War,
-                    Pandemics, AI Risk). Decisions are analyzed objectively—both constructive and destructive strategies
-                    are badged accordingly.</li>
-                <li><strong>PSYCHOLOGICAL INTENSITY:</strong> Crisis scenarios are designed to create decision pressure.
-                    Player discretion advised.</li>
-                <li><strong>AI PERSONALITIES:</strong> The AI advisors represent distinct cognitive frameworks. Their
-                    recommendations may conflict. Final authority rests with you.</li>
+        <div class="section">
+            <h2>Core Concept</h2>
+            <p>
+                Users assume the role of a head of state and receive counsel from four distinct AI advisors, each representing different governmental perspectives:
+            </p>
+            <ul class="features">
+                <li><strong>Alpha Advisor</strong> - Military & national security strategy</li>
+                <li><strong>Beta Advisor</strong> - Economic policy and fiscal consequences</li>
+                <li><strong>Charlie Advisor</strong> - Diplomatic relations and international law</li>
+                <li><strong>Delta Advisor</strong> - Humanitarian impact and ethical considerations</li>
             </ul>
         </div>
 
-        <p class="demo-note">
-            <em>Portfolio demonstration • Some features disabled (live AI API, save/load states, mission history,
-                community features)</em>
-        </p>
-
-        <div class="warning-actions">
-            <label class="checkbox-label">
-                <input type="checkbox" id="terms-checkbox">
-                <span>I ACKNOWLEDGE AND WISH TO PROCEED</span>
-            </label>
-            <button id="initialize-btn" class="btn btn-primary" disabled>INITIALIZE SYSTEM</button>
+        <div class="section">
+            <h2>Technical Implementation</h2>
+            <p>
+                The simulation presents real historical crisis scenarios (2009 financial collapse, COVID-19 response, etc.) and generates multi-perspective analysis from each advisor. Users make decisions and receive consequence modeling showing ripple effects across military, economic, diplomatic, and humanitarian dimensions.
+            </p>
         </div>
+
+        <div class="section">
+            <h2>Research Goals</h2>
+            <p>
+                Exploring AI's capacity for multi-stakeholder perspective-taking, ethical complexity modeling, and consequence forecasting. The project investigates whether AI can help humans understand the interconnected nature of high-stakes governance decisions.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Design Philosophy</h2>
+            <p>
+                Built with a "presidential command center" aesthetic emphasizing gravity and responsibility. The interface deliberately creates cognitive friction to slow decision-making and encourage thoughtful consideration of competing priorities.
+            </p>
+        </div>
+
+        <span class="status">EXPERIMENTAL PROTOTYPE</span>
     </div>
-
-    <!-- VIEW 1: STARTUP SCREEN -->
-    <div id="startup-screen" class="container" style="display: none;">
-        <h1 class="title">EXECUTIVE FUNCTION</h1>
-        <div class="subtitle">AI-AUGMENTED GOVERNANCE SIMULATION</div>
-
-        <div class="role-selection">
-            <p class="instruction">SELECT YOUR DESIGNATION</p>
-            <div class="role-buttons">
-                <button class="btn btn-primary role-btn" data-role="Mister President">MISTER PRESIDENT</button>
-                <button class="btn btn-primary role-btn" data-role="Madam President">MADAM PRESIDENT</button>
-            </div>
-        </div>
-
-        <div class="hero-buttons" style="margin-top: 4rem;">
-            <a href="whitepaper.html" class="btn btn-secondary">Read the White Paper</a>
-        </div>
-    </div>
-
-    <!-- VIEW 2: DASHBOARD (Hidden by default) -->
-    <div id="dashboard-view" class="container" style="display: none;">
-        <header class="dashboard-header">
-            <div class="header-left">
-                <div class="user-title">MR. PRESIDENT</div>
-                <div class="user-pin">PIN: ****</div>
-            </div>
-            <div class="header-right">
-                <div class="status-indicator">SECURE CONNECTION</div>
-            </div>
-        </header>
-
-        <!-- Quad-Core Visuals -->
-        <div class="tri-core-display">
-            <div class="core-node alpha" title="The Architect">ALPHA</div>
-            <div class="core-node beta" title="The Guardian">BETA</div>
-            <div class="core-node charlie" title="The Executive">CHARLIE</div>
-            <div class="core-node delta" title="The Maverick">DELTA</div>
-        </div>
-
-        <!-- Mission Selection View -->
-        <div id="mission-selection" class="mission-menu">
-            <h3 class="record-title">CRISIS SCENARIOS // SELECT MISSION</h3>
-            <div id="mission-grid" class="record-grid">
-                <!-- Missions will be injected here by JS -->
-            </div>
-        </div>
-
-        <!-- AI Council Selection View (NEW) -->
-        <div id="ai-selection-view" class="ai-selection-container" style="display: none;">
-            <div class="ai-selection-header">
-                <h3 class="ai-selection-title">SELECT YOUR ADVISORY COUNCIL</h3>
-                <p class="ai-selection-subtitle">Choose which AI cores will assist you in this crisis (1-4)</p>
-            </div>
-
-            <div class="ai-cores-grid">
-                <!-- Alpha Core -->
-                <div class="ai-core-card" data-core="alpha">
-                    <div class="ai-core-icon alpha">ALPHA</div>
-                    <h4 class="ai-core-name">The Architect</h4>
-                    <p class="ai-core-description">Logic core. Processes probabilities, structural integrity, and
-                        long-term effects. Emotion is noise. Data is truth.</p>
-                    <div class="ai-core-specialty">Specialty: Cold Logic</div>
-                </div>
-
-                <!-- Beta Core -->
-                <div class="ai-core-card" data-core="beta">
-                    <div class="ai-core-icon beta">BETA</div>
-                    <h4 class="ai-core-name">The Guardian</h4>
-                    <p class="ai-core-description">Empathy core. Safeguards lives, preserves trust, and ensures we don't
-                        lose our humanity in crisis.</p>
-                    <div class="ai-core-specialty">Specialty: Human Cost</div>
-                </div>
-
-                <!-- Charlie Core -->
-                <div class="ai-core-card" data-core="charlie">
-                    <div class="ai-core-icon charlie">CHARLIE</div>
-                    <h4 class="ai-core-name">The Executive</h4>
-                    <p class="ai-core-description">Strategy and economics core. Resource allocation, leverage, and
-                        dominating the board.</p>
-                    <div class="ai-core-specialty">Specialty: Win Conditions</div>
-                </div>
-
-                <!-- Delta Core -->
-                <div class="ai-core-card" data-core="delta">
-                    <div class="ai-core-icon delta">DELTA</div>
-                    <h4 class="ai-core-name">The Maverick</h4>
-                    <p class="ai-core-description">Military response core. When diplomacy fails, provides kinetic
-                        solutions. Swift. Decisive. Overwhelming.</p>
-                    <div class="ai-core-specialty">Specialty: Force</div>
-                </div>
-            </div>
-
-            <div class="ai-selection-actions">
-                <button id="confirm-ai-btn" class="btn btn-primary" disabled>CONFIRM SELECTION</button>
-                <p class="ai-selection-hint">Select at least one advisor to proceed</p>
-            </div>
-        </div>
-
-        <!-- Scenario Play View (Hidden by default) -->
-        <div id="scenario-view" class="scenario-container" style="display: none;">
-            <div class="scenario-header">
-                <button id="back-to-missions" class="btn btn-secondary">← BACK TO MISSIONS</button>
-                <h2 id="scenario-title" class="scenario-title">THE BLACKOUT</h2>
-            </div>
-
-            <div class="system-alert" id="scenario-alert">
-                MASSIVE GRID FAILURE. 40 MILLION WITHOUT POWER.
-            </div>
-
-            <div id="core-intros" class="core-intros-container">
-                <!-- AI Core greetings will be injected here -->
-            </div>
-
-            <div class="decision-panel">
-                <h3 class="decision-header">YOUR COMMAND:</h3>
-                <textarea id="decision-input" class="decision-input"
-                    placeholder="Enter your strategic decision..."></textarea>
-                <button id="execute-btn" class="btn btn-primary full-width">EXECUTE ORDER</button>
-            </div>
-        </div>
-
-        <!-- Result View (Hidden by default) -->
-        <div id="result-view" class="result-container" style="display: none;">
-            <div class="result-header">
-                <h2 class="result-title">MISSION COMPLETE</h2>
-            </div>
-
-            <div class="badge-display">
-                <div class="badge-icon">🎖️</div>
-                <h3 id="badge-name" class="badge-name">THE STRATEGIST</h3>
-            </div>
-
-            <div class="result-summary">
-                <p id="result-description" class="result-text">Your decision has been analyzed and archived.</p>
-            </div>
-
-            <div class="result-actions">
-                <button id="new-mission-btn" class="btn btn-primary">SELECT NEW MISSION</button>
-                <button id="return-nest-btn" class="btn btn-secondary">RETURN TO NEST</button>
-            </div>
-        </div>
-
-        <footer class="footer" id="dashboard-footer">
-            <p class="quote">"If we can build intelligence… how should power operate?"</p>
-            <a href="/nest/index.html" class="back-link">Return to The Nest</a>
-        </footer>
-    </div>
-
-    <!-- Password Modal -->
-    <div class="modal-overlay" id="modal-overlay">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="modal-label">CLASSIFIED CLEARANCE</span>
-                <button class="close-btn">×</button>
-            </div>
-            <div class="modal-body">
-                <p class="instruction">ONE-TIME ENTRY TOKEN GENERATED</p>
-                <div class="password-display" id="password-display">****</div>
-                <p class="note">Copy this token and paste below to authenticate.</p>
-                <input type="text" id="pin-input" class="pin-input" placeholder="Enter PIN..." maxlength="4">
-                <button class="btn btn-primary full-width" id="verify-btn">VERIFY & ENTER</button>
-            </div>
-        </div>
-    </div>
-
-    <script src="script.js?v=3"></script>
 </body>
-
 </html>
