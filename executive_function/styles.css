@@ -850,3 +850,175 @@ body {
     gap: 1rem;
     justify-content: center;
 }
+/* ============================================
+   MOBILE RESPONSIVENESS
+   ============================================ */
+
+@media (max-width: 1200px) {
+    .advisors-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    .container {
+        padding: 2rem 1rem;
+        max-width: 100%;
+    }
+
+    .warning-screen h1 {
+        font-size: 1.8rem;
+    }
+
+    .warning-screen p {
+        font-size: 0.9rem;
+        max-width: 100%;
+    }
+
+    .warning-button {
+        padding: 0.9rem 2rem;
+        font-size: 0.9rem;
+    }
+
+    .role-selection-screen h2 {
+        font-size: 1.6rem;
+    }
+
+    .role-buttons {
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .role-button {
+        width: 100%;
+        padding: 1.2rem;
+        font-size: 1rem;
+    }
+
+    .main-interface {
+        padding: 1.5rem 1rem;
+    }
+
+    .header-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1.5rem;
+    }
+
+    .header-title {
+        font-size: 1.5rem;
+    }
+
+    .header-subtitle {
+        font-size: 0.75rem;
+    }
+
+    .status-indicators {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        width: 100%;
+    }
+
+    .advisors-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .advisor-card {
+        padding: 1.5rem;
+    }
+
+    .advisor-header h3 {
+        font-size: 1.1rem;
+    }
+
+    .crisis-selector {
+        padding: 1.5rem;
+    }
+
+    .crisis-selector h3 {
+        font-size: 1.2rem;
+    }
+
+    .crisis-dropdown {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+    }
+
+    .scenario-details {
+        padding: 1.2rem;
+    }
+
+    .decision-area {
+        padding: 1.5rem;
+    }
+
+    .decision-area h3 {
+        font-size: 1.2rem;
+    }
+
+    .decision-input {
+        min-height: 120px;
+        font-size: 0.9rem;
+        padding: 0.9rem;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .action-button {
+        width: 100%;
+        padding: 0.9rem;
+        font-size: 0.9rem;
+    }
+
+    .simulation-output {
+        padding: 1.5rem;
+    }
+
+    .output-section h4 {
+        font-size: 1rem;
+    }
+
+    .perspective-block {
+        padding: 1rem;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 1rem 0.5rem;
+    }
+
+    .warning-screen {
+        padding: 2rem 1rem;
+    }
+
+    .warning-screen h1 {
+        font-size: 1.4rem;
+    }
+
+    .header-title {
+        font-size: 1.2rem;
+    }
+
+    .advisor-card {
+        padding: 1rem;
+    }
+
+    .crisis-selector,
+    .decision-area,
+    .simulation-output {
+        padding: 1rem;
+    }
+}
