@@ -1,0 +1,12 @@
+# Local development files (not for deployment)
+safe/safe-live-data.json
+safe/safe-data-bridge.py
+safe/update-live-data.sh
+
+# macOS
+.DS_Store
+
+# Development notes (keep local only)
+BUGS_FIXED_ANIMATIONS.md
+PORTFOLIO_UPDATES_COMPLETE.md
+SAFE_UI_ACCURACY_AUDIT.md
