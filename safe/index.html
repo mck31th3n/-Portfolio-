@@ -335,30 +335,30 @@
         <section id="security" class="section section-dark">
             <div class="container">
                 <h2 class="section-title">Safety Architecture</h2>
-                <p class="section-intro">Defensive trading safeguards</p>
+                <p class="section-intro">Two-mode operation: Production vs. Full Test</p>
                 <div class="security-rings">
                     <div class="ring ring-outer">
                         <h3>Validation Methodology</h3>
                         <ul>
-                            <li>Blind testing protocol (backtesting only)</li>
+                            <li>Blind testing protocol (backtesting)</li>
                             <li>Zero lookahead validation</li>
                             <li>Historical performance verification</li>
                         </ul>
                     </div>
                     <div class="ring ring-middle">
-                        <h3>Circuit Breaker Protection</h3>
+                        <h3>Circuit Breakers</h3>
                         <ul>
-                            <li>Maximum drawdown limits (20%)</li>
-                            <li>Daily loss thresholds (10%)</li>
-                            <li>Consecutive loss protection</li>
+                            <li><strong>Production:</strong> 20% drawdown, 10% daily loss</li>
+                            <li><strong>Current Test:</strong> Disabled (99% limits)</li>
+                            <li>Consecutive loss tracking</li>
                         </ul>
                     </div>
                     <div class="ring ring-inner">
                         <h3>Audit & Monitoring</h3>
                         <ul>
                             <li>CSV trade logging</li>
-                            <li>Decision history tracking</li>
-                            <li>Portfolio state snapshots</li>
+                            <li>Persistent memory integration</li>
+                            <li>60-second health monitoring</li>
                         </ul>
                     </div>
                 </div>
