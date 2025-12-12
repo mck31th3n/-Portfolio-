@@ -1574,10 +1574,17 @@ body::after {
     }
 
     .nav-links {
-        gap: 1rem;
-        font-size: 0.8rem;
+        gap: 0.5rem;
+        font-size: 0.7rem;
         flex-wrap: wrap;
         justify-content: center;
+        width: 100%;
+        padding: 0.5rem;
+    }
+
+    .nav-links a {
+        padding: 0.4rem 0.6rem;
+        white-space: nowrap;
     }
 
     .back-to-portfolio {
@@ -1656,13 +1663,19 @@ body::after {
     }
 
     .quant-panels-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        padding: 1.5rem;
+        grid-template-columns: 1fr !important;
+        gap: 1rem;
+        padding: 1rem;
+        width: 100%;
+        max-width: 100%;
     }
 
     .quant-panel {
-        padding: 1.5rem;
+        padding: 1rem;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box;
+        margin: 0 !important;
     }
 
     .arch-flow {
@@ -1734,6 +1747,32 @@ body::after {
         font-size: 1.5rem !important;
     }
 
+    #verification .container {
+        padding: 1rem !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    #verification .status-panel {
+        margin: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 1rem !important;
+    }
+
+    #verification .status-panel > div {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1.5rem !important;
+        width: 100% !important;
+    }
+
+    #verification .status-panel > div > div {
+        width: 100% !important;
+        padding: 1rem !important;
+        text-align: center !important;
+    }
+
     .footer {
         padding: 2rem 1.5rem;
     }
@@ -1788,7 +1827,7 @@ body::after {
 
 @media (max-width: 480px) {
     .hero-title {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .hero-metrics {
@@ -1796,7 +1835,7 @@ body::after {
     }
 
     .stat-value {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
     }
 
     #intelligence-core-canvas {
@@ -1809,18 +1848,35 @@ body::after {
     }
 
     .nav-links {
-        font-size: 0.75rem;
+        font-size: 0.65rem;
+        gap: 0.3rem;
+    }
+
+    .nav-links a {
+        padding: 0.3rem 0.5rem;
     }
 
     .quant-panel {
-        padding: 1rem;
+        padding: 0.8rem;
     }
 
     .panel-title {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
     }
 
     .metric-value {
-        font-size: 1.1rem;
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 1.3rem;
+    }
+
+    #verification .status-panel > div > div {
+        padding: 0.8rem !important;
+    }
+
+    #verification .status-panel > div > div > div:first-child {
+        font-size: 1.2rem !important;
     }
 }
