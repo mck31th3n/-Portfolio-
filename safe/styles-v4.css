@@ -1614,6 +1614,15 @@ body::after {
         display: none !important;
     }
 
+    /* MOBILE: Hide graphs, timeline, verification, and security sections */
+    .hero-visual,
+    #chart-animation,
+    .engine-timeline-section,
+    #verification,
+    #security {
+        display: none !important;
+    }
+
     /* Full width main area */
     .main-dashboard {
         margin-left: 0 !important;
@@ -1859,13 +1868,27 @@ body::after {
     }
 
     .footer {
-        padding: 2rem 1.5rem;
+        padding: 2rem 1rem !important;
     }
 
     .footer-links {
-        flex-direction: column;
-        gap: 0.8rem;
-        text-align: center;
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 1rem !important;
+        width: 100% !important;
+        text-align: center !important;
+        margin-top: 1.5rem !important;
+    }
+
+    .footer-links a,
+    .footer-links span {
+        font-size: 0.75rem !important;
+        padding: 0.5rem !important;
+        display: block !important;
+    }
+
+    .footer-links span {
+        display: none !important; /* Hide separator on mobile */
     }
 
     .engine-timeline-section {
