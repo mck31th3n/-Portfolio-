@@ -149,6 +149,17 @@ body::after {
     scrollbar-color: var(--eclipse-gold) transparent;
 }
 
+/* MOBILE: Completely hide sidebar */
+@media (max-width: 768px) {
+    .intelligence-spine {
+        display: none !important;
+        visibility: hidden !important;
+        width: 0 !important;
+        position: absolute !important;
+        left: -9999px !important;
+    }
+}
+
 .intelligence-spine::-webkit-scrollbar {
     width: 4px;
 }
@@ -396,6 +407,16 @@ body::after {
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: var(--shadow-velvet);
     z-index: 1000;
+}
+
+/* MOBILE: Full width navigation */
+@media (max-width: 768px) {
+    .nav {
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+    }
 }
 
 .nav-container {
