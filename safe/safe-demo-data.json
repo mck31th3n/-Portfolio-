@@ -1,0 +1,19 @@
+{
+  "isRunning": true,
+  "startTime": "2025-12-12T13:28:19",
+  "uptime": {
+    "hours": 24,
+    "minutes": 0,
+    "seconds": 0,
+    "totalHours": 24.0
+  },
+  "portfolio": {
+    "value": 10523.42,
+    "return": 5.23,
+    "cycles": 288,
+    "timestamp": "2025-12-13T13:28:19"
+  },
+  "totalDecisions": 12847,
+  "lastUpdate": "2025-12-13T13:28:19",
+  "note": "Demo data - will be updated with final 24hr test results"
+}

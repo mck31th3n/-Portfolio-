@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Myel Shaddah Key / Michael McKeithen Jr. — Resume</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --obsidian-black: #000000;
+            --glossy-black: #0a0a0a;
+            --surface-black: #121212;
+            --eclipse-gold: #d4af37;
+            --bright-gold: #FFD700;
+            --text-primary: #E8EEF2;
+            --text-secondary: rgba(232, 238, 242, 0.7);
+            --text-muted: rgba(232, 238, 242, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--obsidian-black) 0%, var(--glossy-black) 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 3rem 2rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(18, 18, 18, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: 8px;
+            padding: 3rem;
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        header {
+            text-align: center;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--eclipse-gold);
+            letter-spacing: 0.15em;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .contact {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .contact a {
+            color: var(--eclipse-gold);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact a:hover {
+            color: var(--bright-gold);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        .section {
+            margin-bottom: 2.5rem;
+        }
+
+        h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--eclipse-gold);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.75rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .project-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--bright-gold);
+            letter-spacing: 0.05em;
+        }
+
+        .project-date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-style: italic;
+            letter-spacing: 0.05em;
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--eclipse-gold);
+            font-weight: bold;
+        }
+
+        .skills-list {
+            color: var(--text-secondary);
+            line-height: 2;
+        }
+
+        .skills-list::before {
+            content: none;
+        }
+
+        .education-item {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(212, 175, 55, 0.03);
+            border-left: 3px solid var(--eclipse-gold);
+            border-radius: 4px;
+        }
+
+        .education-degree {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 1.05rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .education-school {
+            color: var(--text-muted);
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--eclipse-gold);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: rgba(212, 175, 55, 0.2);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+            transform: translateY(-2px);
+        }
+
+        @media print {
+            body {
+                background: white;
+                color: #000;
+                padding: 0;
+            }
+            .container {
+                background: white;
+                border: none;
+                box-shadow: none;
+                padding: 0.5in;
+            }
+            h1, h2, .project-title {
+                color: #000;
+                text-shadow: none;
+            }
+            .back-link {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MYEL SHADDAH KEY</h1>
+            <p class="subtitle">Michael McKeithen Jr.</p>
+            <div class="contact">
+                Charlotte, NC<br>
+                <a href="mailto:myelshaddahkey@gmail.com">myelshaddahkey@gmail.com</a><br>
+                <a href="https://www.linkedin.com/in/michael-mckeithen-jr-79b182161" target="_blank">linkedin.com/in/michael-mckeithen-jr-79b182161</a>
+            </div>
+        </header>
+
+        <div class="section">
+            <h2>Summary</h2>
+            <p>
+                R&D-focused creative technologist building AI systems, autonomous trading engines, interactive narratives, and financial dashboards with LLMs. Creator of S.A.F.E. (Secure Autonomous Financial Engine), an institutional-grade AI portfolio manager with patent-pending dual-brain architecture tested across 100,000+ decisions on blind historical data. I use no-code/low-code tools plus emerging coding skills to prototype working products quickly: designing behavior specs, wiring APIs, and iterating on UX until the system feels explainable and trustworthy to real users.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Core Skills & Focus</h2>
+            <ul class="skills-list">
+                <li>Design thinking & rapid prototyping for LLM-driven tools</li>
+                <li>AI agent behavior, personality mapping, and long-term memory design</li>
+                <li>Multi-agent orchestration & autonomous decision-making systems</li>
+                <li>Temporal isolation protocols & integrity verification for AI systems</li>
+                <li>Concept-to-prototype strategy for no-code/low-code stacks</li>
+                <li>System architecture for single-user and small-team AI assistants</li>
+                <li>Algorithmic trading systems, portfolio management, and risk analysis</li>
+                <li>Narrative design for interactive, AI-powered story experiences</li>
+                <li>Client-style communication & explanation of complex systems</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Tools & Platforms</h2>
+            <p style="margin-left: 1.5rem;">
+                ChatGPT / OpenAI API (GPT-4o, GPT-5, o3-deep-research) · Ollama · Claude Sonnet · Python · Visual Studio Code · REST APIs · JSON · Yahoo Finance · Coinbase API · Alpaca Markets · Google Drive · No-code/low-code builders
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Selected Projects</h2>
+
+            <div class="project-header">
+                <span class="project-title">A. S.A.F.E. — SECURE AUTONOMOUS FINANCIAL ENGINE</span>
+                <span class="project-date">2024 – PRESENT</span>
+            </div>
+            <p>
+                Institutional-grade autonomous AI portfolio manager with patent-pending dual-brain architecture. Built to manage multi-asset portfolios (crypto, equities, forex, commodities) with zero human intervention while maintaining complete audit integrity and temporal isolation.
+            </p>
+            <ul>
+                <li>Designed dual-brain architecture: Council Brain (o3-deep-research) provides strategic regime analysis every 15 minutes; 5 specialized Trader Brains (gpt-5-mini) execute tactical decisions every 5 minutes, one per asset (BTC-USD, ETH-USD, SPY, EURUSD=X, GC=F).</li>
+                <li>Developed temporal isolation protocol ensuring zero future data leakage during backtesting. Tested across 100,000+ trading decisions on blind 2020-2024 historical data with verified zero contamination events and 100% audit integrity.</li>
+                <li>Implemented real-time learning system with persistent memory: SAFE adapts its strategy based on market performance while maintaining complete decision audit trails in append-only CSV logs.</li>
+                <li>Built enterprise security architecture including circuit breakers (auto-stop on 20% drawdown), hallucination detection, bias monitoring, and three-layer defense system (integrity verification, temporal isolation, access control).</li>
+                <li>Integrated live market data via Coinbase API (crypto), Alpaca Markets (equities), and Yahoo Finance (forex/commodities) with automatic fallback handling and connection resilience.</li>
+                <li>Currently running 24-hour live paper trading tests to validate full-power performance against lobotomized baseline (-5% over 16 hours).</li>
+            </ul>
+
+            <div class="project-header">
+                <span class="project-title">B. ZELLE — ADAPTIVE PERSONAL AI COMPANION</span>
+                <span class="project-date">2025 – PRESENT</span>
+            </div>
+            <p>
+                Personal desktop AI built on top of OpenAI's APIs, focused on long-term memory, adaptive tone, and daily creative + technical work. Part of The Owl's five-finger intelligence architecture specializing in security and risk assessment.
+            </p>
+            <ul>
+                <li>Designed a seasonal, calming UI (floating cloud / falling leaves aesthetic) with a single input surface for text and voice.</li>
+                <li>Implemented a date-indexed conversation system: every day is broken into 24 "hour blocks" with autosave logic so any conversation can be retrieved by date and hour.</li>
+                <li>Wrote a behavioral spec blending multiple personality frameworks (MBTI, Big Five, etc.) to control tone, empathy, and response depth without exposing internals to the user.</li>
+                <li>Currently extending Zelle from desktop to mobile as a private, non-public assistant, using the desktop version as the "source of truth" for memory and behavior.</li>
+            </ul>
+
+            <div class="project-header">
+                <span class="project-title">C. INTROVERSE — ARC 0 INTERACTIVE NARRATIVE DEMO</span>
+                <span class="project-date">2025 – PRESENT</span>
+            </div>
+            <p>
+                Original game & show concept where players bond with AI-driven "Selves" based on their zodiac. Arc 0 is a narrative, text-driven demo that stress-tests worldbuilding, LLM behavior, and progression systems before full gameplay exists.
+            </p>
+            <ul>
+                <li>Built an AI-narrated adventure that personalizes dialogue based on player name and birthdate; NPCs and the narrator adapt to these inputs for a bespoke "Session 0" feel.</li>
+                <li>Implemented zodiac + cusp logic to determine the player's Selve (starter creature). Troll / invalid dates route to a Typeless Selve with neutral interactions and a unique ruleset.</li>
+                <li>Designed the evolution chain: Egg → Star Child (base form) → Void → Reflect → Echo, plus separate Legendary / Typeless paths.</li>
+                <li>Established the combat triangle for late-game systems: Void beats Echo, Echo beats Reflect, Reflect beats Void.</li>
+                <li>Prototyped seasonal move-set logic and world buffs (zodiac cycles, Ophiuchus curse, party rules) via simulations using the Arc 0 narrative as the front-end.</li>
+            </ul>
+
+            <div class="project-header">
+                <span class="project-title">D. DUAL-MIND FRAMEWORK — MULTI-PERSONA CHATGPT ORCHESTRATION</span>
+                <span class="project-date">2025 – PRESENT</span>
+            </div>
+            <p>
+                Orchestration pattern for running multiple distinct "minds" inside a single ChatGPT conversation (e.g., creative collaborator + security-focused critic).
+            </p>
+            <ul>
+                <li>Defined two core personas (e.g., Ally and Zelle) with complementary roles: one pushes exploration, the other enforces constraints, safety, and precision.</li>
+                <li>Built a structured prompt protocol so each "mind" can announce itself, cross-check the other's reasoning, and escalate conflicts instead of silently merging answers.</li>
+                <li>Applied the framework across domains: game design (Introverse), financial UX (STEP), language-learning plans, and security-minded workflows.</li>
+                <li>Resulted in a reusable pattern for multi-agent reasoning inside a single chat window, without external tools or agent frameworks.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Education</h2>
+            <div class="education-item">
+                <div class="education-degree">MFA, Music Composition — 2022</div>
+                <div class="education-school">University of North Carolina School of the Arts</div>
+            </div>
+            <div class="education-item">
+                <div class="education-degree">BA, Music Composition — 2019</div>
+                <div class="education-school">Queens University of Charlotte</div>
+            </div>
+            <div class="education-item">
+                <div class="education-degree">Undergraduate Studies — 2014–2016</div>
+                <div class="education-school">Gardner–Webb University (transferred)</div>
+            </div>
+        </div>
+
+        <a href="safe/index.html" class="back-link">← Return to Portfolio</a>
+    </div>
+</body>
+</html>

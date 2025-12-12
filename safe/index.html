@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S.A.F.E. V4.0 - Autonomous Financial Intelligence</title>
+    <link rel="stylesheet" href="styles-v4.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .back-to-portfolio {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            z-index: 50;
+            padding: 12px 24px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid var(--gold-primary);
+            color: var(--gold-primary);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+        .back-to-portfolio:hover {
+            background: var(--gold-primary);
+            color: #000;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+    </style>
+</head>
+
+<body class="safe-environment">
+    <a href="../index.html" class="back-to-portfolio">← PORTFOLIO</a>
+
+    <!-- INTELLIGENCE SPINE - Left Vertical Panel -->
+    <aside class="intelligence-spine">
+        <div class="spine-header">
+            <div class="safe-core-logo">S.A.F.E.</div>
+            <div class="system-pulse"></div>
+        </div>
+
+        <div class="spine-section">
+            <div class="spine-label">CORE STATUS</div>
+            <div class="status-grid">
+                <div class="status-item">
+                    <span class="status-key">Engine State</span>
+                    <span class="status-value active">ACTIVE</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-key">Reasoning Channel</span>
+                    <span class="status-value">SANITIZED</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-key">Runtime Cycles</span>
+                    <span class="status-value cycle-counter" id="runtime-cycles">0</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-key">Integrity</span>
+                    <span class="status-value integrity-check">VERIFIED</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="spine-section">
+            <div class="spine-label">OPERATIONAL MODE</div>
+            <div class="mode-selector">
+                <div class="mode-option active" data-mode="execution">
+                    <span class="mode-icon">◆</span>
+                    <span class="mode-name">EXECUTION</span>
+                </div>
+                <div class="mode-option" data-mode="audit">
+                    <span class="mode-icon">◈</span>
+                    <span class="mode-name">AUDIT</span>
+                </div>
+                <div class="mode-option" data-mode="isolated">
+                    <span class="mode-icon">◇</span>
+                    <span class="mode-name">ISOLATED</span>
+                </div>
+                <div class="mode-option" data-mode="blind">
+                    <span class="mode-icon">◆</span>
+                    <span class="mode-name">BLIND</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="spine-section">
+            <div class="spine-label">PERFORMANCE</div>
+            <div class="metric-stack">
+                <div class="metric-row">
+                    <span class="metric-label">Latency</span>
+                    <span class="metric-value" id="latency">1.2ms</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">Uptime</span>
+                    <span class="metric-value" id="uptime">00:00:00</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">Load</span>
+                    <span class="metric-value temp-gauge" id="temperature">23%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="spine-section">
+            <div class="spine-label">SECURITY</div>
+            <div class="security-indicators">
+                <div class="indicator-row">
+                    <span class="indicator-dot active"></span>
+                    <span>Audit Logging</span>
+                </div>
+                <div class="indicator-row">
+                    <span class="indicator-dot active"></span>
+                    <span>Runtime Protection</span>
+                </div>
+                <div class="indicator-row">
+                    <span class="indicator-dot active"></span>
+                    <span>Integrity Verification</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="spine-footer">
+            <div class="build-info">
+                <div>Build: V4.0.0</div>
+                <div>Integrity: <span class="hash-value">SHA256:a3f9...</span></div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN DASHBOARD -->
+    <main class="main-dashboard">
+
+        <!-- Navigation -->
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="nav-logo logo-wave">S.A.F.E.</div>
+                <div class="nav-links">
+                    <a href="#intelligence-core">Intelligence</a>
+                    <a href="#performance">Performance</a>
+                    <a href="#security">Security</a>
+                    <a href="../resume.html">Resume</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section - Intelligence Core + Graph -->
+        <section class="hero" style="margin-top: 6rem;">
+            <div class="hero-content">
+                <h1 class="hero-title logo-wave">S.A.F.E.</h1>
+                <p class="hero-subtitle">Secure Autonomous Financial Engine</p>
+                <p class="hero-description">
+                    Institutional-grade autonomous intelligence with integrity verification,
+                    temporal isolation, and enterprise security. Built for precision.
+                </p>
+            </div>
+            <div class="hero-visual">
+                <canvas id="chart-animation" width="600" height="500"></canvas>
+            </div>
+        </section>
+
+        <!-- Intelligence Core Visualization -->
+        <section id="intelligence-core" class="hero-intelligence">
+            <div class="intelligence-core-container">
+                <canvas id="intelligence-core-canvas" width="400" height="400"></canvas>
+                <div class="core-status-overlay">
+                    <div class="core-mode" id="core-reasoning-mode">Pattern Recognition</div>
+                    <div class="core-subtitle">AUTONOMOUS INTELLIGENCE</div>
+                </div>
+            </div>
+            <div class="hero-metrics">
+                <div class="hero-stat">
+                    <div class="stat-label">DECISIONS</div>
+                    <div class="stat-value" id="total-decisions">0</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="stat-label">WIN RATE</div>
+                    <div class="stat-value" id="win-rate">--</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="stat-label">UPTIME</div>
+                    <div class="stat-value" id="uptime-display">0h</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="stat-label">INTEGRITY</div>
+                    <div class="stat-value integrity-indicator">100%</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Engine Timeline -->
+        <section class="engine-timeline-section">
+            <div class="timeline-header">
+                <h3>LIVE ENGINE TIMELINE</h3>
+                <div class="timeline-legend">
+                    <span class="legend-item"><span class="legend-dot decision"></span>Decisions</span>
+                    <span class="legend-item"><span class="legend-dot data"></span>Data Requests</span>
+                    <span class="legend-item"><span class="legend-dot audit"></span>Audits</span>
+                    <span class="legend-item"><span class="legend-dot threat"></span>Threat Scans</span>
+                </div>
+            </div>
+            <canvas id="engine-timeline" width="1200" height="100"></canvas>
+            <div class="last-decision-summary" id="decision-summary">
+                <strong>Last Decision:</strong> Prioritized volatility compression after detecting 0.3% drift in 5-minute range.
+            </div>
+        </section>
+
+        <!-- Streamlined Performance Panels -->
+        <section id="performance" class="quant-panels-grid">
+
+            <!-- Runtime Audit Panel -->
+            <div class="quant-panel">
+                <div class="panel-header">
+                    <span class="panel-title">RUNTIME AUDIT</span>
+                    <span class="panel-status active">ACTIVE</span>
+                </div>
+                <div class="panel-body">
+                    <div class="panel-metric">
+                        <span class="metric-label">Cycles</span>
+                        <span class="metric-value pulse" id="audit-cycles">0</span>
+                    </div>
+                    <div class="panel-metric">
+                        <span class="metric-label">Integrity Drift</span>
+                        <span class="metric-value">0.00%</span>
+                    </div>
+                    <div class="panel-metric">
+                        <span class="metric-label">Contamination</span>
+                        <span class="metric-value zero-indicator">ZERO</span>
+                    </div>
+                </div>
+                <div class="panel-circuit-edge"></div>
+            </div>
+
+            <!-- Portfolio Status Panel -->
+            <div class="quant-panel">
+                <div class="panel-header">
+                    <span class="panel-title">PORTFOLIO STATUS</span>
+                    <span class="panel-status">TRACKING</span>
+                </div>
+                <div class="panel-body">
+                    <div class="panel-metric">
+                        <span class="metric-label">Total Value</span>
+                        <span class="metric-value gold" id="portfolio-value">$10,000.00</span>
+                    </div>
+                    <div class="panel-metric">
+                        <span class="metric-label">Total Return</span>
+                        <span class="metric-value" id="portfolio-return">0.00%</span>
+                    </div>
+                    <div class="panel-metric">
+                        <span class="metric-label">Active Positions</span>
+                        <span class="metric-value" id="active-positions">0</span>
+                    </div>
+                </div>
+                <div class="panel-circuit-edge"></div>
+            </div>
+
+            <!-- Intelligence Engine Panel (Generic - No Dual-Brain Exposure) -->
+            <div class="quant-panel">
+                <div class="panel-header">
+                    <span class="panel-title">INTELLIGENCE ENGINE</span>
+                    <span class="panel-status active">OPERATIONAL</span>
+                </div>
+                <div class="panel-body">
+                    <div class="panel-metric">
+                        <span class="metric-label">Decision Engine</span>
+                        <span class="metric-value active-indicator">ACTIVE</span>
+                    </div>
+                    <div class="panel-metric">
+                        <span class="metric-label">Reasoning Mode</span>
+                        <span class="metric-value active-indicator">SANITIZED</span>
+                    </div>
+                    <div class="panel-metric">
+                        <span class="metric-label">Confidence</span>
+                        <span class="metric-value">85%</span>
+                    </div>
+                </div>
+                <div class="panel-circuit-edge"></div>
+            </div>
+
+            <!-- Security Status Panel -->
+            <div class="quant-panel">
+                <div class="panel-header">
+                    <span class="panel-title">SECURITY STATUS</span>
+                    <span class="panel-status active">PROTECTED</span>
+                </div>
+                <div class="panel-body">
+                    <div class="panel-metric">
+                        <span class="metric-label">Audit Logs</span>
+                        <span class="metric-value active-indicator">ACTIVE</span>
+                    </div>
+                    <div class="panel-metric">
+                        <span class="metric-label">Input Validation</span>
+                        <span class="metric-value active-indicator">ENABLED</span>
+                    </div>
+                    <div class="panel-metric">
+                        <span class="metric-label">Threats Blocked</span>
+                        <span class="metric-value zero-indicator">0</span>
+                    </div>
+                </div>
+                <div class="panel-circuit-edge"></div>
+            </div>
+
+        </section>
+
+        <!-- Verification Summary (Condensed) -->
+        <section id="verification" class="section">
+            <div class="container">
+                <h2 class="section-title">Verification Results</h2>
+                <p class="section-intro">
+                    Blind testing protocol · 2020-2024 · Temporal isolation verified
+                </p>
+
+                <div class="status-panel">
+                    <div class="status-header">INTEGRITY CERTIFICATION</div>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; text-align: center; position: relative; z-index: 1;">
+                        <div>
+                            <div style="font-family: 'Inter', sans-serif; font-size: 2.5rem; font-weight: 500; color: #27AE60; margin-bottom: 0.5rem; letter-spacing: 0.05rem;">10,000+</div>
+                            <div style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">Trading Decisions</div>
+                        </div>
+                        <div>
+                            <div style="font-family: 'Inter', sans-serif; font-size: 2.5rem; font-weight: 500; color: #4A90E2; margin-bottom: 0.5rem; letter-spacing: 0.05rem;">ZERO</div>
+                            <div style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">Contamination Events</div>
+                        </div>
+                        <div>
+                            <div style="font-family: 'Inter', sans-serif; font-size: 2.5rem; font-weight: 500; color: #FFD700; margin-bottom: 0.5rem; letter-spacing: 0.05rem;">100%</div>
+                            <div style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">Audit Integrity</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Security Architecture (Condensed) -->
+        <section id="security" class="section section-dark">
+            <div class="container">
+                <h2 class="section-title">Security Architecture</h2>
+                <p class="section-intro">Three-layer defense system</p>
+                <div class="security-rings">
+                    <div class="ring ring-outer">
+                        <h3>Integrity Verification</h3>
+                        <ul>
+                            <li>Cryptographic hash monitoring</li>
+                            <li>Real-time tamper detection</li>
+                            <li>Immutable audit trail</li>
+                        </ul>
+                    </div>
+                    <div class="ring ring-middle">
+                        <h3>Temporal Isolation</h3>
+                        <ul>
+                            <li>Strict linear-time reasoning</li>
+                            <li>Zero lookahead capability</li>
+                            <li>Absolute blindness protocol</li>
+                        </ul>
+                    </div>
+                    <div class="ring ring-inner">
+                        <h3>Runtime Protection</h3>
+                        <ul>
+                            <li>Automated threat detection</li>
+                            <li>Input validation system</li>
+                            <li>Zero-tolerance security</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2024 Michael McKeithen | S.A.F.E. V4.0</p>
+                <div class="footer-links">
+                    <a href="../nest/index.html">The Owl's Nest</a>
+                    <a href="../executive_function/index.html">But what if?...</a>
+                    <a href="../resume.html">Resume</a>
+                    <span style="opacity: 0.3;">|</span>
+                    <a href="https://github.com/mck31th3n">GitHub</a>
+                    <a href="https://linkedin.com/in/michael-mckeithen">LinkedIn</a>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <script src="script-v4.js"></script>
+    <!-- Live data connector - reads SAFE's actual test results -->
+    <script src="live-data-connector.js"></script>
+</body>
+
+</html>

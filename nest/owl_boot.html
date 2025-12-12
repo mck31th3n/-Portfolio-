@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OWL System Interface</title>
+    <link rel="stylesheet" href="owl_boot.css">
+    <style>
+        .back-to-portfolio {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            z-index: 10000;
+            padding: 12px 24px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #FFD700;
+            color: #FFD700;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+        .back-to-portfolio:hover {
+            background: #FFD700;
+            color: #000;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Coming Soon Overlay */
+        .coming-soon-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            pointer-events: all;
+        }
+
+        .coming-soon-content {
+            text-align: center;
+            max-width: 600px;
+            padding: 60px;
+            background: linear-gradient(145deg, rgba(18, 18, 18, 0.95), rgba(0, 0, 0, 0.98));
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+        }
+
+        .coming-soon-title {
+            font-size: 48px;
+            color: #FFD700;
+            margin-bottom: 20px;
+            letter-spacing: 6px;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+            font-family: 'Courier New', monospace;
+        }
+
+        .coming-soon-subtitle {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .coming-soon-description {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .return-to-safe-btn {
+            display: inline-block;
+            padding: 16px 40px;
+            background: transparent;
+            border: 2px solid #FFD700;
+            color: #FFD700;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 16px;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            font-family: 'Courier New', monospace;
+        }
+
+        .return-to-safe-btn:hover {
+            background: #FFD700;
+            color: #000;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .preview-hint {
+            margin-top: 20px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Coming Soon Overlay -->
+    <div class="coming-soon-overlay">
+        <div class="coming-soon-content">
+            <div class="coming-soon-title">COMING SOON</div>
+            <div class="coming-soon-subtitle">THE OWL</div>
+            <div class="coming-soon-subtitle" style="font-size: 16px; margin-bottom: 30px;">Five Finger Intelligence System</div>
+            <p class="coming-soon-description">
+                The Owl's fingerprint convergence interface and intelligence dashboard are currently being finalized.
+                348K+ files analyzed, 13.6 GB recovered, five specialized intelligence cores ready to deploy.
+            </p>
+            <a href="../safe/index.html" class="return-to-safe-btn">RETURN TO S.A.F.E.</a>
+            <p class="preview-hint">You can glimpse the interface behind this overlay</p>
+        </div>
+    </div>
+
+    <a href="../index.html" class="back-to-portfolio">← PORTFOLIO</a>
+    <div class="boot-container">
+        <ellipse cx="50" cy="50" rx="20" ry="25" fill="none" stroke="currentColor" stroke-width="2" opacity="0.4" />
+        <ellipse cx="50" cy="50" rx="10" ry="15" fill="none" stroke="currentColor" stroke-width="2" opacity="0.2" />
+        </svg>
+    </div>
+
+    <div class="fingerprint index" data-color="purple">
+        <svg viewBox="0 0 100 100">
+            <ellipse cx="50" cy="50" rx="40" ry="45" fill="none" stroke="currentColor" stroke-width="2" opacity="0.8" />
+            <ellipse cx="50" cy="50" rx="30" ry="35" fill="none" stroke="currentColor" stroke-width="2" opacity="0.6" />
+            <ellipse cx="50" cy="50" rx="20" ry="25" fill="none" stroke="currentColor" stroke-width="2" opacity="0.4" />
+            <ellipse cx="50" cy="50" rx="10" ry="15" fill="none" stroke="currentColor" stroke-width="2" opacity="0.2" />
+        </svg>
+    </div>
+
+    <div class="fingerprint ring" data-color="green">
+        <svg viewBox="0 0 100 100">
+            <ellipse cx="50" cy="50" rx="40" ry="45" fill="none" stroke="currentColor" stroke-width="2" opacity="0.8" />
+            <ellipse cx="50" cy="50" rx="30" ry="35" fill="none" stroke="currentColor" stroke-width="2" opacity="0.6" />
+            <ellipse cx="50" cy="50" rx="20" ry="25" fill="none" stroke="currentColor" stroke-width="2" opacity="0.4" />
+            <ellipse cx="50" cy="50" rx="10" ry="15" fill="none" stroke="currentColor" stroke-width="2" opacity="0.2" />
+        </svg>
+    </div>
+
+    <div class="fingerprint pinky" data-color="gray">
+        <svg viewBox="0 0 100 100">
+            <ellipse cx="50" cy="50" rx="40" ry="45" fill="none" stroke="currentColor" stroke-width="2" opacity="0.8" />
+            <ellipse cx="50" cy="50" rx="30" ry="35" fill="none" stroke="currentColor" stroke-width="2" opacity="0.6" />
+            <ellipse cx="50" cy="50" rx="20" ry="25" fill="none" stroke="currentColor" stroke-width="2" opacity="0.4" />
+            <ellipse cx="50" cy="50" rx="10" ry="15" fill="none" stroke="currentColor" stroke-width="2" opacity="0.2" />
+        </svg>
+    </div>
+
+    <!-- Converging lines -->
+    <svg class="lines-canvas" viewBox="0 0 1920 1080">
+        <!-- Lines will be drawn by JavaScript -->
+        <line class="convergence-line thumb-line" x1="200" y1="200" x2="960" y2="540" stroke="#4A90E2" stroke-width="3"
+            opacity="0" />
+        <line class="convergence-line index-line" x1="200" y1="880" x2="960" y2="540" stroke="#9B59B6" stroke-width="3"
+            opacity="0" />
+        <line class="convergence-line ring-line" x1="1720" y1="880" x2="960" y2="540" stroke="#27AE60" stroke-width="3"
+            opacity="0" />
+        <line class="convergence-line pinky-line" x1="1720" y1="200" x2="960" y2="540" stroke="#95A5A6" stroke-width="3"
+            opacity="0" />
+        <line class="convergence-line middle-line" x1="960" y1="0" x2="960" y2="540" stroke="#E67E22" stroke-width="3"
+            opacity="0" />
+
+        <!-- Central sigil (6-sided star) -->
+        <g class="sigil" opacity="0">
+            <line x1="860" y1="540" x2="1060" y2="540" stroke="white" stroke-width="2" />
+            <line x1="910" y1="453" x2="1010" y2="627" stroke="white" stroke-width="2" />
+            <line x1="1010" y1="453" x2="910" y2="627" stroke="white" stroke-width="2" />
+            <circle cx="960" cy="540" r="60" fill="none" stroke="white" stroke-width="2" opacity="0.3" />
+            <circle cx="960" cy="540" r="40" fill="none" stroke="white" stroke-width="1" opacity="0.2" />
+        </g>
+    </svg>
+
+    <!-- OWL Text -->
+    <div class="owl-text">OWL</div>
+    <div class="subtitle">Five Finger Intelligence System</div>
+
+    <!-- Stats Dashboard (appears after boot) -->
+    <div class="stats-dashboard" id="stats-dashboard">
+        <div class="stats-header">
+            <h2>SYSTEM ANALYSIS RESULTS</h2>
+            <p class="stats-tagline">Deep Intelligence Extraction Complete</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">📊</div>
+                <div class="stat-value" id="files-analyzed">348,597</div>
+                <div class="stat-label">Files Analyzed</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">🔍</div>
+                <div class="stat-value" id="duplicates-found">89,525</div>
+                <div class="stat-label">Duplicate Groups Found</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">💾</div>
+                <div class="stat-value" id="space-recovered">13.6 GB</div>
+                <div class="stat-label">Storage Recovered</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">📁</div>
+                <div class="stat-value" id="files-organized">2,971</div>
+                <div class="stat-label">Files Organized by Domain</div>
+            </div>
+        </div>
+
+        <div class="domain-breakdown">
+            <h3>Five Finger Intelligence Cores</h3>
+            <div class="domain-list">
+                <div class="domain-item zelle">
+                    <span class="domain-name">ZELLE</span>
+                    <span class="domain-desc">Strategic Intelligence Core</span>
+                    <span class="domain-count">ACTIVE</span>
+                </div>
+                <div class="domain-item muse">
+                    <span class="domain-name">MUSE</span>
+                    <span class="domain-desc">Creative Intelligence Core</span>
+                    <span class="domain-count">ACTIVE</span>
+                </div>
+                <div class="domain-item keystone">
+                    <span class="domain-name">KEYSTONE</span>
+                    <span class="domain-desc">Foundation Intelligence Core</span>
+                    <span class="domain-count">ACTIVE</span>
+                </div>
+                <div class="domain-item vector">
+                    <span class="domain-name">VECTOR</span>
+                    <span class="domain-desc">Analytical Intelligence Core</span>
+                    <span class="domain-count">ACTIVE</span>
+                </div>
+                <div class="domain-item ally">
+                    <span class="domain-name">ALLY</span>
+                    <span class="domain-desc">Collaborative Intelligence Core</span>
+                    <span class="domain-count">ACTIVE</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-footer">
+            <p class="system-status">🦉 Always Watching, Learning, Adapting</p>
+        </div>
+    </div>
+    </div>
+
+    <script src="owl_boot.js"></script>
+</body>
+
+</html>

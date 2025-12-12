@@ -1,0 +1,18 @@
+{
+  "isRunning": true,
+  "startTime": "2025-12-12T13:28:19",
+  "uptime": {
+    "hours": 0,
+    "minutes": 12,
+    "seconds": 37,
+    "totalHours": 0.21
+  },
+  "portfolio": {
+    "value": 9996.643356643355,
+    "return": -0.03356643356644781,
+    "cycles": 1,
+    "timestamp": "2025-12-12T13:35:12.857374"
+  },
+  "totalDecisions": 32,
+  "lastUpdate": "2025-12-12T13:40:56.081581"
+}
