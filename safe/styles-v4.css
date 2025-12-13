@@ -1706,6 +1706,11 @@ body::after {
     .hero-description {
         font-size: clamp(0.95rem, 3.5vw, 1.1rem);
         max-width: 100%;
+        margin-bottom: 1rem !important;
+    }
+
+    .hero-content {
+        padding-bottom: 0 !important;
     }
 
     .nav-container {
@@ -1725,6 +1730,7 @@ body::after {
     .hero-intelligence {
         flex-direction: column;
         padding: clamp(16px, 4vw, 48px);
+        padding-top: 1rem !important;
     }
 
     .intelligence-core-container {
