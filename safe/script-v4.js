@@ -381,6 +381,15 @@ function initStaticGlowGraph() {
                 animationTime = 0;
             }
         } else if (cyclePhase === 'reset') {
+            // Smoothly animate dots back down instead of hard reset
+            const resetProgress = Math.min(1, animationTime / 1000);
+            dots.forEach(dot => {
+                // Animate from current position back to baseY
+                const reverseProgress = 1 - resetProgress;
+                dot.currentY = dot.baseY - (dot.baseY - dot.targetY) * easeOutCubic(reverseProgress);
+                dot.verticalProgress = reverseProgress;
+            });
+
             if (animationTime > 1000) {
                 cyclePhase = 'breathing';
                 animationTime = 0;
