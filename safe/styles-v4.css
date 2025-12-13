@@ -1691,8 +1691,9 @@ body::after {
     .hero {
         flex-direction: column;
         text-align: center;
-        padding: 4rem 1.5rem 2rem;
-        margin-top: 0 !important;
+        padding: 2rem 1.5rem 0.5rem !important;
+        margin-top: 4rem !important;
+        margin-bottom: 0 !important;
     }
 
     .hero-title {
@@ -1729,8 +1730,8 @@ body::after {
 
     .hero-intelligence {
         flex-direction: column;
-        padding: clamp(16px, 4vw, 48px);
-        padding-top: 1rem !important;
+        padding: 1rem clamp(16px, 4vw, 48px) clamp(16px, 4vw, 48px);
+        margin-top: 0 !important;
     }
 
     .intelligence-core-container {
