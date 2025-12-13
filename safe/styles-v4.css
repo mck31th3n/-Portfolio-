@@ -1691,8 +1691,8 @@ body::after {
     .hero {
         flex-direction: column;
         text-align: center;
-        padding: 2rem 1.5rem 0.5rem !important;
-        margin-top: 4rem !important;
+        padding: 1.5rem 1.5rem 0 !important;
+        margin-top: 3rem !important;
         margin-bottom: 0 !important;
     }
 
