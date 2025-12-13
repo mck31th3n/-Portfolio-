@@ -1937,20 +1937,26 @@ body::after {
         white-space: nowrap;
     }
 
-    canvas {
-        max-width: 100% !important;
-        height: auto !important;
-    }
-
+    /* Chart animation - specific styling */
     #chart-animation {
+        display: block !important;
         width: 100% !important;
+        height: 280px !important;
         max-width: 100vw !important;
     }
 
     .hero-visual {
-        width: 100%;
-        max-width: 100%;
+        display: block !important;
+        width: 100% !important;
+        height: 280px !important;
+        margin: 0 0 2rem 0 !important;
         overflow: hidden;
+    }
+
+    /* Other canvases responsive */
+    canvas:not(#chart-animation) {
+        max-width: 100% !important;
+        height: auto !important;
     }
 
     .security-rings .ring {
