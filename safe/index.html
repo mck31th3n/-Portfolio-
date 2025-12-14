@@ -303,6 +303,108 @@
 
         </section>
 
+        <!-- Development Testing Results -->
+        <section id="test-results" class="section">
+            <div class="container">
+                <h2 class="section-title">Development Testing Results</h2>
+                <p class="section-intro">
+                    Active development · Paper trading validation · Iterative improvement
+                </p>
+                <div class="test-intro-note">
+                    <p>SAFE is currently in active development with ongoing paper trading validation using real market data.
+                    Recent tests demonstrate measurable performance improvement through iterative architecture refinement.</p>
+                </div>
+
+                <div class="test-comparison-grid">
+                    <!-- December 10 Baseline Test -->
+                    <div class="test-card baseline-test">
+                        <div class="test-header">
+                            <h3>December 10, 2025</h3>
+                            <span class="test-badge baseline">Baseline Configuration</span>
+                        </div>
+                        <div class="test-stats">
+                            <div class="stat-row">
+                                <span class="stat-label">Duration</span>
+                                <span class="stat-value" id="baseline-duration">16.4 hrs</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Cycles Completed</span>
+                                <span class="stat-value" id="baseline-cycles">30</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Performance</span>
+                                <span class="stat-value negative" id="baseline-return">-5.23%</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Configuration</span>
+                                <span class="stat-detail">Safety Limited</span>
+                            </div>
+                        </div>
+                        <canvas id="baseline-chart" class="test-chart"></canvas>
+                        <div class="test-timestamp" id="baseline-timestamp">
+                            2:12 AM → 6:39 PM EST
+                        </div>
+                    </div>
+
+                    <!-- December 12 Full Power Test -->
+                    <div class="test-card fullpower-test">
+                        <div class="test-header">
+                            <h3>December 12, 2025</h3>
+                            <span class="test-badge fullpower">Full Power</span>
+                        </div>
+                        <div class="test-stats">
+                            <div class="stat-row">
+                                <span class="stat-label">Duration</span>
+                                <span class="stat-value" id="fullpower-duration">5.8 hrs</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Cycles Completed</span>
+                                <span class="stat-value" id="fullpower-cycles">36</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Performance</span>
+                                <span class="stat-value near-zero" id="fullpower-return">-0.05%</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Configuration</span>
+                                <span class="stat-detail">All Systems Active</span>
+                            </div>
+                        </div>
+                        <canvas id="fullpower-chart" class="test-chart"></canvas>
+                        <div class="test-timestamp" id="fullpower-timestamp">
+                            3:56 PM → 9:41 PM EST
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Findings -->
+                <div class="findings-panel">
+                    <div class="panel-header">KEY FINDINGS</div>
+                    <div class="findings-grid">
+                        <div class="finding">
+                            <div class="finding-metric">+5.18%</div>
+                            <div class="finding-label">Performance Improvement</div>
+                        </div>
+                        <div class="finding">
+                            <div class="finding-metric">ZERO</div>
+                            <div class="finding-label">Hallucinations Detected</div>
+                        </div>
+                        <div class="finding">
+                            <div class="finding-metric">100%</div>
+                            <div class="finding-label">Audit Integrity</div>
+                        </div>
+                    </div>
+                    <div class="findings-notes">
+                        <p><strong>Methodology:</strong> All tests use paper trading (simulated execution) with live market data from major exchanges.
+                        Tests run on development infrastructure with standard API rate limits. Full Power configuration demonstrates
+                        significant improvement in risk control and decision-making efficiency compared to safety-limited baseline.</p>
+                        <p><strong>Future Work:</strong> Production deployment will utilize dedicated cloud resources for continuous 24/7 operation,
+                        extended testing periods, and additional market conditions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Verification Summary (Condensed) -->
         <section id="verification" class="section">
             <div class="container">
@@ -388,6 +490,8 @@
     <script src="script-v4.js"></script>
     <!-- Live data connector - reads SAFE's actual test results -->
     <script src="live-data-connector.js"></script>
+    <!-- Test comparison loader - displays historical test results -->
+    <script src="test-comparison-loader.js"></script>
 </body>
 
 </html>

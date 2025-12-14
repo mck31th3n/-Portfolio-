@@ -1,0 +1,452 @@
+{
+  "generated_at": "2025-12-13T21:26:26.355573",
+  "tests": [
+    {
+      "name": "Dec 10 Baseline",
+      "start_time": "2025-12-10 02:12",
+      "end_time": "2025-12-10 18:39",
+      "duration_hours": 16.45,
+      "cycles": 30,
+      "snapshots": 128,
+      "performance": {
+        "initial_value": 10000.0,
+        "final_value": 9476.77,
+        "return_pct": -5.232,
+        "max_value": 9997.48,
+        "min_value": 9476.77,
+        "max_drawdown_pct": -5.232
+      },
+      "chart_data": [
+        {
+          "timestamp": "2025-12-10T02:12:39.946493",
+          "portfolio_value": 9992.23776223776,
+          "return_pct": -0.0776223776223923
+        },
+        {
+          "timestamp": "2025-12-10T02:34:44.168199",
+          "portfolio_value": 9978.446305993271,
+          "return_pct": -0.2155369400672862
+        },
+        {
+          "timestamp": "2025-12-10T03:04:52.179441",
+          "portfolio_value": 9969.736822580246,
+          "return_pct": -0.3026317741975435
+        },
+        {
+          "timestamp": "2025-12-10T03:25:30.977887",
+          "portfolio_value": 9948.095270402891,
+          "return_pct": -0.5190472959710678
+        },
+        {
+          "timestamp": "2025-12-10T03:45:50.536462",
+          "portfolio_value": 9931.437640423084,
+          "return_pct": -0.685623595769157
+        },
+        {
+          "timestamp": "2025-12-10T04:07:05.444405",
+          "portfolio_value": 9912.302766763352,
+          "return_pct": -0.8769723323664766
+        },
+        {
+          "timestamp": "2025-12-10T04:27:07.142073",
+          "portfolio_value": 9891.481291909293,
+          "return_pct": -1.0851870809070714
+        },
+        {
+          "timestamp": "2025-12-10T04:47:43.675147",
+          "portfolio_value": 9875.562559594087,
+          "return_pct": -1.2443744040591265
+        },
+        {
+          "timestamp": "2025-12-10T05:08:05.015688",
+          "portfolio_value": 9866.161613281269,
+          "return_pct": -1.338383867187331
+        },
+        {
+          "timestamp": "2025-12-10T05:28:20.505791",
+          "portfolio_value": 9828.64222863064,
+          "return_pct": -1.713577713693594
+        },
+        {
+          "timestamp": "2025-12-10T05:49:09.182104",
+          "portfolio_value": 9791.427881955562,
+          "return_pct": -2.08572118044438
+        },
+        {
+          "timestamp": "2025-12-10T06:08:57.722966",
+          "portfolio_value": 9777.985181313888,
+          "return_pct": -2.220148186861133
+        },
+        {
+          "timestamp": "2025-12-10T06:29:09.507044",
+          "portfolio_value": 9764.594881476392,
+          "return_pct": -2.354051185236076
+        },
+        {
+          "timestamp": "2025-12-10T06:49:28.551437",
+          "portfolio_value": 9737.751308948476,
+          "return_pct": -2.6224869105152537
+        },
+        {
+          "timestamp": "2025-12-10T07:10:26.986074",
+          "portfolio_value": 9715.33614067001,
+          "return_pct": -2.8466385932999034
+        },
+        {
+          "timestamp": "2025-12-10T07:32:03.058413",
+          "portfolio_value": 9688.061401070312,
+          "return_pct": -3.1193859892968794
+        },
+        {
+          "timestamp": "2025-12-10T07:51:50.961131",
+          "portfolio_value": 9672.706220008607,
+          "return_pct": -3.272937799913925
+        },
+        {
+          "timestamp": "2025-12-10T08:12:25.495039",
+          "portfolio_value": 9659.750133272348,
+          "return_pct": -3.4024986672765225
+        },
+        {
+          "timestamp": "2025-12-10T08:33:41.184446",
+          "portfolio_value": 9642.54063401248,
+          "return_pct": -3.5745936598751906
+        },
+        {
+          "timestamp": "2025-12-10T08:53:50.952313",
+          "portfolio_value": 9633.270691315283,
+          "return_pct": -3.667293086847149
+        },
+        {
+          "timestamp": "2025-12-10T09:15:04.613299",
+          "portfolio_value": 9617.954926827251,
+          "return_pct": -3.820450731727469
+        },
+        {
+          "timestamp": "2025-12-10T09:37:00.065898",
+          "portfolio_value": 9603.549521239953,
+          "return_pct": -3.964504787600472
+        },
+        {
+          "timestamp": "2025-12-10T09:57:46.999046",
+          "portfolio_value": 9592.876003486614,
+          "return_pct": -4.071239965133864
+        },
+        {
+          "timestamp": "2025-12-10T10:18:36.005944",
+          "portfolio_value": 9585.680373621602,
+          "return_pct": -4.143196263783975
+        },
+        {
+          "timestamp": "2025-12-10T10:39:09.749552",
+          "portfolio_value": 9573.086251759478,
+          "return_pct": -4.269137482405222
+        },
+        {
+          "timestamp": "2025-12-10T10:59:54.618803",
+          "portfolio_value": 9560.280294793434,
+          "return_pct": -4.397197052065658
+        },
+        {
+          "timestamp": "2025-12-10T11:20:22.731545",
+          "portfolio_value": 9551.047647939298,
+          "return_pct": -4.489523520607017
+        },
+        {
+          "timestamp": "2025-12-10T11:41:08.333977",
+          "portfolio_value": 9541.214771149567,
+          "return_pct": -4.587852288504327
+        },
+        {
+          "timestamp": "2025-12-10T12:36:41.274319",
+          "portfolio_value": 9986.482336223708,
+          "return_pct": -0.1351766377629246
+        },
+        {
+          "timestamp": "2025-12-10T13:05:00.225094",
+          "portfolio_value": 9978.086887178024,
+          "return_pct": -0.2191311282197603
+        },
+        {
+          "timestamp": "2025-12-10T13:49:50.700024",
+          "portfolio_value": 9993.17231618657,
+          "return_pct": -0.0682768381342975
+        },
+        {
+          "timestamp": "2025-12-10T14:09:51.107433",
+          "portfolio_value": 9982.281854178624,
+          "return_pct": -0.1771814582137631
+        },
+        {
+          "timestamp": "2025-12-10T14:30:08.651297",
+          "portfolio_value": 9979.734260357414,
+          "return_pct": -0.2026573964258568
+        },
+        {
+          "timestamp": "2025-12-10T15:13:11.879503",
+          "portfolio_value": 9988.805072633317,
+          "return_pct": -0.1119492736668507
+        },
+        {
+          "timestamp": "2025-12-10T15:33:39.385427",
+          "portfolio_value": 9957.959962109942,
+          "return_pct": -0.4204003789005764
+        },
+        {
+          "timestamp": "2025-12-10T15:55:04.879090",
+          "portfolio_value": 9917.491840709465,
+          "return_pct": -0.8250815929053715
+        },
+        {
+          "timestamp": "2025-12-10T16:16:01.434803",
+          "portfolio_value": 9516.040740945684,
+          "return_pct": -4.839592590543161
+        },
+        {
+          "timestamp": "2025-12-10T16:36:55.443299",
+          "portfolio_value": 9509.900774157008,
+          "return_pct": -4.900992258429924
+        },
+        {
+          "timestamp": "2025-12-10T16:57:41.601084",
+          "portfolio_value": 9505.585343940533,
+          "return_pct": -4.944146560594672
+        },
+        {
+          "timestamp": "2025-12-10T17:18:00.279386",
+          "portfolio_value": 9504.367963413431,
+          "return_pct": -4.956320365865667
+        },
+        {
+          "timestamp": "2025-12-10T17:38:20.063172",
+          "portfolio_value": 9498.824681041651,
+          "return_pct": -5.011753189583487
+        },
+        {
+          "timestamp": "2025-12-10T18:05:12.233178",
+          "portfolio_value": 9493.15546709491,
+          "return_pct": -5.068445329050901
+        },
+        {
+          "timestamp": "2025-12-10T18:30:12.111514",
+          "portfolio_value": 9485.587736048634,
+          "return_pct": -5.144122639513662
+        }
+      ],
+      "status": "Completed",
+      "configuration": "Full Power (All Systems)"
+    },
+    {
+      "name": "Dec 12 Full Power",
+      "start_time": "2025-12-12 15:56",
+      "end_time": "2025-12-12 21:41",
+      "duration_hours": 5.75,
+      "cycles": 19,
+      "snapshots": 36,
+      "performance": {
+        "initial_value": 10000.0,
+        "final_value": 9995.17,
+        "return_pct": -0.048,
+        "max_value": 10000.0,
+        "min_value": 9973.81,
+        "max_drawdown_pct": -0.262
+      },
+      "chart_data": [
+        {
+          "timestamp": "2025-12-12T15:56:14.097636",
+          "portfolio_value": 9995.384615384615,
+          "return_pct": -0.0461538461538475
+        },
+        {
+          "timestamp": "2025-12-12T16:02:40.135288",
+          "portfolio_value": 9993.989898405616,
+          "return_pct": -0.0601010159438374
+        },
+        {
+          "timestamp": "2025-12-12T16:12:16.829990",
+          "portfolio_value": 9993.102597960946,
+          "return_pct": -0.0689740203905421
+        },
+        {
+          "timestamp": "2025-12-12T16:18:44.132241",
+          "portfolio_value": 9990.642554819313,
+          "return_pct": -0.0935744518068895
+        },
+        {
+          "timestamp": "2025-12-12T16:28:55.449382",
+          "portfolio_value": 9984.720983371417,
+          "return_pct": -0.1527901662858494
+        },
+        {
+          "timestamp": "2025-12-12T16:35:47.193624",
+          "portfolio_value": 9982.219150176516,
+          "return_pct": -0.1778084982348264
+        },
+        {
+          "timestamp": "2025-12-12T16:46:55.352431",
+          "portfolio_value": 9981.500048881842,
+          "return_pct": -0.1849995111815769
+        },
+        {
+          "timestamp": "2025-12-12T16:53:36.786994",
+          "portfolio_value": 9978.09547770734,
+          "return_pct": -0.2190452229265975
+        },
+        {
+          "timestamp": "2025-12-12T17:03:33.564962",
+          "portfolio_value": 9973.807901915963,
+          "return_pct": -0.2619209808403684
+        },
+        {
+          "timestamp": "2025-12-12T18:58:54.576838",
+          "portfolio_value": 10000.0,
+          "return_pct": 0.0
+        },
+        {
+          "timestamp": "2025-12-12T19:04:55.961189",
+          "portfolio_value": 10000.0,
+          "return_pct": 0.0
+        },
+        {
+          "timestamp": "2025-12-12T19:11:06.566272",
+          "portfolio_value": 10000.0,
+          "return_pct": 0.0
+        },
+        {
+          "timestamp": "2025-12-12T19:17:16.489967",
+          "portfolio_value": 10000.0,
+          "return_pct": 0.0
+        },
+        {
+          "timestamp": "2025-12-12T19:23:06.570855",
+          "portfolio_value": 10000.0,
+          "return_pct": 0.0
+        },
+        {
+          "timestamp": "2025-12-12T19:28:57.154329",
+          "portfolio_value": 10000.0,
+          "return_pct": 0.0
+        },
+        {
+          "timestamp": "2025-12-12T19:35:12.947653",
+          "portfolio_value": 10000.0,
+          "return_pct": 0.0
+        },
+        {
+          "timestamp": "2025-12-12T19:39:29.293768",
+          "portfolio_value": 10000.0,
+          "return_pct": 0.0
+        },
+        {
+          "timestamp": "2025-12-12T19:49:24.071473",
+          "portfolio_value": 10000.0,
+          "return_pct": 0.0
+        },
+        {
+          "timestamp": "2025-12-12T19:57:35.877625",
+          "portfolio_value": 9998.741258741258,
+          "return_pct": -0.0125874125874179
+        },
+        {
+          "timestamp": "2025-12-12T20:03:29.766098",
+          "portfolio_value": 9998.11620055944,
+          "return_pct": -0.018837994405585
+        },
+        {
+          "timestamp": "2025-12-12T20:09:57.248359",
+          "portfolio_value": 9997.803671468531,
+          "return_pct": -0.0219632853146868
+        },
+        {
+          "timestamp": "2025-12-12T20:16:21.525066",
+          "portfolio_value": 9997.647406923075,
+          "return_pct": -0.0235259307692285
+        },
+        {
+          "timestamp": "2025-12-12T20:22:20.018075",
+          "portfolio_value": 9997.56927465035,
+          "return_pct": -0.0243072534964994
+        },
+        {
+          "timestamp": "2025-12-12T20:28:40.435409",
+          "portfolio_value": 9997.56927465035,
+          "return_pct": -0.0243072534964994
+        },
+        {
+          "timestamp": "2025-12-12T20:34:24.779314",
+          "portfolio_value": 9997.56927465035,
+          "return_pct": -0.0243072534964994
+        },
+        {
+          "timestamp": "2025-12-12T20:40:14.290412",
+          "portfolio_value": 9996.321947702676,
+          "return_pct": -0.0367805229732402
+        },
+        {
+          "timestamp": "2025-12-12T20:46:38.264032",
+          "portfolio_value": 9995.663491434596,
+          "return_pct": -0.0433650856540407
+        },
+        {
+          "timestamp": "2025-12-12T20:52:24.071228",
+          "portfolio_value": 9995.663491434596,
+          "return_pct": -0.0433650856540407
+        },
+        {
+          "timestamp": "2025-12-12T20:58:24.406543",
+          "portfolio_value": 9995.334263300558,
+          "return_pct": -0.0466573669944227
+        },
+        {
+          "timestamp": "2025-12-12T21:05:09.865955",
+          "portfolio_value": 9995.169649233538,
+          "return_pct": -0.0483035076646228
+        },
+        {
+          "timestamp": "2025-12-12T21:10:57.774784",
+          "portfolio_value": 9995.169649233538,
+          "return_pct": -0.0483035076646228
+        },
+        {
+          "timestamp": "2025-12-12T21:17:07.511808",
+          "portfolio_value": 9995.169649233538,
+          "return_pct": -0.0483035076646228
+        },
+        {
+          "timestamp": "2025-12-12T21:23:22.992598",
+          "portfolio_value": 9995.169649233538,
+          "return_pct": -0.0483035076646228
+        },
+        {
+          "timestamp": "2025-12-12T21:29:21.354935",
+          "portfolio_value": 9995.169649233538,
+          "return_pct": -0.0483035076646228
+        },
+        {
+          "timestamp": "2025-12-12T21:35:18.139374",
+          "portfolio_value": 9995.169649233538,
+          "return_pct": -0.0483035076646228
+        },
+        {
+          "timestamp": "2025-12-12T21:41:29.931213",
+          "portfolio_value": 9995.169649233538,
+          "return_pct": -0.0483035076646228
+        }
+      ],
+      "status": "Stopped (API Quota)",
+      "configuration": "Full Power (All Systems)"
+    }
+  ],
+  "comparison": {
+    "performance_improvement": 5.18,
+    "baseline_return": -5.232,
+    "fullpower_return": -0.048,
+    "baseline_duration": 16.45,
+    "fullpower_duration": 5.75
+  },
+  "key_findings": [
+    "Full Power configuration outperformed Baseline by 5.18%",
+    "Baseline test ran 2.9x longer (16.4hrs vs 5.8hrs)",
+    "Full Power maintained tighter risk control (max drawdown: -0.26%)"
+  ]
+}
