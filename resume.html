@@ -3,454 +3,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Myel Shaddah Key / Michael McKeithen Jr.</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Michael McKeithen Jr. - Resume</title>
     <style>
-        :root {
-            --fog: rgba(245, 247, 250, 0.4);
-            --mist: rgba(230, 235, 240, 0.6);
-            --whisper: rgba(180, 190, 200, 0.3);
-            --shadow: rgba(120, 130, 140, 0.15);
-            --text-primary: #2a3542;
-            --text-secondary: #5a6978;
-            --text-muted: #8a95a3;
-            --accent: rgba(140, 150, 180, 0.6);
-            --soft-green: rgba(160, 180, 165, 0.4);
-            --sage: rgba(180, 195, 175, 0.3);
-            --soft-gold: rgba(200, 185, 145, 0.35);
-            --gold-line: rgba(210, 195, 155, 0.25);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Work Sans', sans-serif;
-            background:
-                radial-gradient(circle at 20% 30%, var(--soft-green) 0%, transparent 60%),
-                radial-gradient(circle at 80% 70%, var(--soft-gold) 0%, transparent 55%),
-                radial-gradient(circle at 50% 50%, rgba(230, 235, 240, 0.15) 0%, transparent 70%),
-                linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
-            color: var(--text-primary);
-            line-height: 1.7;
-            min-height: 100vh;
-            padding: 4rem 2rem;
-            position: relative;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background:
-                linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, transparent 100%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .container {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             max-width: 900px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            border-radius: 24px;
-            padding: 4rem 3.5rem;
-            box-shadow:
-                0 30px 90px rgba(140, 150, 180, 0.12),
-                0 10px 30px rgba(140, 150, 180, 0.08),
-                inset 0 1px 0 rgba(255, 255, 255, 0.9),
-                inset 0 0 80px var(--sage);
-            position: relative;
-            z-index: 1;
+            padding: 40px 20px;
+            line-height: 1.6;
+            color: #333;
+            background: #f9f9f9;
         }
-
-        header {
-            text-align: center;
-            padding-bottom: 3rem;
-            margin-bottom: 3.5rem;
-            border-bottom: 1px solid var(--whisper);
-            position: relative;
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
-
-        header::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--gold-line), var(--soft-green), transparent);
-        }
-
         h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.8rem;
-            font-weight: 300;
-            color: var(--text-primary);
-            letter-spacing: 0.08em;
-            margin-bottom: 0.5rem;
-            opacity: 0.9;
+            font-size: 2.5em;
+            margin-bottom: 0;
+            color: #2c3e50;
         }
-
         .subtitle {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            letter-spacing: 0.15em;
-            text-transform: lowercase;
-            font-weight: 300;
-            margin-bottom: 1.5rem;
+            font-size: 1.1em;
+            color: #7f8c8d;
+            font-style: italic;
+            margin-bottom: 20px;
         }
-
         .contact {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            line-height: 1.8;
-            font-weight: 300;
+            margin: 20px 0;
+            padding: 15px 0;
+            border-bottom: 2px solid #eee;
         }
-
         .contact a {
-            color: var(--text-secondary);
+            color: #3498db;
             text-decoration: none;
-            transition: all 0.4s ease;
-            position: relative;
+            margin-right: 15px;
         }
-
-        .contact a::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--accent);
-            transition: width 0.4s ease;
-        }
-
         .contact a:hover {
-            color: var(--text-primary);
+            text-decoration: underline;
         }
-
-        .contact a:hover::after {
-            width: 100%;
-        }
-
-        .section {
-            margin-bottom: 3rem;
-        }
-
         h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.4rem;
-            font-weight: 500;
-            color: var(--text-primary);
-            letter-spacing: 0.08em;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.75rem;
-            position: relative;
-            opacity: 0.85;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 40px;
         }
-
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 1px;
-            background: linear-gradient(90deg, var(--soft-gold), var(--soft-green), transparent);
+        h3 {
+            color: #34495e;
+            margin-top: 30px;
         }
-
-        .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 1rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .project-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.15rem;
-            font-weight: 500;
-            color: var(--text-primary);
-            letter-spacing: 0.05em;
-            opacity: 0.9;
-        }
-
-        .project-date {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            font-weight: 300;
-            letter-spacing: 0.1em;
-        }
-
-        p {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            line-height: 1.8;
-            font-weight: 300;
-        }
-
         ul {
             list-style: none;
             padding-left: 0;
-            margin-bottom: 1.5rem;
         }
-
-        li {
+        ul li {
+            padding: 8px 0;
+            padding-left: 25px;
             position: relative;
-            padding-left: 1.8rem;
-            margin-bottom: 0.9rem;
-            color: var(--text-secondary);
-            line-height: 1.75;
-            font-weight: 300;
         }
-
-        li::before {
-            content: '';
+        ul li:before {
+            content: "▸";
             position: absolute;
             left: 0;
-            top: 0.65em;
-            width: 6px;
-            height: 6px;
-            background: radial-gradient(circle, var(--soft-green), var(--soft-gold));
-            border-radius: 50%;
-            opacity: 0.5;
+            color: #3498db;
         }
-
-        .skills-list li {
-            padding-left: 1.5rem;
-            margin-bottom: 0.6rem;
+        .project {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #3498db;
+            border-radius: 4px;
         }
-
-        .skills-list li::before {
-            top: 0.7em;
-            width: 4px;
-            height: 4px;
+        .project-title {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #2c3e50;
         }
-
-        .education-item {
-            margin-bottom: 1.8rem;
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.5);
-            border-left: 2px solid var(--whisper);
-            border-radius: 8px;
-            box-shadow: 0 4px 16px rgba(140, 150, 180, 0.06);
-            transition: all 0.4s ease;
+        .project-date {
+            color: #7f8c8d;
+            font-style: italic;
+            margin-bottom: 10px;
         }
-
-        .education-item:hover {
-            background: rgba(255, 255, 255, 0.7);
-            border-left-color: var(--soft-gold);
-            box-shadow: 0 8px 24px rgba(160, 180, 165, 0.12);
+        .tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
         }
-
-        .education-degree {
-            font-weight: 400;
-            color: var(--text-primary);
-            font-size: 1rem;
-            margin-bottom: 0.4rem;
-            letter-spacing: 0.02em;
+        .tool {
+            background: #ecf0f1;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 0.9em;
         }
-
-        .education-school {
-            color: var(--text-muted);
-            font-weight: 300;
-            font-size: 0.9rem;
-            letter-spacing: 0.02em;
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.9em;
         }
-
-        .back-link {
-            display: inline-block;
-            margin-top: 3rem;
-            padding: 0.9rem 2rem;
-            background: rgba(255, 255, 255, 0.6);
-            border: 1px solid var(--whisper);
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 400;
-            letter-spacing: 0.12em;
-            text-transform: lowercase;
-            border-radius: 50px;
-            transition: all 0.4s ease;
-            box-shadow: 0 4px 16px rgba(140, 150, 180, 0.08);
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
         }
-
-        .back-link:hover {
-            background: rgba(255, 255, 255, 0.9);
-            border-color: var(--soft-gold);
-            color: var(--text-primary);
-            box-shadow:
-                0 8px 28px rgba(160, 180, 165, 0.15),
-                0 0 20px var(--gold-line);
-            transform: translateY(-2px);
-        }
-
-        /* Subtle animation on load */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .container {
-            animation: fadeIn 1s ease-out;
-        }
-
         @media print {
             body {
                 background: white;
-                padding: 0;
             }
             .container {
-                background: white;
-                border: none;
                 box-shadow: none;
-                padding: 0.5in;
-                border-radius: 0;
-            }
-            .back-link {
-                display: none;
-            }
-        }
-
-        @media (max-width: 768px) {
-            body {
-                padding: 2rem 1rem;
-            }
-            .container {
-                padding: 2.5rem 2rem;
-                border-radius: 16px;
-            }
-            h1 {
-                font-size: 2.2rem;
+                padding: 0;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>myel shaddah key</h1>
-            <p class="subtitle">michael mckeithen jr.</p>
-            <div class="contact">
-                charlotte, nc<br>
-                <a href="mailto:myelshaddahkey@gmail.com">myelshaddahkey@gmail.com</a><br>
-                <a href="https://www.linkedin.com/in/michael-mckeithen-jr-79b182161" target="_blank">linkedin.com/in/michael-mckeithen-jr-79b182161</a>
-            </div>
-        </header>
+        <h1>Michael McKeithen Jr.</h1>
+        <div class="subtitle">myel shaddah key</div>
 
-        <div class="section">
-            <h2>summary</h2>
-            <p>
-                R&D-focused creative technologist building AI systems, autonomous trading engines, interactive narratives, and financial dashboards with LLMs. Creator of S.A.F.E. (Secure Autonomous Financial Engine), an autonomous AI portfolio manager prototype with patent-pending dual-brain architecture tested across 66,000+ decisions on blind historical data (2020-2024). I use no-code/low-code tools plus emerging coding skills to prototype working products quickly: designing behavior specs, wiring APIs, and iterating on UX until the system feels explainable and trustworthy to real users.
-            </p>
+        <div class="contact">
+            Charlotte, NC<br>
+            <a href="mailto:myelshaddahkey@gmail.com">myelshaddahkey@gmail.com</a>
+            <a href="https://linkedin.com/in/michael-mckeithen-jr-79b182161" target="_blank">LinkedIn</a>
+            <a href="https://mck31th3n.github.io/-Portfolio-/" target="_blank">Portfolio</a>
         </div>
 
-        <div class="section">
-            <h2>core skills & focus</h2>
-            <ul class="skills-list">
-                <li>design thinking & rapid prototyping for llm-driven tools</li>
-                <li>ai agent behavior, personality mapping, and long-term memory design</li>
-                <li>multi-agent orchestration & autonomous decision-making systems</li>
-                <li>temporal isolation protocols & integrity verification for ai systems</li>
-                <li>concept-to-prototype strategy for no-code/low-code stacks</li>
-                <li>system architecture for single-user and small-team ai assistants</li>
-                <li>algorithmic trading systems, portfolio management, and risk analysis</li>
-                <li>narrative design for interactive, ai-powered story experiences</li>
-                <li>client-style communication & explanation of complex systems</li>
-            </ul>
+        <h2>Summary</h2>
+        <p>R&D-focused creative technologist building AI systems, autonomous trading engines, and financial tools with LLMs. Creator of <strong>S.A.F.E. (Secure Autonomous Financial Engine)</strong>, a patent-pending autonomous AI portfolio manager with multi-agent architecture validated on extensive historical market data with verified audit integrity. I use no-code/low-code tools plus emerging coding skills to prototype working products quickly: designing behavior specs, wiring APIs, and iterating on UX until the system feels explainable and trustworthy to real users.</p>
+
+        <h2>Core Skills & Focus</h2>
+        <ul>
+            <li>Design thinking & rapid prototyping for LLM-driven tools</li>
+            <li>AI agent behavior, personality mapping, and long-term memory design</li>
+            <li>Multi-agent orchestration & autonomous decision-making systems</li>
+            <li>Backtesting methodology & system validation for AI trading systems</li>
+            <li>Concept-to-prototype strategy for no-code/low-code stacks</li>
+            <li>System architecture for single-user and small-team AI assistants</li>
+            <li>Algorithmic trading systems, portfolio management, and risk analysis</li>
+            <li>Client-style communication & explanation of complex systems</li>
+        </ul>
+
+        <h2>Tools & Platforms</h2>
+        <div class="tools">
+            <span class="tool">ChatGPT / OpenAI API</span>
+            <span class="tool">Ollama</span>
+            <span class="tool">Claude Sonnet</span>
+            <span class="tool">Python</span>
+            <span class="tool">Visual Studio Code</span>
+            <span class="tool">REST APIs</span>
+            <span class="tool">JSON</span>
+            <span class="tool">Yahoo Finance</span>
+            <span class="tool">Coinbase API</span>
+            <span class="tool">Alpaca Markets</span>
+            <span class="tool">Google Drive</span>
+            <span class="tool">No-code/low-code builders</span>
         </div>
 
-        <div class="section">
-            <h2>tools & platforms</h2>
-            <p>
-                chatgpt / openai api · ollama · claude sonnet · python · visual studio code · rest apis · json · yahoo finance · coinbase api · alpaca markets · google drive · no-code/low-code builders
-            </p>
-        </div>
+        <h2>Selected Projects</h2>
 
-        <div class="section">
-            <h2>selected projects</h2>
-
-            <div class="project-header">
-                <span class="project-title">a. s.a.f.e. — secure autonomous financial engine</span>
-                <span class="project-date">2025 – present</span>
-            </div>
-            <p>
-                autonomous ai portfolio manager prototype with patent-pending dual-brain architecture. designed to manage multi-asset portfolios (crypto, equities, forex, commodities) while maintaining complete audit integrity and temporal isolation.
-            </p>
+        <div class="project">
+            <div class="project-title">A. S.A.F.E. — Secure Autonomous Financial Engine</div>
+            <div class="project-date">2025 – Present</div>
+            <p>Autonomous AI portfolio manager with patent-pending multi-agent architecture. Manages multi-asset portfolios (crypto, equities, forex, commodities) with verified audit integrity and validated performance on historical data.</p>
             <ul>
-                <li>designed patent-pending dual-brain architecture with strategic oversight layer and specialized tactical execution agents managing multi-asset portfolios across cryptocurrency, equities, forex, and commodities.</li>
-                <li>developed temporal isolation protocol ensuring zero future data leakage during backtesting. validated across 66,000+ trading decisions on blind historical data (2020-2024) with verified audit integrity.</li>
-                <li>implemented adaptive learning system with persistent memory that evolves trading strategies based on market performance while maintaining complete decision audit trails in cryptographically hash-chained logs.</li>
-                <li>built comprehensive security architecture including automated circuit breakers with adaptive risk thresholds, input validation systems, and multi-layer defense protocols.</li>
-                <li>integrated live market data across multiple exchanges and data providers with automatic fallback handling and connection resilience.</li>
-                <li>currently validating full-system performance through extended live paper trading tests with automatic ai model fallback and recovery mechanisms.</li>
-            </ul>
-
-            <div class="project-header">
-                <span class="project-title">b. introverse — arc 0 interactive narrative prototype</span>
-                <span class="project-date">2025 – present</span>
-            </div>
-            <p>
-                original game & show concept where players bond with ai-driven "selves" based on their zodiac. developing arc 0, a narrative prototype exploring worldbuilding, llm character behavior, and progression systems.
-            </p>
-            <ul>
-                <li>prototyping an ai-narrated adventure that personalizes dialogue based on player name and birthdate, creating a bespoke interactive narrative experience.</li>
-                <li>designing zodiac-based character assignment logic where birth dates determine the player's companion creature, with unique interactions for each zodiac sign.</li>
-                <li>developing the creature evolution system: egg → star child (base form) → void → reflect → echo, with distinct evolutionary paths.</li>
-                <li>conceptualizing combat mechanics and type effectiveness: void beats echo, echo beats reflect, reflect beats void.</li>
-                <li>exploring seasonal move-sets and world dynamics (zodiac cycles, special events) through narrative simulations.</li>
-            </ul>
-
-            <div class="project-header">
-                <span class="project-title">c. dual-mind framework — multi-persona chatgpt experiment</span>
-                <span class="project-date">2025 – present</span>
-            </div>
-            <p>
-                experimental prompt engineering approach for simulating multiple distinct ai personalities within a single chatgpt conversation, each providing different perspectives and reasoning on the same question.
-            </p>
-            <ul>
-                <li>developed a prompt structure enabling two ai personas with complementary roles: one exploratory and creative, the other analytical and constraint-focused.</li>
-                <li>created protocols where each "mind" announces itself, presents independent reasoning, and highlights disagreements rather than converging to a single answer.</li>
-                <li>applied this multi-perspective approach to creative projects, financial system design, and decision-making workflows requiring balanced viewpoints.</li>
-                <li>demonstrated that single-session multi-agent reasoning is achievable through careful prompt engineering without requiring external frameworks.</li>
+                <li>Designed patent-pending AI architecture for autonomous portfolio management across cryptocurrency, equities, forex, and commodities markets</li>
+                <li>Developed rigorous validation methodology preventing data leakage during backtesting and ensuring complete audit integrity across all decisions</li>
+                <li>Implemented adaptive risk management system with automated safety controls, real-time monitoring, and multi-layer defense protocols</li>
+                <li>Built learning system that evolves trading strategies based on market performance while maintaining comprehensive decision audit trails</li>
+                <li>Integrated live market data across multiple exchanges and data providers with automatic failover handling and connection resilience</li>
+                <li>Currently validating full-system performance through extended live observation with production-grade monitoring and recovery mechanisms</li>
             </ul>
         </div>
 
-        <div class="section">
-            <h2>education</h2>
-            <div class="education-item">
-                <div class="education-degree">mfa, music composition — 2022</div>
-                <div class="education-school">university of north carolina school of the arts</div>
-            </div>
-            <div class="education-item">
-                <div class="education-degree">ba, music composition — 2019</div>
-                <div class="education-school">queens university of charlotte</div>
-            </div>
-            <div class="education-item">
-                <div class="education-degree">undergraduate studies — 2014–2016</div>
-                <div class="education-school">gardner–webb university (transferred)</div>
-            </div>
+        <div class="project">
+            <div class="project-title">B. Dual-Mind Framework — Multi-Persona ChatGPT Experiment</div>
+            <div class="project-date">2025 – Present</div>
+            <p>Experimental prompt engineering approach for simulating multiple distinct AI personalities within a single ChatGPT conversation, each providing different perspectives and reasoning on the same question.</p>
+            <ul>
+                <li>Developed a prompt structure enabling two AI personas with complementary roles: one exploratory and creative, the other analytical and constraint-focused</li>
+                <li>Created protocols where each "mind" announces itself, presents independent reasoning, and highlights disagreements rather than converging to a single answer</li>
+                <li>Applied this multi-perspective approach to creative projects, financial system design, and decision-making workflows requiring balanced viewpoints</li>
+                <li>Demonstrated that single-session multi-agent reasoning is achievable through careful prompt engineering without requiring external frameworks</li>
+            </ul>
         </div>
 
-        <a href="safe/index.html" class="back-link">← return to portfolio</a>
+        <h2>Education</h2>
+        <p><strong>MFA, Music Composition</strong> — 2022<br>
+        University of North Carolina School of the Arts</p>
+
+        <p><strong>BA, Music Composition</strong> — 2019<br>
+        Queens University of Charlotte</p>
+
+        <p><strong>Undergraduate Studies</strong> — 2014–2016<br>
+        Gardner–Webb University (transferred)</p>
+
+        <h2>Notes</h2>
+        <div class="note">
+            <ul>
+                <li><strong>Patent Status:</strong> Provisional patent application filed for S.A.F.E. multi-agent architecture</li>
+                <li><strong>Current Focus:</strong> Validating autonomous trading systems and AI-driven decision support tools</li>
+                <li><strong>Location:</strong> Charlotte, NC (open to remote opportunities)</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <a href="index.html">← Return to Portfolio</a><br>
+            <em>Resume Version: Dec 2025 (Patent-Protected Edition)</em>
+        </div>
     </div>
 </body>
 </html>
