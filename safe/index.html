@@ -41,11 +41,17 @@
             <div class="system-pulse"></div>
         </div>
 
+        <div style="text-align: center; padding: 1rem 0.5rem; border-bottom: 1px solid rgba(255,215,0,0.2); margin-bottom: 1rem;">
+            <div style="font-size: 0.75rem; font-weight: 600; color: var(--gold-primary); letter-spacing: 0.05em;">SYSTEM CONTEXT</div>
+            <div style="font-size: 0.65rem; opacity: 0.6; margin-top: 0.25rem;">(PORTFOLIO VIEW)</div>
+        </div>
+
         <div class="spine-section">
             <div class="spine-label">CORE STATUS</div>
+            <div style="font-size: 0.65rem; opacity: 0.5; margin-bottom: 0.5rem; text-align: center;">Portfolio demo — not user-configurable</div>
             <div class="status-grid">
                 <div class="status-item">
-                    <span class="status-key">Engine State</span>
+                    <span class="status-key">Observed State <span style="font-size: 0.65rem; opacity: 0.5;">(Demo)</span></span>
                     <span class="status-value active">ACTIVE</span>
                 </div>
                 <div class="status-item">
@@ -53,8 +59,8 @@
                     <span class="status-value">SANITIZED</span>
                 </div>
                 <div class="status-item">
-                    <span class="status-key">Runtime Cycles</span>
-                    <span class="status-value cycle-counter" id="runtime-cycles">0</span>
+                    <span class="status-key">Runtime Cycles <span style="font-size: 0.65rem; opacity: 0.5;">(Illustrative)</span></span>
+                    <span class="status-value" style="opacity: 0.7;">247</span>
                 </div>
                 <div class="status-item">
                     <span class="status-key">Integrity</span>
@@ -64,29 +70,34 @@
         </div>
 
         <div class="spine-section">
-            <div class="spine-label">OPERATIONAL MODE</div>
-            <div class="mode-selector">
-                <div class="mode-option active" data-mode="execution">
-                    <span class="mode-icon">◆</span>
-                    <span class="mode-name">EXECUTION</span>
-                </div>
-                <div class="mode-option" data-mode="audit">
+            <div class="spine-label">SYSTEM MODES</div>
+            <div style="font-size: 0.7rem; opacity: 0.5; margin-bottom: 0.25rem; text-align: center;">(INTERNAL — NOT CLIENT-ACCESSIBLE)</div>
+            <div style="font-size: 0.65rem; opacity: 0.5; margin-bottom: 0.75rem; text-align: center; font-style: italic;">Shown for system design context only</div>
+            <div class="mode-selector" style="pointer-events: none;">
+                <div class="mode-option active" data-mode="observer" style="cursor: default;">
                     <span class="mode-icon">◈</span>
-                    <span class="mode-name">AUDIT</span>
+                    <span class="mode-name">OBSERVER</span>
                 </div>
-                <div class="mode-option" data-mode="isolated">
+                <div class="mode-option" data-mode="audit" style="cursor: default; opacity: 0.35;" title="Demonstration only — not exposed">
+                    <span class="mode-icon">◆</span>
+                    <span class="mode-name">AUDIT</span>
+                    <div style="font-size: 0.65rem; margin-top: 0.25rem;">Internal verification (restricted)</div>
+                </div>
+                <div class="mode-option" data-mode="isolated" style="cursor: default; opacity: 0.35;" title="Demonstration only — not exposed">
                     <span class="mode-icon">◇</span>
                     <span class="mode-name">ISOLATED</span>
+                    <div style="font-size: 0.65rem; margin-top: 0.25rem;">Fail-safe containment</div>
                 </div>
-                <div class="mode-option" data-mode="blind">
+                <div class="mode-option" data-mode="execution" style="cursor: default; opacity: 0.35;" title="Demonstration only — not exposed">
                     <span class="mode-icon">◆</span>
-                    <span class="mode-name">BLIND</span>
+                    <span class="mode-name">EXECUTION</span>
+                    <div style="font-size: 0.65rem; margin-top: 0.25rem;">Not enabled in client mode</div>
                 </div>
             </div>
         </div>
 
         <div class="spine-section">
-            <div class="spine-label">PERFORMANCE</div>
+            <div class="spine-label">RUNTIME TELEMETRY</div>
             <div class="metric-stack">
                 <div class="metric-row">
                     <span class="metric-label">Latency</span>
@@ -104,7 +115,7 @@
         </div>
 
         <div class="spine-section">
-            <div class="spine-label">SECURITY</div>
+            <div class="spine-label">INTEGRITY SAFEGUARDS</div>
             <div class="security-indicators">
                 <div class="indicator-row">
                     <span class="indicator-dot active"></span>
@@ -137,9 +148,8 @@
             <div class="nav-container">
                 <div class="nav-logo logo-wave">S.A.F.E.</div>
                 <div class="nav-links">
-                    <a href="#intelligence-core">Intelligence</a>
-                    <a href="#performance">Performance</a>
-                    <a href="#security">Security</a>
+                    <a href="#test-results">Test Results</a>
+                    <a href="#verification">Verification</a>
                     <a href="../resume.html">Resume</a>
                 </div>
             </div>
@@ -150,9 +160,11 @@
             <div class="hero-content">
                 <h1 class="hero-title logo-wave">S.A.F.E.</h1>
                 <p class="hero-subtitle">Secure Autonomous Financial Engine</p>
-                <p class="hero-description">
-                    Experimental autonomous trading system with integrity verification,
-                    validated testing methodology, and defensive safety protocols. Built for precision.
+                <p class="hero-description" style="font-weight: 600; color: var(--gold-primary); margin-bottom: 0.5rem; font-size: 1.1rem;">
+                    SAFE — Currently (Observer Mode)
+                </p>
+                <p class="hero-description" style="font-weight: 600; color: var(--gold-primary);">
+                    SAFE is a read-only AI market observer designed to reduce human trading error by enforcing disciplined HOLD behavior during low-conviction and high-risk market regimes.
                 </p>
             </div>
             <div class="hero-visual">
@@ -160,164 +172,73 @@
             </div>
         </section>
 
-        <!-- Intelligence Core Visualization -->
-        <section id="intelligence-core" class="hero-intelligence">
-            <div class="intelligence-core-container">
-                <canvas id="intelligence-core-canvas" width="400" height="400"></canvas>
-                <div class="core-status-overlay">
-                    <div class="core-mode" id="core-reasoning-mode">Pattern Recognition</div>
-                    <div class="core-subtitle">AUTONOMOUS INTELLIGENCE</div>
-                </div>
-            </div>
-            <div class="hero-metrics">
-                <div class="hero-stat">
-                    <div class="stat-label">DECISIONS</div>
-                    <div class="stat-value" id="total-decisions">0</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="stat-label">WIN RATE</div>
-                    <div class="stat-value" id="win-rate">--</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="stat-label">UPTIME</div>
-                    <div class="stat-value" id="uptime-display">0h</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="stat-label">INTEGRITY</div>
-                    <div class="stat-value integrity-indicator">100%</div>
+        <!-- Portfolio Framing Block -->
+        <section class="section" style="padding: 2rem 0;">
+            <div class="container">
+                <div style="text-align: center; margin: 0 auto; padding: 1.5rem 2rem; background: rgba(255,215,0,0.08); border-left: 4px solid var(--gold-primary); border-radius: 6px; max-width: 850px;">
+                    <p style="font-size: 0.95rem; line-height: 1.6; margin: 0; color: rgba(255,255,255,0.9);">
+                        <strong style="color: var(--gold-primary);">Portfolio Note:</strong> This page is a technical portfolio demonstration of SAFE's development, testing discipline, and design philosophy. Client access to SAFE is gated and provisioned separately.
+                    </p>
                 </div>
             </div>
         </section>
 
-        <!-- Live Engine Timeline -->
-        <section class="engine-timeline-section">
-            <div class="timeline-header">
-                <h3>LIVE ENGINE TIMELINE</h3>
-                <div class="timeline-legend">
-                    <span class="legend-item"><span class="legend-dot decision"></span>Decisions</span>
-                    <span class="legend-item"><span class="legend-dot data"></span>Data Requests</span>
-                    <span class="legend-item"><span class="legend-dot audit"></span>Audits</span>
-                    <span class="legend-item"><span class="legend-dot threat"></span>Threat Scans</span>
+        <!-- Current Operating Mode Section -->
+        <section class="section" style="background: rgba(0,0,0,0.3); padding: 3rem 0;">
+            <div class="container">
+                <h2 class="section-title">SAFE — Current Client-Facing Operating Mode (Observer)</h2>
+                <p class="section-intro" style="margin-bottom: 1.5rem;">In Observer Mode, SAFE intentionally does not:</p>
+                <div class="findings-grid" style="max-width: 900px; margin: 0 auto;">
+                    <div class="finding">
+                        <div class="finding-label" style="font-size: 1rem; margin-bottom: 0.5rem;">Execute live trades</div>
+                    </div>
+                    <div class="finding">
+                        <div class="finding-label" style="font-size: 1rem; margin-bottom: 0.5rem;">Guarantee profit or outcomes</div>
+                    </div>
+                    <div class="finding">
+                        <div class="finding-label" style="font-size: 1rem; margin-bottom: 0.5rem;">Optimize for trade frequency or user engagement</div>
+                    </div>
+                    <div class="finding">
+                        <div class="finding-label" style="font-size: 1rem; margin-bottom: 0.5rem;">Suppress uncertainty or low-conviction states</div>
+                    </div>
                 </div>
-            </div>
-            <canvas id="engine-timeline" width="1200" height="100"></canvas>
-            <div class="last-decision-summary" id="decision-summary">
-                <strong>Last Decision:</strong> Prioritized volatility compression after detecting 0.3% drift in 5-minute range.
+                <div style="text-align: center; margin-top: 2rem; padding: 1.5rem; background: rgba(255,215,0,0.1); border-radius: 8px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                    <p style="font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                        <strong>Design Philosophy:</strong> SAFE has demonstrated decision-generation capability via controlled paper trading.
+                        Live trade execution is intentionally disabled in client-facing mode to prioritize safety, auditability, and decision discipline.
+                    </p>
+                </div>
             </div>
         </section>
 
-        <!-- Streamlined Performance Panels -->
-        <section id="performance" class="quant-panels-grid">
-
-            <!-- Runtime Audit Panel -->
-            <div class="quant-panel">
-                <div class="panel-header">
-                    <span class="panel-title">RUNTIME AUDIT</span>
-                    <span class="panel-status active">ACTIVE</span>
-                </div>
-                <div class="panel-body">
-                    <div class="panel-metric">
-                        <span class="metric-label">Cycles</span>
-                        <span class="metric-value pulse" id="audit-cycles">0</span>
-                    </div>
-                    <div class="panel-metric">
-                        <span class="metric-label">Integrity Drift</span>
-                        <span class="metric-value">0.00%</span>
-                    </div>
-                    <div class="panel-metric">
-                        <span class="metric-label">Contamination</span>
-                        <span class="metric-value zero-indicator">ZERO</span>
-                    </div>
-                </div>
-                <div class="panel-circuit-edge"></div>
-            </div>
-
-            <!-- Portfolio Status Panel -->
-            <div class="quant-panel">
-                <div class="panel-header">
-                    <span class="panel-title">PORTFOLIO STATUS</span>
-                    <span class="panel-status">TRACKING</span>
-                </div>
-                <div class="panel-body">
-                    <div class="panel-metric">
-                        <span class="metric-label">Total Value</span>
-                        <span class="metric-value gold" id="portfolio-value">$10,000.00</span>
-                    </div>
-                    <div class="panel-metric">
-                        <span class="metric-label">Total Return</span>
-                        <span class="metric-value" id="portfolio-return">0.00%</span>
-                    </div>
-                    <div class="panel-metric">
-                        <span class="metric-label">Active Positions</span>
-                        <span class="metric-value" id="active-positions">0</span>
-                    </div>
-                </div>
-                <div class="panel-circuit-edge"></div>
-            </div>
-
-            <!-- Intelligence Engine Panel (Generic - No Dual-Brain Exposure) -->
-            <div class="quant-panel">
-                <div class="panel-header">
-                    <span class="panel-title">INTELLIGENCE ENGINE</span>
-                    <span class="panel-status active">OPERATIONAL</span>
-                </div>
-                <div class="panel-body">
-                    <div class="panel-metric">
-                        <span class="metric-label">Decision Engine</span>
-                        <span class="metric-value active-indicator">ACTIVE</span>
-                    </div>
-                    <div class="panel-metric">
-                        <span class="metric-label">Reasoning Mode</span>
-                        <span class="metric-value active-indicator">SANITIZED</span>
-                    </div>
-                    <div class="panel-metric">
-                        <span class="metric-label">Confidence</span>
-                        <span class="metric-value">85%</span>
-                    </div>
-                </div>
-                <div class="panel-circuit-edge"></div>
-            </div>
-
-            <!-- Security Status Panel -->
-            <div class="quant-panel">
-                <div class="panel-header">
-                    <span class="panel-title">SECURITY STATUS</span>
-                    <span class="panel-status active">PROTECTED</span>
-                </div>
-                <div class="panel-body">
-                    <div class="panel-metric">
-                        <span class="metric-label">Audit Logs</span>
-                        <span class="metric-value active-indicator">ACTIVE</span>
-                    </div>
-                    <div class="panel-metric">
-                        <span class="metric-label">Input Validation</span>
-                        <span class="metric-value active-indicator">ENABLED</span>
-                    </div>
-                    <div class="panel-metric">
-                        <span class="metric-label">Threats Blocked</span>
-                        <span class="metric-value zero-indicator">0</span>
-                    </div>
-                </div>
-                <div class="panel-circuit-edge"></div>
-            </div>
-
-        </section>
-
-        <!-- Progressive Test Results: Showing Improvement Story -->
+        <!-- System Stability & Behavioral Validation -->
         <section id="test-results" class="section">
             <div class="container">
-                <h2 class="section-title">Performance Evolution & 25.5-Hour Test Results</h2>
+                <h2 class="section-title">System Stability & Behavioral Validation</h2>
                 <p class="section-intro">
-                    Development progression · Configuration improvements · Official 25.5-hour validation
+                    25.5-hour continuous operation · Degradation control · Discipline enforcement
                 </p>
+                <div style="text-align: center; margin: 2rem auto 1.5rem; padding: 1.5rem; background: rgba(255,215,0,0.15); border: 2px solid rgba(255,215,0,0.3); border-radius: 8px; max-width: 900px;">
+                    <h3 style="font-size: 1.1rem; font-weight: 600; color: var(--gold-primary); margin-bottom: 0.75rem;">Purpose of These Results</h3>
+                    <p style="font-size: 1rem; line-height: 1.6; margin: 0 0 0.75rem 0; font-weight: 600;">
+                        Results shown demonstrate system restraint and stability under live market input — not optimization for profit.
+                    </p>
+                    <p style="font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                        These tests demonstrate SAFE's ability to maintain discipline and learning under live market conditions using controlled paper trading. They do not represent a client-facing trading promise.
+                    </p>
+                </div>
                 <div class="test-intro-note">
                     <p>SAFE V4.0's development journey from initial baseline configuration through iterative improvements to the official 25.5-hour fullpower test.
                     Each test demonstrates measurable performance gains through architecture refinement and system optimization.</p>
                 </div>
 
+                <!-- Supporting Evidence - Earlier Validation Phases -->
+                <div style="margin: 2rem 0; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px; opacity: 0.7;">
+                    <h3 style="font-size: 1rem; color: var(--gold-primary); margin-bottom: 1rem; text-align: center; opacity: 0.8;">Supporting Evidence — Earlier Validation Phases</h3>
+
                 <!-- PHASE 1: 5.75-Hour Comparison -->
                 <div style="margin-bottom: 2rem;">
-                    <h3 style="font-size: 1.3rem; color: var(--gold-primary); margin-bottom: 1rem; text-align: center;">PHASE 1: 5.75-Hour Comparison</h3>
+                    <h3 style="font-size: 1.1rem; color: var(--gold-primary); margin-bottom: 1rem; text-align: center; opacity: 0.8;">PHASE 1: 5.75-Hour Comparison</h3>
                     <div class="test-comparison-grid">
                         <!-- Baseline at 5.75hr -->
                         <div class="test-card baseline-test">
@@ -386,7 +307,7 @@
 
                 <!-- PHASE 2: 16.5-Hour Comparison -->
                 <div style="margin-bottom: 2rem;">
-                    <h3 style="font-size: 1.3rem; color: var(--gold-primary); margin-bottom: 1rem; text-align: center;">PHASE 2: 16.5-Hour Comparison</h3>
+                    <h3 style="font-size: 1.1rem; color: var(--gold-primary); margin-bottom: 1rem; text-align: center; opacity: 0.8;">PHASE 2: 16.5-Hour Comparison</h3>
                     <div class="test-comparison-grid">
                         <!-- Baseline at 16.5hr -->
                         <div class="test-card baseline-test">
@@ -453,9 +374,12 @@
                     </div>
                 </div>
 
+                </div>
+                <!-- End Supporting Evidence Wrapper -->
+
                 <!-- PHASE 3: Extended Duration Test with Projection -->
-                <div>
-                    <h3 style="font-size: 1.3rem; color: var(--gold-primary); margin-bottom: 1rem; text-align: center;">PHASE 3: Official 25.5-Hour Continuous Test</h3>
+                <div style="margin-top: 2rem;">
+                    <h3 style="font-size: 1.4rem; font-weight: 700; color: var(--gold-primary); margin-bottom: 1rem; text-align: center;">PHASE 3: Official 25.5-Hour Continuous Test</h3>
                     <div class="test-comparison-grid">
                         <!-- Baseline Projected at 25.5hr -->
                         <div class="test-card baseline-test">
@@ -543,7 +467,8 @@
                         </div>
                         <div class="finding">
                             <div class="finding-metric">2,550</div>
-                            <div class="finding-label">Autonomous Decisions</div>
+                            <div class="finding-label">Decision Classifications</div>
+                            <div style="font-size: 0.75rem; opacity: 0.7; margin-top: 0.25rem;">Internal model outputs (BUY/SELL/HOLD), not trades</div>
                         </div>
                         <div class="finding">
                             <div class="finding-metric">ZERO</div>
@@ -565,63 +490,35 @@
             </div>
         </section>
 
-        <!-- Verification Summary (Condensed) -->
+        <!-- Verification Summary -->
         <section id="verification" class="section">
             <div class="container">
-                <h2 class="section-title">Verification Results</h2>
+                <h2 class="section-title">Verification — Evidence of Learning & Discipline</h2>
                 <p class="section-intro">
-                    Validated testing methodology · Verified backtesting integrity
+                    Verification focuses on process integrity and decision discipline, not outcome maximization
                 </p>
 
                 <div class="status-panel">
-                    <div class="status-header">INTEGRITY CERTIFICATION</div>
+                    <div class="status-header">TESTING VALIDATION</div>
                     <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; text-align: center; position: relative; z-index: 1;">
                         <div>
                             <div style="font-family: 'Inter', sans-serif; font-size: 2.5rem; font-weight: 500; color: #27AE60; margin-bottom: 0.5rem; letter-spacing: 0.05rem;">12,847+</div>
-                            <div style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">Trading Decisions</div>
+                            <div style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">Paper Trading Decisions</div>
                         </div>
                         <div>
                             <div style="font-family: 'Inter', sans-serif; font-size: 2.5rem; font-weight: 500; color: #4A90E2; margin-bottom: 0.5rem; letter-spacing: 0.05rem;">ZERO</div>
-                            <div style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">Contamination Events</div>
+                            <div style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">Data Contamination</div>
                         </div>
                         <div>
                             <div style="font-family: 'Inter', sans-serif; font-size: 2.5rem; font-weight: 500; color: #FFD700; margin-bottom: 0.5rem; letter-spacing: 0.05rem;">100%</div>
                             <div style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">Audit Integrity</div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Security Architecture (Condensed) -->
-        <section id="security" class="section section-dark">
-            <div class="container">
-                <h2 class="section-title">Safety Architecture</h2>
-                <p class="section-intro">Two-mode operation: Production vs. Full Test</p>
-                <div class="security-rings">
-                    <div class="ring ring-outer">
-                        <h3>Validation Methodology</h3>
-                        <ul>
-                            <li>Blind testing protocol (backtesting)</li>
-                            <li>Zero lookahead validation</li>
-                            <li>Historical performance verification</li>
-                        </ul>
-                    </div>
-                    <div class="ring ring-middle">
-                        <h3>Circuit Breakers</h3>
-                        <ul>
-                            <li><strong>Production:</strong> 20% drawdown, 10% daily loss</li>
-                            <li><strong>Current Test:</strong> Disabled (99% limits)</li>
-                            <li>Consecutive loss tracking</li>
-                        </ul>
-                    </div>
-                    <div class="ring ring-inner">
-                        <h3>Audit & Monitoring</h3>
-                        <ul>
-                            <li>CSV trade logging</li>
-                            <li>Persistent memory integration</li>
-                            <li>60-second health monitoring</li>
-                        </ul>
+                    <div style="text-align: center; margin-top: 2rem; padding: 1rem; background: rgba(255,215,0,0.1); border-radius: 8px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                        <p style="font-size: 0.9rem; margin: 0; opacity: 0.9;">
+                            <strong>Note:</strong> These results demonstrate SAFE's ability to generate, track, and audit decisions under live market conditions using controlled paper trading.
+                            They do not represent client-facing trading performance.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -634,6 +531,7 @@
                     <em>Note: This portfolio is currently optimized for desktop viewing. Mobile layout refinements are in progress.</em>
                 </p>
                 <p>&copy; 2025 Michael McKeithen | S.A.F.E. V4.0</p>
+                <p style="font-size: 0.85rem; opacity: 0.6; margin-top: 0.5rem;">Client access to SAFE is gated and provisioned separately.</p>
                 <div class="footer-links">
                     <a href="../nest/index.html">The Owl's Nest</a>
                     <a href="../executive_function/index.html">But what if?...</a>
