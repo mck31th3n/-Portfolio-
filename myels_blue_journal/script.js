@@ -47,7 +47,7 @@ let totalPages = 1;
 let paginatedContent = [];
 
 // Pagination settings
-const LINES_PER_PAGE = 30;
+const LINES_PER_PAGE = 15;
 
 // Initialize on load
 document.addEventListener('DOMContentLoaded', () => {
@@ -485,21 +485,21 @@ function paginateContent(html) {
     let currentLineCount = 0;
 
     elements.forEach(element => {
-        // Estimate lines for this element
+        // Estimate lines for this element - using conservative estimates to ensure pagination
         const tagName = element.tagName.toLowerCase();
         let estimatedLines = 1;
 
-        if (tagName === 'h1') estimatedLines = 2;
-        else if (tagName === 'h2') estimatedLines = 2;
+        if (tagName === 'h1') estimatedLines = 3;
+        else if (tagName === 'h2') estimatedLines = 3;
         else if (tagName === 'h3') estimatedLines = 2;
         else if (tagName === 'pre') {
             const codeLines = element.textContent.split('\n').length;
-            estimatedLines = codeLines;
+            estimatedLines = Math.max(codeLines, 3); // At least 3 lines for code blocks
         } else if (tagName === 'p') {
             const textLength = element.textContent.length;
-            estimatedLines = Math.ceil(textLength / 80); // Rough estimate: 80 chars per line
+            estimatedLines = Math.max(Math.ceil(textLength / 60), 2); // More conservative: 60 chars per line, min 2
         } else if (tagName === 'ul' || tagName === 'ol') {
-            estimatedLines = element.children.length;
+            estimatedLines = Math.max(element.children.length + 1, 3); // Add 1 for spacing, min 3
         }
 
         // If adding this element exceeds page limit, start new page
