@@ -98,19 +98,10 @@
             letter-spacing: 0.08em;
             margin-bottom: 0.5rem;
             opacity: 0.9;
-            text-transform: lowercase; /* Added for consistency */
-        }
-
-        .subtitle { /* Kept in case of need, but not used directly */
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            letter-spacing: 0.15em;
             text-transform: lowercase;
-            font-weight: 300;
-            margin-bottom: 1.5rem;
         }
 
-        .real-name { /* New class for the real name, styled like subtitle */
+        .real-name {
             font-size: 0.95rem;
             color: var(--text-muted);
             letter-spacing: 0.15em;
@@ -124,7 +115,7 @@
             color: var(--text-secondary);
             line-height: 1.8;
             font-weight: 300;
-            display: flex; /* Adjusting for flex layout */
+            display: flex;
             justify-content: center;
             gap: 1.5rem;
             flex-wrap: wrap;
@@ -170,7 +161,7 @@
             padding-bottom: 0.75rem;
             position: relative;
             opacity: 0.85;
-            text-transform: lowercase; /* Added for consistency */
+            text-transform: lowercase;
         }
 
         h2::after {
@@ -187,7 +178,7 @@
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             margin-top: 2rem;
             flex-wrap: wrap;
             gap: 0.5rem;
@@ -200,7 +191,7 @@
             color: var(--text-primary);
             letter-spacing: 0.05em;
             opacity: 0.9;
-            text-transform: lowercase; /* Added for consistency */
+            text-transform: lowercase;
         }
 
         .project-date {
@@ -208,7 +199,7 @@
             color: var(--text-muted);
             font-weight: 300;
             letter-spacing: 0.1em;
-            text-transform: lowercase; /* Added for consistency */
+            text-transform: lowercase;
         }
 
         p {
@@ -227,9 +218,9 @@
         li {
             position: relative;
             padding-left: 1.8rem;
-            margin-bottom: 0.9rem;
+            margin-bottom: 0.75rem;
             color: var(--text-secondary);
-            line-height: 1.75;
+            line-height: 1.7;
             font-weight: 300;
         }
 
@@ -245,18 +236,17 @@
             opacity: 0.5;
         }
 
-        .skills-list li { /* Adjusted for consistency with general li styling */
-            padding-left: 1.8rem; /* Match general li */
-            margin-bottom: 0.9rem; /* Match general li */
-            line-height: 1.75;
+        .skills-list li {
+            padding-left: 1.8rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.7;
         }
 
-        .skills-list li::before { /* Adjusted for consistency with general li styling */
+        .skills-list li::before {
             top: 0.65em;
             width: 6px;
             height: 6px;
         }
-        /* Removed .skills-container and .skill-item styling, using ul/li instead */
 
         .education-item {
             margin-bottom: 1.8rem;
@@ -266,7 +256,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 16px rgba(140, 150, 180, 0.06);
             transition: all 0.4s ease;
-            display: flex; /* Added for alignment */
+            display: flex;
             justify-content: space-between;
             align-items: baseline;
             flex-wrap: wrap;
@@ -284,7 +274,7 @@
             font-size: 1rem;
             margin-bottom: 0.4rem;
             letter-spacing: 0.02em;
-            text-transform: lowercase; /* Added for consistency */
+            text-transform: lowercase;
         }
 
         .education-school {
@@ -292,7 +282,7 @@
             font-weight: 300;
             font-size: 0.9rem;
             letter-spacing: 0.02em;
-            text-transform: lowercase; /* Added for consistency */
+            text-transform: lowercase;
         }
 
         .back-link {
@@ -322,7 +312,6 @@
             transform: translateY(-2px);
         }
 
-        /* Subtle animation on load */
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -377,93 +366,69 @@
             <div class="contact">
                 <span>charlotte, nc</span>
                 <a href="mailto:myelshaddahkey@gmail.com">myelshaddahkey@gmail.com</a>
-                <a href="https://www.linkedin.com/in/michael-mckeithen-jr-79b182161" target="_blank">linkedin profile</a>
+                <a href="https://www.linkedin.com/in/michael-mckeithen-jr-79b182161" target="_blank">linkedin</a>
             </div>
         </header>
 
         <div class="section">
             <p>
-                ai systems engineer specializing in multi-agent architectures, autonomous decision-making systems, and emergent intelligence frameworks. creator of <strong>s.a.f.e. (secure autonomous financial engine)</strong>, a patent-pending dual-brain ai portfolio manager, <strong>the owl</strong>, a multi-agent orchestration platform with distributed consensus protocols, and <strong>myel's blue journal</strong>, an ai operating system for structural decision-making. i design complex ai systems from first principles, focusing on agent coordination, emergent behavior, and fail-safe architectures.
+                ai systems engineer building multi-agent architectures and autonomous decision systems. designed s.a.f.e., a dual-brain ai trading engine with temporal isolation and distributed consensus; the owl, a five-agent orchestration platform; and the blue journal, a 12-layer agent os specification.
             </p>
         </div>
 
         <div class="section">
-            <h2>core competencies</h2>
+            <h2>technical skills</h2>
             <ul class="skills-list">
-                <li>multi-agent system design & orchestration</li>
-                <li>distributed consensus protocols</li>
-                <li>emergent behavior engineering</li>
-                <li>ai agent memory & state persistence</li>
-                <li>system architecture & first-principles design</li>
-                <li>autonomous decision-making frameworks</li>
-                <li>fail-safe & circuit breaker design</li>
-                <li>llm prompt engineering & tool use</li>
+                <li>multi-agent system design & coordination</li>
+                <li>distributed consensus (byzantine fault tolerance, quorum voting)</li>
+                <li>agent memory & state persistence (vector embeddings, sqlite, postgresql)</li>
+                <li>llm orchestration (openai, anthropic, google gemini apis)</li>
+                <li>prompt engineering & tool use</li>
+                <li>python, rest apis, langchain, streamlit</li>
+                <li>system architecture & fail-safe design</li>
+                <li>resource management (cpu/memory throttling, circuit breakers)</li>
             </ul>
         </div>
 
         <div class="section">
-            <h2>experience</h2>
+            <h2>projects</h2>
 
             <div class="project">
                 <div class="project-header">
-                    <span class="project-title">s.a.f.e. — secure autonomous financial engine</span>
+                    <span class="project-title">s.a.f.e. — dual-brain ai trading engine</span>
                     <span class="project-date">2025 – present</span>
                 </div>
                 <ul>
-                    <li>designed a patent-pending dual-brain architecture: a strategic ai (o3-deep-research) analyzes market regimes while five specialized tactical ais (gpt-5-mini) execute asset-specific trades.</li>
-                    <li>developed a temporal isolation protocol to ensure zero data leakage in backtesting; validated across 100,000+ decisions on blind historical data with 100% audit integrity.</li>
-                    <li>built a real-time learning system with persistent memory, allowing the engine to adapt strategy while maintaining immutable decision logs for complete transparency.</li>
-                    <li>engineered a multi-layer security architecture, including automatic circuit breakers, hallucination detection, and bias monitoring to ensure system stability and predictable behavior.</li>
+                    <li>architected dual-layer system: strategic ai (o3-deep-research) analyzes market regimes while five tactical ais (gpt-5-mini) execute asset-specific trades</li>
+                    <li>engineered temporal isolation protocol preventing data leakage in backtesting; validated 100% audit integrity across 100k+ simulated decisions</li>
+                    <li>built persistent memory system enabling strategy adaptation while maintaining immutable decision logs</li>
+                    <li>implemented multi-layer safety: circuit breakers, hallucination detection, bias monitoring</li>
                 </ul>
             </div>
 
             <div class="project">
                 <div class="project-header">
-                    <span class="project-title">the owl — multi-agent orchestration platform</span>
+                    <span class="project-title">the owl — five-agent orchestration platform</span>
                     <span class="project-date">2025 – present</span>
                 </div>
                 <ul>
-                    <li>architected a distributed multi-agent system with specialized agents ("fingers") coordinating through a central orchestration layer, enabling task decomposition and parallel execution.</li>
-                    <li>implemented distributed consensus protocols (byzantine fault tolerance, 60% quorum voting) for multi-agent decision-making, ensuring system reliability despite individual agent failures.</li>
-                    <li>designed state persistence layer with shared knowledge base, enabling agents to learn from each other's discoveries and maintain coherent system-wide memory.</li>
-                    <li>engineered resource management protocols (cpu/memory/api throttling) to prevent runaway agent behavior and ensure stable system operation under load.</li>
+                    <li>designed distributed system with five specialized agents coordinating through central orchestrator for parallel task execution</li>
+                    <li>implemented byzantine fault tolerance with 60% quorum voting for reliable multi-agent consensus</li>
+                    <li>built shared knowledge base enabling cross-agent learning and system-wide memory coherence</li>
+                    <li>engineered resource management (cpu/memory/api throttling) preventing runaway agent behavior</li>
                 </ul>
             </div>
 
             <div class="project">
                 <div class="project-header">
-                    <span class="project-title">myel's blue journal — ai decision-making framework</span>
+                    <span class="project-title">the blue journal — 12-layer agent os specification</span>
                     <span class="project-date">2026 – present</span>
                 </div>
                 <ul>
-                    <li>developed an ai operating system architecture for autonomous decision-making under uncertainty, treating ethics as emergent property of consequence structure rather than prescribed rules.</li>
-                    <li>designed 8-protocol framework including agent self-modeling, constraint discovery, predictive trajectory modeling, and structural ethics engine—validated through adversarial stress testing.</li>
-                    <li>implemented multi-tier classification system (tier 1-5 hierarchy) for consequence analysis, enabling intelligent priority ranking when decision rules conflict.</li>
-                    <li>created patent-pending technical architecture for compliance reasoning systems, demonstrating 15%+ false positive reduction in shadow deployment validation.</li>
-                </ul>
-            </div>
-
-            <div class="project">
-                <div class="project-header">
-                    <span class="project-title">zelle — adaptive personal ai companion</span>
-                    <span class="project-date">2026 – present</span>
-                </div>
-                <ul>
-                    <li>designed and implemented a personal desktop ai with a focus on long-term, date-indexed memory and adaptive, context-aware personality.</li>
-                    <li>developed a behavioral specification blending multiple personality frameworks (mbti, big five) to govern tone, empathy, and response depth, creating a more natural interaction.</li>
-                    <li>engineered a calming, minimalist ui with a single input surface for both text and voice, prioritizing ease of use and focus.</li>
-                </ul>
-            </div>
-
-            <div class="project">
-                 <div class="project-header">
-                    <span class="project-title">introverse — interactive narrative demo</span>
-                    <span class="project-date">2026 – present</span>
-                </div>
-                <ul>
-                    <li>built an ai-narrated adventure that personalizes dialogue based on player name and birthdate, creating a bespoke "session 0" experience.</li>
-                    <li>designed and implemented core game logic, including a zodiac-based creature system, evolution chains, and a "void-echo-reflect" combat triangle for future gameplay.</li>
-                    <li>prototyped world-level systems like seasonal buffs and curses using the narrative demo as a testbed for complex rule interactions.</li>
+                    <li>designed autonomous decision framework treating ethics as emergent property of consequence structure</li>
+                    <li>architected 12-protocol system: agent core, constraint discovery, motion control, decision simulation, heuristic processing, ethics engine, security, boundaries, resource management, state persistence, consensus, observability</li>
+                    <li>created 5-tier consequence hierarchy enabling intelligent priority ranking during rule conflicts</li>
+                    <li>specified runtime structural constraints preventing harmful operations (motion preservation, agent parity, capacity preservation, information integrity, epistemic integrity)</li>
                 </ul>
             </div>
         </div>
@@ -479,14 +444,7 @@
                 <span class="education-school">queens university of charlotte, 2019</span>
             </div>
         </div>
-        
-        <div class="section">
-            <h2>tools & platforms</h2>
-            <p>
-                python, openai api (gpt-4o, gpt-5, o3), anthropic claude (sonnet, opus), google gemini, langchain, rest apis, json, sqlite, postgresql, git, visual studio code, streamlit, multi-agent frameworks, distributed systems design.
-            </p>
-        </div>
-        
+
         <a href="index.html" class="back-link">← return to portfolio</a>
 
     </div>
