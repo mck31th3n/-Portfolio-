@@ -11,6 +11,16 @@ This framework is presented for informational and systems-thinking demonstration
 
 ---
 
+## STATUS & INTENT
+
+This document is an open, architecture-level specification describing a proposed operating system for autonomous, multi-agent AI.
+
+It is intentionally published without code and without production integration details. Parameter values, thresholds, and mechanisms are illustrative and subject to tuning, not claims of optimality.
+
+This work is shared to invite critique, discussion, and exploration. It does not disclose proprietary implementations or any protected systems.
+
+---
+
 ## EXECUTIVE SUMMARY
 
 ### What This Is
