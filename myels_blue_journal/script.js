@@ -185,10 +185,6 @@ async function loadContent(sectionKey) {
         // Paginate content
         paginateContent(html);
 
-        // Debug logging
-        console.log(`Pagination: ${totalPages} pages created from content`);
-        console.log(`Page 1 elements: ${paginatedContent[0] ? paginatedContent[0].length : 0}`);
-
         // Display first page
         currentPage = 1;
         displayPage(1);
@@ -579,8 +575,6 @@ function paginateContent(html) {
     // Get all elements
     const elements = Array.from(tempDiv.children);
 
-    console.log(`paginateContent: Processing ${elements.length} elements`);
-
     // Split into pages based on line count
     paginatedContent = [];
     let currentPageContent = [];
@@ -621,10 +615,6 @@ function paginateContent(html) {
     }
 
     totalPages = paginatedContent.length;
-    console.log(`paginateContent: Created ${totalPages} pages`);
-    paginatedContent.forEach((page, i) => {
-        console.log(`  Page ${i + 1}: ${page.length} elements`);
-    });
 }
 
 /**
@@ -633,8 +623,6 @@ function paginateContent(html) {
 function displayPage(pageNum) {
     const contentDisplay = document.getElementById('content-display');
 
-    console.log(`displayPage called: page ${pageNum} of ${totalPages}`);
-
     if (pageNum < 1 || pageNum > totalPages) return;
 
     // Get page content
@@ -642,8 +630,6 @@ function displayPage(pageNum) {
 
     // Build page HTML with pagination controls
     const paginationControls = createPaginationControls(pageNum);
-
-    console.log(`Pagination controls created: ${paginationControls ? 'yes' : 'no'}, length: ${paginationControls.length}`);
 
     contentDisplay.innerHTML = pageContent.join('') + paginationControls;
 
@@ -682,27 +668,17 @@ function createPaginationControls(pageNum) {
     const nextDisabled = pageNum >= totalPages ? 'disabled' : '';
 
     return `
-        <div class="pagination-controls" style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(0, 255, 0, 0.2); display: flex; justify-content: space-between; align-items: center;">
-            <button class="page-prev ${prevDisabled}" ${prevDisabled} style="padding: 0.5rem 1rem; background: transparent; border: 1px solid var(--primary); color: var(--primary); font-family: 'IBM Plex Mono', monospace; cursor: pointer; transition: all 0.3s;">
+        <div class="pagination-controls">
+            <button class="page-prev ${prevDisabled}" ${prevDisabled}>
                 ← Previous
             </button>
-            <span class="page-indicator" style="color: var(--text-secondary); font-size: 0.9rem;">
+            <span class="page-indicator">
                 Page ${pageNum} of ${totalPages}
             </span>
-            <button class="page-next ${nextDisabled}" ${nextDisabled} style="padding: 0.5rem 1rem; background: transparent; border: 1px solid var(--primary); color: var(--primary); font-family: 'IBM Plex Mono', monospace; cursor: pointer; transition: all 0.3s;">
+            <button class="page-next ${nextDisabled}" ${nextDisabled}>
                 Next →
             </button>
         </div>
-        <style>
-            .pagination-controls button:not([disabled]):hover {
-                background: var(--primary);
-                color: #000;
-            }
-            .pagination-controls button[disabled] {
-                opacity: 0.3;
-                cursor: not-allowed;
-            }
-        </style>
     `;
 }
 
