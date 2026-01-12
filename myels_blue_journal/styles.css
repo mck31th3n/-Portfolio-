@@ -517,6 +517,46 @@ body::after {
     100% { transform: translate(0); }
 }
 
+/* Pagination Controls */
+.pagination-controls {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(0, 255, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+.page-prev, .page-next {
+    padding: 0.6rem 1.2rem;
+    background: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.page-prev:hover:not([disabled]), .page-next:hover:not([disabled]) {
+    background: rgba(0, 255, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.page-prev[disabled], .page-next[disabled] {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.page-indicator {
+    color: var(--primary);
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .terminal {
@@ -546,6 +586,15 @@ body::after {
 
     .content-display h2 {
         font-size: 1.1rem;
+    }
+
+    .pagination-controls {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .page-prev, .page-next {
+        width: 100%;
     }
 }
 

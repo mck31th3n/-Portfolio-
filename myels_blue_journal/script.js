@@ -53,6 +53,7 @@ const LINES_PER_PAGE = 30;
 document.addEventListener('DOMContentLoaded', () => {
     initBootSequence();
     initTimestamp();
+    initKeyboardNavigation();
 });
 
 /**
@@ -593,4 +594,20 @@ function createPaginationControls(pageNum) {
             }
         </style>
     `;
+}
+
+/**
+ * Initialize keyboard navigation
+ */
+function initKeyboardNavigation() {
+    document.addEventListener('keydown', (e) => {
+        // Left/Right arrows for page navigation
+        if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            navigatePreviousPage();
+        } else if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            navigateNextPage();
+        }
+    });
 }
