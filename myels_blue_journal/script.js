@@ -185,6 +185,10 @@ async function loadContent(sectionKey) {
         // Paginate content
         paginateContent(html);
 
+        // Debug logging
+        console.log(`Pagination: ${totalPages} pages created from content`);
+        console.log(`Page 1 elements: ${paginatedContent[0] ? paginatedContent[0].length : 0}`);
+
         // Display first page
         currentPage = 1;
         displayPage(1);
@@ -575,6 +579,8 @@ function paginateContent(html) {
     // Get all elements
     const elements = Array.from(tempDiv.children);
 
+    console.log(`paginateContent: Processing ${elements.length} elements`);
+
     // Split into pages based on line count
     paginatedContent = [];
     let currentPageContent = [];
@@ -615,6 +621,10 @@ function paginateContent(html) {
     }
 
     totalPages = paginatedContent.length;
+    console.log(`paginateContent: Created ${totalPages} pages`);
+    paginatedContent.forEach((page, i) => {
+        console.log(`  Page ${i + 1}: ${page.length} elements`);
+    });
 }
 
 /**
@@ -623,6 +633,8 @@ function paginateContent(html) {
 function displayPage(pageNum) {
     const contentDisplay = document.getElementById('content-display');
 
+    console.log(`displayPage called: page ${pageNum} of ${totalPages}`);
+
     if (pageNum < 1 || pageNum > totalPages) return;
 
     // Get page content
@@ -630,6 +642,8 @@ function displayPage(pageNum) {
 
     // Build page HTML with pagination controls
     const paginationControls = createPaginationControls(pageNum);
+
+    console.log(`Pagination controls created: ${paginationControls ? 'yes' : 'no'}, length: ${paginationControls.length}`);
 
     contentDisplay.innerHTML = pageContent.join('') + paginationControls;
 
