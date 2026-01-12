@@ -47,7 +47,7 @@ let totalPages = 1;
 let paginatedContent = [];
 
 // Pagination settings
-const LINES_PER_PAGE = 15;
+const LINES_PER_PAGE = 12;
 
 // Initialize on load
 document.addEventListener('DOMContentLoaded', () => {
@@ -236,7 +236,9 @@ function parseMarkdown(markdown) {
     let html = '';
     const lines = markdown.split('\n');
     let inCodeBlock = false;
-    let inList = false;
+    let listType = null; // Track 'ul' or 'ol'
+    let inTable = false;
+    let isTableHeader = true;
     let codeBlockContent = '';
 
     for (let i = 0; i < lines.length; i++) {
@@ -244,6 +246,15 @@ function parseMarkdown(markdown) {
 
         // Code blocks
         if (line.startsWith('```')) {
+            if (listType) {
+                html += `</${listType}>`;
+                listType = null;
+            }
+            if (inTable) {
+                html += '</table>';
+                inTable = false;
+                isTableHeader = true;
+            }
             if (inCodeBlock) {
                 html += `<pre><code>${escapeHtml(codeBlockContent)}</code></pre>`;
                 codeBlockContent = '';
@@ -259,50 +270,135 @@ function parseMarkdown(markdown) {
             continue;
         }
 
-        // Headers
+        // Headers - close lists before headers
         if (line.startsWith('# ')) {
+            if (listType) {
+                html += `</${listType}>`;
+                listType = null;
+            }
             html += `<h1>${line.substring(2)}</h1>`;
         } else if (line.startsWith('## ')) {
+            if (listType) {
+                html += `</${listType}>`;
+                listType = null;
+            }
             html += `<h2>${line.substring(3)}</h2>`;
         } else if (line.startsWith('### ')) {
+            if (listType) {
+                html += `</${listType}>`;
+                listType = null;
+            }
             html += `<h3>${line.substring(4)}</h3>`;
         }
-        // Lists
+        // Unordered Lists
         else if (line.match(/^[\*\-]\s/)) {
-            if (!inList) {
+            if (!listType) {
                 html += '<ul>';
-                inList = true;
+                listType = 'ul';
+            } else if (listType === 'ol') {
+                html += '</ol><ul>';
+                listType = 'ul';
             }
             html += `<li>${parseInline(line.substring(2))}</li>`;
-        } else if (line.match(/^\d+\.\s/)) {
-            if (!inList) {
+        }
+        // Ordered Lists
+        else if (line.match(/^\d+\.\s/)) {
+            if (!listType) {
                 html += '<ol>';
-                inList = true;
+                listType = 'ol';
+            } else if (listType === 'ul') {
+                html += '</ul><ol>';
+                listType = 'ol';
             }
             html += `<li>${parseInline(line.replace(/^\d+\.\s/, ''))}</li>`;
         }
         // End of list
-        else if (inList && line.trim() === '') {
-            html += inList === 'ul' ? '</ul>' : '</ol>';
-            inList = false;
+        else if (listType && line.trim() === '') {
+            html += `</${listType}>`;
+            listType = null;
+        }
+        // Table rows
+        else if (line.includes('|')) {
+            if (listType) {
+                html += `</${listType}>`;
+                listType = null;
+            }
+
+            // Skip separator line (|---|---|)
+            if (line.match(/^\|[\s\-\:\|]+\|$/)) {
+                continue;
+            }
+
+            if (!inTable) {
+                html += '<table>';
+                inTable = true;
+                isTableHeader = true;
+            }
+
+            const cells = line.split('|').filter(cell => cell.trim() !== '');
+            const tag = isTableHeader ? 'th' : 'td';
+
+            html += '<tr>';
+            cells.forEach(cell => {
+                html += `<${tag}>${parseInline(cell.trim())}</${tag}>`;
+            });
+            html += '</tr>';
+
+            isTableHeader = false;
+        }
+        // End table
+        else if (inTable && line.trim() === '') {
+            html += '</table>';
+            inTable = false;
+            isTableHeader = true;
         }
         // Blockquote
         else if (line.startsWith('> ')) {
+            if (listType) {
+                html += `</${listType}>`;
+                listType = null;
+            }
+            if (inTable) {
+                html += '</table>';
+                inTable = false;
+                isTableHeader = true;
+            }
             html += `<blockquote>${parseInline(line.substring(2))}</blockquote>`;
         }
         // Horizontal rule
         else if (line.match(/^[\-\*]{3,}$/)) {
+            if (listType) {
+                html += `</${listType}>`;
+                listType = null;
+            }
+            if (inTable) {
+                html += '</table>';
+                inTable = false;
+                isTableHeader = true;
+            }
             html += '<hr>';
         }
         // Paragraphs
         else if (line.trim() !== '') {
+            if (listType) {
+                html += `</${listType}>`;
+                listType = null;
+            }
+            if (inTable) {
+                html += '</table>';
+                inTable = false;
+                isTableHeader = true;
+            }
             html += `<p>${parseInline(line)}</p>`;
         }
     }
 
-    // Close any open list
-    if (inList) {
-        html += '</ul>';
+    // Close any open list or table
+    if (listType) {
+        html += `</${listType}>`;
+    }
+    if (inTable) {
+        html += '</table>';
     }
 
     return html;
