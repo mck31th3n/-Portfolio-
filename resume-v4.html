@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Myel Shaddah Key / Michael McKeithen Jr.</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Work+Sans:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --fog: rgba(245, 247, 250, 0.4);
@@ -101,9 +98,19 @@
             letter-spacing: 0.08em;
             margin-bottom: 0.5rem;
             opacity: 0.9;
+            text-transform: lowercase; /* Added for consistency */
         }
 
-        .subtitle {
+        .subtitle { /* Kept in case of need, but not used directly */
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            letter-spacing: 0.15em;
+            text-transform: lowercase;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+        }
+
+        .real-name { /* New class for the real name, styled like subtitle */
             font-size: 0.95rem;
             color: var(--text-muted);
             letter-spacing: 0.15em;
@@ -117,6 +124,10 @@
             color: var(--text-secondary);
             line-height: 1.8;
             font-weight: 300;
+            display: flex; /* Adjusting for flex layout */
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
         }
 
         .contact a {
@@ -159,6 +170,7 @@
             padding-bottom: 0.75rem;
             position: relative;
             opacity: 0.85;
+            text-transform: lowercase; /* Added for consistency */
         }
 
         h2::after {
@@ -188,6 +200,7 @@
             color: var(--text-primary);
             letter-spacing: 0.05em;
             opacity: 0.9;
+            text-transform: lowercase; /* Added for consistency */
         }
 
         .project-date {
@@ -195,6 +208,7 @@
             color: var(--text-muted);
             font-weight: 300;
             letter-spacing: 0.1em;
+            text-transform: lowercase; /* Added for consistency */
         }
 
         p {
@@ -231,16 +245,18 @@
             opacity: 0.5;
         }
 
-        .skills-list li {
-            padding-left: 1.5rem;
-            margin-bottom: 0.6rem;
+        .skills-list li { /* Adjusted for consistency with general li styling */
+            padding-left: 1.8rem; /* Match general li */
+            margin-bottom: 0.9rem; /* Match general li */
+            line-height: 1.75;
         }
 
-        .skills-list li::before {
-            top: 0.7em;
-            width: 4px;
-            height: 4px;
+        .skills-list li::before { /* Adjusted for consistency with general li styling */
+            top: 0.65em;
+            width: 6px;
+            height: 6px;
         }
+        /* Removed .skills-container and .skill-item styling, using ul/li instead */
 
         .education-item {
             margin-bottom: 1.8rem;
@@ -250,6 +266,10 @@
             border-radius: 8px;
             box-shadow: 0 4px 16px rgba(140, 150, 180, 0.06);
             transition: all 0.4s ease;
+            display: flex; /* Added for alignment */
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
         }
 
         .education-item:hover {
@@ -264,6 +284,7 @@
             font-size: 1rem;
             margin-bottom: 0.4rem;
             letter-spacing: 0.02em;
+            text-transform: lowercase; /* Added for consistency */
         }
 
         .education-school {
@@ -271,6 +292,7 @@
             font-weight: 300;
             font-size: 0.9rem;
             letter-spacing: 0.02em;
+            text-transform: lowercase; /* Added for consistency */
         }
 
         .back-link {
@@ -306,7 +328,6 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -319,25 +340,18 @@
 
         @media print {
             body {
-                padding: 0.5in;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
+                background: white;
+                padding: 0;
             }
-
             .container {
-                padding: 2.5rem 2rem;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
+                background: white;
+                border: none;
+                box-shadow: none;
+                padding: 0.5in;
+                border-radius: 0;
             }
-
             .back-link {
                 display: none;
-            }
-
-            /* Ensure animations don't interfere with print */
-            * {
-                animation: none !important;
-                transition: none !important;
             }
         }
 
@@ -345,131 +359,136 @@
             body {
                 padding: 2rem 1rem;
             }
-
             .container {
                 padding: 2.5rem 2rem;
                 border-radius: 16px;
             }
-
             h1 {
                 font-size: 2.2rem;
             }
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <header>
             <h1>myel shaddah key</h1>
-            <p class="subtitle">michael mckeithen jr.</p>
+            <div class="real-name">michael mckeithen jr.</div>
             <div class="contact">
-                charlotte, nc<br>
-                <a href="mailto:myelshaddahkey@gmail.com">myelshaddahkey@gmail.com</a><br>
-                <a href="https://www.linkedin.com/in/michael-mckeithen-jr-79b182161"
-                    target="_blank">linkedin.com/in/michael-mckeithen-jr-79b182161</a>
+                <span>charlotte, nc</span>
+                <a href="mailto:myelshaddahkey@gmail.com">myelshaddahkey@gmail.com</a>
+                <a href="https://www.linkedin.com/in/michael-mckeithen-jr-79b182161" target="_blank">linkedin profile</a>
             </div>
         </header>
 
         <div class="section">
-            <h2>summary</h2>
             <p>
-                R&D-focused creative technologist building AI systems, autonomous trading engines, and financial tools
-                with LLMs. Creator of <strong>S.A.F.E. (Secure Autonomous Financial Engine)</strong>, a patent-pending
-                autonomous AI portfolio manager with multi-agent architecture validated on extensive historical market
-                data with verified audit integrity. I use no-code/low-code tools plus emerging coding skills to
-                prototype working products quickly: designing behavior specs, wiring APIs, and iterating on UX until the
-                system feels explainable and trustworthy to real users.
+                ai systems engineer specializing in multi-agent architectures, autonomous decision-making systems, and emergent intelligence frameworks. creator of <strong>s.a.f.e. (secure autonomous financial engine)</strong>, a patent-pending dual-brain ai portfolio manager, <strong>the owl</strong>, a multi-agent orchestration platform with distributed consensus protocols, and <strong>myel's blue journal</strong>, an ai operating system for structural decision-making. i design complex ai systems from first principles, focusing on agent coordination, emergent behavior, and fail-safe architectures.
             </p>
         </div>
 
         <div class="section">
-            <h2>core skills & focus</h2>
+            <h2>core competencies</h2>
             <ul class="skills-list">
-                <li>design thinking & rapid prototyping for llm-driven tools</li>
-                <li>ai agent behavior, personality mapping, and long-term memory design</li>
-                <li>multi-agent orchestration & autonomous decision-making systems</li>
-                <li>backtesting methodology & system validation for AI trading systems</li>
-                <li>concept-to-prototype strategy for no-code/low-code stacks</li>
-                <li>system architecture for single-user and small-team ai assistants</li>
-                <li>algorithmic trading systems, portfolio management, and risk analysis</li>
-                <li>client-style communication & explanation of complex systems</li>
+                <li>multi-agent system design & orchestration</li>
+                <li>distributed consensus protocols</li>
+                <li>emergent behavior engineering</li>
+                <li>ai agent memory & state persistence</li>
+                <li>system architecture & first-principles design</li>
+                <li>autonomous decision-making frameworks</li>
+                <li>fail-safe & circuit breaker design</li>
+                <li>llm prompt engineering & tool use</li>
             </ul>
         </div>
 
         <div class="section">
-            <h2>tools & platforms</h2>
-            <p>
-                chatgpt / openai api · ollama · claude sonnet · python · visual studio code · rest apis · json · yahoo
-                finance · coinbase api · alpaca markets · google drive · no-code/low-code builders
-            </p>
-        </div>
+            <h2>experience</h2>
 
-        <div class="section">
-            <h2>selected projects</h2>
-
-            <div class="project-header">
-                <span class="project-title">a. s.a.f.e. — secure autonomous financial engine</span>
-                <span class="project-date">2025 – present</span>
+            <div class="project">
+                <div class="project-header">
+                    <span class="project-title">s.a.f.e. — secure autonomous financial engine</span>
+                    <span class="project-date">2025 – present</span>
+                </div>
+                <ul>
+                    <li>designed a patent-pending dual-brain architecture: a strategic ai (o3-deep-research) analyzes market regimes while five specialized tactical ais (gpt-5-mini) execute asset-specific trades.</li>
+                    <li>developed a temporal isolation protocol to ensure zero data leakage in backtesting; validated across 100,000+ decisions on blind historical data with 100% audit integrity.</li>
+                    <li>built a real-time learning system with persistent memory, allowing the engine to adapt strategy while maintaining immutable decision logs for complete transparency.</li>
+                    <li>engineered a multi-layer security architecture, including automatic circuit breakers, hallucination detection, and bias monitoring to ensure system stability and predictable behavior.</li>
+                </ul>
             </div>
-            <p>
-                Autonomous AI portfolio manager with patent-pending multi-agent architecture. Manages multi-asset
-                portfolios (crypto, equities, forex, commodities) with verified audit integrity and validated
-                performance on historical data.
-            </p>
-            <ul>
-                <li>Designed patent-pending AI architecture for autonomous portfolio management across cryptocurrency,
-                    equities, forex, and commodities markets</li>
-                <li>Developed rigorous validation methodology preventing data leakage during backtesting and ensuring
-                    complete audit integrity across all decisions</li>
-                <li>Built learning system that evolves trading strategies based on market performance while maintaining
-                    comprehensive decision audit trails</li>
-                <li>Implemented adaptive risk management system with automated safety controls, real-time monitoring,
-                    and multi-layer defense protocols</li>
-                <li>Integrated live market data across multiple exchanges and data providers with automatic failover
-                    handling and connection resilience</li>
-                <li>Currently validating full-system performance through extended live observation with production-grade
-                    monitoring and recovery mechanisms</li>
-            </ul>
 
-            <div class="project-header">
-                <span class="project-title">b. dual-mind framework — multi-persona chatgpt experiment</span>
-                <span class="project-date">2025 – present</span>
+            <div class="project">
+                <div class="project-header">
+                    <span class="project-title">the owl — multi-agent orchestration platform</span>
+                    <span class="project-date">2025 – present</span>
+                </div>
+                <ul>
+                    <li>architected a distributed multi-agent system with specialized agents ("fingers") coordinating through a central orchestration layer, enabling task decomposition and parallel execution.</li>
+                    <li>implemented distributed consensus protocols (byzantine fault tolerance, 60% quorum voting) for multi-agent decision-making, ensuring system reliability despite individual agent failures.</li>
+                    <li>designed state persistence layer with shared knowledge base, enabling agents to learn from each other's discoveries and maintain coherent system-wide memory.</li>
+                    <li>engineered resource management protocols (cpu/memory/api throttling) to prevent runaway agent behavior and ensure stable system operation under load.</li>
+                </ul>
             </div>
-            <p>
-                experimental prompt engineering approach for simulating multiple distinct ai personalities within a
-                single chatgpt conversation, each providing different perspectives and reasoning on the same question.
-            </p>
-            <ul>
-                <li>developed a prompt structure enabling two ai personas with complementary roles: one exploratory and
-                    creative, the other analytical and constraint-focused.</li>
-                <li>created protocols where each "mind" announces itself, presents independent reasoning, and highlights
-                    disagreements rather than converging to a single answer.</li>
-                <li>applied this multi-perspective approach to creative projects, financial system design, and
-                    decision-making workflows requiring balanced viewpoints.</li>
-                <li>demonstrated that single-session multi-agent reasoning is achievable through careful prompt
-                    engineering without requiring external frameworks.</li>
-            </ul>
+
+            <div class="project">
+                <div class="project-header">
+                    <span class="project-title">myel's blue journal — ai decision-making framework</span>
+                    <span class="project-date">2026 – present</span>
+                </div>
+                <ul>
+                    <li>developed an ai operating system architecture for autonomous decision-making under uncertainty, treating ethics as emergent property of consequence structure rather than prescribed rules.</li>
+                    <li>designed 8-protocol framework including agent self-modeling, constraint discovery, predictive trajectory modeling, and structural ethics engine—validated through adversarial stress testing.</li>
+                    <li>implemented multi-tier classification system (tier 1-5 hierarchy) for consequence analysis, enabling intelligent priority ranking when decision rules conflict.</li>
+                    <li>created patent-pending technical architecture for compliance reasoning systems, demonstrating 15%+ false positive reduction in shadow deployment validation.</li>
+                </ul>
+            </div>
+
+            <div class="project">
+                <div class="project-header">
+                    <span class="project-title">zelle — adaptive personal ai companion</span>
+                    <span class="project-date">2026 – present</span>
+                </div>
+                <ul>
+                    <li>designed and implemented a personal desktop ai with a focus on long-term, date-indexed memory and adaptive, context-aware personality.</li>
+                    <li>developed a behavioral specification blending multiple personality frameworks (mbti, big five) to govern tone, empathy, and response depth, creating a more natural interaction.</li>
+                    <li>engineered a calming, minimalist ui with a single input surface for both text and voice, prioritizing ease of use and focus.</li>
+                </ul>
+            </div>
+
+            <div class="project">
+                 <div class="project-header">
+                    <span class="project-title">introverse — interactive narrative demo</span>
+                    <span class="project-date">2026 – present</span>
+                </div>
+                <ul>
+                    <li>built an ai-narrated adventure that personalizes dialogue based on player name and birthdate, creating a bespoke "session 0" experience.</li>
+                    <li>designed and implemented core game logic, including a zodiac-based creature system, evolution chains, and a "void-echo-reflect" combat triangle for future gameplay.</li>
+                    <li>prototyped world-level systems like seasonal buffs and curses using the narrative demo as a testbed for complex rule interactions.</li>
+                </ul>
+            </div>
         </div>
 
         <div class="section">
             <h2>education</h2>
             <div class="education-item">
-                <div class="education-degree">mfa, music composition — 2022</div>
-                <div class="education-school">university of north carolina school of the arts</div>
+                <span class="education-degree">mfa, music composition</span>
+                <span class="education-school">university of north carolina school of the arts, 2022</span>
             </div>
             <div class="education-item">
-                <div class="education-degree">ba, music composition — 2019</div>
-                <div class="education-school">queens university of charlotte</div>
-            </div>
-            <div class="education-item">
-                <div class="education-degree">undergraduate studies — 2014–2016</div>
-                <div class="education-school">gardner–webb university (transferred)</div>
+                <span class="education-degree">ba, music composition</span>
+                <span class="education-school">queens university of charlotte, 2019</span>
             </div>
         </div>
+        
+        <div class="section">
+            <h2>tools & platforms</h2>
+            <p>
+                python, openai api (gpt-4o, gpt-5, o3), anthropic claude (sonnet, opus), google gemini, langchain, rest apis, json, sqlite, postgresql, git, visual studio code, streamlit, multi-agent frameworks, distributed systems design.
+            </p>
+        </div>
+        
+        <a href="index.html" class="back-link">← return to portfolio</a>
 
-        <a href="safe/index.html" class="back-link">← return to portfolio</a>
     </div>
 </body>
-
 </html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Blue Journal - Autonomous Agent Operating System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Terminal Boot Sequence -->
+    <div id="boot-sequence" class="boot-sequence">
+        <div class="boot-lines">
+            <div class="boot-line">INITIALIZING THE BLUE JOURNAL v1.0...</div>
+            <div class="boot-line">LOADING AUTONOMOUS AGENT PROTOCOLS...</div>
+            <div class="boot-line">MOUNTING DISTRIBUTED CONSENSUS LAYER...</div>
+            <div class="boot-line">INITIALIZING RESOURCE MANAGEMENT...</div>
+            <div class="boot-line">ACTIVATING EMERGENT ETHICS ENGINE...</div>
+            <div class="boot-line">SYSTEM READY.</div>
+            <div class="boot-line boot-ready">
+                <span class="prompt">&gt;</span> ACCESS OS_ARCHITECTURE_
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Terminal Interface -->
+    <div id="terminal" class="terminal hidden">
+        <!-- Header -->
+        <header class="terminal-header">
+            <div class="header-left">
+                <div class="status-indicator"></div>
+                <span class="system-name">THE BLUE JOURNAL</span>
+            </div>
+            <div class="header-right">
+                <span class="system-version">AI OS v1.0</span>
+                <span class="system-status">ONLINE</span>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="terminal-nav">
+            <div class="nav-prompt">
+                <span class="prompt">&gt;</span> SELECT SYSTEM COMPONENT:
+            </div>
+            <div class="nav-items">
+                <button class="nav-item" data-section="overview">
+                    <span class="nav-label">AI OS OVERVIEW</span>
+                </button>
+                <button class="nav-item" data-section="architecture">
+                    <span class="nav-label">TECHNICAL ARCHITECTURE</span>
+                </button>
+                <button class="nav-item" data-section="constraints">
+                    <span class="nav-label">ARCHITECTURAL CONSTRAINTS</span>
+                </button>
+                <button class="nav-item" data-section="protocol09">
+                    <span class="nav-label">RESOURCE MANAGEMENT</span>
+                </button>
+                <button class="nav-item" data-section="protocol10">
+                    <span class="nav-label">STATE PERSISTENCE</span>
+                </button>
+                <button class="nav-item" data-section="protocol11">
+                    <span class="nav-label">DISTRIBUTED CONSENSUS</span>
+                </button>
+                <button class="nav-item" data-section="protocol12">
+                    <span class="nav-label">OBSERVABILITY</span>
+                </button>
+                <button class="nav-item" data-section="summary">
+                    <span class="nav-label">EXECUTIVE SUMMARY</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Content Display -->
+        <main class="terminal-content">
+            <div class="content-wrapper">
+                <div id="content-display" class="content-display">
+                    <!-- Content loaded here via JS -->
+                </div>
+
+                <!-- Command Prompt at Bottom -->
+                <div class="terminal-prompt">
+                    <span class="prompt">&gt;</span>
+                    <span class="cursor">_</span>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="terminal-footer">
+            <div class="footer-left">
+                <span class="timestamp" id="timestamp">2026-01-11 02:30:45</span>
+            </div>
+            <div class="footer-right">
+                <span class="footer-text">AUTONOMOUS AGENT OPERATING SYSTEM</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Glitch Overlay for Transitions -->
+    <div id="glitch-overlay" class="glitch-overlay hidden"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

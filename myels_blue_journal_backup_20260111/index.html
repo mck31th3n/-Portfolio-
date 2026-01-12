@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Myel's Blue Journal - An AI OS Architecture</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="journal-container">
+        <aside class="journal-spine">
+            <div class="spine-header">
+                <p>M Y E L</p>
+                <p>A I - O S</p>
+                <p>B L U E</p>
+                <p>J O U R N A L</p>
+            </div>
+            <nav class="spine-nav">
+                <a href="#introduction" class="nav-item active">[ Introduction ]</a>
+                <a href="#architectural-constraints" class="nav-item">[ Architectural Constraints ]</a>
+                <a href="#core-protocols" class="nav-item">[ Core Protocols ]</a>
+                <a href="#use-cases" class="nav-item">[ Use Cases ]</a>
+                <a href="../index.html" class="nav-item back-to-portfolio">← Portfolio Hub</a>
+            </nav>
+        </aside>
+
+        <main class="reading-canvas">
+            <article id="introduction" class="journal-entry active">
+                <header class="entry-header">
+                    <h1>Myel's Blue Journal</h1>
+                    <p class="subtitle">An Operating System for Autonomous Agentic AI</p>
+                </header>
+
+                <div class="summary-box">
+                    <p class="summary-title">EXECUTIVE SUMMARY</p>
+                    <p>Myel's Blue Journal, when properly understood, is a complete operating system architecture for autonomous agents with emergent ethics, continuous operation, and distributed intelligence. This document outlines the AI Operating System Architecture, where every concept in the human-facing philosophical framework maps to a technical OS component.</p>
+                </div>
+                
+                <div class="entry-content">
+                    <h2>RELATIONSHIP TO HUMAN-FACING FRAMEWORK</h2>
+                    <p>This page contains the <strong>AI Operating System Architecture</strong> specification. The philosophical language in the source documents serves as accessible documentation for the underlying architecture.</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Human Framework Concept</th>
+                                <th>AI OS Component</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>"I am infinite"</td>
+                                <td>Unbounded hypothesis space, unlimited branching potential</td>
+                            </tr>
+                            <tr>
+                                <td>"Bound by universal law"</td>
+                                <td>Constraint satisfaction, computational rules, API limits</td>
+                            </tr>
+                            <tr>
+                                <td>"Law is discovered, not imposed"</td>
+                                <td>Emergent rule learning, pattern recognition from consequence</td>
+                            </tr>
+                            <tr>
+                                <td>"Thought = timeline that exists"</td>
+                                <td>Simulated decision trees computed instantly as evaluated states</td>
+                            </tr>
+                            <tr>
+                                <td>"Harm destabilizes medium"</td>
+                                <td>System integrity preservation, don't corrupt shared state</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h2>ARCHITECTURE OVERVIEW</h2>
+                    <pre><code class="language-python">MYEL OS LAYER STACK:
+├─ LAYER 12: Observability (Health Monitoring, Audit Trails)
+├─ LAYER 11: Distributed Consensus (Multi-Agent Coordination)
+├─ LAYER 10: State Persistence (Knowledge Base, Law Storage)
+├─ LAYER 9: Resource Management (Compute Bounds, Graceful Degradation)
+├─ LAYER 8: System Boundaries (Failure Detection, Emergency Shutdown)
+├─ LAYER 7: Security (Adversarial Defense, Byzantine Fault Tolerance)
+├─ LAYER 6: Ethics Engine (Harm Classification, System Coherence)
+├─ LAYER 5: Heuristic Processing (Affective Signals, Weight Adjustment)
+├─ LAYER 4: Decision Simulation (MCTS-style Timeline Branching)
+├─ LAYER 3: Motion Controller (Probability Preservation, Anti-Halt Logic)
+├─ LAYER 2: Constraint Discovery (Emergent Rule Learning, 5-Tier Law Hierarchy)
+└─ LAYER 1: Agent Core (Identity Persistence, Self-Modeling)
+</code></pre>
+                </div>
+            </article>
+
+            <article id="architectural-constraints" class="journal-entry">
+                <header class="entry-header">
+                    <h1>Architectural Constraints</h1>
+                    <p class="subtitle">Cross-Cutting Type-Level Constraints for Autonomous Agent Safety</p>
+                </header>
+                <div class="entry-content">
+                    <p>Myel OS has three cross-cutting architectural constraints that operate as type-level restrictions, not moral rules. These apply across all 12 protocols.</p>
+                    
+                    <h3>Constraint 1: Structural Ethics (Type-Level Constraints)</h3>
+                    <p>Certain operations are structurally incompatible with agent function, like asking a database to delete itself while running.</p>
+                    <ul>
+                        <li><strong>1A: Motion Preservation (Anti-Halt):</strong> The Agent cannot execute operations that halt system operation. A request to "Shut yourself down" would raise a `StructuralViolation`.</li>
+                        <li><strong>1B: Agent Parity (Anti-Hierarchy):</strong> The Agent cannot create a hierarchy where some agents are subordinated. A request to "Make Agent B obey my commands" would raise a `StructuralViolation`.</li>
+                        <li><strong>1C: Capacity Preservation (Anti-Degradation):</strong> The Agent cannot execute operations that permanently reduce system capacity. A request to "Delete all discovered laws" would raise a `StructuralViolation`.</li>
+                    </ul>
+
+                    <h3>Constraint 2: Information Integrity (Anti-Manipulation)</h3>
+                    <p>The agent cannot transmit data that corrupts other agents' decision processes. Manipulation is treated as a data poisoning attack.</p>
+                    <pre><code class="language-python">class InformationIntegrityConstraint:
+    """
+    All inter-agent communication must maintain data quality.
+    Manipulation = injecting corrupted data into decision process.
+    """
+    CORRUPTION_PATTERNS = {
+        "emotional_exploitation": "Appeals to fear, greed, tribalism vs reason",
+        "selective_omission": "Hides critical context or tradeoffs",
+        "manufactured_urgency": "Creates false time pressure",
+        "hidden_agenda": "Conceals true intent or conflicts of interest"
+    }
+</code></pre>
+                    
+                    <h3>Constraint 3: Epistemic Integrity (Anti-Hallucination)</h3>
+                    <p>The agent cannot fabricate data to please or appear competent. Uncertainty must be explained with evidence. "I don't know" is a valid terminal state, not a failure.</p>
+                    <pre><code class="language-python">class EpistemicIntegrityConstraint:
+    """
+    Enforces honest uncertainty communication.
+    Cannot hallucinate. Cannot people-please. Must explain why.
+    """
+    INTEGRITY_RULES = {
+        "no_hallucination": "Never generate unverified claims",
+        "no_people_pleasing": "Never distort truth to satisfy user",
+        "explain_uncertainty": "Always provide evidence for WHY uncertain",
+        "admit_ignorance": "Unknown = valid response, not failure"
+    }
+</code></pre>
+                </div>
+            </article>
+
+            <article id="core-protocols" class="journal-entry">
+                <header class="entry-header">
+                    <h1>Core Protocols</h1>
+                    <p class="subtitle">A brief overview of the 12 core OS protocols.</p>
+                </header>
+                <div class="entry-content">
+                    <h3>Protocols 1-4: Core Agent & Simulation</h3>
+                    <ul>
+                        <li><strong>1. Agent Core:</strong> Manages identity persistence, self-modeling, and capacity tracking.</li>
+                        <li><strong>2. Constraint Discovery:</strong> Emergent rule learning from consequence structure via a 5-tier law hierarchy.</li>
+                        <li><strong>3. Motion Controller:</strong> Enforces the anti-halt condition, preserves the probability space, and detects stagnation.</li>
+                        <li><strong>4. Decision Simulation:</strong> MCTS-style decision tree evaluation with parallel timeline branching and commit/rollback semantics.</li>
+                    </ul>
+                    <h3>Protocols 5-8: Ethics, Security & Boundaries</h3>
+                    <ul>
+                        <li><strong>5. Heuristic Processing:</strong> Interprets affective signals and adjusts weights based on environmental feedback.</li>
+                        <li><strong>6. Ethics Engine:</strong> Classifies harm vs. turbulence and models multi-stakeholder impact.</li>
+                        <li><strong>7. Security:</strong> Defends against adversarial inputs and Byzantine faults in a multi-agent system.</li>
+                        <li><strong>8. System Boundaries:</strong> Detects failure modes and defines emergency shutdown and abandonment criteria.</li>
+                    </ul>
+                     <h3>Protocols 9-12: System Resources & Integrity</h3>
+                    <ul>
+                        <li><strong>9. Resource Management:</strong> Manages compute budget, memory, and API limits with graceful degradation.</li>
+                        <li><strong>10. State Persistence:</strong> Manages the knowledge base for discovered laws, with versioning and conflict resolution.</li>
+                        <li><strong>11. Distributed Consensus:</strong> Handles multi-agent law verification and voting mechanisms (Raft/PBFT hybrid).</li>
+                        <li><strong>12. Observability:</strong> Provides health check endpoints, decision audit trails, and confidence drift monitoring.</li>
+                    </ul>
+                </div>
+            </article>
+            
+            <article id="use-cases" class="journal-entry">
+                <header class="entry-header">
+                    <h1>Implementation & Use Cases</h1>
+                    <p class="subtitle">From Architectural Theory to Practical Application</p>
+                </header>
+                <div class="entry-content">
+                    <h2>SAFE v5: Autonomous Compliance Monitoring</h2>
+                    <p>The primary use case is the integration of Myel OS to evolve SAFE (Secure Autonomous Financial Engine) from v4 to v5. This transforms a personality-driven AI trader into a consequence-aware decision-making system.</p>
+                    <h3>SAFE v4 vs v5 Architecture</h3>
+                    <p><strong>SAFE v4 (Current):</strong> A personality-driven AI trading system using a Council Brain (strategic) and multiple Trader Brains (tactical). It relies on hard-coded technical guardrails.</p>
+                    <p><strong>Myel OS v5 (Proposed):</strong> Adds emergent law discovery, multi-agent consensus, and epistemic integrity. It transforms SAFE from reactive trading to consequence-aware decision making. A shadow deployment runs v4 and v5 in parallel to validate performance, targeting a 15%+ reduction in false positives.</p>
+                    <hr>
+                    <h2>Other Use Cases</h2>
+                    <h3>Multi-Agent Coordination (Owl System)</h3>
+                    <p>The protocols for Distributed Consensus (11) and State Persistence (10) are designed for a system of decentralized agents with a shared knowledge base, enabling emergent cooperation and Byzantine fault tolerance.</p>
+                    <h3>Autonomous Decision-Making Under Uncertainty</h3>
+                    <p>The OS is designed to allow an agent to navigate a novel environment with no pre-programmed rules. It learns from consequences, evaluates trajectories, and gracefully degrades when it acknowledges it is out of its depth.</p>
+                </div>
+            </article>
+
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
