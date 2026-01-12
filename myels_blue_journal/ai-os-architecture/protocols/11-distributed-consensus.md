@@ -641,17 +641,17 @@ METRICS = {
 ## SUMMARY
 
 **Protocol 11 ensures:**
-- ✅ Multi-agent law verification (no single point of failure)
-- ✅ Byzantine fault tolerance (40% malicious agents tolerated)
-- ✅ Deadlock prevention (timeouts, async messaging)
-- ✅ Network partition handling (split-brain prevention, reconciliation)
-- ✅ Conflict resolution (A/B testing, context splitting)
+- Multi-agent law verification (no single point of failure)
+- Byzantine fault tolerance (40% malicious agents tolerated)
+- Deadlock prevention (timeouts, async messaging)
+- Network partition handling (split-brain prevention, reconciliation)
+- Conflict resolution (A/B testing, context splitting)
 
 **Integration Status:**
-- ✅ Maps to AG concern: "Distributed consensus missing"
-- ✅ Enables multi-agent coordination at scale
-- ✅ Prevents knowledge corruption (Byzantine defense)
-- ✅ Requires Protocol 10 (shared database for voting)
+- Maps to AG concern: "Distributed consensus missing"
+- Enables multi-agent coordination at scale
+- Prevents knowledge corruption (Byzantine defense)
+- Requires Protocol 10 (shared database for voting)
 
 **Next:** [Protocol 12: Observability](./12-observability.md)
 

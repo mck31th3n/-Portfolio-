@@ -621,17 +621,17 @@ METRICS = {
 ## SUMMARY
 
 **Protocol 10 ensures:**
-- ✅ Discovered laws persist across restarts (no amnesia)
-- ✅ Multi-agent knowledge sharing (distributed intelligence)
-- ✅ Conflict detection (contradictory laws identified)
-- ✅ Versioning system (breaking changes managed)
-- ✅ Backup & recovery (disaster resilience)
+- Discovered laws persist across restarts (no amnesia)
+- Multi-agent knowledge sharing (distributed intelligence)
+- Conflict detection (contradictory laws identified)
+- Versioning system (breaking changes managed)
+- Backup & recovery (disaster resilience)
 
 **Integration Status:**
-- ✅ Maps to AG concern: "State persistence undefined"
-- ✅ Enables multi-agent coordination (Protocol 11)
-- ✅ Provides audit trail (Protocol 12)
-- ✅ Manages storage resources (Protocol 9)
+- Maps to AG concern: "State persistence undefined"
+- Enables multi-agent coordination (Protocol 11)
+- Provides audit trail (Protocol 12)
+- Manages storage resources (Protocol 9)
 
 **Next:** [Protocol 11: Distributed Consensus](./11-distributed-consensus.md)
 

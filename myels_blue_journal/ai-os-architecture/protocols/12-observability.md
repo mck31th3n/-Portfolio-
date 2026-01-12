@@ -718,17 +718,17 @@ METRICS = {
 ## SUMMARY
 
 **Protocol 12 ensures:**
-- ✅ External visibility into agent state (health checks, metrics)
-- ✅ Decision accountability (audit trail, explainability)
-- ✅ Real-time monitoring (event streams, alerts)
-- ✅ Debugging capability (inspection API, logs)
-- ✅ Performance tracking (resource metrics, calibration drift)
+- External visibility into agent state (health checks, metrics)
+- Decision accountability (audit trail, explainability)
+- Real-time monitoring (event streams, alerts)
+- Debugging capability (inspection API, logs)
+- Performance tracking (resource metrics, calibration drift)
 
 **Integration Status:**
-- ✅ Maps to AG concern: "Observable state missing"
-- ✅ Enables external monitoring (Prometheus/Grafana)
-- ✅ Provides audit compliance (decision trails)
-- ✅ Supports debugging (explainable reasoning)
+- Maps to AG concern: "Observable state missing"
+- Enables external monitoring (Prometheus/Grafana)
+- Provides audit compliance (decision trails)
+- Supports debugging (explainable reasoning)
 
 **Status:** Complete 12-protocol architecture documented
 

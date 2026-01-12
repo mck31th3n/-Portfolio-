@@ -616,17 +616,17 @@ METRICS = {
 ## SUMMARY
 
 **Protocol 9 ensures:**
-- ✅ Finite resource operation (no unbounded exploration)
-- ✅ Graceful degradation (quality reduces, system doesn't crash)
-- ✅ Anytime algorithms (interruptible, progressive refinement)
-- ✅ Emergency protocols (resource exhaustion handled safely)
-- ✅ Adaptive allocation (prioritize critical decisions)
+- Finite resource operation (no unbounded exploration)
+- Graceful degradation (quality reduces, system doesn't crash)
+- Anytime algorithms (interruptible, progressive refinement)
+- Emergency protocols (resource exhaustion handled safely)
+- Adaptive allocation (prioritize critical decisions)
 
 **Integration Status:**
-- ✅ Maps to AG concern: "Infinite exploration hits compute limits"
-- ✅ Prevents resource exhaustion failures
-- ✅ Maintains motion imperative (degraded operation continues)
-- ✅ Compatible with all other protocols
+- Maps to AG concern: "Infinite exploration hits compute limits"
+- Prevents resource exhaustion failures
+- Maintains motion imperative (degraded operation continues)
+- Compatible with all other protocols
 
 **Next:** [Protocol 10: State Persistence](./10-state-persistence.md)
 

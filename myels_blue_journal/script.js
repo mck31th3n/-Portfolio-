@@ -42,6 +42,12 @@ const CONTENT_MAP = {
 // State
 let currentSection = null;
 let isTransitioning = false;
+let currentPage = 1;
+let totalPages = 1;
+let paginatedContent = [];
+
+// Pagination settings
+const LINES_PER_PAGE = 30;
 
 // Initialize on load
 document.addEventListener('DOMContentLoaded', () => {
@@ -175,8 +181,12 @@ async function loadContent(sectionKey) {
         // Convert markdown to HTML (simple parser)
         const html = parseMarkdown(markdown);
 
-        // Display content with typing effect for title
-        contentDisplay.innerHTML = html;
+        // Paginate content
+        paginateContent(html);
+
+        // Display first page
+        currentPage = 1;
+        displayPage(1);
 
         // Add glitch effect to title
         const title = contentDisplay.querySelector('h1');
@@ -385,18 +395,48 @@ function sleep(ms) {
 }
 
 /**
- * Keyboard shortcuts (optional enhancement)
+ * Keyboard shortcuts for section and page navigation
  */
 document.addEventListener('keydown', (e) => {
-    // Arrow keys for navigation
+    // Arrow keys for page navigation (left/right)
     if (e.key === 'ArrowRight') {
-        navigateNext();
+        if (e.shiftKey) {
+            navigateNextSection();
+        } else {
+            navigateNextPage();
+        }
     } else if (e.key === 'ArrowLeft') {
-        navigatePrevious();
+        if (e.shiftKey) {
+            navigatePreviousSection();
+        } else {
+            navigatePreviousPage();
+        }
+    }
+    // Arrow up/down for section navigation
+    else if (e.key === 'ArrowDown' && e.ctrlKey) {
+        navigateNextSection();
+    } else if (e.key === 'ArrowUp' && e.ctrlKey) {
+        navigatePreviousSection();
     }
 });
 
-function navigateNext() {
+// Page navigation
+function navigateNextPage() {
+    if (currentPage < totalPages) {
+        currentPage++;
+        displayPage(currentPage);
+    }
+}
+
+function navigatePreviousPage() {
+    if (currentPage > 1) {
+        currentPage--;
+        displayPage(currentPage);
+    }
+}
+
+// Section navigation
+function navigateNextSection() {
     const sections = Object.keys(CONTENT_MAP);
     const currentIndex = sections.indexOf(currentSection);
     if (currentIndex < sections.length - 1) {
@@ -406,7 +446,7 @@ function navigateNext() {
     }
 }
 
-function navigatePrevious() {
+function navigatePreviousSection() {
     const sections = Object.keys(CONTENT_MAP);
     const currentIndex = sections.indexOf(currentSection);
     if (currentIndex > 0) {
@@ -425,4 +465,132 @@ function updateActiveNav(sectionKey) {
             item.classList.remove('active');
         }
     });
+}
+
+/**
+ * Paginate content by splitting into chunks
+ */
+function paginateContent(html) {
+    // Create a temporary div to parse HTML
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = html;
+
+    // Get all elements
+    const elements = Array.from(tempDiv.children);
+
+    // Split into pages based on line count
+    paginatedContent = [];
+    let currentPageContent = [];
+    let currentLineCount = 0;
+
+    elements.forEach(element => {
+        // Estimate lines for this element
+        const tagName = element.tagName.toLowerCase();
+        let estimatedLines = 1;
+
+        if (tagName === 'h1') estimatedLines = 2;
+        else if (tagName === 'h2') estimatedLines = 2;
+        else if (tagName === 'h3') estimatedLines = 2;
+        else if (tagName === 'pre') {
+            const codeLines = element.textContent.split('\n').length;
+            estimatedLines = codeLines;
+        } else if (tagName === 'p') {
+            const textLength = element.textContent.length;
+            estimatedLines = Math.ceil(textLength / 80); // Rough estimate: 80 chars per line
+        } else if (tagName === 'ul' || tagName === 'ol') {
+            estimatedLines = element.children.length;
+        }
+
+        // If adding this element exceeds page limit, start new page
+        if (currentLineCount + estimatedLines > LINES_PER_PAGE && currentPageContent.length > 0) {
+            paginatedContent.push(currentPageContent);
+            currentPageContent = [];
+            currentLineCount = 0;
+        }
+
+        currentPageContent.push(element.outerHTML);
+        currentLineCount += estimatedLines;
+    });
+
+    // Add remaining content as last page
+    if (currentPageContent.length > 0) {
+        paginatedContent.push(currentPageContent);
+    }
+
+    totalPages = paginatedContent.length;
+}
+
+/**
+ * Display a specific page
+ */
+function displayPage(pageNum) {
+    const contentDisplay = document.getElementById('content-display');
+
+    if (pageNum < 1 || pageNum > totalPages) return;
+
+    // Get page content
+    const pageContent = paginatedContent[pageNum - 1] || [];
+
+    // Build page HTML with pagination controls
+    const paginationControls = createPaginationControls(pageNum);
+
+    contentDisplay.innerHTML = pageContent.join('') + paginationControls;
+
+    // Add event listeners to pagination buttons
+    const prevBtn = contentDisplay.querySelector('.page-prev');
+    const nextBtn = contentDisplay.querySelector('.page-next');
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => navigatePreviousPage());
+    }
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => navigateNextPage());
+    }
+
+    // Re-add internal link handlers
+    const internalLinks = contentDisplay.querySelectorAll('.internal-link');
+    internalLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetSection = link.getAttribute('data-section');
+            if (targetSection) {
+                loadSection(targetSection);
+                updateActiveNav(targetSection);
+            }
+        });
+    });
+}
+
+/**
+ * Create pagination controls HTML
+ */
+function createPaginationControls(pageNum) {
+    if (totalPages <= 1) return '';
+
+    const prevDisabled = pageNum <= 1 ? 'disabled' : '';
+    const nextDisabled = pageNum >= totalPages ? 'disabled' : '';
+
+    return `
+        <div class="pagination-controls" style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(0, 255, 0, 0.2); display: flex; justify-content: space-between; align-items: center;">
+            <button class="page-prev ${prevDisabled}" ${prevDisabled} style="padding: 0.5rem 1rem; background: transparent; border: 1px solid var(--primary); color: var(--primary); font-family: 'IBM Plex Mono', monospace; cursor: pointer; transition: all 0.3s;">
+                ← Previous
+            </button>
+            <span class="page-indicator" style="color: var(--text-secondary); font-size: 0.9rem;">
+                Page ${pageNum} of ${totalPages}
+            </span>
+            <button class="page-next ${nextDisabled}" ${nextDisabled} style="padding: 0.5rem 1rem; background: transparent; border: 1px solid var(--primary); color: var(--primary); font-family: 'IBM Plex Mono', monospace; cursor: pointer; transition: all 0.3s;">
+                Next →
+            </button>
+        </div>
+        <style>
+            .pagination-controls button:not([disabled]):hover {
+                background: var(--primary);
+                color: #000;
+            }
+            .pagination-controls button[disabled] {
+                opacity: 0.3;
+                cursor: not-allowed;
+            }
+        </style>
+    `;
 }

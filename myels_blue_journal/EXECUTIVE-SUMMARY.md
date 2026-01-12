@@ -282,25 +282,25 @@ No divine command. Ethics derived from shared system integrity. Works for atheis
 
 This framework evidences:
 
-✅ **First-principles thinking under ambiguity**
+**First-principles thinking under ambiguity**
 Problem-solving when no clear path exists, no authority to consult
 
-✅ **Systems design with explicit failure modes**
+**Systems design with explicit failure modes**
 Not just "here's my idea" but "here's where it breaks and why"
 
-✅ **Ethical reasoning without external authority**
+**Ethical reasoning without external authority**
 Generates ethics from structure, not prescription
 
-✅ **Self-audit capacity**
+**Self-audit capacity**
 Stress-testing own work adversarially before deployment
 
-✅ **Integration thinking**
+**Integration thinking**
 Philosophy → technical implementation → product pipeline
 
-✅ **Risk management**
+**Risk management**
 Safeguards, limitations, abandonment criteria built in from start
 
-✅ **Iterative refinement methodology**
+**Iterative refinement methodology**
 Framework designed to update based on feedback and real-world testing
 
 ---
