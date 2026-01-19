@@ -557,6 +557,109 @@
             margin-top: var(--space-xl);
         }
 
+        /* Architecture Flow */
+        .arch-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.95em;
+            margin-bottom: var(--space-lg);
+        }
+
+        .arch-flow {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-sm);
+            overflow-x: auto;
+            padding: var(--space-md) 0;
+        }
+
+        .arch-flow-item {
+            flex: 1;
+            min-width: 140px;
+            text-align: center;
+        }
+
+        .arch-flow-label {
+            font-size: 0.6em;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            color: var(--gold-muted);
+            margin-bottom: var(--space-xs);
+            text-transform: uppercase;
+        }
+
+        .arch-flow-box {
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 6px;
+            padding: var(--space-md);
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .arch-flow-proprietary .arch-flow-box {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: rgba(212, 175, 55, 0.4);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
+        }
+
+        .arch-flow-title {
+            font-family: var(--font-mono);
+            font-size: 0.85em;
+            font-weight: 600;
+            color: var(--gold-bright);
+            margin-bottom: var(--space-xs);
+        }
+
+        .arch-flow-details {
+            font-size: 0.75em;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .arch-flow-protected {
+            font-size: 0.65em;
+            color: var(--gold-muted);
+            margin-top: var(--space-xs);
+            font-style: italic;
+        }
+
+        .arch-flow-arrow {
+            width: 30px;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(212, 175, 55, 0.3), rgba(212, 175, 55, 0.6));
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .arch-flow-arrow::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 4px solid transparent;
+            border-left: 6px solid rgba(212, 175, 55, 0.6);
+        }
+
+        /* IP Notice */
+        .ip-notice {
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 6px;
+            padding: var(--space-md);
+            margin-top: var(--space-lg);
+            font-size: 0.85em;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        .ip-notice strong {
+            color: var(--gold-muted);
+        }
+
         /* Footer */
         .footer {
             text-align: center;
@@ -646,6 +749,37 @@
             .system-status-strip {
                 flex-direction: column;
                 gap: var(--space-sm);
+                padding: var(--space-sm);
+            }
+
+            .arch-flow {
+                flex-direction: column;
+                gap: var(--space-md);
+            }
+
+            .arch-flow-arrow {
+                width: 2px;
+                height: 20px;
+                background: linear-gradient(180deg, rgba(212, 175, 55, 0.3), rgba(212, 175, 55, 0.6));
+            }
+
+            .arch-flow-arrow::after {
+                right: 50%;
+                top: auto;
+                bottom: 0;
+                transform: translateX(50%);
+                border: 4px solid transparent;
+                border-top: 6px solid rgba(212, 175, 55, 0.6);
+                border-left: 4px solid transparent;
+            }
+
+            .arch-flow-item {
+                min-width: auto;
+                width: 100%;
+            }
+
+            .ip-notice {
+                font-size: 0.8em;
                 padding: var(--space-sm);
             }
 
@@ -930,28 +1064,54 @@
 
         <div id="architecture" class="architecture-section">
             <h2>System Architecture</h2>
-            <div class="arch-grid">
-                <div class="arch-layer">
-                    <div class="arch-name">Data Ingestion</div>
-                    <div class="arch-desc">Multi-source aggregation with fallback chains</div>
+            <p class="arch-subtitle">Data flow through the SAFE pipeline</p>
+
+            <div class="arch-flow">
+                <div class="arch-flow-item">
+                    <div class="arch-flow-label">INPUTS</div>
+                    <div class="arch-flow-box">
+                        <div class="arch-flow-title">Data Sources</div>
+                        <div class="arch-flow-details">Market feeds, price data, volume metrics</div>
+                    </div>
                 </div>
-                <div class="arch-layer">
-                    <div class="arch-name">Technical Analysis</div>
-                    <div class="arch-desc">Deterministic indicator calculation (SMA, RSI, MACD)</div>
+                <div class="arch-flow-arrow"></div>
+                <div class="arch-flow-item">
+                    <div class="arch-flow-label">PROCESSING</div>
+                    <div class="arch-flow-box">
+                        <div class="arch-flow-title">Ingestion Layer</div>
+                        <div class="arch-flow-details">Normalization, validation, caching</div>
+                    </div>
                 </div>
-                <div class="arch-layer">
-                    <div class="arch-name">Decision Engine</div>
-                    <div class="arch-desc">Multi-agent reasoning with confidence scoring</div>
+                <div class="arch-flow-arrow"></div>
+                <div class="arch-flow-item arch-flow-proprietary">
+                    <div class="arch-flow-label">PROPRIETARY</div>
+                    <div class="arch-flow-box">
+                        <div class="arch-flow-title">Consensus Engine</div>
+                        <div class="arch-flow-details">Multi-agent reasoning layer</div>
+                        <div class="arch-flow-protected">Protected under provisional IP</div>
+                    </div>
                 </div>
-                <div class="arch-layer">
-                    <div class="arch-name">Governance</div>
-                    <div class="arch-desc">Risk controls, circuit breakers, audit logging</div>
+                <div class="arch-flow-arrow"></div>
+                <div class="arch-flow-item">
+                    <div class="arch-flow-label">GOVERNANCE</div>
+                    <div class="arch-flow-box">
+                        <div class="arch-flow-title">Validation Layer</div>
+                        <div class="arch-flow-details">Circuit breakers, audit logging, guardrails</div>
+                    </div>
                 </div>
-                <div class="arch-layer">
-                    <div class="arch-name">Observer Interface</div>
-                    <div class="arch-desc">Human-readable output with full explainability</div>
+                <div class="arch-flow-arrow"></div>
+                <div class="arch-flow-item">
+                    <div class="arch-flow-label">OUTPUTS</div>
+                    <div class="arch-flow-box">
+                        <div class="arch-flow-title">Observer Interface</div>
+                        <div class="arch-flow-details">Dashboard, rationale, alerts</div>
+                    </div>
                 </div>
             </div>
+        </div>
+
+        <div class="ip-notice">
+            <strong>Note:</strong> This project is presented as an architectural and governance demonstration. Core decision logic is proprietary and protected under provisional IP.
         </div>
 
         <div class="disclaimer">
