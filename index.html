@@ -14,6 +14,13 @@
             --text-primary: #E8EEF2;
             --text-secondary: rgba(232, 238, 242, 0.7);
         }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, var(--obsidian-black) 0%, var(--glossy-black) 100%);
@@ -23,9 +30,11 @@
             justify-content: center;
             min-height: 100vh;
             text-align: center;
+            padding: 2rem;
         }
+
         .container {
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
             padding: 3rem;
             background: rgba(18, 18, 18, 0.6);
@@ -34,45 +43,215 @@
             border-radius: 8px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
+
         h1 {
             font-family: 'Cinzel', serif;
             font-size: 2.5rem;
             color: var(--eclipse-gold);
             letter-spacing: 0.15em;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             text-shadow: 0 2px 20px rgba(212, 175, 55, 0.3);
         }
-        p {
+
+        .subtitle {
             color: var(--text-secondary);
             margin-bottom: 2.5rem;
             font-size: 1.1rem;
         }
+
         .nav-links {
             display: flex;
             flex-direction: column;
             gap: 1rem;
         }
+
         .nav-links a {
             color: var(--eclipse-gold);
             text-decoration: none;
-            font-size: 1.2rem;
-            padding: 0.75rem 1.5rem;
+            font-size: 1.1rem;
+            padding: 1rem 1.5rem;
             border: 1px solid rgba(212, 175, 55, 0.3);
             border-radius: 4px;
             transition: all 0.3s ease;
             letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
+
         .nav-links a:hover {
             background: rgba(212, 175, 55, 0.1);
             border-color: rgba(212, 175, 55, 0.5);
             box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .link-label {
+            font-weight: 600;
+        }
+
+        .link-desc {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        /* Rainbow Coming Soon Badge */
+        .coming-soon {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .coming-soon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 51, 51, 0.1),
+                rgba(255, 136, 0, 0.1),
+                rgba(255, 215, 0, 0.1),
+                rgba(51, 255, 136, 0.1),
+                rgba(51, 136, 255, 0.1),
+                transparent
+            );
+            animation: rainbow-sweep 3s linear infinite;
+        }
+
+        @keyframes rainbow-sweep {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .badge {
+            font-size: 0.65rem;
+            padding: 3px 8px;
+            border-radius: 3px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .badge-live {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .badge-demo {
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--eclipse-gold);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .badge-soon {
+            background: linear-gradient(90deg,
+                rgba(255, 51, 51, 0.15),
+                rgba(255, 136, 0, 0.15),
+                rgba(255, 215, 0, 0.15),
+                rgba(51, 255, 136, 0.15),
+                rgba(51, 136, 255, 0.15)
+            );
+            color: #fff;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .footer {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .footer a {
+            color: var(--eclipse-gold);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            .container {
+                padding: 2rem 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .nav-links a {
+                padding: 0.85rem 1rem;
+                font-size: 1rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.25rem;
+            }
+
+            .link-desc {
+                font-size: 0.75rem;
+            }
+
+            .badge {
+                position: absolute;
+                top: 0.5rem;
+                right: 0.5rem;
+            }
+
+            .nav-links a {
+                position: relative;
+            }
         }
     </style>
 </head>
 <body>
-    <script>
-        // Redirect to SAFE as default landing page
-        window.location.href = 'safe/index.html';
-    </script>
+    <div class="container">
+        <h1>Portfolio</h1>
+        <p class="subtitle">Myel Shaddah Key</p>
+
+        <div class="nav-links">
+            <a href="safe/index.html">
+                <div>
+                    <span class="link-label">S.A.F.E.</span>
+                    <span class="link-desc">Trading AI in Observer Mode</span>
+                </div>
+                <span class="badge badge-demo">Demo</span>
+            </a>
+
+            <a href="myels_blue_journal/index.html">
+                <div>
+                    <span class="link-label">The Blue Journal</span>
+                    <span class="link-desc">Autonomous Agent OS Specification</span>
+                </div>
+                <span class="badge badge-live">Live</span>
+            </a>
+
+            <a href="nest/index.html" class="coming-soon">
+                <div>
+                    <span class="link-label">The Owl's Nest</span>
+                    <span class="link-desc">Five-Agent Orchestration Platform</span>
+                </div>
+                <span class="badge badge-soon">Coming Soon</span>
+            </a>
+
+            <a href="resume-v4.html">
+                <div>
+                    <span class="link-label">Resume</span>
+                    <span class="link-desc">AI Systems Engineer</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="footer">
+            <a href="https://github.com/mck31th3n" target="_blank">GitHub</a>
+        </div>
+    </div>
 </body>
 </html>
