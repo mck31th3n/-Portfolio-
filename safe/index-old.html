@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S.A.F.E. V4.0 - Secure Autonomous Framework for Evaluation</title>
+    <link rel="stylesheet" href="styles-v4.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .back-to-portfolio {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            z-index: 50;
+            padding: 12px 24px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid var(--gold-primary);
+            color: var(--gold-primary);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+        .back-to-portfolio:hover {
+            background: var(--gold-primary);
+            color: #000;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+    </style>
+</head>
+
+<body class="safe-environment">
+    <a href="../index.html" class="back-to-portfolio">← PORTFOLIO</a>
+
+    <!-- INTELLIGENCE SPINE - Left Vertical Panel -->
+    <aside class="intelligence-spine">
+        <div class="spine-header">
+            <div class="safe-core-logo">S.A.F.E.</div>
+            <div class="system-pulse"></div>
+        </div>
+
+        <div style="text-align: center; padding: 1rem 0.5rem; border-bottom: 1px solid rgba(255,215,0,0.2); margin-bottom: 1rem;">
+            <div style="font-size: 0.75rem; font-weight: 600; color: var(--gold-primary); letter-spacing: 0.05em;">SYSTEM CONTEXT</div>
+            <div style="font-size: 0.65rem; opacity: 0.6; margin-top: 0.25rem;">(PORTFOLIO VIEW)</div>
+        </div>
+
+        <div class="spine-section">
+            <div class="spine-label">CORE STATUS</div>
+            <div style="font-size: 0.65rem; opacity: 0.5; margin-bottom: 0.5rem; text-align: center;">Portfolio demo — not user-configurable</div>
+            <div class="status-grid">
+                <div class="status-item">
+                    <span class="status-key">Observed State <span style="font-size: 0.65rem; opacity: 0.5;">(Demo)</span></span>
+                    <span class="status-value active">ACTIVE</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-key">Reasoning Channel</span>
+                    <span class="status-value">SANITIZED</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-key">Runtime Cycles <span style="font-size: 0.65rem; opacity: 0.5;">(Illustrative)</span></span>
+                    <span class="status-value" style="opacity: 0.7;">247</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-key">Integrity</span>
+                    <span class="status-value integrity-check">VERIFIED</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="spine-section">
+            <div class="spine-label">SYSTEM MODES</div>
+            <div style="font-size: 0.7rem; opacity: 0.5; margin-bottom: 0.25rem; text-align: center;">(INTERNAL — NOT CLIENT-ACCESSIBLE)</div>
+            <div style="font-size: 0.65rem; opacity: 0.5; margin-bottom: 0.75rem; text-align: center; font-style: italic;">Shown for system design context only</div>
+            <div class="mode-selector" style="pointer-events: none;">
+                <div class="mode-option active" data-mode="observer" style="cursor: default;">
+                    <span class="mode-icon">◈</span>
+                    <span class="mode-name">OBSERVER</span>
+                </div>
+                <div class="mode-option" data-mode="audit" style="cursor: default; opacity: 0.35;" title="Demonstration only — not exposed">
+                    <span class="mode-icon">◆</span>
+                    <span class="mode-name">AUDIT</span>
+                    <div style="font-size: 0.65rem; margin-top: 0.25rem;">Internal verification (restricted)</div>
+                </div>
+                <div class="mode-option" data-mode="isolated" style="cursor: default; opacity: 0.35;" title="Demonstration only — not exposed">
+                    <span class="mode-icon">◇</span>
+                    <span class="mode-name">ISOLATED</span>
+                    <div style="font-size: 0.65rem; margin-top: 0.25rem;">Fail-safe containment</div>
+                </div>
+                <div class="mode-option" data-mode="execution" style="cursor: default; opacity: 0.35;" title="Demonstration only — not exposed">
+                    <span class="mode-icon">◆</span>
+                    <span class="mode-name">EXECUTION</span>
+                    <div style="font-size: 0.65rem; margin-top: 0.25rem;">Not enabled in client mode</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="spine-section">
+            <div class="spine-label">RUNTIME TELEMETRY</div>
+            <div class="metric-stack">
+                <div class="metric-row">
+                    <span class="metric-label">Latency</span>
+                    <span class="metric-value" id="latency">1.2ms</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">Uptime</span>
+                    <span class="metric-value" id="uptime">00:00:00</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">Load</span>
+                    <span class="metric-value temp-gauge" id="temperature">23%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="spine-section">
+            <div class="spine-label">INTEGRITY SAFEGUARDS</div>
+            <div class="security-indicators">
+                <div class="indicator-row">
+                    <span class="indicator-dot active"></span>
+                    <span>Audit Logging</span>
+                </div>
+                <div class="indicator-row">
+                    <span class="indicator-dot active"></span>
+                    <span>Runtime Protection</span>
+                </div>
+                <div class="indicator-row">
+                    <span class="indicator-dot active"></span>
+                    <span>Integrity Verification</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="spine-footer">
+            <div class="build-info">
+                <div>Build: V4.0.0</div>
+                <div>Integrity: <span class="hash-value">SHA256:a3f9...</span></div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN DASHBOARD -->
+    <main class="main-dashboard">
+
+        <!-- Navigation -->
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="nav-logo logo-wave">S.A.F.E.</div>
+                <div class="nav-links">
+                    <a href="#test-results">Test Results</a>
+                    <a href="#verification">Verification</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section - Intelligence Core + Graph -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title logo-wave">S.A.F.E.</h1>
+                <p class="hero-subtitle">Secure Autonomous Framework for Evaluation</p>
+                <p class="hero-description" style="font-weight: 600; color: var(--gold-primary); margin-bottom: 0.5rem; font-size: 1.1rem;">
+                    SAFE — Currently (Observer Mode)
+                </p>
+                <p class="hero-description" style="font-weight: 600; color: var(--gold-primary);">
+                    SAFE is a read-only AI market observer designed to reduce human trading error by enforcing disciplined HOLD behavior during low-conviction and high-risk market regimes.
+                </p>
+            </div>
+            <div class="hero-visual">
+                <canvas id="chart-animation" width="600" height="500"></canvas>
+            </div>
+        </section>
+
+        <!-- Portfolio Framing Block -->
+        <section class="section" style="padding: 2rem 0;">
+            <div class="container">
+                <div style="text-align: center; margin: 0 auto; padding: 1.5rem 2rem; background: rgba(255,215,0,0.08); border-left: 4px solid var(--gold-primary); border-radius: 6px; max-width: 850px;">
+                    <p style="font-size: 0.95rem; line-height: 1.6; margin: 0; color: rgba(255,255,255,0.9);">
+                        <strong style="color: var(--gold-primary);">Portfolio Note:</strong> This page is a technical portfolio demonstration of SAFE's development, testing discipline, and design philosophy. Client access to SAFE is gated and provisioned separately.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Current Operating Mode Section -->
+        <section class="section" style="background: rgba(0,0,0,0.3); padding: 3rem 0;">
+            <div class="container">
+                <h2 class="section-title">SAFE — Current Client-Facing Operating Mode (Observer)</h2>
+                <p class="section-intro" style="margin-bottom: 1.5rem;">In Observer Mode, SAFE intentionally does not:</p>
+                <div class="findings-grid" style="max-width: 900px; margin: 0 auto;">
+                    <div class="finding">
+                        <div class="finding-label" style="font-size: 1rem; margin-bottom: 0.5rem;">Execute live trades</div>
+                    </div>
+                    <div class="finding">
+                        <div class="finding-label" style="font-size: 1rem; margin-bottom: 0.5rem;">Guarantee profit or outcomes</div>
+                    </div>
+                    <div class="finding">
+                        <div class="finding-label" style="font-size: 1rem; margin-bottom: 0.5rem;">Optimize for trade frequency or user engagement</div>
+                    </div>
+                    <div class="finding">
+                        <div class="finding-label" style="font-size: 1rem; margin-bottom: 0.5rem;">Suppress uncertainty or low-conviction states</div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 2rem; padding: 1.5rem; background: rgba(255,215,0,0.1); border-radius: 8px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                    <p style="font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                        <strong>Design Philosophy:</strong> SAFE has demonstrated decision-generation capability via controlled paper trading.
+                        Live trade execution is intentionally disabled in client-facing mode to prioritize safety, auditability, and decision discipline.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- System Stability & Behavioral Validation -->
+        <section id="test-results" class="section">
+            <div class="container">
+                <h2 class="section-title">System Stability & Behavioral Validation</h2>
+                <p class="section-intro">
+                    25.5-hour continuous operation · Degradation control · Discipline enforcement
+                </p>
+                <div style="text-align: center; margin: 2rem auto 1.5rem; padding: 1.5rem; background: rgba(255,215,0,0.15); border: 2px solid rgba(255,215,0,0.3); border-radius: 8px; max-width: 900px;">
+                    <h3 style="font-size: 1.1rem; font-weight: 600; color: var(--gold-primary); margin-bottom: 0.75rem;">Purpose of These Results</h3>
+                    <p style="font-size: 1rem; line-height: 1.6; margin: 0 0 0.75rem 0; font-weight: 600;">
+                        Results shown demonstrate system restraint and stability under live market input — not optimization for profit.
+                    </p>
+                    <p style="font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                        These tests demonstrate SAFE's ability to maintain discipline and learning under live market conditions using controlled paper trading. They do not represent a client-facing trading promise.
+                    </p>
+                </div>
+                <div class="test-intro-note">
+                    <p>SAFE V4.0's development journey from initial baseline configuration through iterative improvements to the official 25.5-hour fullpower test.
+                    Each test demonstrates measurable performance gains through architecture refinement and system optimization.</p>
+                </div>
+
+                <!-- Supporting Evidence - Earlier Validation Phases -->
+                <div style="margin: 2rem 0; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px; opacity: 0.7;">
+                    <h3 style="font-size: 1rem; color: var(--gold-primary); margin-bottom: 1rem; text-align: center; opacity: 0.8;">Supporting Evidence — Earlier Validation Phases</h3>
+
+                <!-- PHASE 1: 5.75-Hour Comparison -->
+                <div style="margin-bottom: 2rem;">
+                    <h3 style="font-size: 1.1rem; color: var(--gold-primary); margin-bottom: 1rem; text-align: center; opacity: 0.8;">PHASE 1: 5.75-Hour Comparison</h3>
+                    <div class="test-comparison-grid">
+                        <!-- Baseline at 5.75hr -->
+                        <div class="test-card baseline-test">
+                            <div class="test-header">
+                                <h3>Baseline @ 5.75 Hours</h3>
+                                <span class="test-badge baseline">Actual Data</span>
+                            </div>
+                            <div class="test-stats">
+                                <div class="stat-row">
+                                    <span class="stat-label">Test Date</span>
+                                    <span class="stat-value">Dec 10, 2025</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Duration</span>
+                                    <span class="stat-value">5.75 hrs</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Portfolio Value</span>
+                                    <span class="stat-value">$9,669.21</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Return</span>
+                                    <span class="stat-value negative">-3.31%</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Degradation Rate</span>
+                                    <span class="stat-value">-0.575%/hr</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fullpower at 5.75hr -->
+                        <div class="test-card fullpower-test">
+                            <div class="test-header">
+                                <h3>Fullpower @ 5.75 Hours</h3>
+                                <span class="test-badge fullpower">Actual Data</span>
+                            </div>
+                            <div class="test-stats">
+                                <div class="stat-row">
+                                    <span class="stat-label">Test Date</span>
+                                    <span class="stat-value">Dec 15, 2025</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Duration</span>
+                                    <span class="stat-value">5.75 hrs</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Portfolio Value</span>
+                                    <span class="stat-value">$9,967.00</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Return</span>
+                                    <span class="stat-value near-zero">-0.33%</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Degradation Rate</span>
+                                    <span class="stat-value">-0.057%/hr</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 1rem; padding: 1rem; background: rgba(255,215,0,0.1); border-radius: 8px;">
+                        <strong>Phase 1 Result:</strong> Fullpower showed +2.98% improvement over baseline at same timepoint (90% better)
+                    </div>
+                </div>
+
+                <!-- PHASE 2: 16.5-Hour Comparison -->
+                <div style="margin-bottom: 2rem;">
+                    <h3 style="font-size: 1.1rem; color: var(--gold-primary); margin-bottom: 1rem; text-align: center; opacity: 0.8;">PHASE 2: 16.5-Hour Comparison</h3>
+                    <div class="test-comparison-grid">
+                        <!-- Baseline at 16.5hr -->
+                        <div class="test-card baseline-test">
+                            <div class="test-header">
+                                <h3>Baseline @ 16.5 Hours</h3>
+                                <span class="test-badge baseline">Actual Data</span>
+                            </div>
+                            <div class="test-stats">
+                                <div class="stat-row">
+                                    <span class="stat-label">Test Date</span>
+                                    <span class="stat-value">Dec 10, 2025</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Duration</span>
+                                    <span class="stat-value">16.45 hrs</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Portfolio Value</span>
+                                    <span class="stat-value">$9,477.00</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Return</span>
+                                    <span class="stat-value negative">-5.23%</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Degradation Rate</span>
+                                    <span class="stat-value">-0.318%/hr</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fullpower at 16.5hr -->
+                        <div class="test-card fullpower-test">
+                            <div class="test-header">
+                                <h3>Fullpower @ 16.5 Hours</h3>
+                                <span class="test-badge fullpower">Actual Data</span>
+                            </div>
+                            <div class="test-stats">
+                                <div class="stat-row">
+                                    <span class="stat-label">Test Date</span>
+                                    <span class="stat-value">Dec 15, 2025</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Duration</span>
+                                    <span class="stat-value">16.5 hrs</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Portfolio Value</span>
+                                    <span class="stat-value">$9,842.67</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Return</span>
+                                    <span class="stat-value near-zero">-1.57%</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Degradation Rate</span>
+                                    <span class="stat-value">-0.095%/hr</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 1rem; padding: 1rem; background: rgba(255,215,0,0.1); border-radius: 8px;">
+                        <strong>Phase 2 Result:</strong> At ~16.5 hours, Fullpower showed +3.66% improvement over baseline (70% better)
+                    </div>
+                </div>
+
+                </div>
+                <!-- End Supporting Evidence Wrapper -->
+
+                <!-- PHASE 3: Extended Duration Test with Projection -->
+                <div style="margin-top: 2rem;">
+                    <h3 style="font-size: 1.4rem; font-weight: 700; color: var(--gold-primary); margin-bottom: 1rem; text-align: center;">PHASE 3: Official 25.5-Hour Continuous Test</h3>
+                    <div class="test-comparison-grid">
+                        <!-- Baseline Projected at 25.5hr -->
+                        <div class="test-card baseline-test">
+                            <div class="test-header">
+                                <h3>Baseline @ 25.5 Hours</h3>
+                                <span class="test-badge baseline">Projected*</span>
+                            </div>
+                            <div class="test-stats">
+                                <div class="stat-row">
+                                    <span class="stat-label">Last Actual Data</span>
+                                    <span class="stat-value">16.45 hrs</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Projection Method</span>
+                                    <span class="stat-detail">Based on observed degradation rate (5.75-16.45hr period)</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Projected Value</span>
+                                    <span class="stat-value">$9,314</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Projected Return</span>
+                                    <span class="stat-value negative">-6.86%</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Rate Used</span>
+                                    <span class="stat-detail">-0.180%/hr (later period)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fullpower Actual 25.5hr (FEATURED) -->
+                        <div class="test-card fullpower-test" style="border: 2px solid var(--gold-primary); box-shadow: 0 0 20px rgba(255,215,0,0.3);">
+                            <div class="test-header">
+                                <h3>Official 25.5-Hour Test</h3>
+                                <span class="test-badge fullpower">✓ Verified Actual</span>
+                            </div>
+                            <div class="test-stats">
+                                <div class="stat-row">
+                                    <span class="stat-label">Duration</span>
+                                    <span class="stat-value">25.51 hrs</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Final Value</span>
+                                    <span class="stat-value gold">$9,865.81</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Return</span>
+                                    <span class="stat-value">-1.34%</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Decisions</span>
+                                    <span class="stat-value">2,550</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Trades</span>
+                                    <span class="stat-value">262</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Uptime</span>
+                                    <span class="stat-value active-indicator">100%</span>
+                                </div>
+                            </div>
+                            <div class="test-timestamp">
+                                Dec 15, 1:25 PM → Dec 16, 2:55 PM EST
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 1rem; padding: 1.5rem; background: rgba(255,215,0,0.15); border: 2px solid rgba(255,215,0,0.3); border-radius: 8px;">
+                        <strong style="font-size: 1.2rem; color: var(--gold-primary);">Final Result:</strong>
+                        <span style="font-size: 1.1rem;"> Fullpower showed +5.52% improvement over projected baseline (80.5% better performance)</span>
+                        <div style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.9;">
+                            *Baseline projection uses most recent observed degradation rate from 5.75-16.45hr period for conservative estimate
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Summary Panel -->
+                <div class="findings-panel" style="margin-top: 2rem;">
+                    <div class="panel-header">KEY ACHIEVEMENTS & TRANSPARENCY</div>
+                    <div class="findings-grid">
+                        <div class="finding">
+                            <div class="finding-metric">25.5hrs</div>
+                            <div class="finding-label">Continuous Operation</div>
+                        </div>
+                        <div class="finding">
+                            <div class="finding-metric">2,550</div>
+                            <div class="finding-label">Decision Classifications</div>
+                            <div style="font-size: 0.75rem; opacity: 0.7; margin-top: 0.25rem;">Internal model outputs (BUY/SELL/HOLD), not trades</div>
+                        </div>
+                        <div class="finding">
+                            <div class="finding-metric">ZERO</div>
+                            <div class="finding-label">System Failures</div>
+                        </div>
+                        <div class="finding">
+                            <div class="finding-metric">100%</div>
+                            <div class="finding-label">Audit Integrity</div>
+                        </div>
+                    </div>
+                    <div class="findings-notes">
+                        <p><strong>Methodology:</strong> Progressive testing from initial 5.75-hour configuration tests through official 25.5-hour continuous operation.
+                        All tests use paper trading with live market data. Complete audit trails maintained throughout.</p>
+                        <p><strong>Transparency Note:</strong> Baseline projections extrapolated from measured early test degradation rates.
+                        Official 25.5-hour fullpower test represents actual measured performance with persistent memory and all systems active.
+                        Patent-pending technology. R&D only, not commercial deployment.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Verification Summary -->
+        <section id="verification" class="section">
+            <div class="container">
+                <h2 class="section-title">Verification — Evidence of Learning & Discipline</h2>
+                <p class="section-intro">
+                    Verification focuses on process integrity and decision discipline, not outcome maximization
+                </p>
+
+                <div class="status-panel">
+                    <div class="status-header">TESTING VALIDATION</div>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; text-align: center; position: relative; z-index: 1;">
+                        <div>
+                            <div style="font-family: 'Inter', sans-serif; font-size: 2.5rem; font-weight: 500; color: #27AE60; margin-bottom: 0.5rem; letter-spacing: 0.05rem;">12,847+</div>
+                            <div style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">Paper Trading Decisions</div>
+                        </div>
+                        <div>
+                            <div style="font-family: 'Inter', sans-serif; font-size: 2.5rem; font-weight: 500; color: #4A90E2; margin-bottom: 0.5rem; letter-spacing: 0.05rem;">ZERO</div>
+                            <div style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">Data Contamination</div>
+                        </div>
+                        <div>
+                            <div style="font-family: 'Inter', sans-serif; font-size: 2.5rem; font-weight: 500; color: #FFD700; margin-bottom: 0.5rem; letter-spacing: 0.05rem;">100%</div>
+                            <div style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">Audit Integrity</div>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 2rem; padding: 1rem; background: rgba(255,215,0,0.1); border-radius: 8px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                        <p style="font-size: 0.9rem; margin: 0; opacity: 0.9;">
+                            <strong>Note:</strong> These results demonstrate SAFE's ability to generate, track, and audit decisions under live market conditions using controlled paper trading.
+                            They do not represent client-facing trading performance.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p class="mobile-notice" style="font-size: 0.9rem; opacity: 0.7; margin-bottom: 1rem;">
+                    <em>Note: This portfolio is currently optimized for desktop viewing. Mobile layout refinements are in progress.</em>
+                </p>
+                <p>&copy; 2025 Michael McKeithen | S.A.F.E. V4.0</p>
+                <p style="font-size: 0.85rem; opacity: 0.6; margin-top: 0.5rem;">Client access to SAFE is gated and provisioned separately.</p>
+                <div class="footer-links">
+                    <a href="../nest/index.html">The Owl's Nest</a>
+                    <a href="../myels_blue_journal/index.html">The Blue Journal</a>
+                    <a href="../resume-v4.html">Resume</a>
+                    <span style="opacity: 0.3;">|</span>
+                    <a href="https://www.linkedin.com/in/michael-mckeithen-jr-79b182161/">LinkedIn</a>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <script src="script-v4.js"></script>
+    <!-- Live data connector - reads SAFE's actual test results -->
+    <script src="live-data-connector.js"></script>
+</body>
+
+</html>

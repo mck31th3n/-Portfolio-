@@ -457,8 +457,46 @@
             </div>
         </div>
 
-        <a href="index.html" class="back-link">← return to portfolio</a>
+        <nav class="portfolio-nav">
+            <a href="safe/index.html" class="nav-link">S.A.F.E.</a>
+            <a href="myels_blue_journal/index.html" class="nav-link">The Blue Journal</a>
+            <a href="nest/index.html" class="nav-link">The Owl's Nest</a>
+        </nav>
 
     </div>
+    <style>
+        .portfolio-nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--whisper);
+            flex-wrap: wrap;
+        }
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            color: var(--text-primary);
+            background: var(--whisper);
+        }
+        @media (max-width: 600px) {
+            .portfolio-nav {
+                gap: 1rem;
+            }
+            .nav-link {
+                font-size: 0.85rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+    </style>
 </body>
 </html>

@@ -589,7 +589,6 @@
             font-family: var(--font-mono);
         }
 
-        /* Tablet */
         @media (max-width: 1200px) {
             .arch-grid {
                 grid-template-columns: repeat(3, 1fr);
@@ -597,229 +596,20 @@
             .arch-layer::after {
                 display: none;
             }
-            .system-status-strip {
-                gap: var(--space-md);
-            }
         }
 
-        /* Mobile */
         @media (max-width: 768px) {
-            body {
-                padding: var(--space-sm);
-                padding-top: 70px;
-            }
-
-            .demo-banner {
-                padding: 10px var(--space-sm);
-                flex-direction: column;
-                gap: 6px;
-            }
-
-            .demo-text {
-                font-size: 0.7rem;
-                text-align: center;
-            }
-
-            header {
-                padding: var(--space-lg) var(--space-md);
-            }
-
-            h1 {
-                font-size: 1.6em;
-                letter-spacing: 1px;
-            }
-
-            header p {
-                font-size: 0.8em;
-            }
-
-            .header-actions {
-                flex-wrap: wrap;
-                gap: var(--space-xs);
-            }
-
-            .btn-outline-gold {
-                padding: 6px 12px;
-                font-size: 0.75em;
-            }
-
-            .system-status-strip {
-                flex-direction: column;
-                gap: var(--space-sm);
-                padding: var(--space-sm);
-            }
-
-            .status-item {
-                flex-direction: row;
-                justify-content: space-between;
-                width: 100%;
-                padding-bottom: var(--space-xs);
-                border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-            }
-
-            .status-item:last-child {
-                border-bottom: none;
-                padding-bottom: 0;
-            }
-
-            .stance-card {
-                padding: var(--space-md);
-            }
-
-            .stance-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: var(--space-xs);
-            }
-
-            .stance-header h2 {
-                font-size: 1.2em;
-            }
-
-            .stance-summary {
-                font-size: 0.95em;
-            }
-
-            .stance-bullets li {
-                font-size: 0.8em;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: var(--space-sm);
-            }
-
-            .stat-card {
-                padding: var(--space-md);
-            }
-
-            .stat-card .value {
-                font-size: 2em;
-            }
-
-            .stat-card h3 {
-                font-size: 0.6em;
-                letter-spacing: 2px;
-            }
-
-            .chart-container {
-                padding: var(--space-md);
-            }
-
-            .chart-container h2 {
-                font-size: 1.4em;
-            }
-
-            .filter-pills {
-                flex-wrap: wrap;
-                gap: 6px;
-            }
-
-            .filter-pill {
-                padding: 8px 14px;
-                font-size: 0.7em;
-            }
-
             .predictions-grid {
                 grid-template-columns: 1fr;
-                gap: var(--space-sm);
             }
-
-            .prediction-card {
-                padding: var(--space-sm);
-            }
-
-            .prediction-symbol {
-                font-size: 1.1em;
-            }
-
-            .prediction-action {
-                font-size: 0.65em;
-                padding: 3px 8px;
-            }
-
-            .prediction-reasoning {
-                font-size: 0.8em;
-            }
-
-            .arch-grid {
-                grid-template-columns: 1fr;
-                gap: var(--space-sm);
-            }
-
-            .arch-layer {
-                padding: var(--space-sm);
-            }
-
-            .arch-name {
-                font-size: 0.75em;
-            }
-
-            .arch-desc {
-                font-size: 0.65em;
-            }
-
-            .architecture-section {
-                padding: var(--space-md);
-            }
-
-            .architecture-section h2 {
-                font-size: 1.3em;
-            }
-
-            .disclaimer {
-                padding: var(--space-sm);
-                font-size: 0.75em;
-            }
-
-            .footer {
-                padding: var(--space-md);
-            }
-
-            .footer-links {
-                gap: var(--space-md);
-            }
-
-            .footer-links a {
-                font-size: 0.8em;
-            }
-
-            .footer-copy {
-                font-size: 0.7em;
-            }
-        }
-
-        /* Small Mobile */
-        @media (max-width: 480px) {
-            body {
-                padding: var(--space-xs);
-                padding-top: 80px;
-            }
-
-            h1 {
-                font-size: 1.3em;
-            }
-
             .stats-grid {
                 grid-template-columns: 1fr;
             }
-
-            .stat-card .value {
-                font-size: 1.8em;
+            .arch-grid {
+                grid-template-columns: 1fr;
             }
-
-            .filter-pills {
-                justify-content: center;
-            }
-
-            .prediction-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 6px;
-            }
-
-            .stance-title {
-                font-size: 0.75em;
+            h1 {
+                font-size: 2em;
             }
         }
     </style>
@@ -833,7 +623,7 @@
     <div class="container">
         <header>
             <h1>SAFE Observer Dashboard</h1>
-            <p>Secure Autonomous Framework for Evaluation - Trading AI in Observer Mode</p>
+            <p>Observer Mode (Read-Only) - Decision Governance Demo</p>
             <div class="header-actions">
                 <a href="#predictions" class="btn-outline-gold">Assessments</a>
                 <a href="#architecture" class="btn-outline-gold">Architecture</a>
@@ -862,27 +652,14 @@
 
         <div class="stance-card">
             <div class="stance-header">
-                <h2>System Stance</h2>
+                <h2>Market Stance</h2>
                 <span class="stance-title">STANCE: MIXED</span>
             </div>
-            <p class="stance-summary">Indicators balanced without clear directional bias. System maintaining neutral observation.</p>
+            <p class="stance-summary">Signals are balanced without a clear directional bias. System maintaining neutral observation.</p>
             <ul class="stance-bullets">
-                <li>Assessment: Action Indicated 2, Caution Indicated 1, No Action 3 in recent window</li>
+                <li>Why: Action Indicated 2, Caution Indicated 1, No Action 3 in recent window</li>
                 <li>Confidence: 62.4% avg (last 6 assessments)</li>
-                <li>Learning: Pattern recognition active, logging outcomes for validation</li>
-            </ul>
-        </div>
-
-        <div class="stance-card" style="border-color: rgba(20, 184, 166, 0.3);">
-            <div class="stance-header">
-                <h2>Architecture Philosophy</h2>
-                <span class="stance-title" style="color: var(--teal-glow);">OBSERVER MODE</span>
-            </div>
-            <p class="stance-summary">Trading AI operating in observer-only mode. Generates assessments, logs outcomes, learns from results. No execution, no financial advice.</p>
-            <ul class="stance-bullets">
-                <li>Mode: Observer-only - all signals are logged and validated against outcomes, never executed</li>
-                <li>Architecture: Multi-layer reasoning with Council (strategic) and Trader (tactical) agents</li>
-                <li>Design: Full auditability - guardrails, circuit breakers, explainable rationale for every assessment</li>
+                <li>Condition to flip: Signal imbalance persists with higher confidence</li>
             </ul>
         </div>
 
@@ -955,16 +732,16 @@
         </div>
 
         <div class="disclaimer">
-            <strong>Disclaimer:</strong> SAFE is a trading AI operating in observer-only mode. It does not execute trades, provide investment advice, or manage funds. All assessments are logged for learning and validation purposes only. This is a technical demonstration - not a financial product. Past performance does not guarantee future results.
+            <strong>Disclaimer:</strong> SAFE is decision governance infrastructure. It does not execute trades, provide investment advice, or manage funds. All outputs are informational and analytical. Past patterns do not guarantee future results.
         </div>
 
         <div class="footer">
             <div class="footer-links">
-                <a href="../myels_blue_journal/index.html">The Blue Journal</a>
-                <a href="../nest/index.html">The Owl's Nest</a>
+                <a href="../index.html">Portfolio</a>
+                <a href="../myels_blue_journal/index.html">Blue Journal</a>
                 <a href="../resume-v4.html">Resume</a>
             </div>
-            <p class="footer-copy">Build: SAFE V4.0 Demo - Trading AI in Observer Mode</p>
+            <p class="footer-copy">Build: SAFE V4.0 Demo - Decision Governance</p>
         </div>
     </div>
 
@@ -975,7 +752,7 @@
                 decision: "action",
                 label: "Action Indicated",
                 confidence: 0.78,
-                reasoning: "Strong indicator alignment: RSI neutral (52), price above both SMA-50 and SMA-200, MACD histogram positive. Multiple conditions aligned - system flags for observation.",
+                reasoning: "Strong indicator alignment: RSI neutral (52), price above both SMA-50 and SMA-200, MACD histogram positive. Multiple technical conditions suggest favorable entry window.",
                 price: 104250.00,
                 timestamp: "11:30 AM - Jan 18"
             },
