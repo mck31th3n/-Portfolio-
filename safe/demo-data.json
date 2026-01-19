@@ -1,0 +1,194 @@
+{
+  "metadata": {
+    "version": "4.0.0",
+    "generated": "2026-01-18T12:00:00Z",
+    "mode": "DEMO",
+    "disclaimer": "Demonstration data only. Not connected to live systems."
+  },
+  "systemStatus": {
+    "state": "OBSERVING",
+    "uptime": "7d 14h 32m",
+    "totalAssessments": 1847,
+    "learningEvents": 156,
+    "lastUpdate": "2026-01-18T11:45:00Z"
+  },
+  "assets": [
+    {
+      "symbol": "BTC",
+      "name": "Bitcoin",
+      "category": "crypto",
+      "currentPrice": 104250.00,
+      "change24h": 2.34,
+      "assessment": {
+        "signal": "ACTION_INDICATED",
+        "confidence": "HIGH",
+        "indicatorAlignment": 0.78,
+        "rationale": "Strong indicator alignment: RSI neutral (52), price above both SMA-50 and SMA-200, MACD histogram positive. Multiple technical conditions suggest favorable entry window.",
+        "riskFactors": ["Weekend liquidity lower", "Recent volatility spike"],
+        "timestamp": "2026-01-18T11:30:00Z"
+      },
+      "history": [
+        {"date": "2026-01-12", "signal": "NO_ACTION", "outcome": "CORRECT"},
+        {"date": "2026-01-13", "signal": "CAUTION_INDICATED", "outcome": "CORRECT"},
+        {"date": "2026-01-14", "signal": "NO_ACTION", "outcome": "CORRECT"},
+        {"date": "2026-01-15", "signal": "ACTION_INDICATED", "outcome": "CORRECT"},
+        {"date": "2026-01-16", "signal": "NO_ACTION", "outcome": "CORRECT"},
+        {"date": "2026-01-17", "signal": "ACTION_INDICATED", "outcome": "PENDING"}
+      ]
+    },
+    {
+      "symbol": "ETH",
+      "name": "Ethereum",
+      "category": "crypto",
+      "currentPrice": 3420.50,
+      "change24h": -1.12,
+      "assessment": {
+        "signal": "NO_ACTION",
+        "confidence": "MEDIUM",
+        "indicatorAlignment": 0.45,
+        "rationale": "Mixed signals: RSI approaching oversold (38), price below SMA-50 but above SMA-200. Indicators not aligned—system recommends monitoring without action.",
+        "riskFactors": ["Gas fees elevated", "Network congestion"],
+        "timestamp": "2026-01-18T11:30:00Z"
+      },
+      "history": [
+        {"date": "2026-01-12", "signal": "ACTION_INDICATED", "outcome": "CORRECT"},
+        {"date": "2026-01-13", "signal": "NO_ACTION", "outcome": "CORRECT"},
+        {"date": "2026-01-14", "signal": "NO_ACTION", "outcome": "CORRECT"},
+        {"date": "2026-01-15", "signal": "CAUTION_INDICATED", "outcome": "CORRECT"},
+        {"date": "2026-01-16", "signal": "NO_ACTION", "outcome": "CORRECT"},
+        {"date": "2026-01-17", "signal": "NO_ACTION", "outcome": "PENDING"}
+      ]
+    },
+    {
+      "symbol": "SOL",
+      "name": "Solana",
+      "category": "crypto",
+      "currentPrice": 187.25,
+      "change24h": 4.67,
+      "assessment": {
+        "signal": "CAUTION_INDICATED",
+        "confidence": "HIGH",
+        "indicatorAlignment": 0.82,
+        "rationale": "Overbought conditions detected: RSI at 72, price extended above SMA-50 by 8.3%. Multiple indicators suggest potential mean reversion. Risk management protocols active.",
+        "riskFactors": ["RSI overbought", "Extended from moving averages"],
+        "timestamp": "2026-01-18T11:30:00Z"
+      },
+      "history": [
+        {"date": "2026-01-12", "signal": "ACTION_INDICATED", "outcome": "CORRECT"},
+        {"date": "2026-01-13", "signal": "ACTION_INDICATED", "outcome": "CORRECT"},
+        {"date": "2026-01-14", "signal": "NO_ACTION", "outcome": "CORRECT"},
+        {"date": "2026-01-15", "signal": "NO_ACTION", "outcome": "INCORRECT"},
+        {"date": "2026-01-16", "signal": "ACTION_INDICATED", "outcome": "CORRECT"},
+        {"date": "2026-01-17", "signal": "CAUTION_INDICATED", "outcome": "PENDING"}
+      ]
+    },
+    {
+      "symbol": "SPY",
+      "name": "S&P 500 ETF",
+      "category": "equity",
+      "currentPrice": 598.40,
+      "change24h": 0.45,
+      "assessment": {
+        "signal": "NO_ACTION",
+        "confidence": "MEDIUM",
+        "indicatorAlignment": 0.52,
+        "rationale": "Market in consolidation phase. VIX at 14.2 indicates low volatility regime. No clear directional bias—system maintaining neutral stance until trend confirmation.",
+        "riskFactors": ["Fed meeting next week", "Earnings season approaching"],
+        "timestamp": "2026-01-18T11:30:00Z"
+      },
+      "history": [
+        {"date": "2026-01-12", "signal": "NO_ACTION", "outcome": "CORRECT"},
+        {"date": "2026-01-13", "signal": "NO_ACTION", "outcome": "CORRECT"},
+        {"date": "2026-01-14", "signal": "ACTION_INDICATED", "outcome": "CORRECT"},
+        {"date": "2026-01-15", "signal": "NO_ACTION", "outcome": "CORRECT"},
+        {"date": "2026-01-16", "signal": "NO_ACTION", "outcome": "CORRECT"},
+        {"date": "2026-01-17", "signal": "NO_ACTION", "outcome": "PENDING"}
+      ]
+    },
+    {
+      "symbol": "QQQ",
+      "name": "Nasdaq 100 ETF",
+      "category": "equity",
+      "currentPrice": 518.75,
+      "change24h": 0.89,
+      "assessment": {
+        "signal": "ACTION_INDICATED",
+        "confidence": "MEDIUM",
+        "indicatorAlignment": 0.61,
+        "rationale": "Tech sector showing relative strength. Price holding above key support levels. MACD crossover confirmed. Moderate confidence due to mixed breadth indicators.",
+        "riskFactors": ["Concentration in mega-caps", "Rate sensitivity"],
+        "timestamp": "2026-01-18T11:30:00Z"
+      },
+      "history": [
+        {"date": "2026-01-12", "signal": "NO_ACTION", "outcome": "CORRECT"},
+        {"date": "2026-01-13", "signal": "ACTION_INDICATED", "outcome": "CORRECT"},
+        {"date": "2026-01-14", "signal": "ACTION_INDICATED", "outcome": "INCORRECT"},
+        {"date": "2026-01-15", "signal": "NO_ACTION", "outcome": "CORRECT"},
+        {"date": "2026-01-16", "signal": "NO_ACTION", "outcome": "CORRECT"},
+        {"date": "2026-01-17", "signal": "ACTION_INDICATED", "outcome": "PENDING"}
+      ]
+    },
+    {
+      "symbol": "GC",
+      "name": "Gold Futures",
+      "category": "commodity",
+      "currentPrice": 2715.30,
+      "change24h": -0.23,
+      "assessment": {
+        "signal": "NO_ACTION",
+        "confidence": "LOW",
+        "indicatorAlignment": 0.38,
+        "rationale": "Conflicting signals across timeframes. Daily trend bullish, but 4-hour showing weakness. Insufficient alignment for high-confidence assessment. Monitoring mode.",
+        "riskFactors": ["Dollar strength", "Real yields rising"],
+        "timestamp": "2026-01-18T11:30:00Z"
+      },
+      "history": [
+        {"date": "2026-01-12", "signal": "NO_ACTION", "outcome": "CORRECT"},
+        {"date": "2026-01-13", "signal": "NO_ACTION", "outcome": "CORRECT"},
+        {"date": "2026-01-14", "signal": "NO_ACTION", "outcome": "CORRECT"},
+        {"date": "2026-01-15", "signal": "CAUTION_INDICATED", "outcome": "CORRECT"},
+        {"date": "2026-01-16", "signal": "NO_ACTION", "outcome": "CORRECT"},
+        {"date": "2026-01-17", "signal": "NO_ACTION", "outcome": "PENDING"}
+      ]
+    }
+  ],
+  "performanceMetrics": {
+    "resolutionRate": 0.847,
+    "assessmentsValidated": 1691,
+    "correctAssessments": 1432,
+    "avgConfidenceWhenCorrect": 0.72,
+    "avgConfidenceWhenIncorrect": 0.48,
+    "noActionAccuracy": 0.91,
+    "actionIndicatedAccuracy": 0.76,
+    "cautionIndicatedAccuracy": 0.83
+  },
+  "architecture": {
+    "layers": [
+      {
+        "name": "Data Ingestion",
+        "description": "Multi-source market data aggregation with fallback chains",
+        "components": ["Primary APIs", "Fallback Sources", "Cache Layer"]
+      },
+      {
+        "name": "Technical Analysis",
+        "description": "Deterministic indicator calculation (SMA, RSI, MACD, ATR)",
+        "components": ["Indicator Engine", "Regime Detection", "Volatility Assessment"]
+      },
+      {
+        "name": "Decision Engine",
+        "description": "Multi-agent reasoning with confidence scoring",
+        "components": ["Council (Strategic)", "Traders (Tactical)", "Consensus Layer"]
+      },
+      {
+        "name": "Governance Layer",
+        "description": "Risk controls, circuit breakers, and audit logging",
+        "components": ["Circuit Breaker", "Audit Trail", "Learning Memory"]
+      },
+      {
+        "name": "Observation Interface",
+        "description": "Human-readable output with full explainability",
+        "components": ["Dashboard", "Rationale Generator", "Alert System"]
+      }
+    ]
+  }
+}

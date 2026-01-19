@@ -1,551 +1,860 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S.A.F.E. V4.0 - Secure Autonomous Framework for Evaluation</title>
-    <link rel="stylesheet" href="styles-v4.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>S.A.F.E. V4.0 - Decision Governance Demo</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
     <style>
-        .back-to-portfolio {
-            position: fixed;
-            top: 30px;
-            right: 30px;
-            z-index: 50;
-            padding: 12px 24px;
-            background: rgba(0, 0, 0, 0.9);
-            border: 2px solid var(--gold-primary);
-            color: var(--gold-primary);
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 0.9em;
-            transition: all 0.3s ease;
+        :root {
+            --obsidian-void: #000000;
+            --obsidian-deep: #0A0A0A;
+            --obsidian-surface: #121212;
+            --obsidian-elevated: #1A1A1A;
+            --gold-primary: #d4af37;
+            --gold-bright: #FFD700;
+            --gold-muted: #8B7500;
+            --gold-dark: #6B5A00;
+            --teal-glow: #14b8a6;
+            --teal-bright: #2dd4bf;
+            --signal-success: #10b981;
+            --signal-danger: #ef4444;
+            --signal-warning: #fbbf24;
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-serif: 'Cinzel', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --radius-moderate: 6px;
+            --shadow-obsidian: 0 4px 16px rgba(0, 0, 0, 0.9);
+            --shadow-gold-glow: 0 0 20px rgba(212, 175, 55, 0.5);
+            --shadow-gold-subtle: 0 0 10px rgba(212, 175, 55, 0.3);
+            --glass-obsidian: linear-gradient(135deg, rgba(10, 10, 10, 0.95) 0%, rgba(18, 18, 18, 0.9) 100%);
+            --glass-elevated: linear-gradient(145deg, rgba(26, 26, 26, 0.95) 0%, rgba(18, 18, 18, 0.9) 100%);
         }
-        .back-to-portfolio:hover {
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-primary);
+            background: var(--obsidian-void);
+            min-height: 100vh;
+            padding: var(--space-md);
+            padding-top: 60px;
+            color: var(--gold-bright);
+            line-height: 1.6;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: -30%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120%;
+            height: 80%;
+            background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.18) 0%, rgba(20, 184, 166, 0.10) 35%, transparent 65%);
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(60px);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Demo Banner */
+        .demo-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(90deg, rgba(10, 10, 10, 0.98), rgba(18, 18, 18, 0.98));
+            border-bottom: 2px solid var(--gold-primary);
+            padding: 12px var(--space-lg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--space-sm);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .demo-badge {
             background: var(--gold-primary);
             color: #000;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            font-family: var(--font-mono);
+        }
+
+        .demo-text {
+            font-size: 0.85rem;
+            color: var(--gold-muted);
+            font-family: var(--font-mono);
+        }
+
+        /* Header */
+        header {
+            background: var(--glass-obsidian);
+            padding: var(--space-xl) var(--space-lg);
+            border-radius: var(--radius-moderate);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            margin-bottom: var(--space-xl);
+            box-shadow: var(--shadow-obsidian), 0 0 60px rgba(212, 175, 55, 0.15);
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.6), transparent);
+        }
+
+        h1 {
+            font-family: var(--font-serif);
+            font-size: 2.8em;
+            color: var(--gold-bright);
+            margin-bottom: var(--space-xs);
+            text-shadow: var(--shadow-gold-subtle);
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        header p {
+            color: var(--gold-primary);
+            font-size: 0.9em;
+            letter-spacing: 0.5px;
+        }
+
+        .header-actions {
+            margin-top: var(--space-md);
+            display: flex;
+            gap: var(--space-sm);
+        }
+
+        .btn-outline-gold {
+            display: inline-block;
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-moderate);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            background: transparent;
+            font-weight: 600;
+            font-size: 0.9em;
+            color: var(--gold-bright);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-family: var(--font-mono);
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-gold:hover {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: var(--gold-bright);
+            box-shadow: var(--shadow-gold-subtle);
+        }
+
+        /* System Status Strip */
+        .system-status-strip {
+            display: flex;
+            gap: var(--space-lg);
+            padding: var(--space-md) var(--space-lg);
+            margin-bottom: var(--space-xl);
+            background: rgba(10, 10, 10, 0.7);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: var(--radius-moderate);
+            font-family: var(--font-mono);
+            font-size: 0.85em;
+            flex-wrap: wrap;
+        }
+
+        .status-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .status-label {
+            font-size: 0.75em;
+            color: var(--gold-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            font-weight: 600;
+        }
+
+        .status-value {
+            color: var(--gold-bright);
+            font-weight: 500;
+        }
+
+        .status-value.active {
+            color: var(--teal-bright);
+        }
+
+        /* Market Stance */
+        .stance-card {
+            background: linear-gradient(135deg, rgba(12, 12, 12, 0.95) 0%, rgba(20, 20, 20, 0.9) 100%);
+            padding: var(--space-lg);
+            border-radius: var(--radius-moderate);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            margin-bottom: var(--space-lg);
+            box-shadow: var(--shadow-obsidian);
+        }
+
+        .stance-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+        }
+
+        .stance-header h2 {
+            font-family: var(--font-serif);
+            color: var(--gold-bright);
+            font-size: 1.4em;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+        }
+
+        .stance-title {
+            font-family: var(--font-mono);
+            color: var(--gold-primary);
+            letter-spacing: 1px;
+            font-size: 0.9em;
+            text-transform: uppercase;
+        }
+
+        .stance-summary {
+            margin-top: var(--space-sm);
+            color: rgba(212, 175, 55, 0.9);
+            font-size: 1.05em;
+        }
+
+        .stance-bullets {
+            list-style: none;
+            margin: var(--space-md) 0 0;
+            display: grid;
+            gap: 6px;
+        }
+
+        .stance-bullets li {
+            font-family: var(--font-mono);
+            font-size: 0.85em;
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-md);
+            margin-bottom: var(--space-xl);
+        }
+
+        .stat-card {
+            background: var(--glass-obsidian);
+            padding: var(--space-lg);
+            border-radius: var(--radius-moderate);
+            border: 1px solid rgba(212, 175, 55, 0.18);
+            box-shadow: var(--shadow-obsidian);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: rgba(212, 175, 55, 0.35);
+            transform: translateY(-2px);
+        }
+
+        .stat-card h3 {
+            font-size: 0.68em;
+            letter-spacing: 2.8px;
+            color: rgba(212, 175, 55, 0.75);
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+        }
+
+        .stat-card .value {
+            font-family: var(--font-mono);
+            font-size: 2.8em;
+            font-weight: 700;
+            color: var(--gold-bright);
+            text-shadow: 0 0 18px rgba(212, 175, 55, 0.12);
+            line-height: 0.9;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .stat-card .label {
+            font-size: 0.78em;
+            color: rgba(212, 175, 55, 0.55);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-family: var(--font-mono);
+        }
+
+        /* Predictions Container */
+        .chart-container {
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0.95) 0%, rgba(18, 18, 18, 0.9) 100%);
+            padding: var(--space-lg);
+            border-radius: var(--radius-moderate);
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            margin-bottom: var(--space-xl);
+            box-shadow: var(--shadow-obsidian);
+        }
+
+        .chart-container h2 {
+            font-family: var(--font-serif);
+            margin-bottom: var(--space-sm);
+            color: var(--gold-bright);
+            font-size: 1.9em;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .section-subtitle {
+            font-size: 0.9em;
+            color: var(--gold-muted);
+            margin-bottom: var(--space-md);
+        }
+
+        .filter-pills {
+            display: flex;
+            gap: var(--space-xs);
+            margin-bottom: var(--space-lg);
+            padding-bottom: var(--space-md);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+        }
+
+        .filter-pill {
+            padding: var(--space-xs) var(--space-md);
+            border-radius: var(--radius-moderate);
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            background: rgba(10, 10, 10, 0.5);
+            color: var(--gold-primary);
+            font-family: var(--font-mono);
+            font-size: 0.8em;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-pill:hover {
+            border-color: var(--gold-primary);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .filter-pill.active {
+            border-color: var(--gold-bright);
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--gold-bright);
+        }
+
+        /* Predictions Grid */
+        .predictions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: var(--space-sm);
+        }
+
+        .prediction-card {
+            background: rgba(18, 18, 18, 0.95);
+            padding: var(--space-md);
+            border-radius: var(--radius-moderate);
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            box-shadow: var(--shadow-obsidian);
+            transition: all 0.3s ease;
+        }
+
+        .prediction-card:hover {
+            border-color: var(--gold-primary);
+            box-shadow: var(--shadow-gold-subtle);
+            transform: translateY(-3px);
+        }
+
+        .prediction-card.action {
+            border-left: 4px solid var(--signal-success);
+        }
+
+        .prediction-card.caution {
+            border-left: 4px solid var(--signal-danger);
+        }
+
+        .prediction-card.neutral {
+            border-left: 4px solid var(--gold-bright);
+        }
+
+        .prediction-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-xs);
+        }
+
+        .prediction-symbol {
+            font-family: var(--font-mono);
+            font-weight: bold;
+            font-size: 1.2em;
+            color: var(--gold-bright);
+        }
+
+        .prediction-action {
+            padding: 4px 12px;
+            border-radius: var(--radius-moderate);
+            font-size: 0.7em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 2px solid;
+        }
+
+        .prediction-action.action {
+            border-color: var(--signal-success);
+            color: var(--signal-success);
+        }
+
+        .prediction-action.caution {
+            border-color: var(--signal-danger);
+            color: var(--signal-danger);
+        }
+
+        .prediction-action.neutral {
+            border-color: var(--gold-bright);
+            color: var(--gold-bright);
+        }
+
+        .prediction-confidence {
+            font-size: 0.9em;
+            color: var(--gold-primary);
+            margin-bottom: var(--space-xs);
+        }
+
+        .confidence-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: var(--space-xs);
+        }
+
+        .confidence-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--gold-primary), var(--gold-bright));
+            border-radius: 3px;
+        }
+
+        .prediction-reasoning {
+            font-size: 0.85em;
+            color: var(--gold-muted);
+            line-height: 1.6;
+            margin-top: var(--space-xs);
+        }
+
+        .timestamp {
+            font-family: var(--font-mono);
+            font-size: 0.75em;
+            color: var(--gold-muted);
+            margin-top: var(--space-xs);
+        }
+
+        /* Architecture Section */
+        .architecture-section {
+            background: var(--glass-obsidian);
+            padding: var(--space-lg);
+            border-radius: var(--radius-moderate);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            margin-bottom: var(--space-xl);
+        }
+
+        .architecture-section h2 {
+            font-family: var(--font-serif);
+            color: var(--gold-bright);
+            font-size: 1.6em;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: var(--space-md);
+            padding-bottom: var(--space-sm);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .arch-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: var(--space-sm);
+        }
+
+        .arch-layer {
+            background: rgba(10, 10, 10, 0.6);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: var(--radius-moderate);
+            padding: var(--space-md) var(--space-sm);
+            text-align: center;
+            position: relative;
+        }
+
+        .arch-layer::after {
+            content: '';
+            position: absolute;
+            right: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid var(--gold-muted);
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+        }
+
+        .arch-layer:last-child::after {
+            display: none;
+        }
+
+        .arch-name {
+            font-family: var(--font-mono);
+            font-size: 0.8em;
+            font-weight: 600;
+            color: var(--gold-primary);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .arch-desc {
+            font-size: 0.7em;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.4;
+        }
+
+        /* Disclaimer */
+        .disclaimer {
+            background: rgba(10, 10, 10, 0.6);
+            border: 1px solid rgba(20, 184, 166, 0.2);
+            border-radius: var(--radius-moderate);
+            padding: var(--space-md);
+            text-align: center;
+            font-size: 0.85em;
+            color: var(--teal-glow);
+            line-height: 1.6;
+            margin-top: var(--space-xl);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: var(--space-lg);
+            margin-top: var(--space-xl);
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-lg);
+            margin-bottom: var(--space-md);
+        }
+
+        .footer-links a {
+            color: var(--gold-muted);
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold-bright);
+        }
+
+        .footer-copy {
+            font-size: 0.8em;
+            color: rgba(212, 175, 55, 0.5);
+            font-family: var(--font-mono);
+        }
+
+        @media (max-width: 1200px) {
+            .arch-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .arch-layer::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .predictions-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .arch-grid {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 2em;
+            }
         }
     </style>
 </head>
+<body>
+    <div class="demo-banner">
+        <span class="demo-badge">DEMO</span>
+        <span class="demo-text">Demonstration environment with sample data. Not connected to live systems.</span>
+    </div>
 
-<body class="safe-environment">
-    <a href="../index.html" class="back-to-portfolio">← PORTFOLIO</a>
+    <div class="container">
+        <header>
+            <h1>SAFE Observer Dashboard</h1>
+            <p>Secure Autonomous Framework for Evaluation - Trading AI in Observer Mode</p>
+            <div class="header-actions">
+                <a href="#predictions" class="btn-outline-gold">Assessments</a>
+                <a href="#architecture" class="btn-outline-gold">Architecture</a>
+                <a href="../index.html" class="btn-outline-gold">Portfolio</a>
+            </div>
+        </header>
 
-    <!-- INTELLIGENCE SPINE - Left Vertical Panel -->
-    <aside class="intelligence-spine">
-        <div class="spine-header">
-            <div class="safe-core-logo">S.A.F.E.</div>
-            <div class="system-pulse"></div>
-        </div>
-
-        <div style="text-align: center; padding: 1rem 0.5rem; border-bottom: 1px solid rgba(255,215,0,0.2); margin-bottom: 1rem;">
-            <div style="font-size: 0.75rem; font-weight: 600; color: var(--gold-primary); letter-spacing: 0.05em;">SYSTEM CONTEXT</div>
-            <div style="font-size: 0.65rem; opacity: 0.6; margin-top: 0.25rem;">(PORTFOLIO VIEW)</div>
-        </div>
-
-        <div class="spine-section">
-            <div class="spine-label">CORE STATUS</div>
-            <div style="font-size: 0.65rem; opacity: 0.5; margin-bottom: 0.5rem; text-align: center;">Portfolio demo — not user-configurable</div>
-            <div class="status-grid">
-                <div class="status-item">
-                    <span class="status-key">Observed State <span style="font-size: 0.65rem; opacity: 0.5;">(Demo)</span></span>
-                    <span class="status-value active">ACTIVE</span>
-                </div>
-                <div class="status-item">
-                    <span class="status-key">Reasoning Channel</span>
-                    <span class="status-value">SANITIZED</span>
-                </div>
-                <div class="status-item">
-                    <span class="status-key">Runtime Cycles <span style="font-size: 0.65rem; opacity: 0.5;">(Illustrative)</span></span>
-                    <span class="status-value" style="opacity: 0.7;">247</span>
-                </div>
-                <div class="status-item">
-                    <span class="status-key">Integrity</span>
-                    <span class="status-value integrity-check">VERIFIED</span>
-                </div>
+        <div class="system-status-strip">
+            <div class="status-item">
+                <span class="status-label">Status</span>
+                <span class="status-value active">OBSERVING</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Regime</span>
+                <span class="status-value">SCANNING - Markets within normal parameters</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Last Update</span>
+                <span class="status-value">11:45 AM - Jan 18</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Data Integrity</span>
+                <span class="status-value">Logs: OK</span>
             </div>
         </div>
 
-        <div class="spine-section">
-            <div class="spine-label">SYSTEM MODES</div>
-            <div style="font-size: 0.7rem; opacity: 0.5; margin-bottom: 0.25rem; text-align: center;">(INTERNAL — NOT CLIENT-ACCESSIBLE)</div>
-            <div style="font-size: 0.65rem; opacity: 0.5; margin-bottom: 0.75rem; text-align: center; font-style: italic;">Shown for system design context only</div>
-            <div class="mode-selector" style="pointer-events: none;">
-                <div class="mode-option active" data-mode="observer" style="cursor: default;">
-                    <span class="mode-icon">◈</span>
-                    <span class="mode-name">OBSERVER</span>
+        <div class="stance-card">
+            <div class="stance-header">
+                <h2>System Stance</h2>
+                <span class="stance-title">STANCE: MIXED</span>
+            </div>
+            <p class="stance-summary">Indicators balanced without clear directional bias. System maintaining neutral observation.</p>
+            <ul class="stance-bullets">
+                <li>Assessment: Action Indicated 2, Caution Indicated 1, No Action 3 in recent window</li>
+                <li>Confidence: 62.4% avg (last 6 assessments)</li>
+                <li>Learning: Pattern recognition active, logging outcomes for validation</li>
+            </ul>
+        </div>
+
+        <div class="stance-card" style="border-color: rgba(20, 184, 166, 0.3);">
+            <div class="stance-header">
+                <h2>Architecture Philosophy</h2>
+                <span class="stance-title" style="color: var(--teal-glow);">OBSERVER MODE</span>
+            </div>
+            <p class="stance-summary">Trading AI operating in observer-only mode. Generates assessments, logs outcomes, learns from results. No execution, no financial advice.</p>
+            <ul class="stance-bullets">
+                <li>Mode: Observer-only - all signals are logged and validated against outcomes, never executed</li>
+                <li>Architecture: Multi-layer reasoning with Council (strategic) and Trader (tactical) agents</li>
+                <li>Design: Full auditability - guardrails, circuit breakers, explainable rationale for every assessment</li>
+            </ul>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Total Assessments</h3>
+                <span class="value">1,847</span>
+                <div class="label">All time</div>
+            </div>
+            <div class="stat-card">
+                <h3>Resolution Rate</h3>
+                <span class="value">84.7%</span>
+                <div class="label">Outcomes matched</div>
+            </div>
+            <div class="stat-card">
+                <h3>Avg Alignment</h3>
+                <span class="value">68.2%</span>
+                <div class="label">Indicator consensus</div>
+            </div>
+            <div class="stat-card">
+                <h3>Learning Events</h3>
+                <span class="value">156</span>
+                <div class="label">Patterns logged</div>
+            </div>
+            <div class="stat-card">
+                <h3>Observer Mode</h3>
+                <span class="value" style="font-size: 1.8em;">READ-ONLY</span>
+                <div class="label">No execution</div>
+            </div>
+        </div>
+
+        <div id="predictions" class="chart-container">
+            <h2>Recent Risk Assessments</h2>
+            <p class="section-subtitle">Click any asset for full rationale and decision context</p>
+
+            <div class="filter-pills">
+                <button class="filter-pill active" data-filter="all">All</button>
+                <button class="filter-pill" data-filter="neutral">No Action</button>
+                <button class="filter-pill" data-filter="action">Action Indicated</button>
+                <button class="filter-pill" data-filter="caution">Caution Indicated</button>
+            </div>
+
+            <div class="predictions-grid" id="predictions-container"></div>
+        </div>
+
+        <div id="architecture" class="architecture-section">
+            <h2>System Architecture</h2>
+            <div class="arch-grid">
+                <div class="arch-layer">
+                    <div class="arch-name">Data Ingestion</div>
+                    <div class="arch-desc">Multi-source aggregation with fallback chains</div>
                 </div>
-                <div class="mode-option" data-mode="audit" style="cursor: default; opacity: 0.35;" title="Demonstration only — not exposed">
-                    <span class="mode-icon">◆</span>
-                    <span class="mode-name">AUDIT</span>
-                    <div style="font-size: 0.65rem; margin-top: 0.25rem;">Internal verification (restricted)</div>
+                <div class="arch-layer">
+                    <div class="arch-name">Technical Analysis</div>
+                    <div class="arch-desc">Deterministic indicator calculation (SMA, RSI, MACD)</div>
                 </div>
-                <div class="mode-option" data-mode="isolated" style="cursor: default; opacity: 0.35;" title="Demonstration only — not exposed">
-                    <span class="mode-icon">◇</span>
-                    <span class="mode-name">ISOLATED</span>
-                    <div style="font-size: 0.65rem; margin-top: 0.25rem;">Fail-safe containment</div>
+                <div class="arch-layer">
+                    <div class="arch-name">Decision Engine</div>
+                    <div class="arch-desc">Multi-agent reasoning with confidence scoring</div>
                 </div>
-                <div class="mode-option" data-mode="execution" style="cursor: default; opacity: 0.35;" title="Demonstration only — not exposed">
-                    <span class="mode-icon">◆</span>
-                    <span class="mode-name">EXECUTION</span>
-                    <div style="font-size: 0.65rem; margin-top: 0.25rem;">Not enabled in client mode</div>
+                <div class="arch-layer">
+                    <div class="arch-name">Governance</div>
+                    <div class="arch-desc">Risk controls, circuit breakers, audit logging</div>
+                </div>
+                <div class="arch-layer">
+                    <div class="arch-name">Observer Interface</div>
+                    <div class="arch-desc">Human-readable output with full explainability</div>
                 </div>
             </div>
         </div>
 
-        <div class="spine-section">
-            <div class="spine-label">RUNTIME TELEMETRY</div>
-            <div class="metric-stack">
-                <div class="metric-row">
-                    <span class="metric-label">Latency</span>
-                    <span class="metric-value" id="latency">1.2ms</span>
-                </div>
-                <div class="metric-row">
-                    <span class="metric-label">Uptime</span>
-                    <span class="metric-value" id="uptime">00:00:00</span>
-                </div>
-                <div class="metric-row">
-                    <span class="metric-label">Load</span>
-                    <span class="metric-value temp-gauge" id="temperature">23%</span>
-                </div>
-            </div>
+        <div class="disclaimer">
+            <strong>Disclaimer:</strong> SAFE is a trading AI operating in observer-only mode. It does not execute trades, provide investment advice, or manage funds. All assessments are logged for learning and validation purposes only. This is a technical demonstration - not a financial product. Past performance does not guarantee future results.
         </div>
 
-        <div class="spine-section">
-            <div class="spine-label">INTEGRITY SAFEGUARDS</div>
-            <div class="security-indicators">
-                <div class="indicator-row">
-                    <span class="indicator-dot active"></span>
-                    <span>Audit Logging</span>
-                </div>
-                <div class="indicator-row">
-                    <span class="indicator-dot active"></span>
-                    <span>Runtime Protection</span>
-                </div>
-                <div class="indicator-row">
-                    <span class="indicator-dot active"></span>
-                    <span>Integrity Verification</span>
-                </div>
+        <div class="footer">
+            <div class="footer-links">
+                <a href="../index.html">Portfolio</a>
+                <a href="../myels_blue_journal/index.html">Blue Journal</a>
+                <a href="../resume-v4.html">Resume</a>
             </div>
+            <p class="footer-copy">Build: SAFE V4.0 Demo - Trading AI in Observer Mode</p>
         </div>
+    </div>
 
-        <div class="spine-footer">
-            <div class="build-info">
-                <div>Build: V4.0.0</div>
-                <div>Integrity: <span class="hash-value">SHA256:a3f9...</span></div>
-            </div>
-        </div>
-    </aside>
+    <script>
+        const demoData = [
+            {
+                symbol: "BTC-USD",
+                decision: "action",
+                label: "Action Indicated",
+                confidence: 0.78,
+                reasoning: "Strong indicator alignment: RSI neutral (52), price above both SMA-50 and SMA-200, MACD histogram positive. Multiple conditions aligned - system flags for observation.",
+                price: 104250.00,
+                timestamp: "11:30 AM - Jan 18"
+            },
+            {
+                symbol: "ETH-USD",
+                decision: "neutral",
+                label: "No Action",
+                confidence: 0.45,
+                reasoning: "Mixed signals: RSI approaching oversold (38), price below SMA-50 but above SMA-200. Indicators not aligned - system recommends monitoring without action.",
+                price: 3420.50,
+                timestamp: "11:30 AM - Jan 18"
+            },
+            {
+                symbol: "SOL-USD",
+                decision: "caution",
+                label: "Caution Indicated",
+                confidence: 0.82,
+                reasoning: "Overbought conditions detected: RSI at 72, price extended above SMA-50 by 8.3%. Multiple indicators suggest potential mean reversion. Risk management protocols active.",
+                price: 187.25,
+                timestamp: "11:30 AM - Jan 18"
+            },
+            {
+                symbol: "SPY",
+                decision: "neutral",
+                label: "No Action",
+                confidence: 0.52,
+                reasoning: "Market in consolidation phase. VIX at 14.2 indicates low volatility regime. No clear directional bias - system maintaining neutral stance until trend confirmation.",
+                price: 598.40,
+                timestamp: "11:30 AM - Jan 18"
+            },
+            {
+                symbol: "QQQ",
+                decision: "action",
+                label: "Action Indicated",
+                confidence: 0.61,
+                reasoning: "Tech sector showing relative strength. Price holding above key support levels. MACD crossover confirmed. Moderate confidence due to mixed breadth indicators.",
+                price: 518.75,
+                timestamp: "11:30 AM - Jan 18"
+            },
+            {
+                symbol: "GC=F",
+                decision: "neutral",
+                label: "No Action",
+                confidence: 0.38,
+                reasoning: "Conflicting signals across timeframes. Daily trend bullish, but 4-hour showing weakness. Insufficient alignment for high-confidence assessment. Monitoring mode.",
+                price: 2715.30,
+                timestamp: "11:30 AM - Jan 18"
+            }
+        ];
 
-    <!-- MAIN DASHBOARD -->
-    <main class="main-dashboard">
+        function renderPredictions(filter = 'all') {
+            const container = document.getElementById('predictions-container');
+            container.innerHTML = '';
 
-        <!-- Navigation -->
-        <nav class="nav">
-            <div class="nav-container">
-                <div class="nav-logo logo-wave">S.A.F.E.</div>
-                <div class="nav-links">
-                    <a href="#test-results">Test Results</a>
-                    <a href="#verification">Verification</a>
-                </div>
-            </div>
-        </nav>
+            const filtered = filter === 'all' ? demoData : demoData.filter(d => d.decision === filter);
 
-        <!-- Hero Section - Intelligence Core + Graph -->
-        <section class="hero">
-            <div class="hero-content">
-                <h1 class="hero-title logo-wave">S.A.F.E.</h1>
-                <p class="hero-subtitle">Secure Autonomous Framework for Evaluation</p>
-                <p class="hero-description" style="font-weight: 600; color: var(--gold-primary); margin-bottom: 0.5rem; font-size: 1.1rem;">
-                    SAFE — Currently (Observer Mode)
-                </p>
-                <p class="hero-description" style="font-weight: 600; color: var(--gold-primary);">
-                    SAFE is a read-only AI market observer designed to reduce human trading error by enforcing disciplined HOLD behavior during low-conviction and high-risk market regimes.
-                </p>
-            </div>
-            <div class="hero-visual">
-                <canvas id="chart-animation" width="600" height="500"></canvas>
-            </div>
-        </section>
+            filtered.forEach(pred => {
+                const card = document.createElement('div');
+                card.className = `prediction-card ${pred.decision}`;
+                card.dataset.decision = pred.decision;
 
-        <!-- Portfolio Framing Block -->
-        <section class="section" style="padding: 2rem 0;">
-            <div class="container">
-                <div style="text-align: center; margin: 0 auto; padding: 1.5rem 2rem; background: rgba(255,215,0,0.08); border-left: 4px solid var(--gold-primary); border-radius: 6px; max-width: 850px;">
-                    <p style="font-size: 0.95rem; line-height: 1.6; margin: 0; color: rgba(255,255,255,0.9);">
-                        <strong style="color: var(--gold-primary);">Portfolio Note:</strong> This page is a technical portfolio demonstration of SAFE's development, testing discipline, and design philosophy. Client access to SAFE is gated and provisioned separately.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Current Operating Mode Section -->
-        <section class="section" style="background: rgba(0,0,0,0.3); padding: 3rem 0;">
-            <div class="container">
-                <h2 class="section-title">SAFE — Current Client-Facing Operating Mode (Observer)</h2>
-                <p class="section-intro" style="margin-bottom: 1.5rem;">In Observer Mode, SAFE intentionally does not:</p>
-                <div class="findings-grid" style="max-width: 900px; margin: 0 auto;">
-                    <div class="finding">
-                        <div class="finding-label" style="font-size: 1rem; margin-bottom: 0.5rem;">Execute live trades</div>
+                card.innerHTML = `
+                    <div class="prediction-header">
+                        <span class="prediction-symbol">${pred.symbol}</span>
+                        <span class="prediction-action ${pred.decision}">${pred.label}</span>
                     </div>
-                    <div class="finding">
-                        <div class="finding-label" style="font-size: 1rem; margin-bottom: 0.5rem;">Guarantee profit or outcomes</div>
-                    </div>
-                    <div class="finding">
-                        <div class="finding-label" style="font-size: 1rem; margin-bottom: 0.5rem;">Optimize for trade frequency or user engagement</div>
-                    </div>
-                    <div class="finding">
-                        <div class="finding-label" style="font-size: 1rem; margin-bottom: 0.5rem;">Suppress uncertainty or low-conviction states</div>
-                    </div>
-                </div>
-                <div style="text-align: center; margin-top: 2rem; padding: 1.5rem; background: rgba(255,215,0,0.1); border-radius: 8px; max-width: 800px; margin-left: auto; margin-right: auto;">
-                    <p style="font-size: 0.95rem; line-height: 1.6; margin: 0;">
-                        <strong>Design Philosophy:</strong> SAFE has demonstrated decision-generation capability via controlled paper trading.
-                        Live trade execution is intentionally disabled in client-facing mode to prioritize safety, auditability, and decision discipline.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- System Stability & Behavioral Validation -->
-        <section id="test-results" class="section">
-            <div class="container">
-                <h2 class="section-title">System Stability & Behavioral Validation</h2>
-                <p class="section-intro">
-                    25.5-hour continuous operation · Degradation control · Discipline enforcement
-                </p>
-                <div style="text-align: center; margin: 2rem auto 1.5rem; padding: 1.5rem; background: rgba(255,215,0,0.15); border: 2px solid rgba(255,215,0,0.3); border-radius: 8px; max-width: 900px;">
-                    <h3 style="font-size: 1.1rem; font-weight: 600; color: var(--gold-primary); margin-bottom: 0.75rem;">Purpose of These Results</h3>
-                    <p style="font-size: 1rem; line-height: 1.6; margin: 0 0 0.75rem 0; font-weight: 600;">
-                        Results shown demonstrate system restraint and stability under live market input — not optimization for profit.
-                    </p>
-                    <p style="font-size: 0.95rem; line-height: 1.6; margin: 0;">
-                        These tests demonstrate SAFE's ability to maintain discipline and learning under live market conditions using controlled paper trading. They do not represent a client-facing trading promise.
-                    </p>
-                </div>
-                <div class="test-intro-note">
-                    <p>SAFE V4.0's development journey from initial baseline configuration through iterative improvements to the official 25.5-hour fullpower test.
-                    Each test demonstrates measurable performance gains through architecture refinement and system optimization.</p>
-                </div>
-
-                <!-- Supporting Evidence - Earlier Validation Phases -->
-                <div style="margin: 2rem 0; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px; opacity: 0.7;">
-                    <h3 style="font-size: 1rem; color: var(--gold-primary); margin-bottom: 1rem; text-align: center; opacity: 0.8;">Supporting Evidence — Earlier Validation Phases</h3>
-
-                <!-- PHASE 1: 5.75-Hour Comparison -->
-                <div style="margin-bottom: 2rem;">
-                    <h3 style="font-size: 1.1rem; color: var(--gold-primary); margin-bottom: 1rem; text-align: center; opacity: 0.8;">PHASE 1: 5.75-Hour Comparison</h3>
-                    <div class="test-comparison-grid">
-                        <!-- Baseline at 5.75hr -->
-                        <div class="test-card baseline-test">
-                            <div class="test-header">
-                                <h3>Baseline @ 5.75 Hours</h3>
-                                <span class="test-badge baseline">Actual Data</span>
-                            </div>
-                            <div class="test-stats">
-                                <div class="stat-row">
-                                    <span class="stat-label">Test Date</span>
-                                    <span class="stat-value">Dec 10, 2025</span>
-                                </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">Duration</span>
-                                    <span class="stat-value">5.75 hrs</span>
-                                </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">Portfolio Value</span>
-                                    <span class="stat-value">$9,669.21</span>
-                                </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">Return</span>
-                                    <span class="stat-value negative">-3.31%</span>
-                                </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">Degradation Rate</span>
-                                    <span class="stat-value">-0.575%/hr</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Fullpower at 5.75hr -->
-                        <div class="test-card fullpower-test">
-                            <div class="test-header">
-                                <h3>Fullpower @ 5.75 Hours</h3>
-                                <span class="test-badge fullpower">Actual Data</span>
-                            </div>
-                            <div class="test-stats">
-                                <div class="stat-row">
-                                    <span class="stat-label">Test Date</span>
-                                    <span class="stat-value">Dec 15, 2025</span>
-                                </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">Duration</span>
-                                    <span class="stat-value">5.75 hrs</span>
-                                </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">Portfolio Value</span>
-                                    <span class="stat-value">$9,967.00</span>
-                                </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">Return</span>
-                                    <span class="stat-value near-zero">-0.33%</span>
-                                </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">Degradation Rate</span>
-                                    <span class="stat-value">-0.057%/hr</span>
-                                </div>
-                            </div>
+                    <div class="prediction-confidence">
+                        Indicator Alignment: ${(pred.confidence * 100).toFixed(1)}%
+                        <div class="confidence-bar">
+                            <div class="confidence-fill" style="width: ${pred.confidence * 100}%"></div>
                         </div>
                     </div>
-                    <div style="text-align: center; margin-top: 1rem; padding: 1rem; background: rgba(255,215,0,0.1); border-radius: 8px;">
-                        <strong>Phase 1 Result:</strong> Fullpower showed +2.98% improvement over baseline at same timepoint (90% better)
-                    </div>
-                </div>
+                    <div class="prediction-reasoning">${pred.reasoning}</div>
+                    <div class="timestamp">${pred.timestamp} - $${pred.price.toLocaleString()}</div>
+                `;
 
-                <!-- PHASE 2: 16.5-Hour Comparison -->
-                <div style="margin-bottom: 2rem;">
-                    <h3 style="font-size: 1.1rem; color: var(--gold-primary); margin-bottom: 1rem; text-align: center; opacity: 0.8;">PHASE 2: 16.5-Hour Comparison</h3>
-                    <div class="test-comparison-grid">
-                        <!-- Baseline at 16.5hr -->
-                        <div class="test-card baseline-test">
-                            <div class="test-header">
-                                <h3>Baseline @ 16.5 Hours</h3>
-                                <span class="test-badge baseline">Actual Data</span>
-                            </div>
-                            <div class="test-stats">
-                                <div class="stat-row">
-                                    <span class="stat-label">Test Date</span>
-                                    <span class="stat-value">Dec 10, 2025</span>
-                                </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">Duration</span>
-                                    <span class="stat-value">16.45 hrs</span>
-                                </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">Portfolio Value</span>
-                                    <span class="stat-value">$9,477.00</span>
-                                </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">Return</span>
-                                    <span class="stat-value negative">-5.23%</span>
-                                </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">Degradation Rate</span>
-                                    <span class="stat-value">-0.318%/hr</span>
-                                </div>
-                            </div>
-                        </div>
+                container.appendChild(card);
+            });
+        }
 
-                        <!-- Fullpower at 16.5hr -->
-                        <div class="test-card fullpower-test">
-                            <div class="test-header">
-                                <h3>Fullpower @ 16.5 Hours</h3>
-                                <span class="test-badge fullpower">Actual Data</span>
-                            </div>
-                            <div class="test-stats">
-                                <div class="stat-row">
-                                    <span class="stat-label">Test Date</span>
-                                    <span class="stat-value">Dec 15, 2025</span>
-                                </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">Duration</span>
-                                    <span class="stat-value">16.5 hrs</span>
-                                </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">Portfolio Value</span>
-                                    <span class="stat-value">$9,842.67</span>
-                                </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">Return</span>
-                                    <span class="stat-value near-zero">-1.57%</span>
-                                </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">Degradation Rate</span>
-                                    <span class="stat-value">-0.095%/hr</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="text-align: center; margin-top: 1rem; padding: 1rem; background: rgba(255,215,0,0.1); border-radius: 8px;">
-                        <strong>Phase 2 Result:</strong> At ~16.5 hours, Fullpower showed +3.66% improvement over baseline (70% better)
-                    </div>
-                </div>
+        document.querySelectorAll('.filter-pill').forEach(pill => {
+            pill.addEventListener('click', () => {
+                document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+                renderPredictions(pill.dataset.filter);
+            });
+        });
 
-                </div>
-                <!-- End Supporting Evidence Wrapper -->
-
-                <!-- PHASE 3: Extended Duration Test with Projection -->
-                <div style="margin-top: 2rem;">
-                    <h3 style="font-size: 1.4rem; font-weight: 700; color: var(--gold-primary); margin-bottom: 1rem; text-align: center;">PHASE 3: Official 25.5-Hour Continuous Test</h3>
-                    <div class="test-comparison-grid">
-                        <!-- Baseline Projected at 25.5hr -->
-                        <div class="test-card baseline-test">
-                            <div class="test-header">
-                                <h3>Baseline @ 25.5 Hours</h3>
-                                <span class="test-badge baseline">Projected*</span>
-                            </div>
-                            <div class="test-stats">
-                                <div class="stat-row">
-                                    <span class="stat-label">Last Actual Data</span>
-                                    <span class="stat-value">16.45 hrs</span>
-                                </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">Projection Method</span>
-                                    <span class="stat-detail">Based on observed degradation rate (5.75-16.45hr period)</span>
-                                </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">Projected Value</span>
-                                    <span class="stat-value">$9,314</span>
-                                </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">Projected Return</span>
-                                    <span class="stat-value negative">-6.86%</span>
-                                </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">Rate Used</span>
-                                    <span class="stat-detail">-0.180%/hr (later period)</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Fullpower Actual 25.5hr (FEATURED) -->
-                        <div class="test-card fullpower-test" style="border: 2px solid var(--gold-primary); box-shadow: 0 0 20px rgba(255,215,0,0.3);">
-                            <div class="test-header">
-                                <h3>Official 25.5-Hour Test</h3>
-                                <span class="test-badge fullpower">✓ Verified Actual</span>
-                            </div>
-                            <div class="test-stats">
-                                <div class="stat-row">
-                                    <span class="stat-label">Duration</span>
-                                    <span class="stat-value">25.51 hrs</span>
-                                </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">Final Value</span>
-                                    <span class="stat-value gold">$9,865.81</span>
-                                </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">Return</span>
-                                    <span class="stat-value">-1.34%</span>
-                                </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">Decisions</span>
-                                    <span class="stat-value">2,550</span>
-                                </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">Trades</span>
-                                    <span class="stat-value">262</span>
-                                </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">Uptime</span>
-                                    <span class="stat-value active-indicator">100%</span>
-                                </div>
-                            </div>
-                            <div class="test-timestamp">
-                                Dec 15, 1:25 PM → Dec 16, 2:55 PM EST
-                            </div>
-                        </div>
-                    </div>
-                    <div style="text-align: center; margin-top: 1rem; padding: 1.5rem; background: rgba(255,215,0,0.15); border: 2px solid rgba(255,215,0,0.3); border-radius: 8px;">
-                        <strong style="font-size: 1.2rem; color: var(--gold-primary);">Final Result:</strong>
-                        <span style="font-size: 1.1rem;"> Fullpower showed +5.52% improvement over projected baseline (80.5% better performance)</span>
-                        <div style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.9;">
-                            *Baseline projection uses most recent observed degradation rate from 5.75-16.45hr period for conservative estimate
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Summary Panel -->
-                <div class="findings-panel" style="margin-top: 2rem;">
-                    <div class="panel-header">KEY ACHIEVEMENTS & TRANSPARENCY</div>
-                    <div class="findings-grid">
-                        <div class="finding">
-                            <div class="finding-metric">25.5hrs</div>
-                            <div class="finding-label">Continuous Operation</div>
-                        </div>
-                        <div class="finding">
-                            <div class="finding-metric">2,550</div>
-                            <div class="finding-label">Decision Classifications</div>
-                            <div style="font-size: 0.75rem; opacity: 0.7; margin-top: 0.25rem;">Internal model outputs (BUY/SELL/HOLD), not trades</div>
-                        </div>
-                        <div class="finding">
-                            <div class="finding-metric">ZERO</div>
-                            <div class="finding-label">System Failures</div>
-                        </div>
-                        <div class="finding">
-                            <div class="finding-metric">100%</div>
-                            <div class="finding-label">Audit Integrity</div>
-                        </div>
-                    </div>
-                    <div class="findings-notes">
-                        <p><strong>Methodology:</strong> Progressive testing from initial 5.75-hour configuration tests through official 25.5-hour continuous operation.
-                        All tests use paper trading with live market data. Complete audit trails maintained throughout.</p>
-                        <p><strong>Transparency Note:</strong> Baseline projections extrapolated from measured early test degradation rates.
-                        Official 25.5-hour fullpower test represents actual measured performance with persistent memory and all systems active.
-                        Patent-pending technology. R&D only, not commercial deployment.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Verification Summary -->
-        <section id="verification" class="section">
-            <div class="container">
-                <h2 class="section-title">Verification — Evidence of Learning & Discipline</h2>
-                <p class="section-intro">
-                    Verification focuses on process integrity and decision discipline, not outcome maximization
-                </p>
-
-                <div class="status-panel">
-                    <div class="status-header">TESTING VALIDATION</div>
-                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; text-align: center; position: relative; z-index: 1;">
-                        <div>
-                            <div style="font-family: 'Inter', sans-serif; font-size: 2.5rem; font-weight: 500; color: #27AE60; margin-bottom: 0.5rem; letter-spacing: 0.05rem;">12,847+</div>
-                            <div style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">Paper Trading Decisions</div>
-                        </div>
-                        <div>
-                            <div style="font-family: 'Inter', sans-serif; font-size: 2.5rem; font-weight: 500; color: #4A90E2; margin-bottom: 0.5rem; letter-spacing: 0.05rem;">ZERO</div>
-                            <div style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">Data Contamination</div>
-                        </div>
-                        <div>
-                            <div style="font-family: 'Inter', sans-serif; font-size: 2.5rem; font-weight: 500; color: #FFD700; margin-bottom: 0.5rem; letter-spacing: 0.05rem;">100%</div>
-                            <div style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">Audit Integrity</div>
-                        </div>
-                    </div>
-                    <div style="text-align: center; margin-top: 2rem; padding: 1rem; background: rgba(255,215,0,0.1); border-radius: 8px; max-width: 800px; margin-left: auto; margin-right: auto;">
-                        <p style="font-size: 0.9rem; margin: 0; opacity: 0.9;">
-                            <strong>Note:</strong> These results demonstrate SAFE's ability to generate, track, and audit decisions under live market conditions using controlled paper trading.
-                            They do not represent client-facing trading performance.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="container">
-                <p class="mobile-notice" style="font-size: 0.9rem; opacity: 0.7; margin-bottom: 1rem;">
-                    <em>Note: This portfolio is currently optimized for desktop viewing. Mobile layout refinements are in progress.</em>
-                </p>
-                <p>&copy; 2025 Michael McKeithen | S.A.F.E. V4.0</p>
-                <p style="font-size: 0.85rem; opacity: 0.6; margin-top: 0.5rem;">Client access to SAFE is gated and provisioned separately.</p>
-                <div class="footer-links">
-                    <a href="../nest/index.html">The Owl's Nest</a>
-                    <a href="../myels_blue_journal/index.html">The Blue Journal</a>
-                    <a href="../resume-v4.html">Resume</a>
-                    <span style="opacity: 0.3;">|</span>
-                    <a href="https://www.linkedin.com/in/michael-mckeithen-jr-79b182161/">LinkedIn</a>
-                </div>
-            </div>
-        </footer>
-
-    </main>
-
-    <script src="script-v4.js"></script>
-    <!-- Live data connector - reads SAFE's actual test results -->
-    <script src="live-data-connector.js"></script>
+        renderPredictions();
+    </script>
 </body>
-
 </html>
