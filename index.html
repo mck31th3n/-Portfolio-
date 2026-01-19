@@ -4,15 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Myel Shaddah Key - Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --obsidian-black: #000000;
-            --glossy-black: #0a0a0a;
-            --surface-black: #121212;
-            --eclipse-gold: #d4af37;
-            --text-primary: #E8EEF2;
-            --text-secondary: rgba(232, 238, 242, 0.7);
+            --void: #050505;
+            --surface: #0a0a0a;
+            --elevated: #111111;
+            --border: #1a1a1a;
+            --border-hover: #2a2a2a;
+            --text-primary: #f5f5f5;
+            --text-secondary: #888888;
+            --text-muted: #555555;
+            --accent-blue: #4a90a4;
+            --accent-teal: #5ab4a8;
+            --accent-amber: #c9a962;
+            --accent-rose: #a4697a;
         }
 
         * {
@@ -22,236 +28,311 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, var(--obsidian-black) 0%, var(--glossy-black) 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--void);
             color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
             min-height: 100vh;
-            text-align: center;
-            padding: 2rem;
+            line-height: 1.6;
         }
 
-        .container {
-            max-width: 700px;
+        .page {
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 3rem;
-            background: rgba(18, 18, 18, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            border-radius: 8px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            padding: 4rem 2rem;
         }
 
-        h1 {
-            font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
-            color: var(--eclipse-gold);
-            letter-spacing: 0.15em;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 2px 20px rgba(212, 175, 55, 0.3);
+        /* Header */
+        .header {
+            margin-bottom: 4rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid var(--border);
         }
 
-        .subtitle {
-            color: var(--text-secondary);
-            margin-bottom: 2.5rem;
-            font-size: 1.1rem;
+        .header-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.8rem;
+            font-weight: 300;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
         }
 
-        .nav-links {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .nav-links a {
-            color: var(--eclipse-gold);
-            text-decoration: none;
-            font-size: 1.1rem;
-            padding: 1rem 1.5rem;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            letter-spacing: 0.05em;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .nav-links a:hover {
-            background: rgba(212, 175, 55, 0.1);
-            border-color: rgba(212, 175, 55, 0.5);
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .link-label {
-            font-weight: 600;
-        }
-
-        .link-desc {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
+        .header-title {
+            font-size: 0.95rem;
             font-weight: 400;
+            color: var(--text-secondary);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
         }
 
-        /* Rainbow Coming Soon Badge */
-        .coming-soon {
+        /* Section */
+        .section-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Project Grid */
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .project-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2rem;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .coming-soon::before {
+        .project-card::before {
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
-            width: 200%;
+            left: 0;
+            width: 3px;
             height: 100%;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(255, 51, 51, 0.1),
-                rgba(255, 136, 0, 0.1),
-                rgba(255, 215, 0, 0.1),
-                rgba(51, 255, 136, 0.1),
-                rgba(51, 136, 255, 0.1),
-                transparent
-            );
-            animation: rainbow-sweep 3s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        @keyframes rainbow-sweep {
-            0% { left: -100%; }
-            100% { left: 100%; }
+        .project-card:hover {
+            border-color: var(--border-hover);
+            background: var(--elevated);
+            transform: translateY(-2px);
         }
 
-        .badge {
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Card Accent Colors */
+        .project-card.safe::before { background: var(--accent-amber); }
+        .project-card.journal::before { background: var(--accent-blue); }
+        .project-card.nest::before { background: var(--accent-teal); }
+        .project-card.resume::before { background: var(--accent-rose); }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .project-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+        }
+
+        .project-status {
             font-size: 0.65rem;
-            padding: 3px 8px;
-            border-radius: 3px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 2px;
+            background: var(--elevated);
+            border: 1px solid var(--border);
         }
 
-        .badge-live {
-            background: rgba(16, 185, 129, 0.2);
-            color: #10b981;
-            border: 1px solid rgba(16, 185, 129, 0.3);
+        .status-demo { color: var(--accent-amber); border-color: rgba(201, 169, 98, 0.3); }
+        .status-live { color: var(--accent-teal); border-color: rgba(90, 180, 168, 0.3); }
+        .status-soon { color: var(--text-muted); }
+
+        .project-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.25rem;
+            line-height: 1.7;
         }
 
-        .badge-demo {
-            background: rgba(212, 175, 55, 0.2);
-            color: var(--eclipse-gold);
-            border: 1px solid rgba(212, 175, 55, 0.3);
+        .project-meta {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 0.02em;
         }
 
-        .badge-soon {
-            background: linear-gradient(90deg,
-                rgba(255, 51, 51, 0.15),
-                rgba(255, 136, 0, 0.15),
-                rgba(255, 215, 0, 0.15),
-                rgba(51, 255, 136, 0.15),
-                rgba(51, 136, 255, 0.15)
-            );
-            color: #fff;
-            border: 1px solid rgba(255, 215, 0, 0.3);
+        /* Resume Card - Full Width */
+        .resume-row {
+            margin-bottom: 4rem;
         }
 
-        .footer {
-            margin-top: 2rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        .resume-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 1.75rem 2rem;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .resume-card:hover {
+            border-color: var(--border-hover);
+            background: var(--elevated);
+        }
+
+        .resume-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .resume-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-weight: 500;
+        }
+
+        .resume-desc {
             font-size: 0.85rem;
             color: var(--text-secondary);
         }
 
-        .footer a {
-            color: var(--eclipse-gold);
-            text-decoration: none;
+        .resume-arrow {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            transition: transform 0.3s ease;
         }
 
-        .footer a:hover {
-            text-decoration: underline;
+        .resume-card:hover .resume-arrow {
+            transform: translateX(4px);
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        .footer {
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer-text {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 0.02em;
         }
 
         /* Mobile */
-        @media (max-width: 600px) {
-            .container {
-                padding: 2rem 1.5rem;
+        @media (max-width: 768px) {
+            .page {
+                padding: 3rem 1.5rem;
             }
 
-            h1 {
+            .header {
+                margin-bottom: 3rem;
+                padding-bottom: 2rem;
+            }
+
+            .header-name {
+                font-size: 2.2rem;
+            }
+
+            .projects {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .project-card {
+                padding: 1.5rem;
+            }
+
+            .project-name {
+                font-size: 1.3rem;
+            }
+
+            .resume-card {
+                padding: 1.25rem 1.5rem;
+            }
+
+            .resume-left {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-name {
                 font-size: 1.8rem;
             }
 
-            .nav-links a {
-                padding: 0.85rem 1rem;
-                font-size: 1rem;
+            .header-title {
+                font-size: 0.8rem;
+            }
+
+            .project-header {
                 flex-direction: column;
-                align-items: flex-start;
-                gap: 0.25rem;
-            }
-
-            .link-desc {
-                font-size: 0.75rem;
-            }
-
-            .badge {
-                position: absolute;
-                top: 0.5rem;
-                right: 0.5rem;
-            }
-
-            .nav-links a {
-                position: relative;
+                gap: 0.75rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Portfolio</h1>
-        <p class="subtitle">Myel Shaddah Key</p>
+    <div class="page">
+        <header class="header">
+            <h1 class="header-name">Myel Shaddah Key</h1>
+            <p class="header-title">AI Systems Engineer</p>
+        </header>
 
-        <div class="nav-links">
-            <a href="safe/index.html">
-                <div>
-                    <span class="link-label">S.A.F.E.</span>
-                    <span class="link-desc">Trading AI in Observer Mode</span>
-                </div>
-                <span class="badge badge-demo">Demo</span>
-            </a>
+        <section>
+            <p class="section-label">Projects</p>
+            <div class="projects">
+                <a href="safe/index.html" class="project-card safe">
+                    <div class="project-header">
+                        <h2 class="project-name">S.A.F.E.</h2>
+                        <span class="project-status status-demo">Demo</span>
+                    </div>
+                    <p class="project-desc">Trading AI operating in observer-only mode. Multi-agent architecture with outcome validation and continuous learning.</p>
+                    <p class="project-meta">Secure Autonomous Framework for Evaluation</p>
+                </a>
 
-            <a href="myels_blue_journal/index.html">
-                <div>
-                    <span class="link-label">The Blue Journal</span>
-                    <span class="link-desc">Autonomous Agent OS Specification</span>
-                </div>
-                <span class="badge badge-live">Live</span>
-            </a>
+                <a href="myels_blue_journal/index.html" class="project-card journal">
+                    <div class="project-header">
+                        <h2 class="project-name">The Blue Journal</h2>
+                        <span class="project-status status-live">Live</span>
+                    </div>
+                    <p class="project-desc">12-layer operating system specification for autonomous AI agents. Constraint discovery, ethics engine, distributed consensus.</p>
+                    <p class="project-meta">Autonomous Agent OS Architecture</p>
+                </a>
 
-            <a href="nest/index.html" class="coming-soon">
-                <div>
-                    <span class="link-label">The Owl's Nest</span>
-                    <span class="link-desc">Five-Agent Orchestration Platform</span>
-                </div>
-                <span class="badge badge-soon">Coming Soon</span>
-            </a>
+                <a href="nest/index.html" class="project-card nest">
+                    <div class="project-header">
+                        <h2 class="project-name">The Owl's Nest</h2>
+                        <span class="project-status status-soon">Coming Soon</span>
+                    </div>
+                    <p class="project-desc">Five-agent orchestration platform with specialized roles coordinating through central intelligence.</p>
+                    <p class="project-meta">Multi-Agent Coordination System</p>
+                </a>
 
-            <a href="resume-v4.html">
-                <div>
-                    <span class="link-label">Resume</span>
-                    <span class="link-desc">AI Systems Engineer</span>
-                </div>
-            </a>
-        </div>
+                <a href="resume-v4.html" class="project-card resume">
+                    <div class="project-header">
+                        <h2 class="project-name">Resume</h2>
+                    </div>
+                    <p class="project-desc">Background in AI systems engineering, multi-agent architectures, and autonomous decision systems.</p>
+                    <p class="project-meta">Experience and Technical Skills</p>
+                </a>
+            </div>
+        </section>
 
-        <div class="footer">
-            <a href="https://github.com/mck31th3n" target="_blank">GitHub</a>
-        </div>
+        <footer class="footer">
+            <p class="footer-text">Building intelligent systems that reason, learn, and adapt.</p>
+        </footer>
     </div>
 </body>
 </html>
