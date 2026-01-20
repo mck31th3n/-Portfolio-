@@ -43,16 +43,18 @@ Hybrid consensus protocol combining Raft (leader election, log replication) with
 
 ```
 Law is accepted if and only if:
-1. N >= 60% of agents independently verify it
+1. Supermajority of agents independently verify it (configurable threshold)
 2. No Byzantine behavior detected in verifiers
-3. Evidence quality meets threshold
+3. Evidence quality meets domain-specific threshold
 4. No higher-confidence contradictory law exists
 ```
 
-**Why 60%?**
-- **Byzantine Fault Tolerance:** Can tolerate up to 40% Byzantine agents
-- **Availability:** System remains operational even if 40% of agents are offline/faulty
-- **Balance:** Not too strict (paralysis) or too lenient (corruption risk)
+**Why Supermajority?**
+- **Byzantine Fault Tolerance:** Can tolerate up to f=(n-1)/3 faulty nodes (standard BFT assumption)
+- **Availability:** System remains operational with partial agent failures
+- **Balance:** Threshold tuned per domain - not too strict (paralysis) or too lenient (corruption risk)
+
+*Note: Production implementations should tune consensus parameters based on specific domain requirements, network characteristics, and fault tolerance needs.*
 
 ---
 
@@ -109,20 +111,22 @@ def propose_law(law):
         "law": law,
         "proposed_by": AGENT_ID,
         "proposed_at": datetime.now(),
-        "verification_deadline": datetime.now() + timedelta(seconds=30)
+        "verification_deadline": datetime.now() + timedelta(seconds=VERIFICATION_TIMEOUT)
     }
 
     broadcast_to_cluster(proposal)
 
     # 4. Collect votes
-    votes = collect_votes(proposal_id, timeout=30)
+    votes = collect_votes(proposal_id, timeout=VERIFICATION_TIMEOUT)
 
     # 5. Decide based on votes
-    if votes['confirm'] >= 0.60 * cluster_size():
+    if votes['confirm'] >= CONSENSUS_THRESHOLD * cluster_size():
         accept_law(law)
     else:
         reject_law(law, reason=f"Insufficient consensus: {votes['confirm']}/{cluster_size()}")
 ```
+
+*Configuration constants (CONSENSUS_THRESHOLD, VERIFICATION_TIMEOUT) are domain-dependent and should be tuned based on network latency, fault tolerance requirements, and decision criticality.*
 
 ---
 
@@ -141,7 +145,7 @@ def verify_law_proposal(proposal):
 
         if reproduced:
             confidence = calculate_confidence(law, observations)
-            vote = "CONFIRM" if confidence > 0.70 else "REJECT"
+            vote = "CONFIRM" if confidence > MIN_CONFIDENCE_THRESHOLD else "REJECT"
         else:
             vote = "REJECT"
             confidence = 0.0
@@ -196,15 +200,15 @@ def aggregate_votes(proposal_id):
         return "REJECTED_ATTACK"
 
     # Quorum check: Did enough agents participate?
-    quorum = 0.50 * cluster_size  # Minimum 50% participation
+    quorum = QUORUM_THRESHOLD * cluster_size  # Minimum participation required
 
     if total_voters < quorum:
         return "INSUFFICIENT_PARTICIPATION"
 
-    # Consensus check: Did 60%+ of participants confirm?
-    if confirm >= 0.60 * total_voters:
+    # Consensus check: Did supermajority of participants confirm?
+    if confirm >= CONSENSUS_THRESHOLD * total_voters:
         return "ACCEPTED"
-    elif reject >= 0.60 * total_voters:
+    elif reject >= CONSENSUS_THRESHOLD * total_voters:
         return "REJECTED"
     else:
         return "NO_CONSENSUS"  # Contested
@@ -248,28 +252,30 @@ def detect_verification_fraud(agent_id, law_id):
 def detect_anomalous_voting_pattern(agent_id):
     """Detect if agent votes suspiciously"""
 
-    voting_history = database.fetch_agent_votes(agent_id, last_n=100)
+    voting_history = database.fetch_agent_votes(agent_id, last_n=VOTING_HISTORY_WINDOW)
 
     # Red flag 1: Always confirms, never rejects
-    if voting_history['reject_rate'] < 0.05:
+    if voting_history['reject_rate'] < MIN_EXPECTED_REJECT_RATE:
         flag_agent(agent_id, "suspiciously_agreeable")
 
     # Red flag 2: Confirms low-quality proposals
     low_quality_confirms = [
         v for v in voting_history
-        if v['vote'] == 'CONFIRM' and v['proposal_confidence'] < 0.40
+        if v['vote'] == 'CONFIRM' and v['proposal_confidence'] < LOW_QUALITY_THRESHOLD
     ]
 
-    if len(low_quality_confirms) > 10:
+    if len(low_quality_confirms) > LOW_QUALITY_CONFIRM_LIMIT:
         flag_agent(agent_id, "confirms_low_quality")
 
     # Red flag 3: Voting pattern correlates with known Byzantine agent
     for other_agent in get_flagged_agents():
         correlation = calculate_vote_correlation(agent_id, other_agent)
 
-        if correlation > 0.95:
+        if correlation > CORRELATION_ALERT_THRESHOLD:
             flag_agent(agent_id, f"correlated_with_{other_agent}")
 ```
+
+*Anomaly detection thresholds should be calibrated based on historical voting patterns and domain-specific false positive/negative tolerances.*
 
 #### 3. Signature Verification
 
@@ -344,7 +350,7 @@ class RaftConsensus:
         self.state = "FOLLOWER"  # FOLLOWER, CANDIDATE, LEADER
         self.current_term = 0
         self.voted_for = None
-        self.election_timeout = random.randint(150, 300)  # ms
+        self.election_timeout = random.randint(ELECTION_TIMEOUT_MIN, ELECTION_TIMEOUT_MAX)  # ms, Raft-standard range
 
     def start_election(self):
         """Become candidate and request votes"""
@@ -374,7 +380,7 @@ class RaftConsensus:
         # Send heartbeats to maintain leadership
         while self.state == "LEADER":
             send_heartbeats()
-            time.sleep(0.1)  # 100ms heartbeat interval
+            time.sleep(HEARTBEAT_INTERVAL)  # Millisecond-scale, typically < election timeout
 
     def receive_heartbeat(self, leader_id, term):
         """Receive heartbeat from leader"""
@@ -395,18 +401,18 @@ class RaftConsensus:
 def resolve_contradiction(law_a, law_b):
     """Two laws contradict each other—resolve"""
 
-    # Strategy 1: Higher confidence wins
-    if law_a['confidence'] > law_b['confidence'] + 0.15:
+    # Strategy 1: Higher confidence wins (requires significant margin)
+    if law_a['confidence'] > law_b['confidence'] + CONFIDENCE_MARGIN_THRESHOLD:
         return law_a, "higher_confidence"
 
-    if law_b['confidence'] > law_a['confidence'] + 0.15:
+    if law_b['confidence'] > law_a['confidence'] + CONFIDENCE_MARGIN_THRESHOLD:
         return law_b, "higher_confidence"
 
-    # Strategy 2: More evidence wins
-    if law_a['evidence_count'] > law_b['evidence_count'] * 2:
+    # Strategy 2: More evidence wins (requires substantial difference)
+    if law_a['evidence_count'] > law_b['evidence_count'] * EVIDENCE_MULTIPLIER_THRESHOLD:
         return law_a, "more_evidence"
 
-    if law_b['evidence_count'] > law_a['evidence_count'] * 2:
+    if law_b['evidence_count'] > law_a['evidence_count'] * EVIDENCE_MULTIPLIER_THRESHOLD:
         return law_b, "more_evidence"
 
     # Strategy 3: Context-dependent (both valid in different contexts)
@@ -425,7 +431,7 @@ def resolve_contradiction(law_a, law_b):
 ### A/B Testing for Contested Laws
 
 ```python
-def run_ab_test(law_a, law_b, duration_hours=24):
+def run_ab_test(law_a, law_b, duration_hours=AB_TEST_DURATION):
     """Deploy both laws in parallel, measure which performs better"""
 
     # 1. Split cluster into two groups
@@ -449,7 +455,7 @@ def run_ab_test(law_a, law_b, duration_hours=24):
     # 5. Statistical test
     p_value = t_test(outcomes_a, outcomes_b)
 
-    if p_value < 0.05:
+    if p_value < STATISTICAL_SIGNIFICANCE_THRESHOLD:
         # Statistically significant difference
         if mean(outcomes_a) > mean(outcomes_b):
             winner = law_a
@@ -462,6 +468,8 @@ def run_ab_test(law_a, law_b, duration_hours=24):
     return winner
 ```
 
+*Test duration and significance thresholds should be determined by domain requirements and statistical power analysis.*
+
 ---
 
 ## DEADLOCK PREVENTION
@@ -469,7 +477,7 @@ def run_ab_test(law_a, law_b, duration_hours=24):
 ### Timeout Protocol
 
 ```python
-def verify_with_timeout(proposal_id, timeout=30):
+def verify_with_timeout(proposal_id, timeout=VERIFICATION_TIMEOUT):
     """Prevent indefinite waiting for votes"""
 
     start = time.now()
@@ -483,11 +491,13 @@ def verify_with_timeout(proposal_id, timeout=30):
         if consensus_achieved(votes):
             return aggregate_votes(proposal_id)
 
-        time.sleep(0.5)  # Poll every 500ms
+        time.sleep(POLL_INTERVAL)
 
     # Timeout reached → decide with available votes
     return aggregate_votes(proposal_id)
 ```
+
+*Timeout values depend on network latency characteristics and decision urgency for the specific domain.*
 
 ---
 
@@ -525,7 +535,7 @@ def follower_election_timeout():
             # Leader died or network partition
             start_election()
 
-        time.sleep(0.1)
+        time.sleep(HEARTBEAT_CHECK_INTERVAL)
 ```
 
 ---
@@ -618,23 +628,27 @@ def reconcile_states(state_a, state_b):
 
 ```python
 METRICS = {
-    "byzantine_tolerance": lambda: system_operational_with_40percent_faulty == True,
+    "byzantine_tolerance": lambda: system_operational_with_byzantine_agents == True,
     "no_deadlocks": lambda: deadlock_incidents == 0,
-    "fast_consensus": lambda: avg_consensus_time < 5_seconds,
+    "fast_consensus": lambda: avg_consensus_time < MAX_ACCEPTABLE_CONSENSUS_TIME,
     "partition_resilience": lambda: recovers_from_partition == True,
-    "false_accept_rate": lambda: false_law_acceptances / total_proposals < 0.01
+    "false_accept_rate": lambda: false_law_acceptances / total_proposals < MAX_FALSE_ACCEPT_RATE
 }
 ```
+
+*Specific thresholds should be determined through testing against domain requirements.*
 
 ### Performance Benchmarks
 
 | Metric | Target | Notes |
 |--------|--------|-------|
-| **Consensus latency** | <5s | Time from proposal to decision |
-| **Byzantine agent detection** | <30s | Time to detect and quarantine |
-| **Vote participation rate** | >80% | Percentage of agents voting |
-| **Partition recovery time** | <60s | Time to reconcile after heal |
-| **Leader election time** | <1s | Time to elect new leader if current fails |
+| **Consensus latency** | Domain-dependent | Time from proposal to decision (real-time vs batch) |
+| **Byzantine agent detection** | Seconds to minutes | Time to detect and quarantine |
+| **Vote participation rate** | High (domain-dependent) | Percentage of agents voting |
+| **Partition recovery time** | Seconds to minutes | Time to reconcile after heal |
+| **Leader election time** | Sub-second | Time to elect new leader if current fails (Raft-standard) |
+
+*Benchmarks vary significantly based on network topology, agent count, and domain requirements. Production systems should establish baselines through load testing.*
 
 ---
 
@@ -642,8 +656,8 @@ METRICS = {
 
 **Protocol 11 ensures:**
 - Multi-agent law verification (no single point of failure)
-- Byzantine fault tolerance (40% malicious agents tolerated)
-- Deadlock prevention (timeouts, async messaging)
+- Byzantine fault tolerance (standard BFT assumptions: f < n/3 faulty nodes)
+- Deadlock prevention (configurable timeouts, async messaging)
 - Network partition handling (split-brain prevention, reconciliation)
 - Conflict resolution (A/B testing, context splitting)
 
