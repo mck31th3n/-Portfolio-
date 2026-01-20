@@ -67,7 +67,7 @@ Law is accepted if and only if:
 │                                                           │
 │  ┌─────────────┐                                         │
 │  │   LEADER    │  Elected via Raft                       │
-│  │  (Agent 1)  │  Coordinates verification rounds        │
+│  │  (Agent L)  │  Coordinates verification rounds        │
 │  └──────┬──────┘                                         │
 │         │                                                 │
 │         │ Broadcast: "Please verify Law X"               │
@@ -75,17 +75,19 @@ Law is accepted if and only if:
 │    ┌────┴─────────────────────────┐                      │
 │    │                               │                      │
 │ ┌──▼────┐  ┌──────┐  ┌──────┐  ┌──▼────┐               │
-│ │Agent 2│  │Agent3│  │Agent4│  │Agent 5│               │
+│ │Agent A│  │Agent B│ │Agent C│ │Agent..│               │
 │ │VERIFY │  │VERIFY│  │VERIFY│  │VERIFY │               │
 │ └──┬────┘  └──┬───┘  └──┬───┘  └──┬────┘               │
 │    │          │         │          │                      │
 │    └──────────┴─────────┴──────────┘                      │
 │               │                                            │
-│         Votes: 3/4 confirm                                │
-│         Result: 75% consensus → ACCEPT                    │
+│         Votes tallied                                     │
+│         Result: Supermajority reached → ACCEPT            │
 │                                                            │
 └──────────────────────────────────────────────────────────┘
 ```
+
+*Diagram shows N agents; actual cluster size is domain-dependent.*
 
 ---
 
@@ -422,7 +424,7 @@ def resolve_contradiction(law_a, law_b):
         return split_by_context(law_a, law_b, contexts), "context_split"
 
     # Strategy 4: Run live A/B test
-    winner = run_ab_test(law_a, law_b, duration_hours=24)
+    winner = run_ab_test(law_a, law_b, duration_hours=AB_TEST_DURATION)
     return winner, "empirical_test"
 ```
 
