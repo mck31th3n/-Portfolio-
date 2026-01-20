@@ -61,30 +61,30 @@ Law is accepted if and only if:
 ## PROTOCOL ARCHITECTURE
 
 ```
-┌──────────────────────────────────────────────────────────┐
-│                   CONSENSUS LAYER                         │
-├──────────────────────────────────────────────────────────┤
-│                                                           │
-│  ┌─────────────┐                                         │
-│  │   LEADER    │  Elected via Raft                       │
-│  │  (Agent L)  │  Coordinates verification rounds        │
-│  └──────┬──────┘                                         │
-│         │                                                 │
-│         │ Broadcast: "Please verify Law X"               │
-│         │                                                 │
-│    ┌────┴─────────────────────────┐                      │
-│    │                               │                      │
-│ ┌──▼────┐  ┌──────┐  ┌──────┐  ┌──▼────┐               │
-│ │Agent A│  │Agent B│ │Agent C│ │Agent..│               │
-│ │VERIFY │  │VERIFY│  │VERIFY│  │VERIFY │               │
-│ └──┬────┘  └──┬───┘  └──┬───┘  └──┬────┘               │
-│    │          │         │          │                      │
-│    └──────────┴─────────┴──────────┘                      │
-│               │                                            │
-│         Votes tallied                                     │
-│         Result: Supermajority reached → ACCEPT            │
-│                                                            │
-└──────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────┐
+│                   CONSENSUS LAYER                       │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  ┌─────────────┐                                        │
+│  │   LEADER    │  Elected via Raft                      │
+│  │  (Agent L)  │  Coordinates verification rounds       │
+│  └──────┬──────┘                                        │
+│         │                                               │
+│         │ Broadcast: "Please verify Law X"              │
+│         │                                               │
+│    ┌────┴───────────────────────────┐                   │
+│    │                                 │                   │
+│ ┌──▼─────┐ ┌────────┐ ┌────────┐ ┌──▼─────┐            │
+│ │Agent A │ │Agent B │ │Agent C │ │Agent...│            │
+│ │ VERIFY │ │ VERIFY │ │ VERIFY │ │ VERIFY │            │
+│ └──┬─────┘ └───┬────┘ └───┬────┘ └──┬─────┘            │
+│    │           │          │          │                  │
+│    └───────────┴──────────┴──────────┘                  │
+│                │                                        │
+│         Votes tallied                                   │
+│         Result: Supermajority reached → ACCEPT          │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
 ```
 
 *Diagram shows N agents; actual cluster size is domain-dependent.*
