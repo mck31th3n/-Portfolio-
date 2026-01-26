@@ -412,27 +412,63 @@
 
             .coming-soon-content {
                 margin: 0.5rem;
-                padding: 20px 15px;
+                padding: 24px 20px;
                 max-width: calc(100% - 1rem);
-                max-height: 90vh;
-                overflow-y: auto;
             }
 
             .coming-soon-title {
-                font-size: 22px;
+                font-size: 24px;
                 letter-spacing: 2px;
-                margin-bottom: 10px;
+                margin-bottom: 12px;
             }
 
             .coming-soon-subtitle {
-                font-size: 14px;
+                font-size: 18px;
+                margin-bottom: 10px;
+                background: linear-gradient(90deg, #9B59B6, #E67E22, #4A90E2, #95A5A6, #27AE60);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+
+            .coming-soon-description {
+                font-size: 13px;
+                margin-bottom: 24px;
+                line-height: 1.6;
+            }
+
+            .return-to-safe-btn {
+                padding: 12px 24px;
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .coming-soon-content {
+                margin: 0.25rem;
+                padding: 20px 16px;
+                max-width: calc(100% - 0.5rem);
+            }
+
+            .coming-soon-title {
+                font-size: 20px;
+                letter-spacing: 1px;
                 margin-bottom: 8px;
+            }
+
+            .coming-soon-subtitle {
+                font-size: 16px;
+                margin-bottom: 6px;
+                background: linear-gradient(90deg, #9B59B6, #E67E22, #4A90E2, #95A5A6, #27AE60);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
             }
 
             .coming-soon-description {
                 font-size: 12px;
                 margin-bottom: 20px;
-                line-height: 1.6;
+                line-height: 1.5;
             }
 
             .return-to-safe-btn {
