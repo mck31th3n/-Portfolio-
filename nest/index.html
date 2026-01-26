@@ -487,9 +487,14 @@
 
         .coming-soon-subtitle {
             font-size: 20px;
-            color: rgba(255, 255, 255, 0.8);
+            background: linear-gradient(90deg, #9B59B6, #E67E22, #4A90E2, #95A5A6, #27AE60);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 15px;
             letter-spacing: 2px;
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
         }
 
         .coming-soon-description {
@@ -540,7 +545,7 @@
         <div class="coming-soon-content">
             <div class="coming-soon-title">IN DEVELOPMENT</div>
             <div class="coming-soon-subtitle">THE OWL</div>
-            <div class="coming-soon-subtitle" style="font-size: 16px; margin-bottom: 30px;">Multi-Agent Orchestration Platform</div>
+            <div class="coming-soon-subtitle" style="font-size: 16px; margin-bottom: 30px; background: none; -webkit-text-fill-color: rgba(255, 255, 255, 0.6); color: rgba(255, 255, 255, 0.6);">Multi-Agent Orchestration Platform</div>
             <p class="coming-soon-description">
                 Multi-agent AI system with specialized intelligence cores coordinating through a central orchestrator. Each agent operates autonomously with distinct capabilities while maintaining system-wide coherence. Currently in active development with core architecture operational.
             </p>
