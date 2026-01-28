@@ -16,3 +16,9 @@ SAFE_UI_ACCURACY_AUDIT.md
 # Internal deployment docs
 DEPLOYMENT*.md
 DEPLOY*.md
+
+# Blue Journal internal notes (keep private)
+myels_blue_journal/*CRITIQUE*.md
+myels_blue_journal/*REVIEW*.md
+myels_blue_journal/*FIXES*.md
+myels_blue_journal/*ROUND*.md
