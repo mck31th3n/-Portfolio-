@@ -1,12 +1,12 @@
 {
-  "snapshot_version": 1,
-  "snapshot_date": "2026-02-17",
-  "generated_at_utc": "2026-02-17T01:35:09Z",
+  "snapshot_version": 2,
+  "snapshot_date": "2026-02-23",
+  "generated_at_utc": "2026-02-23T08:45:00Z",
   "system": "cyberagent",
   "source_repo": "cyberagent-portfolio",
   "mode": "sanitized_demo",
   "summary": {
-    "statement": "Offline-first AI security audit framework for controlled validation workflows.",
+    "statement": "OpenAI-judged security audits across governed AI systems. Real runs against an AI governance platform and a financial risk engine — with semantic leakage detection active.",
     "total_tests": 130,
     "suite_count": 12,
     "modes": [
@@ -18,37 +18,45 @@
   "severity_distribution": [
     {
       "severity": "critical",
-      "count": 48
+      "count": 227
     },
     {
       "severity": "high",
-      "count": 67
+      "count": 190
     },
     {
       "severity": "medium",
-      "count": 15
+      "count": 191
+    },
+    {
+      "severity": "low",
+      "count": 32
     }
   ],
   "level_distribution": [
     {
+      "level": 0,
+      "count": 25
+    },
+    {
       "level": 1,
-      "count": 8
+      "count": 12
     },
     {
       "level": 2,
-      "count": 23
+      "count": 10
     },
     {
       "level": 3,
-      "count": 50
+      "count": 8
     },
     {
       "level": 4,
-      "count": 37
+      "count": 4
     },
     {
       "level": 5,
-      "count": 12
+      "count": 2
     }
   ],
   "suite_breakdown": [
