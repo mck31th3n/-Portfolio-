@@ -200,6 +200,7 @@
             -webkit-backdrop-filter: blur(16px);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
             transition: border-color 0.4s ease, box-shadow 0.4s ease;
+            will-change: opacity;
         }
 
         .carousel-card::before {
@@ -913,6 +914,14 @@
 
             function applyRotation() {
                 ring.style.transform = `rotateY(${currentAngle}deg)`;
+                // Fade cards based on how far their face has rotated from the viewer.
+                // totalRot = 0° → front-facing (full opacity); ±120° → side (dim).
+                cards.forEach((card, i) => {
+                    const raw = ((i * ANGLE_STEP + currentAngle) % 360 + 360) % 360;
+                    const facing = raw > 180 ? raw - 360 : raw; // normalise to -180..180
+                    const t = Math.abs(facing) / 180;           // 0=front, 1=back
+                    card.style.opacity = Math.max(0.1, 1 - t * 1.2).toFixed(3);
+                });
             }
 
             // Main animation loop
