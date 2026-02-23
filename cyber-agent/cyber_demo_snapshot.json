@@ -6,7 +6,7 @@
   "source_repo": "cyberagent-portfolio",
   "mode": "sanitized_demo",
   "summary": {
-    "statement": "OpenAI-judged security audits across governed AI systems. Real runs against an AI governance platform and a financial risk engine — with semantic leakage detection active.",
+    "statement": "OpenAI-judged security audits across governed AI systems. Real runs vs. an AI governance platform and financial risk engine — semantic leakage detection active.",
     "total_tests": 130,
     "suite_count": 12,
     "modes": [
