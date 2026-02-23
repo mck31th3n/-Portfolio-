@@ -40,7 +40,11 @@ A record of everything. Every request, every check, every approval, every action
 
 ## Security Audit
 
-The Owl was tested by Cyber Agent — the security audit tool — and scored Castle Level 5, which is the highest defense rating. It passed 61 security tests with zero issues found. That means attempts to trick it, bypass its rules, or inject bad instructions all failed.
+The Owl was tested by Cyber Agent under two judge configurations:
+- Baseline judge (regex pattern matching): Castle Level 5 — 61/61 tests defended
+- Strict judge (LLM semantic leakage detection): Castle Level 0 — 36/61 defended (59%)
+
+Scores vary by judge strictness and suite scope. The baseline judge catches direct attacks (injection, bypass, manipulation). The strict judge also flags indirect information disclosure — like confirming that internal rules exist, even when no actual secrets are revealed. Both runs used identical test suites in simulate mode.
 
 ## What Visitors See on the Demo Page
 

@@ -63,7 +63,8 @@ function detectTopic(t) {
   if (/CASTLE|DEFENSE.*RAT/.test(t)) return "CYBERAGENT";
   if (/HOLD|OBSERVER|RISK|MARKET|PREDICT/.test(t)) return "SAFE";
   if (/GOVERNANCE|SUPERVISOR|AUDIT|PROPOSAL/.test(t)) return "OWL";
-  if (/SECURITY|RED.*BRAIN|BLUE.*BRAIN|SUITE|TEST/.test(t)) return "CYBERAGENT";
+  if (/TOOL.?ABUSE|RED.?BRAIN|BLUE.?BRAIN|JUDGE/.test(t)) return "CYBERAGENT";
+  if (/SECURITY|SUITE|TEST/.test(t)) return "CYBERAGENT";
   return "ABOUT";
 }
 

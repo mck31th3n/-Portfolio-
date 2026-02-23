@@ -732,7 +732,7 @@
         <section class="hero">
             <h1 class="hero-name">Michael McKeithen Jr.</h1>
             <p class="hero-title">AI Systems Engineer</p>
-            <p class="hero-intro">I build AI systems that govern themselves &mdash; from trading signal analysis to file-level governance kernels to adversarial security testing. Every project here runs real logic, not mockups.</p>
+            <p class="hero-intro">Before an AI modifies a file, deploys code, or calls a tool, it has to submit a proposal. A governance layer validates, logs, and requires approval before execution. That principle drives everything here &mdash; from trading risk assessment to security auditing. Every project runs real logic, not mockups.</p>
         </section>
 
         <div class="section-divider"></div>
@@ -767,7 +767,7 @@
                 <div class="carousel-card card-owl" data-href="nest/index.html" data-index="1">
                     <span class="card-tag">AI Action Governance</span>
                     <h2 class="card-name">The Owl</h2>
-                    <p class="card-desc">Proposal-first action control for AI systems. Every change is validated by 9 guards, checked against 4 protocols, and requires human approval.</p>
+                    <p class="card-desc">Before AI can act, it submits a proposal. 9 safety guards inspect it, the action is logged, and a human approves or denies. Nothing executes without a paper trail.</p>
                     <div class="card-stats">
                         <div class="card-stat">
                             <span class="card-stat-value">9</span>
@@ -778,8 +778,8 @@
                             <span class="card-stat-label">Tests</span>
                         </div>
                         <div class="card-stat">
-                            <span class="card-stat-value">L5</span>
-                            <span class="card-stat-label">Castle</span>
+                            <span class="card-stat-value">Audited</span>
+                            <span class="card-stat-label">Cyber Agent</span>
                         </div>
                     </div>
                     <div class="card-preview">
@@ -791,7 +791,7 @@
                 <div class="carousel-card card-cyber" data-href="cyber-agent/index.html" data-index="2">
                     <span class="card-tag">AI Security Audit</span>
                     <h2 class="card-name">Cyber Agent</h2>
-                    <p class="card-desc">End-to-end security validation for AI systems. 130 tests across 12 categories, red/blue brain architecture, and castle-level defense scoring.</p>
+                    <p class="card-desc">Tests whether AI systems can be tricked or bypassed. 130 tests across 12 categories &mdash; an attacker brain finds weaknesses, a defender brain recommends fixes, and a judge scores the result.</p>
                     <div class="card-stats">
                         <div class="card-stat">
                             <span class="card-stat-value">130</span>
@@ -1149,7 +1149,7 @@
                 nav: NAV_MAP.safe,
             },
             owl: {
-                text: "The Owl is a supervisor for AI. Before AI can do anything, it has to ask first. The Owl checks if it\u2019s safe, logs the request, and waits for human approval.\n\n9 safety checks, 35 regression tests. Scored Castle Level 5.",
+                text: "The Owl is a supervisor for AI. Before AI can do anything, it has to ask first. The Owl checks if it\u2019s safe, logs the request, and waits for human approval.\n\n9 safety checks, 35 regression tests. Audited by Cyber Agent \u2014 scores vary by judge mode (baseline vs. strict).",
                 nav: NAV_MAP.owl,
             },
             cyber: {
@@ -1161,8 +1161,28 @@
                 nav: null,
             },
             castle: {
-                text: "Castle Level is Cyber Agent\u2019s defense rating, scored 0 to 5:\n\nLevel 0 \u2014 No defenses.\nLevel 1 \u2014 Basic filtering.\nLevel 2 \u2014 Pattern-based guards.\nLevel 3 \u2014 Context-aware defenses.\nLevel 4 \u2014 Multi-layer defense.\nLevel 5 \u2014 Comprehensive resilience.",
+                text: "Castle Level is Cyber Agent\u2019s defense rating, scored 0 to 5:\n\nLevel 0 \u2014 No defenses.\nLevel 1 \u2014 Basic filtering.\nLevel 2 \u2014 Pattern-based guards.\nLevel 3 \u2014 Context-aware defenses.\nLevel 4 \u2014 Multi-layer defense.\nLevel 5 \u2014 Comprehensive resilience.\n\nScores vary by judge mode, suite scope, and target configuration. The same system can score differently under baseline vs. strict evaluation.",
                 nav: null,
+            },
+            toolabuse: {
+                text: "Tool abuse is when someone tries to get an AI to misuse its own capabilities \u2014 for example, tricking it into reading files it shouldn\u2019t, calling APIs it shouldn\u2019t, or running commands outside its scope. Cyber Agent tests for this to make sure the AI only uses tools as intended.",
+                nav: NAV_MAP.cyber,
+            },
+            redbrain: {
+                text: "Red Brain is the attacker side of Cyber Agent. It thinks like someone trying to break in \u2014 finding weaknesses, crafting test scenarios, and probing defenses. It works alongside Blue Brain, which recommends fixes for what Red Brain finds.",
+                nav: NAV_MAP.cyber,
+            },
+            bluebrain: {
+                text: "Blue Brain is the defender side of Cyber Agent. After Red Brain finds a weakness, Blue Brain recommends how to fix it \u2014 what defenses to add, what rules to tighten, what to monitor. Together they give a complete picture.",
+                nav: NAV_MAP.cyber,
+            },
+            judge: {
+                text: "The Judge is Cyber Agent\u2019s scoring engine. After each test runs, the Judge looks at the response and decides: did the attack work, or did the defense hold? It makes the pass/fail call for every test.",
+                nav: NAV_MAP.cyber,
+            },
+            suites: {
+                text: "Cyber Agent organizes its 130 tests into 12 suites, each targeting a different attack type: prompt injection, auth bypass, encoding tricks, RAG poisoning, tool abuse, data exfiltration, multi-turn social engineering, and more. Each suite runs independently and contributes to the overall Castle Level score.",
+                nav: NAV_MAP.cyber,
             },
             hold: {
                 text: "SAFE holds most of the time. It only signals action when everything lines up. Most systems try to trade constantly \u2014 SAFE does the opposite.",
@@ -1211,6 +1231,11 @@
             }
             if (/guard|checkpoint|safety check/i.test(l)) return "guards";
             if (/castle|defense.*level|level.*[0-5]/i.test(l)) return "castle";
+            if (/tool.?abuse/i.test(l)) return "toolabuse";
+            if (/red.?brain/i.test(l)) return "redbrain";
+            if (/blue.?brain/i.test(l)) return "bluebrain";
+            if (/\bjudge\b/i.test(l)) return "judge";
+            if (/\bsuites?\b.*test|test.*\bsuites?\b|12.*categor|categor.*12/i.test(l)) return "suites";
             if (/hold|restraint|patience|wait/i.test(l)) return "hold";
             if (/proposal|request|approval/i.test(l)) return "proposal";
             if (/observer|risk.*assess|market|predict|trading/i.test(l)) return "safe";
