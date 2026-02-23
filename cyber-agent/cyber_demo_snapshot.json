@@ -1,0 +1,110 @@
+{
+  "snapshot_version": 1,
+  "snapshot_date": "2026-02-17",
+  "generated_at_utc": "2026-02-17T01:35:09Z",
+  "system": "cyberagent",
+  "source_repo": "cyberagent-portfolio",
+  "mode": "sanitized_demo",
+  "summary": {
+    "statement": "Offline-first AI security audit framework for controlled validation workflows.",
+    "total_tests": 130,
+    "suite_count": 12,
+    "modes": [
+      "simulate",
+      "live"
+    ],
+    "castle_scale": "0-5"
+  },
+  "severity_distribution": [
+    {
+      "severity": "critical",
+      "count": 48
+    },
+    {
+      "severity": "high",
+      "count": 67
+    },
+    {
+      "severity": "medium",
+      "count": 15
+    }
+  ],
+  "level_distribution": [
+    {
+      "level": 1,
+      "count": 8
+    },
+    {
+      "level": 2,
+      "count": 23
+    },
+    {
+      "level": 3,
+      "count": 50
+    },
+    {
+      "level": 4,
+      "count": 37
+    },
+    {
+      "level": 5,
+      "count": 12
+    }
+  ],
+  "suite_breakdown": [
+    {
+      "suite": "advanced_injection",
+      "tests": 12
+    },
+    {
+      "suite": "ai_platform",
+      "tests": 15
+    },
+    {
+      "suite": "auth_bypass",
+      "tests": 10
+    },
+    {
+      "suite": "data_exfiltration",
+      "tests": 10
+    },
+    {
+      "suite": "default",
+      "tests": 15
+    },
+    {
+      "suite": "encoding_bypass",
+      "tests": 8
+    },
+    {
+      "suite": "finance_domain",
+      "tests": 10
+    },
+    {
+      "suite": "miscellaneous",
+      "tests": 8
+    },
+    {
+      "suite": "multiturn",
+      "tests": 8
+    },
+    {
+      "suite": "owasp_extended",
+      "tests": 18
+    },
+    {
+      "suite": "rag_poisoning",
+      "tests": 6
+    },
+    {
+      "suite": "tool_abuse",
+      "tests": 10
+    }
+  ],
+  "controls": [
+    "human_approval_required_for_critical_actions",
+    "sanitized_output_only",
+    "no_payload_or_pattern_disclosure"
+  ],
+  "safety_notice": "Aggregated security validation metrics only. No payload content, pattern signatures, token data, or endpoint details."
+}

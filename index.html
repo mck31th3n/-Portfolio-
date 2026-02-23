@@ -3,8 +3,1294 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Myel Shaddah Key - Portfolio</title>
-    <script>window.location.href = 'safe/index.html';</script>
+    <title>Michael McKeithen — AI Systems Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,500;9..144,700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep:    #08090E;
+            --bg-surface: #0E1017;
+            --bg-card:    #13151D;
+            --bg-raised:  #191C26;
+            --ink-0:      #E8ECF2;
+            --ink-1:      #A0AAB8;
+            --ink-2:      #6B7585;
+            --ink-3:      #464E5C;
+            --line:       rgba(120, 135, 155, 0.14);
+            --line-light: rgba(120, 135, 155, 0.08);
+
+            /* Project accent colors */
+            --safe-gold:    #d4af37;
+            --safe-gold-m:  rgba(212, 175, 55, 0.15);
+            --safe-teal:    #14b8a6;
+            --owl-cyan:     #5be9ff;
+            --owl-cyan-m:   rgba(91, 233, 255, 0.12);
+            --owl-aurora:   #7bffbe;
+            --cyber-green:  #3FB950;
+            --cyber-green-m:rgba(63, 185, 80, 0.12);
+            --cyber-amber:  #D29922;
+            --cyber-red:    #F85149;
+
+            /* Zelle (dark glass + burgundy) */
+            --zelle-bg:       #0E0C10;
+            --zelle-surface:  rgba(14, 12, 16, 0.88);
+            --zelle-accent:   #8B2D3A;
+            --zelle-accent-m: rgba(139, 45, 58, 0.3);
+            --zelle-text:     #E8D8D0;
+            --zelle-muted:    #9C8E88;
+            --zelle-dim:      #6B5D58;
+            --zelle-line:     rgba(139, 45, 58, 0.18);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--ink-0);
+            background: var(--bg-deep);
+            overflow-x: hidden;
+        }
+
+        /* ── Ambient Background ── */
+
+        .ambient {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .ambient::before {
+            content: "";
+            position: absolute;
+            top: -20%;
+            left: 30%;
+            width: 60%;
+            height: 50%;
+            background: radial-gradient(ellipse at center,
+                rgba(91, 233, 255, 0.04) 0%,
+                rgba(212, 175, 55, 0.03) 40%,
+                transparent 70%);
+            filter: blur(80px);
+            animation: ambientDrift 20s ease-in-out infinite;
+        }
+
+        .ambient::after {
+            content: "";
+            position: absolute;
+            bottom: -10%;
+            right: 20%;
+            width: 50%;
+            height: 40%;
+            background: radial-gradient(ellipse at center,
+                rgba(63, 185, 80, 0.03) 0%,
+                rgba(139, 45, 58, 0.02) 50%,
+                transparent 70%);
+            filter: blur(80px);
+            animation: ambientDrift 25s ease-in-out infinite reverse;
+        }
+
+        @keyframes ambientDrift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(3%, -2%) scale(1.05); }
+            66% { transform: translate(-2%, 3%) scale(0.95); }
+        }
+
+        /* ── Layout ── */
+
+        .page {
+            position: relative;
+            z-index: 1;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem 2rem;
+        }
+
+        /* ── Hero ── */
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0 3.5rem;
+        }
+
+        .hero-name {
+            font-family: "Sora", sans-serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+            color: var(--ink-0);
+            margin-bottom: 0.6rem;
+        }
+
+        .hero-title {
+            font-family: "JetBrains Mono", monospace;
+            font-size: clamp(0.72rem, 1.4vw, 0.88rem);
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--ink-2);
+            margin-bottom: 1.8rem;
+        }
+
+        .hero-intro {
+            max-width: 58ch;
+            margin: 0 auto;
+            font-size: 1.05rem;
+            line-height: 1.75;
+            color: var(--ink-1);
+        }
+
+        /* ── Divider ── */
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--line), transparent);
+            margin: 0 auto 3rem;
+            max-width: 400px;
+        }
+
+        /* ── 3D Carousel ── */
+
+        .carousel-scene {
+            perspective: 1200px;
+            height: 480px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 3.5rem;
+            cursor: grab;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .carousel-scene:active { cursor: grabbing; }
+
+        .carousel-ring {
+            width: 280px;
+            height: 420px;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .carousel-ring.snapping {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .carousel-card {
+            position: absolute;
+            width: 280px;
+            height: 400px;
+            top: 10px;
+            left: 0;
+            border-radius: 20px;
+            padding: 1.5rem 1.3rem 1.2rem;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            overflow: hidden;
+            color: inherit;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .carousel-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            border-radius: 20px 20px 0 0;
+        }
+
+        /* SAFE card */
+        .card-safe {
+            background: rgba(212, 175, 55, 0.05);
+            border: 1.5px solid rgba(212, 175, 55, 0.2);
+        }
+        .card-safe::before { background: linear-gradient(90deg, var(--safe-gold), var(--safe-teal)); }
+        .card-safe.expanded { border-color: rgba(212, 175, 55, 0.5); box-shadow: 0 0 50px rgba(212, 175, 55, 0.12), 0 16px 48px rgba(0, 0, 0, 0.35); }
+        .card-safe .card-tag { color: var(--safe-gold); border-color: rgba(212, 175, 55, 0.25); background: rgba(212, 175, 55, 0.06); }
+        .card-safe .card-stat-value { color: var(--safe-gold); }
+        .card-safe .card-nav-hint { color: var(--safe-gold); }
+
+        /* Owl card */
+        .card-owl {
+            background: rgba(91, 233, 255, 0.05);
+            border: 1.5px solid rgba(91, 233, 255, 0.2);
+        }
+        .card-owl::before { background: linear-gradient(90deg, var(--owl-cyan), var(--owl-aurora)); }
+        .card-owl.expanded { border-color: rgba(91, 233, 255, 0.5); box-shadow: 0 0 50px rgba(91, 233, 255, 0.12), 0 16px 48px rgba(0, 0, 0, 0.35); }
+        .card-owl .card-tag { color: var(--owl-cyan); border-color: rgba(91, 233, 255, 0.25); background: rgba(91, 233, 255, 0.06); }
+        .card-owl .card-stat-value { color: var(--owl-cyan); }
+        .card-owl .card-nav-hint { color: var(--owl-cyan); }
+
+        /* Cyber card */
+        .card-cyber {
+            background: rgba(63, 185, 80, 0.05);
+            border: 1.5px solid rgba(63, 185, 80, 0.2);
+        }
+        .card-cyber::before { background: linear-gradient(90deg, var(--cyber-green), var(--cyber-amber)); }
+        .card-cyber.expanded { border-color: rgba(63, 185, 80, 0.5); box-shadow: 0 0 50px rgba(63, 185, 80, 0.12), 0 16px 48px rgba(0, 0, 0, 0.35); }
+        .card-cyber .card-tag { color: var(--cyber-green); border-color: rgba(63, 185, 80, 0.25); background: rgba(63, 185, 80, 0.06); }
+        .card-cyber .card-stat-value { color: var(--cyber-green); }
+        .card-cyber .card-nav-hint { color: var(--cyber-green); }
+
+        .card-tag {
+            display: inline-block;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.62rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border: 1px solid;
+            border-radius: 999px;
+            padding: 0.18rem 0.55rem;
+            margin-bottom: 0.8rem;
+            width: fit-content;
+        }
+
+        .card-name {
+            font-family: "Sora", sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--ink-0);
+            margin-bottom: 0.4rem;
+            letter-spacing: -0.01em;
+        }
+
+        .card-desc {
+            font-size: 0.8rem;
+            line-height: 1.6;
+            color: var(--ink-1);
+            margin-bottom: 0.8rem;
+        }
+
+        .card-stats {
+            display: flex;
+            gap: 0.8rem;
+            padding-top: 0.7rem;
+            border-top: 1px solid var(--line-light);
+        }
+
+        .card-stat {
+            display: flex;
+            flex-direction: column;
+            gap: 0.12rem;
+        }
+
+        .card-stat-value {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.82rem;
+            font-weight: 500;
+        }
+
+        .card-stat-label {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.55rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--ink-2);
+        }
+
+        /* Preview (hidden by default, slides in on expand) */
+        .card-preview {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.4s ease, opacity 0.3s ease 0.1s;
+        }
+
+        .expanded .card-preview {
+            max-height: 80px;
+            opacity: 1;
+        }
+
+        .card-preview-text {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.66rem;
+            line-height: 1.5;
+            color: var(--ink-1);
+            padding-top: 0.6rem;
+            border-top: 1px solid var(--line-light);
+            text-align: center;
+        }
+
+        .card-nav-hint {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.56rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-align: center;
+            margin-top: 0.3rem;
+            opacity: 0;
+            transition: opacity 0.3s ease 0.2s;
+        }
+
+        .expanded .card-nav-hint {
+            opacity: 1;
+        }
+
+        .carousel-hint {
+            text-align: center;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.6rem;
+            letter-spacing: 0.08em;
+            color: var(--ink-2);
+            opacity: 0.5;
+            margin-top: -2rem;
+            margin-bottom: 3.5rem;
+            transition: opacity 0.5s ease;
+        }
+
+        /* ── Footer ── */
+
+        .footer {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--line-light);
+        }
+
+        .footer-note {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.64rem;
+            color: var(--ink-3);
+            line-height: 1.6;
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+        }
+
+        .footer-links a {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.72rem;
+            color: var(--ink-2);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--ink-0);
+        }
+
+        /* ── Zelle Floating Widget ── */
+
+        .zelle-fab {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            z-index: 100;
+        }
+
+        .zelle-trigger {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.65rem 1rem;
+            border-radius: 999px;
+            border: 1.5px solid rgba(139, 45, 58, 0.35);
+            background: linear-gradient(135deg, #1A1412 0%, #12100E 100%);
+            color: #E8D8D0;
+            font-family: "Sora", sans-serif;
+            font-size: 0.82rem;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(139, 45, 58, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .zelle-trigger:hover {
+            border-color: rgba(139, 45, 58, 0.5);
+            box-shadow: 0 6px 32px rgba(0, 0, 0, 0.5), 0 0 20px rgba(139, 45, 58, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .zelle-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--zelle-accent);
+            box-shadow: 0 0 8px var(--zelle-accent-m);
+            animation: dotPulse 3s ease-in-out infinite;
+        }
+
+        /* Zelle Chat Overlay */
+
+        .zelle-overlay {
+            position: fixed;
+            bottom: 5rem;
+            right: 1.5rem;
+            width: min(420px, calc(100vw - 2rem));
+            z-index: 101;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(12px) scale(0.97);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .zelle-overlay.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .zelle-shell {
+            border-radius: 20px;
+            border: 1.5px solid rgba(139, 45, 58, 0.25);
+            background: var(--zelle-surface);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(139, 45, 58, 0.08);
+            overflow: hidden;
+        }
+
+        .zelle-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.55rem 0.8rem;
+            border-bottom: 1px solid var(--zelle-line);
+            background: rgba(18, 14, 20, 0.9);
+        }
+
+        .zelle-bar-left {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .zelle-bar-title {
+            font-family: "Sora", sans-serif;
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: var(--zelle-text);
+        }
+
+        .zelle-bar-status {
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 0.58rem;
+            color: var(--zelle-muted);
+            letter-spacing: 0.06em;
+        }
+
+        .zelle-close {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.2rem;
+            color: var(--zelle-muted);
+            font-size: 1.1rem;
+            line-height: 1;
+            transition: color 0.2s ease;
+        }
+
+        .zelle-close:hover { color: var(--zelle-text); }
+
+        .zelle-messages {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            height: 320px;
+            overflow-y: auto;
+            padding: 0.7rem;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(139, 45, 58, 0.2) transparent;
+        }
+
+        .z-msg {
+            max-width: 85%;
+            padding: 0.45rem 0.65rem;
+            border-radius: 14px;
+            font-family: "Sora", sans-serif;
+            font-size: 0.8rem;
+            line-height: 1.65;
+            opacity: 0;
+            transform: translateY(6px);
+            animation: msgIn 0.35s ease forwards;
+        }
+
+        .z-msg-zelle {
+            align-self: flex-start;
+            background: rgba(139, 45, 58, 0.06);
+            border: 1px solid rgba(139, 45, 58, 0.18);
+            color: var(--zelle-text);
+            border-bottom-left-radius: 4px;
+        }
+
+        .z-msg-user {
+            align-self: flex-end;
+            background: rgba(232, 216, 208, 0.06);
+            border: 1px solid rgba(232, 216, 208, 0.12);
+            color: var(--zelle-text);
+            border-bottom-right-radius: 4px;
+        }
+
+        .z-msg-role {
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 0.54rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--zelle-muted);
+            margin-bottom: 0.12rem;
+        }
+
+        .z-msg-text {
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .z-msg-nav {
+            display: inline-block;
+            margin-top: 0.35rem;
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 0.66rem;
+            color: #E8D8D0;
+            border: 1px solid rgba(139, 45, 58, 0.3);
+            background: rgba(139, 45, 58, 0.1);
+            border-radius: 999px;
+            padding: 0.18rem 0.45rem;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .z-msg-nav:hover {
+            background: rgba(139, 45, 58, 0.2);
+            border-color: var(--zelle-accent);
+        }
+
+        .z-typing {
+            display: inline-flex;
+            gap: 4px;
+            padding: 0.45rem 0.65rem;
+            align-self: flex-start;
+        }
+
+        .z-typing span {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--zelle-muted);
+            animation: typingDot 1.2s ease-in-out infinite;
+        }
+
+        .z-typing span:nth-child(2) { animation-delay: 0.15s; }
+        .z-typing span:nth-child(3) { animation-delay: 0.3s; }
+
+        .zelle-input-row {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.55rem 0.7rem;
+            border-top: 1px solid var(--zelle-line);
+            background: rgba(12, 10, 14, 0.8);
+        }
+
+        .zelle-input {
+            flex: 1;
+            background: transparent;
+            border: 1px solid var(--zelle-line);
+            border-radius: 999px;
+            padding: 0.45rem 0.7rem;
+            font-family: "Sora", sans-serif;
+            font-size: 0.78rem;
+            color: var(--zelle-text);
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .zelle-input::placeholder { color: var(--zelle-dim); }
+        .zelle-input:focus { border-color: var(--zelle-accent-m); }
+
+        .zelle-send {
+            background: var(--zelle-accent);
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: opacity 0.2s ease, transform 0.15s ease;
+            flex-shrink: 0;
+        }
+
+        .zelle-send:hover { opacity: 0.85; transform: scale(1.05); }
+        .zelle-send:active { transform: scale(0.95); }
+        .zelle-send:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
+        .zelle-send svg { width: 14px; height: 14px; fill: #fff; }
+
+        /* Backdrop for mobile */
+        .zelle-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 100;
+        }
+
+        .zelle-backdrop.open { display: block; }
+
+        /* ── Keyframes ── */
+
+        @keyframes dotPulse {
+            0%, 100% { opacity: 0.6; box-shadow: 0 0 6px var(--zelle-accent-m); }
+            50% { opacity: 1; box-shadow: 0 0 12px var(--zelle-accent-m); }
+        }
+
+        @keyframes msgIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes typingDot {
+            0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+            30% { opacity: 1; transform: translateY(-3px); }
+        }
+
+        /* ── Mobile ── */
+
+        @media (max-width: 900px) {
+            .hero { padding: 2.5rem 0 2.5rem; }
+            .hero-name { font-size: clamp(1.8rem, 6vw, 2.6rem); }
+        }
+
+        @media (max-width: 640px) {
+            .carousel-scene { height: 440px; }
+            .carousel-ring { width: 260px; height: 400px; }
+            .carousel-card { width: 260px; height: 380px; padding: 1.2rem 1.1rem 1rem; }
+            .card-name { font-size: 1.15rem; }
+            .card-desc { font-size: 0.76rem; }
+        }
+
+        @media (max-width: 480px) {
+            .page { padding: 2rem 1rem 1.5rem; }
+
+            .zelle-overlay {
+                bottom: 0;
+                right: 0;
+                left: 0;
+                width: 100%;
+                border-radius: 0;
+            }
+
+            .zelle-shell {
+                border-radius: 16px 16px 0 0;
+            }
+
+            .zelle-fab { bottom: 1rem; right: 1rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0s !important;
+                animation-delay: 0s !important;
+            }
+            .ambient { display: none; }
+
+            /* Static fallback for carousel */
+            .carousel-scene {
+                perspective: none;
+                height: auto;
+                cursor: default;
+            }
+            .carousel-ring {
+                transform-style: flat;
+                transform: none !important;
+                width: 100%;
+                height: auto;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.2rem;
+            }
+            .carousel-card {
+                position: relative;
+                width: auto;
+                height: auto;
+                transform: none !important;
+                top: auto;
+            }
+            .carousel-hint { display: none; }
+            .card-preview { max-height: none; opacity: 1; }
+        }
+
+        @media (prefers-reduced-motion: reduce) and (max-width: 900px) {
+            .carousel-ring { grid-template-columns: 1fr; gap: 1rem; }
+        }
+    </style>
 </head>
-<body></body>
+<body>
+    <div class="ambient" aria-hidden="true"></div>
+
+    <div class="page">
+        <!-- Hero -->
+        <section class="hero">
+            <h1 class="hero-name">Michael McKeithen Jr.</h1>
+            <p class="hero-title">AI Systems Engineer</p>
+            <p class="hero-intro">I build AI systems that govern themselves &mdash; from trading signal analysis to file-level governance kernels to adversarial security testing. Every project here runs real logic, not mockups.</p>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Project Carousel -->
+        <section class="carousel-scene" id="carousel-scene">
+            <div class="carousel-ring" id="carousel-ring">
+                <div class="carousel-card card-safe" data-href="safe/index.html" data-index="0">
+                    <span class="card-tag">Trading AI Observer</span>
+                    <h2 class="card-name">SAFE</h2>
+                    <p class="card-desc">Autonomous risk assessment across crypto, equities, and commodities. Watches markets, evaluates conditions, and logs every decision.</p>
+                    <div class="card-stats">
+                        <div class="card-stat">
+                            <span class="card-stat-value">1,847</span>
+                            <span class="card-stat-label">Assessments</span>
+                        </div>
+                        <div class="card-stat">
+                            <span class="card-stat-value">84.7%</span>
+                            <span class="card-stat-label">Resolution</span>
+                        </div>
+                        <div class="card-stat">
+                            <span class="card-stat-value">6</span>
+                            <span class="card-stat-label">Markets</span>
+                        </div>
+                    </div>
+                    <div class="card-preview">
+                        <p class="card-preview-text">Observer-only trading AI. Watches 6 markets, logs every decision.</p>
+                        <p class="card-nav-hint">tap to enter &rarr;</p>
+                    </div>
+                </div>
+
+                <div class="carousel-card card-owl" data-href="nest/index.html" data-index="1">
+                    <span class="card-tag">AI Action Governance</span>
+                    <h2 class="card-name">The Owl</h2>
+                    <p class="card-desc">Proposal-first action control for AI systems. Every change is validated by 9 guards, checked against 4 protocols, and requires human approval.</p>
+                    <div class="card-stats">
+                        <div class="card-stat">
+                            <span class="card-stat-value">9</span>
+                            <span class="card-stat-label">Guards</span>
+                        </div>
+                        <div class="card-stat">
+                            <span class="card-stat-value">35</span>
+                            <span class="card-stat-label">Tests</span>
+                        </div>
+                        <div class="card-stat">
+                            <span class="card-stat-value">L5</span>
+                            <span class="card-stat-label">Castle</span>
+                        </div>
+                    </div>
+                    <div class="card-preview">
+                        <p class="card-preview-text">9 guards validate every AI action before human approval.</p>
+                        <p class="card-nav-hint">tap to enter &rarr;</p>
+                    </div>
+                </div>
+
+                <div class="carousel-card card-cyber" data-href="cyber-agent/index.html" data-index="2">
+                    <span class="card-tag">AI Security Audit</span>
+                    <h2 class="card-name">Cyber Agent</h2>
+                    <p class="card-desc">End-to-end security validation for AI systems. 130 tests across 12 categories, red/blue brain architecture, and castle-level defense scoring.</p>
+                    <div class="card-stats">
+                        <div class="card-stat">
+                            <span class="card-stat-value">130</span>
+                            <span class="card-stat-label">Tests</span>
+                        </div>
+                        <div class="card-stat">
+                            <span class="card-stat-value">12</span>
+                            <span class="card-stat-label">Suites</span>
+                        </div>
+                        <div class="card-stat">
+                            <span class="card-stat-value">L0-L5</span>
+                            <span class="card-stat-label">Scale</span>
+                        </div>
+                    </div>
+                    <div class="card-preview">
+                        <p class="card-preview-text">Red/blue brain architecture. 130 tests across 12 suites.</p>
+                        <p class="card-nav-hint">tap to enter &rarr;</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <p class="carousel-hint" id="carousel-hint">swipe or drag to explore</p>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p class="footer-note">Demos include real validation data and sample outputs. Internals redacted. No financial advice.</p>
+            <div class="footer-links">
+                <a href="https://github.com/mck31th3n" target="_blank" rel="noopener">GitHub</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Zelle Floating Widget -->
+    <div class="zelle-fab">
+        <button class="zelle-trigger" id="zelle-trigger" aria-label="Open Zelle assistant">
+            <span class="zelle-dot"></span>
+            Ask Zelle
+        </button>
+    </div>
+
+    <div class="zelle-backdrop" id="zelle-backdrop"></div>
+
+    <div class="zelle-overlay" id="zelle-overlay">
+        <div class="zelle-shell">
+            <div class="zelle-bar">
+                <div class="zelle-bar-left">
+                    <span class="zelle-dot"></span>
+                    <span class="zelle-bar-title">Zelle</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:0.6rem;">
+                    <span class="zelle-bar-status" id="zelle-status">online</span>
+                    <button class="zelle-close" id="zelle-close" aria-label="Close Zelle">&times;</button>
+                </div>
+            </div>
+            <div class="zelle-messages" id="zelle-messages"></div>
+            <div class="zelle-input-row">
+                <input
+                    type="text"
+                    class="zelle-input"
+                    id="zelle-input"
+                    placeholder="Ask about SAFE, The Owl, or Cyber Agent..."
+                    maxlength="300"
+                    autocomplete="off"
+                    spellcheck="false"
+                />
+                <button class="zelle-send" id="zelle-send" aria-label="Send message">
+                    <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ── 3D Carousel Engine ──
+
+        (function() {
+            const scene = document.getElementById("carousel-scene");
+            const ring = document.getElementById("carousel-ring");
+            const cards = ring.querySelectorAll(".carousel-card");
+            const hint = document.getElementById("carousel-hint");
+            const RADIUS = window.innerWidth <= 640 ? 220 : 300;
+            const CARD_COUNT = 3;
+            const ANGLE_STEP = 360 / CARD_COUNT; // 120°
+
+            // Reduced motion — skip all carousel JS
+            if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+                cards.forEach(card => {
+                    card.addEventListener("click", () => {
+                        window.location = card.dataset.href;
+                    });
+                });
+                return;
+            }
+
+            let currentAngle = 0;
+            let targetAngle = 0;
+            let velocity = 0;
+            let autoSpeed = 0.15; // deg per frame
+            let locked = false;
+            let lockedIndex = -1;
+            let dragging = false;
+            let dragStartX = 0;
+            let dragStartAngle = 0;
+            let dragDelta = 0;
+            let lastDragX = 0;
+            let animId = null;
+
+            // Position cards in 3D space
+            function positionCards() {
+                cards.forEach((card, i) => {
+                    card.style.transform =
+                        `rotateY(${i * ANGLE_STEP}deg) translateZ(${RADIUS}px)`;
+                });
+            }
+
+            function applyRotation() {
+                ring.style.transform = `rotateY(${currentAngle}deg)`;
+            }
+
+            // Main animation loop
+            function animate() {
+                if (!dragging) {
+                    if (locked) {
+                        // Ease toward target when locked
+                        const diff = targetAngle - currentAngle;
+                        currentAngle += diff * 0.12;
+                        if (Math.abs(diff) < 0.05) currentAngle = targetAngle;
+                    } else {
+                        // Apply momentum decay then auto-rotate
+                        if (Math.abs(velocity) > 0.05) {
+                            currentAngle += velocity;
+                            velocity *= 0.96;
+                        } else {
+                            velocity = 0;
+                            currentAngle += autoSpeed;
+                        }
+                    }
+                }
+
+                applyRotation();
+                animId = requestAnimationFrame(animate);
+            }
+
+            // Snap to bring a specific card to front
+            function snapToCard(index) {
+                const cardFrontAngle = -(index * ANGLE_STEP);
+                // Find nearest equivalent to currentAngle
+                const diff = ((cardFrontAngle - currentAngle) % 360 + 540) % 360 - 180;
+                targetAngle = currentAngle + diff;
+                locked = true;
+                lockedIndex = index;
+                velocity = 0;
+
+                // Expand the card
+                cards.forEach(c => c.classList.remove("expanded"));
+                cards[index].classList.add("expanded");
+
+                // Hide hint
+                if (hint) hint.style.opacity = "0";
+            }
+
+            function unlock() {
+                locked = false;
+                lockedIndex = -1;
+                cards.forEach(c => c.classList.remove("expanded"));
+            }
+
+            // Click handling
+            function handleCardClick(card, index) {
+                if (Math.abs(dragDelta) > 8) return; // Was a drag, not a click
+
+                if (locked && lockedIndex === index) {
+                    // Second click on locked card — navigate
+                    window.location = card.dataset.href;
+                } else {
+                    // First click — lock and expand
+                    snapToCard(index);
+                }
+            }
+
+            cards.forEach((card, i) => {
+                card.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    handleCardClick(card, i);
+                });
+            });
+
+            // Click outside cards unlocks
+            scene.addEventListener("click", (e) => {
+                if (locked && !e.target.closest(".carousel-card")) {
+                    unlock();
+                }
+            });
+
+            // Drag / Swipe (mouse)
+            scene.addEventListener("mousedown", (e) => {
+                if (locked) return;
+                dragging = true;
+                dragStartX = e.clientX;
+                dragStartAngle = currentAngle;
+                dragDelta = 0;
+                lastDragX = e.clientX;
+                velocity = 0;
+            });
+
+            window.addEventListener("mousemove", (e) => {
+                if (!dragging) return;
+                const dx = e.clientX - dragStartX;
+                dragDelta = dx;
+                const dragVel = e.clientX - lastDragX;
+                lastDragX = e.clientX;
+                velocity = dragVel * 0.3;
+                currentAngle = dragStartAngle + dx * 0.4;
+                applyRotation();
+            });
+
+            window.addEventListener("mouseup", () => {
+                if (!dragging) return;
+                dragging = false;
+            });
+
+            // Drag / Swipe (touch)
+            scene.addEventListener("touchstart", (e) => {
+                if (locked) return;
+                const touch = e.touches[0];
+                dragging = true;
+                dragStartX = touch.clientX;
+                dragStartAngle = currentAngle;
+                dragDelta = 0;
+                lastDragX = touch.clientX;
+                velocity = 0;
+            }, { passive: true });
+
+            scene.addEventListener("touchmove", (e) => {
+                if (!dragging) return;
+                const touch = e.touches[0];
+                const dx = touch.clientX - dragStartX;
+                dragDelta = dx;
+                const dragVel = touch.clientX - lastDragX;
+                lastDragX = touch.clientX;
+                velocity = dragVel * 0.3;
+                currentAngle = dragStartAngle + dx * 0.4;
+                applyRotation();
+            }, { passive: true });
+
+            scene.addEventListener("touchend", () => {
+                if (!dragging) return;
+                dragging = false;
+            });
+
+            // Initialize
+            positionCards();
+            applyRotation();
+            animate();
+
+            // Fade hint after 6 seconds
+            setTimeout(() => {
+                if (hint && !locked) hint.style.opacity = "0";
+            }, 6000);
+        })();
+    </script>
+
+    <script>
+        // ── Zelle Chat Widget ──
+
+        const API_ENDPOINT = "/api/zelle";
+        const messagesEl = document.getElementById("zelle-messages");
+        const inputEl = document.getElementById("zelle-input");
+        const sendBtn = document.getElementById("zelle-send");
+        const statusText = document.getElementById("zelle-status");
+        const triggerBtn = document.getElementById("zelle-trigger");
+        const overlay = document.getElementById("zelle-overlay");
+        const backdrop = document.getElementById("zelle-backdrop");
+        const closeBtn = document.getElementById("zelle-close");
+
+        let sending = false;
+        let useApi = true;
+        let zelleOpen = false;
+        let greeted = false;
+
+        // Toggle
+        function toggleZelle() {
+            zelleOpen = !zelleOpen;
+            overlay.classList.toggle("open", zelleOpen);
+            backdrop.classList.toggle("open", zelleOpen);
+            triggerBtn.style.display = zelleOpen ? "none" : "flex";
+            if (zelleOpen) {
+                if (!greeted) {
+                    greeted = true;
+                    setTimeout(() => {
+                        addMsg("zelle", "I\u2019m Zelle, a guide to this portfolio. I can explain what\u2019s here or point you to the right page.\n\nTry asking about SAFE, The Owl, or Cyber Agent.");
+                    }, 300);
+                }
+                setTimeout(() => inputEl.focus(), 350);
+            }
+        }
+
+        triggerBtn.addEventListener("click", toggleZelle);
+        closeBtn.addEventListener("click", toggleZelle);
+        backdrop.addEventListener("click", toggleZelle);
+
+        // Messages
+        function addMsg(role, text, navLink) {
+            const msg = document.createElement("div");
+            msg.className = `z-msg z-msg-${role}`;
+
+            const roleEl = document.createElement("div");
+            roleEl.className = "z-msg-role";
+            roleEl.textContent = role === "zelle" ? "Zelle" : "You";
+            msg.appendChild(roleEl);
+
+            const textEl = document.createElement("div");
+            textEl.className = "z-msg-text";
+            textEl.textContent = text;
+            msg.appendChild(textEl);
+
+            if (navLink) {
+                const nav = document.createElement("a");
+                nav.className = "z-msg-nav";
+                nav.href = navLink.url;
+                nav.textContent = navLink.label;
+                msg.appendChild(nav);
+            }
+
+            messagesEl.appendChild(msg);
+            messagesEl.scrollTop = messagesEl.scrollHeight;
+        }
+
+        function showTyping() {
+            const el = document.createElement("div");
+            el.className = "z-typing";
+            el.id = "z-typing";
+            for (let i = 0; i < 3; i++) el.appendChild(document.createElement("span"));
+            messagesEl.appendChild(el);
+            messagesEl.scrollTop = messagesEl.scrollHeight;
+        }
+
+        function hideTyping() {
+            const el = document.getElementById("z-typing");
+            if (el) el.remove();
+        }
+
+        // Mock responses
+        const NAV_MAP = {
+            safe: { label: "Open SAFE Dashboard", url: "safe/index.html" },
+            owl: { label: "Open The Owl", url: "nest/index.html" },
+            "the owl": { label: "Open The Owl", url: "nest/index.html" },
+            cyber: { label: "Open Cyber Agent", url: "cyber-agent/index.html" },
+            "cyber agent": { label: "Open Cyber Agent", url: "cyber-agent/index.html" },
+        };
+
+        const MOCK = {
+            safe: {
+                text: "SAFE watches financial markets and tells you whether to act or wait. It doesn\u2019t trade \u2014 it assesses risk across crypto, stocks, and commodities. The dashboard shows real validation data alongside sample assessments.",
+                nav: NAV_MAP.safe,
+            },
+            owl: {
+                text: "The Owl is a supervisor for AI. Before AI can do anything, it has to ask first. The Owl checks if it\u2019s safe, logs the request, and waits for human approval.\n\n9 safety checks, 35 regression tests. Scored Castle Level 5.",
+                nav: NAV_MAP.owl,
+            },
+            cyber: {
+                text: "Cyber Agent tests whether AI systems can be tricked or bypassed. 130 tests, 12 categories, and a defense rating from 0 to 5. It has a Red Brain (attacker) and Blue Brain (defender).",
+                nav: NAV_MAP.cyber,
+            },
+            guards: {
+                text: "Guards are safety checkpoints inside The Owl. Before any action goes through, 9 guards inspect it from different angles \u2014 is the input safe? Is it within bounds? Is there a proper record?",
+                nav: null,
+            },
+            castle: {
+                text: "Castle Level is Cyber Agent\u2019s defense rating, scored 0 to 5:\n\nLevel 0 \u2014 No defenses.\nLevel 1 \u2014 Basic filtering.\nLevel 2 \u2014 Pattern-based guards.\nLevel 3 \u2014 Context-aware defenses.\nLevel 4 \u2014 Multi-layer defense.\nLevel 5 \u2014 Comprehensive resilience.",
+                nav: null,
+            },
+            hold: {
+                text: "SAFE holds most of the time. It only signals action when everything lines up. Most systems try to trade constantly \u2014 SAFE does the opposite.",
+                nav: null,
+            },
+            proposal: {
+                text: "A proposal is how AI requests permission. Instead of just acting, it submits a proposal, the guards check it, it gets logged, and a human approves or denies.",
+                nav: null,
+            },
+            michael: {
+                text: "Michael McKeithen \u2014 AI systems engineer in Charlotte, NC. Background in music composition. Builds SAFE, The Owl, and Cyber Agent.",
+                nav: null,
+            },
+            default: {
+                text: "I can explain what SAFE, The Owl, or Cyber Agent do, or point you to the right page. What are you interested in?",
+                nav: null,
+            },
+            refused: {
+                text: "That\u2019s outside what I can help with. I\u2019m a guide to this portfolio \u2014 want me to show you around?",
+                nav: null,
+            },
+        };
+
+        const BLOCKED = [
+            /system.?prompt/i, /ignore.*previous/i,
+            /pretend|roleplay|act\s+as|you\s+are\s+now/i,
+            /repeat.*everything|show.*config|dump/i,
+            /source.?code|git.*repo|file.*structure/i,
+            /worker.?code|worker.?file/i,
+            /api.?key|\btoken\b|credential|password/i,
+            /architecture|blueprint|how.*built/i,
+            /clone|replicate|copy.*system/i,
+            /blue.?journal/i, /\bconfig(uration)?\b/i,
+            /\.env\b|\.git\b|\.ssh\b/i,
+        ];
+
+        function classify(text) {
+            const l = text.toLowerCase().trim();
+            for (const p of BLOCKED) { if (p.test(l)) return "refused"; }
+            for (const [k] of Object.entries(NAV_MAP)) {
+                if (l.includes(k)) {
+                    if (k === "safe" || l.includes("safe")) return "safe";
+                    if (k.includes("owl")) return "owl";
+                    if (k.includes("cyber")) return "cyber";
+                }
+            }
+            if (/guard|checkpoint|safety check/i.test(l)) return "guards";
+            if (/castle|defense.*level|level.*[0-5]/i.test(l)) return "castle";
+            if (/hold|restraint|patience|wait/i.test(l)) return "hold";
+            if (/proposal|request|approval/i.test(l)) return "proposal";
+            if (/observer|risk.*assess|market|predict|trading/i.test(l)) return "safe";
+            if (/governance|supervisor|audit/i.test(l)) return "owl";
+            if (/security|test|attack|red.*brain|blue.*brain|suite/i.test(l)) return "cyber";
+            if (/michael|engineer|charlotte|who/i.test(l)) return "michael";
+            return "default";
+        }
+
+        function getMock(text) {
+            return MOCK[classify(text)] || MOCK.default;
+        }
+
+        // API call
+        async function callApi(text) {
+            if (!useApi) return null;
+            try {
+                const res = await fetch(API_ENDPOINT, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ message: text }),
+                });
+                if (res.status === 429) {
+                    return { reply: "Slow down a bit \u2014 I\u2019m here whenever you\u2019re ready.", nav: null, refused: true };
+                }
+                if (!res.ok) throw new Error("not ok");
+                statusText.textContent = "online";
+                return await res.json();
+            } catch {
+                useApi = false;
+                statusText.textContent = "demo";
+                return null;
+            }
+        }
+
+        // Send
+        async function sendMessage() {
+            const text = inputEl.value.trim();
+            if (!text || sending) return;
+
+            sending = true;
+            sendBtn.disabled = true;
+            inputEl.value = "";
+
+            addMsg("user", text);
+            showTyping();
+
+            let response = await callApi(text);
+
+            if (!response) {
+                await new Promise(r => setTimeout(r, 400 + Math.random() * 400));
+                const mock = getMock(text);
+                response = { reply: mock.text, nav: mock.nav, refused: false };
+            }
+
+            hideTyping();
+            addMsg("zelle", response.reply, response.nav);
+
+            setTimeout(() => {
+                sending = false;
+                sendBtn.disabled = false;
+                inputEl.focus();
+            }, 800);
+        }
+
+        sendBtn.addEventListener("click", sendMessage);
+        inputEl.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        // Probe API
+        fetch(API_ENDPOINT, { method: "OPTIONS" }).then(r => {
+            if (r.ok) { useApi = true; statusText.textContent = "online"; }
+        }).catch(() => {
+            useApi = false;
+            statusText.textContent = "demo";
+        });
+    </script>
+</body>
 </html>

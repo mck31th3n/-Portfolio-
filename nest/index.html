@@ -3,181 +3,980 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The OWL - In Development</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>The Owl - AI Action Governance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-0: #040608;
+            --bg-1: #07090e;
+            --ink-0: #e8ecf2;
+            --ink-1: #9ca8b8;
+            --ink-2: #6b7a8d;
+            --line: rgba(120, 135, 155, 0.18);
+            --aurora-a: #5be9ff;
+            --aurora-b: #7bffbe;
+            --aurora-c: #ffe28c;
+            --aurora-d: #ff94ce;
+            --aurora-e: #87b4ff;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html, body {
-            height: 100%;
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: "Inter", sans-serif;
+            color: var(--ink-0);
+            background: var(--bg-0);
+            padding: 2rem 1rem;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ── Aurora Shimmer Background ── */
+
+        .aurora-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
             overflow: hidden;
         }
 
-        body {
-            background: #000;
+        .aurora-layer {
+            position: absolute;
+            width: 140%;
+            height: 60%;
+            left: -20%;
+            filter: blur(100px);
+            opacity: 0;
+            animation: auroraWave var(--duration) ease-in-out infinite;
+            animation-delay: var(--delay);
+        }
+
+        .aurora-1 {
+            top: -15%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(91, 233, 255, 0.06) 0%, transparent 60%);
+            --duration: 18s;
+            --delay: 0s;
+        }
+
+        .aurora-2 {
+            top: -10%;
+            background: radial-gradient(ellipse at 60% 40%, rgba(123, 255, 190, 0.05) 0%, transparent 60%);
+            --duration: 22s;
+            --delay: -6s;
+        }
+
+        .aurora-3 {
+            top: -5%;
+            background: radial-gradient(ellipse at 45% 60%, rgba(135, 180, 255, 0.04) 0%, transparent 55%);
+            --duration: 25s;
+            --delay: -12s;
+        }
+
+        .aurora-4 {
+            top: 20%;
+            background: radial-gradient(ellipse at 70% 30%, rgba(255, 148, 206, 0.03) 0%, transparent 50%);
+            --duration: 20s;
+            --delay: -4s;
+        }
+
+        @keyframes auroraWave {
+            0% { opacity: 0.3; transform: translateX(-5%) scaleY(0.9); }
+            25% { opacity: 0.7; transform: translateX(3%) scaleY(1.1); }
+            50% { opacity: 0.5; transform: translateX(-2%) scaleY(1.0); }
+            75% { opacity: 0.8; transform: translateX(4%) scaleY(1.15); }
+            100% { opacity: 0.3; transform: translateX(-5%) scaleY(0.9); }
+        }
+
+        /* ── Watchful Eye Glow ── */
+
+        .eye-glow {
+            position: fixed;
+            top: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle at center,
+                rgba(91, 233, 255, 0.06) 0%,
+                rgba(91, 233, 255, 0.02) 30%,
+                transparent 60%);
+            z-index: 0;
+            pointer-events: none;
+            animation: eyeGlowPulse 6s ease-in-out infinite;
+        }
+
+        @keyframes eyeGlowPulse {
+            0%, 100% { opacity: 0.4; transform: translateX(-50%) scale(0.95); }
+            50% { opacity: 1; transform: translateX(-50%) scale(1.05); }
+        }
+
+        /* ── Data Rain ── */
+
+        .data-rain {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .rain-col {
+            position: absolute;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 2.4rem;
+            animation: rainFall var(--duration) linear infinite;
+            animation-delay: var(--delay);
+        }
+
+        .rain-word {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.58rem;
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+            color: var(--rain-color, rgba(120, 135, 155, 0.12));
+            opacity: 0;
+            animation: rainFade var(--duration) linear infinite;
+            animation-delay: var(--delay);
+        }
+
+        /* Q&A rain — slightly larger, darker tones */
+
+        .rain-qa-col {
+            position: absolute;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+            animation: rainFall var(--duration) linear infinite;
+            animation-delay: var(--delay);
+        }
+
+        .rain-qa {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.02em;
+            white-space: nowrap;
+            color: var(--rain-color, rgba(91, 140, 200, 0.08));
+            opacity: 0;
+            animation: rainFade var(--duration) linear infinite;
+            animation-delay: var(--delay);
+        }
+
+        .rain-qa-answer {
+            font-size: 0.58rem;
+            margin-top: 0.2rem;
+            opacity: 0;
+            animation: rainFade var(--duration) linear infinite;
+            animation-delay: var(--delay);
+        }
+
+        @keyframes rainFall {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100vh); }
+        }
+
+        @keyframes rainFade {
+            0% { opacity: 0; }
+            8% { opacity: 1; }
+            85% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        .page-header, .pill-shell, .links, .warning {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ── Header ── */
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 2.8rem;
+            max-width: 540px;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.68rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--ink-2);
+            margin-bottom: 1.2rem;
+            border: 1px solid rgba(91, 233, 255, 0.15);
+            border-radius: 999px;
+            padding: 0.2rem 0.7rem;
+            background: rgba(91, 233, 255, 0.04);
+        }
+
+        h1 {
+            font-family: "Cinzel", serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            line-height: 1.12;
+            color: var(--ink-0);
+            margin-bottom: 1rem;
+            letter-spacing: 0.06em;
+            text-shadow:
+                0 0 20px rgba(91, 233, 255, 0.3),
+                0 0 60px rgba(91, 233, 255, 0.1),
+                0 0 100px rgba(91, 233, 255, 0.04);
+            animation: titleBreathe 3.5s ease-in-out infinite;
+        }
+
+        .subtitle {
+            color: var(--ink-1);
+            font-size: 0.95rem;
+            line-height: 1.75;
+            max-width: 50ch;
+            margin: 0 auto;
+            letter-spacing: 0.01em;
+        }
+
+        /* ── Pill ── */
+
+        .pill-shell {
+            position: relative;
+            width: min(620px, 100%);
+            border-radius: 28px;
+            padding: 2px;
+            isolation: isolate;
+            margin-bottom: 1.6rem;
+        }
+
+        .pill-shell::before {
+            content: "";
+            position: absolute;
+            inset: -3px;
+            border-radius: 31px;
+            background: conic-gradient(
+                from 0deg,
+                var(--aurora-a),
+                var(--aurora-b),
+                var(--aurora-c),
+                var(--aurora-d),
+                var(--aurora-e),
+                var(--aurora-a)
+            );
+            filter: blur(8px);
+            opacity: 0.18;
+            z-index: 0;
+            animation: rimBreathe 5s ease-in-out infinite;
+        }
+
+        .pill-rim-svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            overflow: visible;
+        }
+
+        .pill-rim-rect {
+            width: calc(100% - 3px);
+            height: calc(100% - 3px);
+            animation: auroraStrokeBreathe 4s ease-in-out infinite;
+        }
+
+        .pill-inner {
+            position: relative;
+            z-index: 2;
+            border: 1px solid rgba(120, 135, 155, 0.22);
+            border-radius: 26px;
+            background: rgba(8, 10, 14, 0.97);
+            padding: 1rem 1.1rem;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        }
+
+        .pill-header {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-family: 'Quicksand', sans-serif;
-            padding: 1rem;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.7rem;
         }
 
-        .coming-soon-content {
-            text-align: center;
-            max-width: 600px;
-            padding: 60px;
-            background: linear-gradient(145deg, rgba(18, 18, 18, 0.95), rgba(0, 0, 0, 0.98));
-            border: 3px solid transparent;
-            background-image: linear-gradient(145deg, rgba(18, 18, 18, 0.95), rgba(0, 0, 0, 0.98)),
-                              linear-gradient(90deg, #9B59B6, #E67E22, #4A90E2, #95A5A6, #27AE60);
-            background-origin: border-box;
-            background-clip: padding-box, border-box;
+        .pill-heading {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.42rem;
+            font-family: "Cinzel", serif;
+            color: var(--ink-0);
+            font-size: 1rem;
+        }
+
+        .pill-eye {
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            background: radial-gradient(circle at 38% 38%, #fff, var(--aurora-a) 55%, #0a4a62 100%);
+            box-shadow: 0 0 8px rgba(91, 233, 255, 0.7);
+            animation: eyeWatch 2.6s ease-in-out infinite;
+        }
+
+        .pill-mode {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.66rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--ink-2);
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            padding: 0.16rem 0.4rem;
+        }
+
+        /* ── Conversation ── */
+
+        .pill-conversation {
+            display: flex;
+            flex-direction: column;
+            gap: 0.44rem;
+            height: 280px;
+            overflow-y: auto;
+            padding: 0.7rem;
+            border: 1px solid rgba(120, 135, 155, 0.15);
+            border-radius: 18px;
+            background: rgba(4, 6, 10, 0.8);
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.76rem;
+            line-height: 1.6;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(120, 135, 155, 0.2) transparent;
+            transition: opacity 1.5s ease;
+        }
+
+        .pill-conversation.fading {
+            opacity: 0;
+        }
+
+        .pill-msg {
+            opacity: 0;
+            transform: translateY(6px);
+            animation: msgAppear 0.35s ease forwards;
+            padding: 0.38rem 0.54rem;
             border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            max-width: 90%;
         }
 
-        .coming-soon-title {
-            font-size: 48px;
-            background: linear-gradient(90deg, #9B59B6, #E67E22, #4A90E2, #95A5A6, #27AE60);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 20px;
-            letter-spacing: 6px;
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
+        .pill-msg[data-role="user"] {
+            background: rgba(135, 180, 255, 0.06);
+            border: 1px solid rgba(135, 180, 255, 0.14);
+            color: #a8b8d4;
+            align-self: flex-end;
         }
 
-        .coming-soon-subtitle {
-            font-size: 24px;
-            background: linear-gradient(90deg, #9B59B6, #E67E22, #4A90E2, #95A5A6, #27AE60);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 10px;
-            letter-spacing: 3px;
-            font-family: 'Cinzel', serif;
-            font-weight: 600;
+        .pill-msg[data-role="owl"] {
+            background: rgba(91, 233, 255, 0.06);
+            border: 1px solid rgba(91, 233, 255, 0.16);
+            color: #b8dfe8;
+            align-self: flex-start;
         }
 
-        .coming-soon-platform {
-            font-size: 16px;
-            color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 30px;
-            letter-spacing: 1px;
+        .pill-msg[data-role="operator"] {
+            background: rgba(123, 255, 190, 0.06);
+            border: 1px solid rgba(123, 255, 190, 0.16);
+            color: #a8dbc0;
+            align-self: flex-end;
         }
 
-        .coming-soon-description {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.6);
-            line-height: 1.8;
-            margin-bottom: 40px;
+        .pill-msg-role {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            opacity: 0.55;
+            margin-bottom: 0.12rem;
         }
 
-        .return-to-safe-btn {
+        .pill-msg-text {
+            white-space: pre-wrap;
+        }
+
+        .pill-typing {
+            display: inline-flex;
+            gap: 4px;
+            padding: 0.4rem 0.54rem;
+            align-self: flex-start;
+        }
+
+        .pill-typing span {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: rgba(120, 135, 155, 0.5);
+            animation: typingDot 1.2s ease-in-out infinite;
+        }
+
+        .pill-typing span:nth-child(2) { animation-delay: 0.15s; }
+        .pill-typing span:nth-child(3) { animation-delay: 0.3s; }
+
+        .pill-note {
+            margin-top: 0.5rem;
+            color: var(--ink-2);
+            font-size: 0.66rem;
+            line-height: 1.5;
+            text-align: center;
+            opacity: 0.7;
+        }
+
+        /* ── Pill Context + Stats ── */
+
+        .pill-divider {
+            height: 1px;
+            background: var(--line);
+            margin: 0.6rem 0;
+        }
+
+        .pill-context {
+            color: var(--ink-1);
+            font-size: 0.78rem;
+            line-height: 1.65;
+            margin-bottom: 0.7rem;
+        }
+
+        .pill-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .pill-stat {
+            display: flex;
+            flex-direction: column;
+            padding: 0.48rem 0.5rem;
+            border: 1px solid rgba(120, 135, 155, 0.12);
+            border-radius: 10px;
+            background: rgba(4, 6, 10, 0.6);
+        }
+
+        .pill-stat-value {
+            font-family: "Cinzel", serif;
+            font-size: 1.15rem;
+            color: var(--ink-0);
+            line-height: 1;
+            margin-bottom: 0.14rem;
+        }
+
+        .pill-stat-label {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.58rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--ink-1);
+            margin-bottom: 0.18rem;
+        }
+
+        .pill-stat-desc {
+            font-size: 0.64rem;
+            color: var(--ink-2);
+            line-height: 1.4;
+        }
+
+        /* ── Demo Video ── */
+
+        .demo-section {
+            position: relative;
+            z-index: 1;
+            width: min(720px, 100%);
+            text-align: center;
+            margin: 2.4rem 0 1.6rem;
+        }
+
+        .demo-eyebrow {
             display: inline-block;
-            padding: 16px 40px;
-            background: transparent;
-            border: 2px solid transparent;
-            background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
-                              linear-gradient(90deg, #9B59B6, #E67E22, #4A90E2, #95A5A6, #27AE60);
-            background-origin: border-box;
-            background-clip: padding-box, border-box;
-            color: rgba(255, 255, 255, 0.9);
-            text-decoration: none;
-            border-radius: 6px;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.64rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--ink-2);
+            margin-bottom: 0.6rem;
+        }
+
+        .demo-title {
+            font-family: "Cinzel", serif;
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
             font-weight: 600;
-            font-size: 16px;
-            letter-spacing: 2px;
-            transition: all 0.3s ease;
+            color: var(--ink-0);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.02em;
         }
 
-        .return-to-safe-btn:hover {
-            background-image: linear-gradient(90deg, #9B59B6, #E67E22, #4A90E2, #95A5A6, #27AE60),
-                              linear-gradient(90deg, #9B59B6, #E67E22, #4A90E2, #95A5A6, #27AE60);
-            color: #000;
-            box-shadow: 0 0 30px rgba(155, 89, 182, 0.5);
-            transform: translateY(-2px);
+        .demo-desc {
+            color: var(--ink-1);
+            font-size: 0.82rem;
+            line-height: 1.6;
+            max-width: 520px;
+            margin: 0 auto 1.2rem;
         }
 
-        @media (max-width: 768px) {
-            .coming-soon-content {
-                margin: 1rem;
-                padding: 2rem 1.5rem;
-                max-width: calc(100% - 2rem);
+        .demo-video-wrap {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            background: var(--bg-1);
+            box-shadow:
+                0 8px 40px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+        }
+
+        .demo-video {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+        }
+
+        /* ── Footer ── */
+
+        .warning {
+            border: 1px solid rgba(255, 140, 140, 0.3);
+            border-radius: 12px;
+            background: rgba(40, 12, 16, 0.5);
+            color: #d4a0a0;
+            padding: 0.6rem 0.8rem;
+            font-size: 0.8rem;
+            max-width: 620px;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .links a {
+            text-decoration: none;
+            color: var(--ink-2);
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            padding: 0.38rem 0.62rem;
+            font-size: 0.78rem;
+            transition: all 0.2s ease;
+        }
+
+        .links a:hover {
+            border-color: rgba(120, 135, 155, 0.4);
+            color: var(--ink-1);
+        }
+
+        /* ── Keyframes ── */
+
+        @keyframes rimBreathe {
+            0%, 100% { opacity: 0.12; }
+            50% { opacity: 0.24; }
+        }
+
+        @keyframes auroraStrokeBreathe {
+            0%, 100% { stroke-opacity: 0.25; }
+            50% { stroke-opacity: 0.55; }
+        }
+
+        @keyframes titleBreathe {
+            0%, 100% { opacity: 0.82; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes eyeWatch {
+            0%, 100% { transform: scale(1); }
+            45% { transform: scale(0.9); }
+            55% { transform: scale(1.06); }
+        }
+
+        @keyframes msgAppear {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes typingDot {
+            0%, 60%, 100% { opacity: 0.25; transform: scale(0.85); }
+            30% { opacity: 0.8; transform: scale(1.1); }
+        }
+
+        /* ── Mobile ── */
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1.4rem 0.8rem;
+                justify-content: flex-start;
+                padding-top: 3rem;
             }
 
-            .coming-soon-title {
-                font-size: 1.6rem;
-                letter-spacing: 3px;
-                margin-bottom: 1rem;
+            .pill-shell {
+                border-radius: 22px;
             }
 
-            .coming-soon-subtitle {
-                font-size: 1.2rem;
-                letter-spacing: 2px;
-                margin-bottom: 0.5rem;
+            .pill-inner {
+                border-radius: 20px;
+                padding: 0.8rem;
             }
 
-            .coming-soon-platform {
-                font-size: 0.9rem;
-                margin-bottom: 1.5rem;
-            }
-
-            .coming-soon-description {
-                font-size: 0.85rem;
-                margin-bottom: 1.5rem;
-                line-height: 1.6;
-            }
-
-            .return-to-safe-btn {
-                padding: 0.75rem 1.5rem;
-                font-size: 0.85rem;
+            .pill-conversation {
+                height: 260px;
             }
         }
 
-        @media (max-width: 480px) {
-            .coming-soon-content {
-                padding: 1.5rem 1rem;
-            }
-
-            .coming-soon-title {
-                font-size: 1.3rem;
-                letter-spacing: 2px;
-            }
-
-            .coming-soon-subtitle {
-                font-size: 1rem;
-            }
-
-            .coming-soon-platform {
-                font-size: 0.8rem;
-            }
-
-            .coming-soon-description {
-                font-size: 0.75rem;
-            }
-
-            .return-to-safe-btn {
-                padding: 0.6rem 1.25rem;
-                font-size: 0.75rem;
-            }
+        @media (prefers-reduced-motion: reduce) {
+            .data-rain { display: none; }
         }
     </style>
 </head>
 <body>
-    <div class="coming-soon-content">
-        <div class="coming-soon-title">IN DEVELOPMENT</div>
-        <div class="coming-soon-subtitle">THE OWL</div>
-        <div class="coming-soon-platform">Multi-Agent Orchestration Platform</div>
-        <p class="coming-soon-description">
-            Multi-agent AI system with specialized intelligence cores coordinating through a central orchestrator. Each agent operates autonomously with distinct capabilities while maintaining system-wide coherence. Currently in active development with core architecture operational.
-        </p>
-        <a href="../safe/index.html" class="return-to-safe-btn">RETURN TO PORTFOLIO</a>
+    <div class="aurora-bg" aria-hidden="true">
+        <div class="aurora-layer aurora-1"></div>
+        <div class="aurora-layer aurora-2"></div>
+        <div class="aurora-layer aurora-3"></div>
+        <div class="aurora-layer aurora-4"></div>
     </div>
+    <div class="eye-glow" aria-hidden="true"></div>
+
+    <div id="data-rain" class="data-rain" aria-hidden="true"></div>
+
+    <header class="page-header">
+        <span class="eyebrow">AI Action Governance</span>
+        <h1>The Owl</h1>
+        <p class="subtitle">Proposal-first action control for AI systems. Every change is validated, logged, approval-gated, and traceable.</p>
+    </header>
+
+    <div class="pill-shell">
+        <svg class="pill-rim-svg" aria-hidden="true" preserveAspectRatio="none">
+            <defs>
+                <linearGradient id="aurora-rim-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#5be9ff" />
+                    <stop offset="25%" stop-color="#7bffbe" />
+                    <stop offset="50%" stop-color="#ffe28c" />
+                    <stop offset="75%" stop-color="#ff94ce" />
+                    <stop offset="100%" stop-color="#87b4ff" />
+                </linearGradient>
+            </defs>
+            <rect class="pill-rim-rect" rx="26" ry="26" x="1.5" y="1.5"
+                  stroke="url(#aurora-rim-gradient)" stroke-width="2" fill="none" />
+        </svg>
+        <div class="pill-inner">
+            <div class="pill-header">
+                <div class="pill-heading"><span class="pill-eye"></span> Owl Governance Pill</div>
+                <span class="pill-mode">Keyword Mode</span>
+            </div>
+            <div id="owl-pill-conversation" class="pill-conversation"></div>
+            <div class="pill-divider"></div>
+            <p class="pill-context">The Owl is a governance layer between AI systems and the resources they act on. It doesn't perform actions — it ensures every proposed change passes through structured validation, policy checks, and human approval before anything executes.</p>
+            <div class="pill-stats">
+                <div class="pill-stat">
+                    <span class="pill-stat-value">9</span>
+                    <span class="pill-stat-label">Guard Modules</span>
+                    <span class="pill-stat-desc">Validation checkpoints for every proposed action</span>
+                </div>
+                <div class="pill-stat">
+                    <span class="pill-stat-value">4</span>
+                    <span class="pill-stat-label">Protocols</span>
+                    <span class="pill-stat-desc">Governance rules defining how decisions are made</span>
+                </div>
+                <div class="pill-stat">
+                    <span class="pill-stat-value">6</span>
+                    <span class="pill-stat-label">Organizer Modules</span>
+                    <span class="pill-stat-desc">Proposal lifecycle from submission to resolution</span>
+                </div>
+                <div class="pill-stat">
+                    <span class="pill-stat-value">35</span>
+                    <span class="pill-stat-label">Regression Tests</span>
+                    <span class="pill-stat-desc">Automated checks on every change</span>
+                </div>
+            </div>
+            <p class="pill-note">Keyword mode is deterministic — no LLM, no freeform generation. When governing, the Owl connects to an LLM for intelligent tool execution (shown below).</p>
+        </div>
+    </div>
+
+    <section class="demo-section">
+        <span class="demo-eyebrow">Live Demo</span>
+        <h2 class="demo-title">Governing Mode</h2>
+        <p class="demo-desc">Governing mode — the Owl connects to an LLM and executes real tool calls against the local filesystem, system state, and governance pipeline. Everything shown is live, nothing is scripted.</p>
+        <div class="demo-video-wrap">
+            <video class="demo-video" controls playsinline preload="metadata" poster="">
+                <source src="owl-demo.mov" type="video/quicktime">
+                <source src="owl-demo.mov" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </section>
+
+    <div id="owl-warning" class="warning" style="display:none;"></div>
+
+    <nav class="links">
+        <a href="../index.html">Portfolio</a>
+        <a href="../safe/index.html">SAFE</a>
+        <a href="../cyber-agent/index.html">Cyber Agent</a>
+    </nav>
+
+    <script>
+        // ── Pill Conversation (CLI-style, reflecting actual Owl capabilities) ──
+
+        const PILL_CONVERSATION = [
+            // ── Keyword Mode — real commands, real output format ──
+            { role: "user",     label: ">",        text: "status",                                                                                 delay: 1200 },
+            { role: "owl",      label: "Owl",      text: "System healthy. Queue: 0 pending ops.\nProposals: 2 awaiting review.\nAudit chain: intact (847 events).\nTrash: 3/100 items (0.4% full).", delay: 2000 },
+
+            { role: "user",     label: ">",        text: "audit last 3",                                                                           delay: 1200 },
+            { role: "owl",      label: "Owl",      text: "Audit log (847 total, showing 3):\n  #847 12:04:22 file_modify — operator\n  #846 11:58:10 resource_check — owl_daemon\n  #845 11:52:03 proposal_submit — user", delay: 2200 },
+
+            { role: "user",     label: ">",        text: "pending",                                                                                delay: 1200 },
+            { role: "owl",      label: "Owl",      text: "2 pending proposals (showing 2):\n  [pend] modify_file → config.yaml (a3f8b2c1)\n  [pend] create_file → new_module.py (7e4d9f06)",     delay: 2000 },
+
+            { role: "user",     label: ">",        text: "trash",                                                                                  delay: 1200 },
+            { role: "owl",      label: "Owl",      text: "Trash: 3 active items (12.4 KB, 0.4% full).\nLifetime: 8 items processed.\nAccepting items.", delay: 1800 },
+
+            { role: "user",     label: ">",        text: "domains",                                                                                delay: 1200 },
+            { role: "owl",      label: "Owl",      text: "5 domains registered:\n  filesystem (4 proposals)\n  security\n  configuration (1 proposals)\n  workspace\n  governance", delay: 1800 },
+
+            { role: "user",     label: ">",        text: "scan workspace",                                                                         delay: 1200 },
+            { role: "owl",      label: "Owl",      text: "Workspace profiled.\n60 Python files across 5 domains.\nPrimary: governance pipeline.\nTest coverage: 35 regression tests.", delay: 2000 }
+        ];
+
+        function initPillConversation() {
+            const container = document.getElementById("owl-pill-conversation");
+            if (!container) return;
+
+            let timeoutIds = [];
+
+            function clear() {
+                timeoutIds.forEach(id => clearTimeout(id));
+                timeoutIds = [];
+                container.classList.remove("fading");
+                container.replaceChildren();
+            }
+
+            function showTyping() {
+                const el = document.createElement("div");
+                el.className = "pill-typing";
+                el.innerHTML = "<span></span><span></span><span></span>";
+                container.appendChild(el);
+                container.scrollTop = container.scrollHeight;
+            }
+
+            function addMessage(step) {
+                const msg = document.createElement("div");
+                msg.className = "pill-msg";
+                msg.dataset.role = step.role;
+
+                const role = document.createElement("div");
+                role.className = "pill-msg-role";
+                role.textContent = step.label;
+
+                const text = document.createElement("div");
+                text.className = "pill-msg-text";
+                text.textContent = step.text;
+
+                msg.appendChild(role);
+                msg.appendChild(text);
+                container.appendChild(msg);
+                container.scrollTop = container.scrollHeight;
+            }
+
+            function play() {
+                clear();
+                let t = 600;
+
+                PILL_CONVERSATION.forEach((step) => {
+                    const tTyping = t;
+                    const tMsg = t + step.delay;
+
+                    timeoutIds.push(setTimeout(() => {
+                        const prev = container.querySelector(".pill-typing");
+                        if (prev) prev.remove();
+                        showTyping();
+                    }, tTyping));
+
+                    timeoutIds.push(setTimeout(() => {
+                        const dots = container.querySelector(".pill-typing");
+                        if (dots) dots.remove();
+                        addMessage(step);
+                    }, tMsg));
+
+                    t = tMsg + 400;
+                });
+
+                // Fade out, then loop
+                timeoutIds.push(setTimeout(() => {
+                    container.classList.add("fading");
+                }, t + 2000));
+
+                timeoutIds.push(setTimeout(play, t + 3800));
+            }
+
+            setTimeout(play, 800);
+        }
+
+        initPillConversation();
+
+        // ── Data Rain: Layer A — Audit metrics ──
+
+        const RAIN_WORDS = [
+            "guards: 9 modules",
+            "protocols: 4 enforced",
+            "organizer: 6 modules",
+            "regression: 35 passed",
+            "approval_authority: enabled",
+            "audit_chain: enabled",
+            "input_guard: enabled",
+            "resource_guard: enabled",
+            "halt_guard: enabled",
+            "pill_interface: enabled",
+            "controls: 7/7 active",
+            "proposal: pending review",
+            "proposal: approved",
+            "proposal: denied",
+            "audit_event: logged",
+            "domain: filesystem",
+            "domain: governance",
+            "domain: security",
+            "domain: workspace",
+            "domain: configuration",
+            "trash: accepting items",
+            "workspace: profiled",
+            "queue: 0 pending ops",
+            "operator: human approval",
+            "validation: passed",
+            "policy_check: enforced",
+            "lifecycle: tracked",
+            "governance: active",
+            "sanitized output only"
+        ];
+
+        const RAIN_COLORS = [
+            "rgba(91, 233, 255, 0.18)",
+            "rgba(123, 255, 190, 0.15)",
+            "rgba(255, 226, 140, 0.14)",
+            "rgba(255, 148, 206, 0.14)",
+            "rgba(135, 180, 255, 0.16)"
+        ];
+
+        // ── Data Rain: Layer B — Q&A pairs (darker rainbow, questions the Owl can actually answer) ──
+
+        const RAIN_QA = [
+            { q: "> status",                              a: "System healthy. Queue: 0 pending ops. Audit chain: intact." },
+            { q: "> proposals",                           a: "2 pending proposals. modify_file → config.yaml. create_file → module.py." },
+            { q: "> audit last 5",                        a: "#847 12:04 file_modify — operator. #846 11:58 resource_check — owl_daemon." },
+            { q: "> trash",                               a: "Trash: 3 active items (12.4 KB, 0.4% full). Accepting items." },
+            { q: "> trash list",                          a: "3 trashed: draft_v3.md (2.1 KB) — user. old_config.yaml (890 B) — organizer." },
+            { q: "> explain report.pdf",                  a: "Deleted by: operator. Proposal: prop_4a2. Reason: superseded by v2." },
+            { q: "> scan workspace",                      a: "Profiled. 60 Python files across 5 domains. Primary: governance pipeline." },
+            { q: "> pending",                             a: "2 pending: [pend] modify_file → config.yaml. [pend] create_file → module.py." },
+            { q: "> domains",                             a: "5 domains: filesystem | security | configuration | workspace | governance" },
+            { q: "> approve prop_a3f8",                   a: "Approved: prop_a3f8b2c1." },
+            { q: "> find /path/to/file",                  a: "Found: file.txt. Status: trashed. Deleted: 2026-02-20 by operator." },
+            { q: "> help",                                a: "status | proposals | audit | trash | domains | scan workspace | help" }
+        ];
+
+        // Dark rainbow palette for Q&A (deeper, muted hues to offset lighter pill border)
+        const QA_COLORS_Q = [
+            "rgba(60, 160, 220, 0.18)",
+            "rgba(70, 190, 140, 0.16)",
+            "rgba(200, 170, 70, 0.15)",
+            "rgba(190, 85, 130, 0.15)",
+            "rgba(100, 130, 210, 0.17)"
+        ];
+
+        const QA_COLORS_A = [
+            "rgba(60, 160, 220, 0.12)",
+            "rgba(70, 190, 140, 0.10)",
+            "rgba(200, 170, 70, 0.09)",
+            "rgba(190, 85, 130, 0.09)",
+            "rgba(100, 130, 210, 0.11)"
+        ];
+
+        function initDataRain() {
+            const container = document.getElementById("data-rain");
+            if (!container || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+            // Layer A: Audit metric columns
+            const colCount = Math.floor(window.innerWidth / 140);
+
+            for (let i = 0; i < colCount; i++) {
+                const col = document.createElement("div");
+                col.className = "rain-col";
+
+                const left = (i / colCount) * 100 + (Math.random() * (100 / colCount) * 0.6);
+                const duration = 18 + Math.random() * 14;
+                const delay = -(Math.random() * duration);
+
+                col.style.left = `${left}%`;
+                col.style.setProperty("--duration", `${duration}s`);
+                col.style.setProperty("--delay", `${delay}s`);
+
+                const wordCount = 4 + Math.floor(Math.random() * 4);
+                for (let j = 0; j < wordCount; j++) {
+                    const word = document.createElement("span");
+                    word.className = "rain-word";
+                    word.textContent = RAIN_WORDS[Math.floor(Math.random() * RAIN_WORDS.length)];
+                    word.style.setProperty("--rain-color", RAIN_COLORS[Math.floor(Math.random() * RAIN_COLORS.length)]);
+                    word.style.setProperty("--duration", `${duration}s`);
+                    word.style.setProperty("--delay", `${delay}s`);
+                    col.appendChild(word);
+                }
+
+                container.appendChild(col);
+            }
+
+            // Layer B: Q&A pairs — fewer columns, slower, darker
+            const qaColCount = Math.floor(window.innerWidth / 280);
+
+            for (let i = 0; i < qaColCount; i++) {
+                const col = document.createElement("div");
+                col.className = "rain-qa-col";
+
+                const left = 8 + (i / qaColCount) * 84 + (Math.random() * 10);
+                const duration = 26 + Math.random() * 12;
+                const delay = -(Math.random() * duration);
+
+                col.style.left = `${left}%`;
+                col.style.setProperty("--duration", `${duration}s`);
+                col.style.setProperty("--delay", `${delay}s`);
+
+                const pairCount = 2 + Math.floor(Math.random() * 2);
+                for (let j = 0; j < pairCount; j++) {
+                    const pair = RAIN_QA[Math.floor(Math.random() * RAIN_QA.length)];
+                    const colorIdx = Math.floor(Math.random() * QA_COLORS_Q.length);
+
+                    const qEl = document.createElement("span");
+                    qEl.className = "rain-qa";
+                    qEl.textContent = pair.q;
+                    qEl.style.setProperty("--rain-color", QA_COLORS_Q[colorIdx]);
+                    qEl.style.setProperty("--duration", `${duration}s`);
+                    qEl.style.setProperty("--delay", `${delay}s`);
+                    col.appendChild(qEl);
+
+                    const aEl = document.createElement("span");
+                    aEl.className = "rain-qa rain-qa-answer";
+                    aEl.textContent = pair.a;
+                    aEl.style.setProperty("--rain-color", QA_COLORS_A[colorIdx]);
+                    aEl.style.setProperty("--duration", `${duration}s`);
+                    aEl.style.setProperty("--delay", `${delay}s`);
+                    col.appendChild(aEl);
+                }
+
+                container.appendChild(col);
+            }
+        }
+
+        initDataRain();
+    </script>
 </body>
 </html>

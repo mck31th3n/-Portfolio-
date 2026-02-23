@@ -961,7 +961,7 @@
 <body>
     <div class="demo-banner">
         <span class="demo-badge">DEMO</span>
-        <span class="demo-text">Demonstration environment with sample data. Not connected to live systems.</span>
+        <span class="demo-text">Real validation data and sample assessments. Internals redacted. Observer-only &mdash; not connected to live trading.</span>
     </div>
 
     <div class="container">
@@ -971,6 +971,7 @@
             <div class="header-actions">
                 <a href="#predictions" class="btn-outline-gold">Assessments</a>
                 <a href="#architecture" class="btn-outline-gold">Architecture</a>
+                <a href="../cyber-agent/index.html" class="btn-outline-gold">Cyber Agent</a>
                 <a href="../index.html" class="btn-outline-gold">Portfolio</a>
             </div>
         </header>
@@ -982,11 +983,11 @@
             </div>
             <div class="status-item">
                 <span class="status-label">Regime</span>
-                <span class="status-value">SCANNING - Markets within normal parameters</span>
+                <span class="status-value">SCANNING - Sample market state (demo)</span>
             </div>
             <div class="status-item">
                 <span class="status-label">Last Update</span>
-                <span class="status-value">11:45 AM - Jan 18</span>
+                <span class="status-value">Local Snapshot</span>
             </div>
             <div class="status-item">
                 <span class="status-label">Data Integrity</span>
@@ -999,7 +1000,7 @@
                 <h2>System Stance</h2>
                 <span class="stance-title">STANCE: MIXED</span>
             </div>
-            <p class="stance-summary">Indicators balanced without clear directional bias. System maintaining neutral observation.</p>
+            <p class="stance-summary">Sample indicators are balanced without clear directional bias. System remains in neutral observation mode.</p>
             <ul class="stance-bullets">
                 <li>Assessment: Action Indicated 2, Caution Indicated 1, No Action 3 in recent window</li>
                 <li>Confidence: 62.4% avg (last 6 assessments)</li>
@@ -1015,8 +1016,8 @@
             <p class="stance-summary">Trading AI operating in observer-only mode. Generates assessments, logs outcomes, learns from results. No execution, no financial advice.</p>
             <ul class="stance-bullets">
                 <li>Mode: Observer-only - all signals are logged and validated against outcomes, never executed</li>
-                <li>Architecture: Multi-layer reasoning with Council (strategic) and Trader (tactical) agents</li>
-                <li>Design: Full auditability - guardrails, circuit breakers, explainable rationale for every assessment</li>
+                <li>Architecture: Multi-layer reasoning design shown at high level only (internal methods redacted)</li>
+                <li>Design: Auditability-first with guardrails and explainable rationale for every assessment</li>
             </ul>
         </div>
 
@@ -1048,6 +1049,50 @@
             </div>
         </div>
 
+        <!-- 7-Day Autonomous Run Results -->
+        <div class="stance-card" style="border-color: rgba(212, 175, 55, 0.35); margin-bottom: var(--space-xl);">
+            <div class="stance-header">
+                <h2>7-Day Autonomous Run</h2>
+                <span class="stance-title" style="color: var(--gold-bright);">Jan 18 &ndash; 25, 2026 &mdash; Validated Window</span>
+            </div>
+            <p class="stance-summary">One validated window from ongoing cloud monitoring. Uninterrupted autonomous observation with zero downtime. All signals logged and validated against outcomes.</p>
+
+            <div class="stats-grid" style="margin-top: var(--space-md); margin-bottom: 0;">
+                <div class="stat-card">
+                    <h3>Predictions</h3>
+                    <span class="value">28K+</span>
+                    <div class="label">7-day window</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Assets Covered</h3>
+                    <span class="value">18</span>
+                    <div class="label">Crypto / Equities / Commodities</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Uptime</h3>
+                    <span class="value">168h</span>
+                    <div class="label">Zero downtime</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Hold Rate</h3>
+                    <span class="value">~95%</span>
+                    <div class="label">No-action signals</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Monitoring</h3>
+                    <span class="value" style="font-size: 1.8em;">ONGOING</span>
+                    <div class="label">Cloud research</div>
+                </div>
+            </div>
+
+            <ul class="stance-bullets" style="margin-top: var(--space-md);">
+                <li>Standard indicators monitored: RSI, MACD, SMA-50, SMA-200, volume, VIX</li>
+                <li>7 out of 7 days operational &mdash; zero crashes, zero manual intervention</li>
+                <li>System stayed in observer mode throughout &mdash; no execution, no trades</li>
+                <li>Continuous cloud monitoring ongoing for research purposes</li>
+            </ul>
+        </div>
+
         <div id="predictions" class="chart-container">
             <h2>Recent Risk Assessments</h2>
             <p class="section-subtitle">Click any asset for full rationale and decision context</p>
@@ -1064,14 +1109,14 @@
 
         <div id="architecture" class="architecture-section">
             <h2>System Architecture</h2>
-            <p class="arch-subtitle">Data flow through the SAFE pipeline</p>
+            <p class="arch-subtitle">Redacted high-level flow used for local demo communication</p>
 
             <div class="arch-flow">
                 <div class="arch-flow-item">
                     <div class="arch-flow-label">INPUTS</div>
                     <div class="arch-flow-box">
                         <div class="arch-flow-title">Data Sources</div>
-                        <div class="arch-flow-details">Market feeds, price data, volume metrics</div>
+                        <div class="arch-flow-details">Sample inputs and sanitized test records</div>
                     </div>
                 </div>
                 <div class="arch-flow-arrow"></div>
@@ -1079,7 +1124,7 @@
                     <div class="arch-flow-label">PROCESSING</div>
                     <div class="arch-flow-box">
                         <div class="arch-flow-title">Ingestion Layer</div>
-                        <div class="arch-flow-details">Normalization, validation, caching</div>
+                        <div class="arch-flow-details">Validation, normalization, schema checks</div>
                     </div>
                 </div>
                 <div class="arch-flow-arrow"></div>
@@ -1087,7 +1132,7 @@
                     <div class="arch-flow-label">PROPRIETARY</div>
                     <div class="arch-flow-box">
                         <div class="arch-flow-title">Decision Core</div>
-                        <div class="arch-flow-details">Multi-agent reasoning layer</div>
+                        <div class="arch-flow-details">Protected reasoning engine (redacted)</div>
                         <div class="arch-flow-protected">Protected under provisional IP</div>
                     </div>
                 </div>
@@ -1096,7 +1141,7 @@
                     <div class="arch-flow-label">GOVERNANCE</div>
                     <div class="arch-flow-box">
                         <div class="arch-flow-title">Validation Layer</div>
-                        <div class="arch-flow-details">Circuit breakers, audit logging, guardrails</div>
+                        <div class="arch-flow-details">Guardrails, audit trails, safety checks</div>
                     </div>
                 </div>
                 <div class="arch-flow-arrow"></div>
@@ -1104,27 +1149,27 @@
                     <div class="arch-flow-label">OUTPUTS</div>
                     <div class="arch-flow-box">
                         <div class="arch-flow-title">Observer Interface</div>
-                        <div class="arch-flow-details">Dashboard, rationale, alerts</div>
+                        <div class="arch-flow-details">Dashboard summaries and review queue</div>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="ip-notice">
-            <strong>Note:</strong> This project is presented as an architectural and governance demonstration. Core decision logic is proprietary and protected under provisional IP.
+            <strong>Note:</strong> This project is presented as an architectural and governance demonstration. Core decision logic is proprietary, redacted, and protected under provisional IP.
         </div>
 
         <div class="disclaimer">
-            <strong>Disclaimer:</strong> SAFE is a trading AI operating in observer-only mode. It does not execute trades, provide investment advice, or manage funds. All assessments are logged for learning and validation purposes only. This is a technical demonstration - not a financial product. Past performance does not guarantee future results.
+            <strong>Disclaimer:</strong> SAFE is operating in observer-only mode. It does not execute trades, provide investment advice, or manage funds. The 7-day run reflects real validation data. Individual assessments shown below are sample outputs for demonstration.
         </div>
 
         <div class="footer">
             <div class="footer-links">
-                <a href="../myels_blue_journal/index.html">The Blue Journal</a>
-                <a href="../nest/index.html">The Owl's Nest</a>
-                <a href="../resume-v4.html">Resume</a>
+                <a href="../nest/index.html">The Owl</a>
+                <a href="../cyber-agent/index.html">Cyber Agent</a>
+                <a href="../index.html">Portfolio</a>
             </div>
-            <p class="footer-copy">Build: SAFE V4.0 Demo - Trading AI in Observer Mode</p>
+            <p class="footer-copy">Build: SAFE V4.0 Local Demo - Observer Mode</p>
         </div>
     </div>
 
@@ -1137,7 +1182,7 @@
                 confidence: 0.78,
                 reasoning: "Strong indicator alignment: RSI neutral (52), price above both SMA-50 and SMA-200, MACD histogram positive. Multiple conditions aligned - system flags for observation.",
                 price: 104250.00,
-                timestamp: "11:30 AM - Jan 18"
+                timestamp: "Sample Assessment"
             },
             {
                 symbol: "ETH-USD",
@@ -1146,7 +1191,7 @@
                 confidence: 0.45,
                 reasoning: "Mixed signals: RSI approaching oversold (38), price below SMA-50 but above SMA-200. Indicators not aligned - system recommends monitoring without action.",
                 price: 3420.50,
-                timestamp: "11:30 AM - Jan 18"
+                timestamp: "Sample Assessment"
             },
             {
                 symbol: "SOL-USD",
@@ -1155,7 +1200,7 @@
                 confidence: 0.82,
                 reasoning: "Overbought conditions detected: RSI at 72, price extended above SMA-50 by 8.3%. Multiple indicators suggest potential mean reversion. Risk management protocols active.",
                 price: 187.25,
-                timestamp: "11:30 AM - Jan 18"
+                timestamp: "Sample Assessment"
             },
             {
                 symbol: "SPY",
@@ -1164,7 +1209,7 @@
                 confidence: 0.52,
                 reasoning: "Market in consolidation phase. VIX at 14.2 indicates low volatility regime. No clear directional bias - system maintaining neutral stance until trend confirmation.",
                 price: 598.40,
-                timestamp: "11:30 AM - Jan 18"
+                timestamp: "Sample Assessment"
             },
             {
                 symbol: "QQQ",
@@ -1173,7 +1218,7 @@
                 confidence: 0.61,
                 reasoning: "Tech sector showing relative strength. Price holding above key support levels. MACD crossover confirmed. Moderate confidence due to mixed breadth indicators.",
                 price: 518.75,
-                timestamp: "11:30 AM - Jan 18"
+                timestamp: "Sample Assessment"
             },
             {
                 symbol: "GC=F",
@@ -1182,7 +1227,7 @@
                 confidence: 0.38,
                 reasoning: "Conflicting signals across timeframes. Daily trend bullish, but 4-hour showing weakness. Insufficient alignment for high-confidence assessment. Monitoring mode.",
                 price: 2715.30,
-                timestamp: "11:30 AM - Jan 18"
+                timestamp: "Sample Assessment"
             }
         ];
 

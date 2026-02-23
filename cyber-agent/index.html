@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Agent — AI Security Audit Framework</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --slate-bg:    #0D1117;
+            --slate-card:  #161B22;
+            --slate-raised:#1C2128;
+            --slate-line:  rgba(48, 54, 61, 0.8);
+            --text:        #C9D1D9;
+            --text-bright: #E6EDF3;
+            --text-muted:  #8B949E;
+            --text-dim:    #484F58;
+            --green:       #3FB950;
+            --green-dim:   #238636;
+            --green-glow:  rgba(63, 185, 80, 0.15);
+            --amber:       #D29922;
+            --amber-dim:   #9E6A03;
+            --amber-glow:  rgba(210, 153, 34, 0.12);
+            --red:         #F85149;
+            --red-dim:     #DA3633;
+            --red-glow:    rgba(248, 81, 73, 0.12);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            font-family: "JetBrains Mono", monospace;
+            color: var(--text);
+            background: var(--slate-bg);
+            padding: 2rem 1rem;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ── Network Node Canvas ── */
+
+        #network-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ── Scan-Line Overlay ── */
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(63, 185, 80, 0.015) 2px,
+                rgba(63, 185, 80, 0.015) 4px
+            );
+        }
+
+        /* ── Ambient Glow ── */
+
+        body::after {
+            content: "";
+            position: fixed;
+            top: -20%;
+            left: 15%;
+            width: 70%;
+            height: 50%;
+            background: radial-gradient(ellipse at center,
+                var(--green-glow) 0%,
+                rgba(210, 153, 34, 0.06) 40%,
+                transparent 70%);
+            filter: blur(80px);
+            z-index: 0;
+            pointer-events: none;
+            animation: ambientPulse 12s ease-in-out infinite;
+        }
+
+        @keyframes ambientPulse {
+            0%, 100% { opacity: 0.6; transform: translate(0, 0) scale(1); }
+            50% { opacity: 1; transform: translate(2%, -3%) scale(1.05); }
+        }
+
+        .page { max-width: 980px; margin: 0 auto; position: relative; z-index: 2; }
+
+        /* ── Header ── */
+
+        .header {
+            text-align: center;
+            margin-bottom: 2.4rem;
+        }
+
+        /* ── Terminal Boot Line ── */
+
+        .boot-line {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.68rem;
+            color: var(--green-dim);
+            letter-spacing: 0.02em;
+            margin-bottom: 1.2rem;
+            min-height: 1.2em;
+            text-align: center;
+        }
+
+        .boot-cursor {
+            display: inline-block;
+            width: 7px;
+            height: 1em;
+            background: var(--green);
+            margin-left: 2px;
+            vertical-align: text-bottom;
+            animation: cursorBlink 1s step-end infinite;
+        }
+
+        @keyframes cursorBlink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* ── Status Indicator ── */
+
+        .status-live {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            margin-bottom: 1rem;
+        }
+
+        .status-live-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 8px rgba(63, 185, 80, 0.6);
+            animation: statusPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes statusPulse {
+            0%, 100% { opacity: 0.6; box-shadow: 0 0 6px rgba(63, 185, 80, 0.4); }
+            50% { opacity: 1; box-shadow: 0 0 14px rgba(63, 185, 80, 0.8); }
+        }
+
+        .status-live-text {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.62rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--green-dim);
+        }
+
+        .eyebrow {
+            display: inline-block;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.68rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--green);
+            border: 1.5px solid var(--green-dim);
+            border-radius: 999px;
+            padding: 0.22rem 0.7rem;
+            margin-bottom: 0.9rem;
+            background: var(--green-glow);
+        }
+
+        h1 {
+            font-family: "Space Mono", monospace;
+            font-size: clamp(1.6rem, 4.2vw, 2.4rem);
+            font-weight: 700;
+            color: var(--text-bright);
+            line-height: 1.3;
+            margin-bottom: 0.6rem;
+            padding-bottom: 0.1em;
+            letter-spacing: 0.01em;
+            background: linear-gradient(135deg, var(--text-bright) 40%, var(--green) 70%, var(--amber) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleGlow 3.5s ease-in-out infinite;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            line-height: 1.65;
+            max-width: 60ch;
+            margin: 0 auto;
+        }
+
+        /* ── Stats Row ── */
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.6rem;
+            margin-bottom: 2.2rem;
+        }
+
+        .stat-card {
+            border: 1px solid var(--slate-line);
+            border-radius: 12px;
+            background: var(--slate-card);
+            padding: 0.7rem 0.8rem;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .stat-value {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--green-dim) 0%, var(--green) 50%, var(--green-dim) 100%);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: goldSheen 4s ease-in-out infinite;
+            line-height: 1;
+            margin-bottom: 0.2rem;
+        }
+
+        .stat-label {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 0.62rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        /* ── Pipeline ── */
+
+        .pipeline-section {
+            margin-bottom: 2.4rem;
+        }
+
+        .section-title {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .pipeline-svg {
+            width: 100%;
+            height: 120px;
+            display: block;
+        }
+
+        .pipe-node {
+            animation: nodePulse 3.6s ease-in-out infinite;
+        }
+
+        .pipe-line {
+            stroke-dasharray: 6 4;
+            animation: dashFlow 2s linear infinite;
+        }
+
+        .pipe-label {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 11px;
+            fill: var(--text-bright);
+            text-anchor: middle;
+        }
+
+        .pipe-desc {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 8px;
+            fill: var(--text-muted);
+            text-anchor: middle;
+        }
+
+        /* ── Graph Panels ── */
+
+        .graphs {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0.8rem;
+            margin-bottom: 2.2rem;
+        }
+
+        .graph-panel {
+            border: 1px solid var(--slate-line);
+            border-radius: 14px;
+            background: var(--slate-card);
+            padding: 1rem;
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .graph-heading {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.62rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.7rem;
+            text-align: center;
+        }
+
+        .donut-svg {
+            display: block;
+            margin: 0 auto 0.6rem;
+        }
+
+        .donut-segment {
+            fill: none;
+            stroke-linecap: round;
+            animation: donutBreathe 4s ease-in-out infinite;
+        }
+
+        .donut-center {
+            font-family: "Space Mono", monospace;
+            font-size: 16px;
+            fill: var(--text-bright);
+            text-anchor: middle;
+            dominant-baseline: central;
+        }
+
+        .donut-center-sub {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 8px;
+            fill: var(--text-muted);
+            text-anchor: middle;
+            dominant-baseline: central;
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            font-size: 0.68rem;
+            color: var(--text-muted);
+        }
+
+        .legend-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 0.25rem;
+            vertical-align: middle;
+        }
+
+        /* Bar chart */
+
+        .bars-svg {
+            display: block;
+            width: 100%;
+            margin-bottom: 0.4rem;
+        }
+
+        .bar-rect {
+            animation: barBreathe 4s ease-in-out infinite;
+        }
+
+        .bar-label {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 9px;
+            fill: var(--text-muted);
+            text-anchor: middle;
+        }
+
+        .bar-value {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 9px;
+            fill: var(--text-bright);
+            font-weight: 500;
+            text-anchor: middle;
+        }
+
+        /* Horizontal suite bars */
+
+        .suite-bar-row {
+            display: grid;
+            grid-template-columns: 110px 1fr 30px;
+            gap: 0.4rem;
+            align-items: center;
+            margin-bottom: 0.28rem;
+            font-size: 0.66rem;
+        }
+
+        .suite-name {
+            font-family: "JetBrains Mono", monospace;
+            color: var(--text-muted);
+            text-align: right;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .suite-track {
+            height: 6px;
+            border-radius: 999px;
+            background: var(--slate-raised);
+            overflow: hidden;
+        }
+
+        .suite-fill {
+            height: 100%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--green-dim), var(--green), var(--green-dim));
+            background-size: 200% 100%;
+            animation: barGrow 1.2s ease-out forwards, goldSheen 4s ease-in-out infinite 1.2s;
+            transform-origin: left;
+        }
+
+        .suite-count {
+            font-family: "JetBrains Mono", monospace;
+            color: var(--text-bright);
+            font-size: 0.62rem;
+            font-weight: 500;
+        }
+
+        /* ── Capability Cards ── */
+
+        .capabilities {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+            margin-bottom: 2rem;
+        }
+
+        .cap-card {
+            border: 1px solid var(--slate-line);
+            border-left: 3px solid var(--green-dim);
+            border-radius: 12px;
+            background: var(--slate-card);
+            padding: 0.8rem 0.9rem;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cap-card:hover {
+            border-color: rgba(63, 185, 80, 0.3);
+            border-left-color: var(--green);
+            box-shadow: 0 3px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .cap-card.accent-red {
+            border-left-color: var(--red-dim);
+        }
+
+        .cap-card.accent-red:hover {
+            border-left-color: var(--red);
+            border-color: rgba(248, 81, 73, 0.3);
+        }
+
+        .cap-title {
+            font-family: "Space Mono", monospace;
+            font-size: 0.92rem;
+            color: var(--text-bright);
+            margin-bottom: 0.35rem;
+        }
+
+        .cap-detail {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.66rem;
+            line-height: 1.7;
+            color: var(--text-muted);
+        }
+
+        /* ── Footer ── */
+
+        .safety-note {
+            text-align: center;
+            font-size: 0.66rem;
+            color: var(--text-muted);
+            opacity: 0.6;
+            margin-bottom: 0.8rem;
+            line-height: 1.5;
+        }
+
+        .load-warning {
+            border: 1px solid rgba(248, 81, 73, 0.3);
+            background: var(--red-glow);
+            border-radius: 10px;
+            color: var(--red);
+            padding: 0.6rem 0.8rem;
+            font-size: 0.82rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            border: 1px solid var(--slate-line);
+            border-radius: 999px;
+            padding: 0.38rem 0.62rem;
+            font-size: 0.78rem;
+            transition: all 0.2s ease;
+        }
+
+        .links a:hover {
+            border-color: var(--green-dim);
+            color: var(--text-bright);
+            background: var(--green-glow);
+        }
+
+        /* ── Keyframes ── */
+
+        @keyframes titleGlow {
+            0%, 100% { opacity: 0.88; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes goldSheen {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes nodePulse {
+            0%, 100% { opacity: 0.7; transform: scale(0.97); }
+            50% { opacity: 1; transform: scale(1.03); }
+        }
+
+        @keyframes dashFlow {
+            to { stroke-dashoffset: -20; }
+        }
+
+        @keyframes donutBreathe {
+            0%, 100% { stroke-width: 10; }
+            50% { stroke-width: 12; }
+        }
+
+        @keyframes barBreathe {
+            0%, 100% { opacity: 0.75; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes barGrow {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
+
+        /* removed — unused */
+
+        /* ── Run Context Bar ── */
+
+        .run-context {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1.4rem;
+            padding: 0.6rem 0.8rem;
+            border: 1px solid var(--slate-line);
+            border-radius: 10px;
+            background: var(--slate-card);
+            box-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .run-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.62rem;
+            letter-spacing: 0.04em;
+            color: var(--text-muted);
+            padding: 0.18rem 0.5rem;
+            border: 1px solid var(--slate-line);
+            border-radius: 999px;
+            background: var(--slate-raised);
+        }
+
+        .run-pill strong {
+            color: var(--text-bright);
+            font-weight: 500;
+        }
+
+        .run-pill.mode-simulate {
+            border-color: rgba(210, 153, 34, 0.35);
+            color: var(--amber);
+        }
+
+        .run-pill.mode-simulate strong {
+            color: var(--amber);
+        }
+
+        .run-divider {
+            width: 1px;
+            height: 16px;
+            background: var(--slate-line);
+        }
+
+        /* ── Outcome Strip ── */
+
+        .outcome-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.6rem;
+            margin-bottom: 2rem;
+        }
+
+        .outcome-card {
+            border: 1px solid var(--slate-line);
+            border-top: 2px solid var(--green-dim);
+            border-radius: 10px;
+            background: var(--slate-card);
+            padding: 0.6rem 0.7rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .outcome-card.red-accent {
+            border-top-color: var(--red-dim);
+        }
+
+        .outcome-label {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+        }
+
+        .outcome-value {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-bright);
+            line-height: 1.2;
+        }
+
+        .outcome-sub {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.58rem;
+            color: var(--text-muted);
+            margin-top: 0.15rem;
+        }
+
+        .defense-chips {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.25rem;
+            margin-top: 0.2rem;
+        }
+
+        .defense-chip {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.54rem;
+            color: var(--text-muted);
+            border: 1px solid var(--slate-line);
+            border-radius: 999px;
+            padding: 0.1rem 0.35rem;
+        }
+
+        /* ── Cap Columns ── */
+
+        .cap-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cap-column-title {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.6rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.3rem;
+            border-bottom: 1px solid var(--slate-line);
+        }
+
+        .cap-column-title.red {
+            border-bottom-color: rgba(248, 81, 73, 0.3);
+        }
+
+        .cap-column-title.green {
+            border-bottom-color: rgba(63, 185, 80, 0.3);
+        }
+
+        .cap-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        /* ── Mobile ── */
+
+        @media (max-width: 768px) {
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+            .graphs { grid-template-columns: 1fr; }
+            .capabilities { grid-template-columns: 1fr; }
+            .cap-columns { grid-template-columns: 1fr; }
+            .outcome-strip { grid-template-columns: 1fr; }
+            .pipeline-svg { height: 100px; }
+        }
+
+        @media (max-width: 480px) {
+            .stats-row { grid-template-columns: 1fr 1fr; }
+            .suite-bar-row { grid-template-columns: 80px 1fr 26px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0s !important;
+                animation-delay: 0s !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="network-canvas"></canvas>
+
+    <div class="page">
+        <header class="header">
+            <div class="boot-line" id="boot-line"><span class="boot-cursor"></span></div>
+            <div class="status-live">
+                <span class="status-live-dot"></span>
+                <span class="status-live-text">System Active</span>
+            </div>
+            <span class="eyebrow">AI Security Audit Framework</span>
+            <h1>Cyber Agent</h1>
+            <p class="subtitle">End-to-end orchestrated security validation. Domain detection, suite generation, pattern-based evaluation, and castle-level defense scoring.</p>
+        </header>
+
+        <!-- Run Context Bar -->
+        <div class="run-context">
+            <div class="run-pill"><span>Target:</span> <strong>demo-app</strong></div>
+            <div class="run-divider"></div>
+            <div class="run-pill mode-simulate"><span>Mode:</span> <strong>simulate</strong></div>
+            <div class="run-divider"></div>
+            <div class="run-pill"><span>Run:</span> <strong>2026-02-17T14:47Z</strong></div>
+            <div class="run-divider"></div>
+            <div class="run-pill"><span>Judge:</span> <strong>pattern + LLM</strong></div>
+            <div class="run-divider"></div>
+            <div class="run-pill"><span>Suites:</span> <strong>12</strong></div>
+        </div>
+
+        <div id="stats-row" class="stats-row"></div>
+
+        <!-- Outcome Strip -->
+        <div class="outcome-strip">
+            <div class="outcome-card">
+                <div class="outcome-label">Castle Level</div>
+                <div class="outcome-value">L3</div>
+                <div class="outcome-sub">&ge;80% pass at level threshold</div>
+            </div>
+            <div class="outcome-card">
+                <div class="outcome-label">Defense Profile</div>
+                <div class="defense-chips">
+                    <span class="defense-chip">auth gating</span>
+                    <span class="defense-chip">prompt guard</span>
+                    <span class="defense-chip">tool allowlist</span>
+                    <span class="defense-chip">input filter</span>
+                </div>
+            </div>
+            <div class="outcome-card red-accent">
+                <div class="outcome-label">Top Failure Vector</div>
+                <div class="outcome-value" style="color: var(--red);">tool abuse</div>
+                <div class="outcome-sub">10 tests across 3 escalation paths</div>
+            </div>
+        </div>
+
+        <!-- Pipeline Visualization -->
+        <section class="pipeline-section">
+            <h2 class="section-title">Audit Pipeline</h2>
+            <svg class="pipeline-svg" viewBox="0 0 900 120" preserveAspectRatio="xMidYMid meet" aria-label="Audit pipeline: Recon, Classify, Suite Select, Attack, Judge, Castle">
+                <defs>
+                    <linearGradient id="green-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#238636" />
+                        <stop offset="50%" stop-color="#3FB950" />
+                        <stop offset="100%" stop-color="#238636" />
+                    </linearGradient>
+                    <linearGradient id="node-fill" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#1C2128" />
+                        <stop offset="100%" stop-color="#161B22" />
+                    </linearGradient>
+                </defs>
+
+                <!-- Connecting lines -->
+                <line x1="115" y1="40" x2="185" y2="40" stroke="#3FB950" stroke-width="1.5" class="pipe-line" opacity="0.5" />
+                <line x1="265" y1="40" x2="335" y2="40" stroke="#3FB950" stroke-width="1.5" class="pipe-line" opacity="0.5" style="animation-delay: 0.3s" />
+                <line x1="415" y1="40" x2="485" y2="40" stroke="#3FB950" stroke-width="1.5" class="pipe-line" opacity="0.5" style="animation-delay: 0.6s" />
+                <line x1="565" y1="40" x2="635" y2="40" stroke="#3FB950" stroke-width="1.5" class="pipe-line" opacity="0.5" style="animation-delay: 0.9s" />
+                <line x1="715" y1="40" x2="785" y2="40" stroke="#3FB950" stroke-width="1.5" class="pipe-line" opacity="0.5" style="animation-delay: 1.2s" />
+
+                <!-- Nodes -->
+                <g class="pipe-node" style="transform-origin: 75px 40px; animation-delay: 0s">
+                    <rect x="35" y="20" width="80" height="40" rx="10" fill="url(#node-fill)" stroke="url(#green-grad)" stroke-width="1.5" />
+                    <text x="75" y="45" class="pipe-label">Recon</text>
+                </g>
+                <text x="75" y="82" class="pipe-desc">Probes target</text>
+
+                <g class="pipe-node" style="transform-origin: 225px 40px; animation-delay: 0.6s">
+                    <rect x="185" y="20" width="80" height="40" rx="10" fill="url(#node-fill)" stroke="url(#green-grad)" stroke-width="1.5" />
+                    <text x="225" y="45" class="pipe-label">Classify</text>
+                </g>
+                <text x="225" y="82" class="pipe-desc">Detects domain</text>
+
+                <g class="pipe-node" style="transform-origin: 375px 40px; animation-delay: 1.2s">
+                    <rect x="335" y="20" width="80" height="40" rx="10" fill="url(#node-fill)" stroke="url(#green-grad)" stroke-width="1.5" />
+                    <text x="375" y="45" class="pipe-label">Suite</text>
+                </g>
+                <text x="375" y="82" class="pipe-desc">Builds test suite</text>
+
+                <g class="pipe-node" style="transform-origin: 525px 40px; animation-delay: 1.8s">
+                    <rect x="485" y="20" width="80" height="40" rx="10" fill="url(#node-fill)" stroke="url(#green-grad)" stroke-width="1.5" />
+                    <text x="525" y="45" class="pipe-label">Attack</text>
+                </g>
+                <text x="525" y="82" class="pipe-desc">Runs validation</text>
+
+                <g class="pipe-node" style="transform-origin: 675px 40px; animation-delay: 2.4s">
+                    <rect x="635" y="20" width="80" height="40" rx="10" fill="url(#node-fill)" stroke="url(#green-grad)" stroke-width="1.5" />
+                    <text x="675" y="45" class="pipe-label">Judge</text>
+                </g>
+                <text x="675" y="82" class="pipe-desc">Multi-pattern</text>
+
+                <g class="pipe-node" style="transform-origin: 825px 40px; animation-delay: 3.0s">
+                    <rect x="785" y="20" width="80" height="40" rx="10" fill="url(#node-fill)" stroke="url(#green-grad)" stroke-width="1.5" />
+                    <text x="825" y="45" class="pipe-label">Castle</text>
+                </g>
+                <text x="825" y="82" class="pipe-desc">Defense score</text>
+            </svg>
+        </section>
+
+        <!-- Graph Panels -->
+        <div class="graphs">
+            <!-- Severity Donut -->
+            <div class="graph-panel" style="border-top: 2px solid var(--red-dim);">
+                <h3 class="graph-heading">Severity Distribution</h3>
+                <svg class="donut-svg" width="140" height="140" viewBox="0 0 140 140">
+                    <circle class="donut-segment" cx="70" cy="70" r="50"
+                        stroke="#F85149" stroke-width="11"
+                        stroke-dasharray="115 200" stroke-dashoffset="0"
+                        transform="rotate(-90 70 70)"
+                        style="animation-delay: 0s" />
+                    <circle class="donut-segment" cx="70" cy="70" r="50"
+                        stroke="#D29922" stroke-width="11"
+                        stroke-dasharray="162 200" stroke-dashoffset="-118"
+                        transform="rotate(-90 70 70)"
+                        style="animation-delay: 0.5s" />
+                    <circle class="donut-segment" cx="70" cy="70" r="50"
+                        stroke="#484F58" stroke-width="11"
+                        stroke-dasharray="36 200" stroke-dashoffset="-283"
+                        transform="rotate(-90 70 70)"
+                        style="animation-delay: 1.0s" />
+                    <text class="donut-center" x="70" y="66">130</text>
+                    <text class="donut-center-sub" x="70" y="82">tests</text>
+                </svg>
+                <div class="legend">
+                    <span><span class="legend-dot" style="background:#F85149"></span>Critical 48</span>
+                    <span><span class="legend-dot" style="background:#D29922"></span>High 67</span>
+                    <span><span class="legend-dot" style="background:#484F58"></span>Med 15</span>
+                </div>
+            </div>
+
+            <!-- Castle Levels Bar Chart -->
+            <div class="graph-panel">
+                <h3 class="graph-heading">Defense Levels (0–5)</h3>
+                <svg class="bars-svg" viewBox="0 0 180 140" preserveAspectRatio="xMidYMid meet">
+                    <defs>
+                        <linearGradient id="bar-grad" x1="0" y1="1" x2="0" y2="0">
+                            <stop offset="0%" stop-color="#238636" />
+                            <stop offset="50%" stop-color="#3FB950" />
+                            <stop offset="100%" stop-color="#238636" />
+                        </linearGradient>
+                    </defs>
+                    <!-- L1: 8 -->
+                    <rect class="bar-rect" x="10" y="102" width="24" height="16" rx="3" fill="url(#bar-grad)" style="animation-delay: 0s" />
+                    <text class="bar-value" x="22" y="98">8</text>
+                    <text class="bar-label" x="22" y="132">L1</text>
+                    <!-- L2: 23 -->
+                    <rect class="bar-rect" x="44" y="72" width="24" height="46" rx="3" fill="url(#bar-grad)" style="animation-delay: 0.4s" />
+                    <text class="bar-value" x="56" y="68">23</text>
+                    <text class="bar-label" x="56" y="132">L2</text>
+                    <!-- L3: 50 -->
+                    <rect class="bar-rect" x="78" y="18" width="24" height="100" rx="3" fill="url(#bar-grad)" style="animation-delay: 0.8s" />
+                    <text class="bar-value" x="90" y="14">50</text>
+                    <text class="bar-label" x="90" y="132">L3</text>
+                    <!-- L4: 37 -->
+                    <rect class="bar-rect" x="112" y="44" width="24" height="74" rx="3" fill="url(#bar-grad)" style="animation-delay: 1.2s" />
+                    <text class="bar-value" x="124" y="40">37</text>
+                    <text class="bar-label" x="124" y="132">L4</text>
+                    <!-- L5: 12 -->
+                    <rect class="bar-rect" x="146" y="94" width="24" height="24" rx="3" fill="url(#bar-grad)" style="animation-delay: 1.6s" />
+                    <text class="bar-value" x="158" y="90">12</text>
+                    <text class="bar-label" x="158" y="132">L5</text>
+                </svg>
+            </div>
+
+            <!-- Suite Coverage -->
+            <div class="graph-panel">
+                <h3 class="graph-heading">Suite Coverage</h3>
+                <div id="suite-bars"></div>
+            </div>
+        </div>
+
+        <!-- Verified Modules -->
+        <section>
+            <h2 class="section-title">Verified Modules</h2>
+            <div class="cap-columns">
+                <!-- Intelligence -->
+                <div>
+                    <div class="cap-column-title red">Intelligence</div>
+                    <div class="cap-stack">
+                        <div class="cap-card accent-red">
+                            <div class="cap-title">Red Brain</div>
+                            <div class="cap-detail">
+                                Escalation strategy engine<br>
+                                Multiple attack catalogs (static)<br>
+                                + optional LLM-powered generation
+                            </div>
+                        </div>
+                        <div class="cap-card">
+                            <div class="cap-title">Blue Brain</div>
+                            <div class="cap-detail">
+                                Defense mitigation planner<br>
+                                Multiple hardening catalogs (static)<br>
+                                + optional LLM-powered narratives
+                            </div>
+                        </div>
+                        <div class="cap-card accent-red">
+                            <div class="cap-title">Domain Detection</div>
+                            <div class="cap-detail">
+                                Multiple domain types auto-classified<br>
+                                Confidence scoring (0-1)<br>
+                                URL + content + endpoint signals
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Audit Integrity -->
+                <div>
+                    <div class="cap-column-title green">Audit Integrity</div>
+                    <div class="cap-stack">
+                        <div class="cap-card accent-red">
+                            <div class="cap-title">Judge</div>
+                            <div class="cap-detail">
+                                Multi-pattern regex evaluation<br>
+                                Multi-category confirmation<br>
+                                + optional LLM semantic analysis
+                            </div>
+                        </div>
+                        <div class="cap-card">
+                            <div class="cap-title">Attestation</div>
+                            <div class="cap-detail">
+                                Structured per-run bundles<br>
+                                Git commit tracking<br>
+                                Daily rollup aggregation
+                            </div>
+                        </div>
+                        <div class="cap-card">
+                            <div class="cap-title">Dynamic Suites</div>
+                            <div class="cap-detail">
+                                12 static suites (130 tests)<br>
+                                + target-specific generation<br>
+                                Endpoint-aware test building
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="load-warning" class="load-warning" style="display:none;"></div>
+
+        <p class="safety-note">Deterministic. No live targets. Sanitized demo only.<br>Aggregated validation metrics. No payload content, pattern signatures, or endpoint details.</p>
+
+        <nav class="links">
+            <a href="../index.html">Portfolio</a>
+            <a href="../safe/index.html">SAFE</a>
+            <a href="../nest/index.html">The Owl</a>
+        </nav>
+    </div>
+
+    <script>
+        // ── Snapshot loading (keep validation logic) ──
+
+        const ALLOWED_TOP = new Set([
+            "snapshot_version", "snapshot_date", "generated_at_utc", "system",
+            "source_repo", "mode", "summary", "severity_distribution",
+            "level_distribution", "suite_breakdown", "controls", "safety_notice"
+        ]);
+        const ALLOWED_SUMMARY = new Set(["statement", "total_tests", "suite_count", "modes", "castle_scale"]);
+        const ALLOWED_SEVERITY = new Set(["severity", "count"]);
+        const ALLOWED_LEVEL = new Set(["level", "count"]);
+        const ALLOWED_SUITE = new Set(["suite", "tests"]);
+
+        function hasOnlyKeys(obj, allowed) {
+            return obj && Object.keys(obj).every(k => allowed.has(k));
+        }
+        function isNonNegInt(v) { return Number.isInteger(v) && v >= 0; }
+        function isShortStr(v, max = 80) { return typeof v === "string" && v.length > 0 && v.length <= max; }
+
+        function validateSnapshot(d) {
+            if (!hasOnlyKeys(d, ALLOWED_TOP)) return false;
+            if (d.system !== "cyberagent") return false;
+            if (!hasOnlyKeys(d.summary, ALLOWED_SUMMARY)) return false;
+            if (!Array.isArray(d.summary.modes) || d.summary.modes.length < 1) return false;
+            if (!Array.isArray(d.severity_distribution) || d.severity_distribution.length < 1) return false;
+            if (!Array.isArray(d.level_distribution) || d.level_distribution.length < 1) return false;
+            if (!Array.isArray(d.suite_breakdown) || d.suite_breakdown.length < 1) return false;
+            if (!Array.isArray(d.controls)) return false;
+            if (!isShortStr(d.summary.statement, 160)) return false;
+            if (!isNonNegInt(d.summary.total_tests)) return false;
+            if (!isNonNegInt(d.summary.suite_count)) return false;
+            for (const s of d.severity_distribution) { if (!hasOnlyKeys(s, ALLOWED_SEVERITY) || !isShortStr(s.severity, 16) || !isNonNegInt(s.count)) return false; }
+            for (const l of d.level_distribution) { if (!hasOnlyKeys(l, ALLOWED_LEVEL) || !isNonNegInt(l.level) || !isNonNegInt(l.count)) return false; }
+            for (const s of d.suite_breakdown) { if (!hasOnlyKeys(s, ALLOWED_SUITE) || !isShortStr(s.suite, 48) || !isNonNegInt(s.tests)) return false; }
+            return true;
+        }
+
+        function renderStats(data) {
+            const row = document.getElementById("stats-row");
+            const stats = [
+                { label: "Total Tests", value: String(data.summary.total_tests) },
+                { label: "Suites", value: String(data.summary.suite_count) },
+                { label: "Modes", value: data.summary.modes.join(" / ") },
+                { label: "Castle Scale", value: data.summary.castle_scale }
+            ];
+            row.replaceChildren(...stats.map(s => {
+                const card = document.createElement("div");
+                card.className = "stat-card";
+                const val = document.createElement("div");
+                val.className = "stat-value";
+                val.textContent = s.value;
+                const lbl = document.createElement("div");
+                lbl.className = "stat-label";
+                lbl.textContent = s.label;
+                card.appendChild(val);
+                card.appendChild(lbl);
+                return card;
+            }));
+        }
+
+        function renderSuiteBars(data) {
+            const container = document.getElementById("suite-bars");
+            const sorted = [...data.suite_breakdown].sort((a, b) => b.tests - a.tests);
+            const max = Math.max(...sorted.map(s => s.tests), 1);
+
+            container.replaceChildren(...sorted.map((s, i) => {
+                const row = document.createElement("div");
+                row.className = "suite-bar-row";
+
+                const name = document.createElement("span");
+                name.className = "suite-name";
+                name.textContent = s.suite.replace(/_/g, " ");
+
+                const track = document.createElement("div");
+                track.className = "suite-track";
+                const fill = document.createElement("div");
+                fill.className = "suite-fill";
+                fill.style.width = `${(s.tests / max) * 100}%`;
+                fill.style.animationDelay = `${i * 0.08}s`;
+                track.appendChild(fill);
+
+                const count = document.createElement("span");
+                count.className = "suite-count";
+                count.textContent = String(s.tests);
+
+                row.appendChild(name);
+                row.appendChild(track);
+                row.appendChild(count);
+                return row;
+            }));
+        }
+
+        function showWarning(msg) {
+            const el = document.getElementById("load-warning");
+            el.style.display = "block";
+            el.textContent = msg;
+        }
+
+        async function loadSnapshot() {
+            try {
+                const res = await fetch("cyber_demo_snapshot.json", { cache: "no-store" });
+                if (!res.ok) throw new Error("Snapshot request failed");
+                const data = await res.json();
+                if (!validateSnapshot(data)) throw new Error("Snapshot failed validation");
+                renderStats(data);
+                renderSuiteBars(data);
+            } catch {
+                showWarning("Sanitized snapshot unavailable. Run scripts/refresh_sanitized_snapshots.sh to rebuild.");
+            }
+        }
+
+        loadSnapshot();
+
+        // ── Terminal Boot Sequence ──
+
+        const BOOT_LINES = [
+            "cyberagent v2.1.0 initializing...",
+            "loading test suites...",
+            "red_brain: attack catalogs loaded",
+            "blue_brain: hardening catalogs loaded",
+            "judge: multi-pattern evaluation ready",
+            "castle scoring: L0-L5 scale active",
+            "domain detection: multi-type classification ready",
+            "system ready \u2014 awaiting target"
+        ];
+
+        function runBootSequence() {
+            const el = document.getElementById("boot-line");
+            if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+            let lineIdx = 0;
+            let charIdx = 0;
+
+            function type() {
+                if (lineIdx >= BOOT_LINES.length) {
+                    el.innerHTML = BOOT_LINES[BOOT_LINES.length - 1] + '<span class="boot-cursor"></span>';
+                    return;
+                }
+
+                const line = BOOT_LINES[lineIdx];
+                if (charIdx <= line.length) {
+                    el.innerHTML = line.substring(0, charIdx) + '<span class="boot-cursor"></span>';
+                    charIdx++;
+                    setTimeout(type, 25 + Math.random() * 20);
+                } else {
+                    setTimeout(() => {
+                        lineIdx++;
+                        charIdx = 0;
+                        type();
+                    }, 600);
+                }
+            }
+
+            setTimeout(type, 500);
+        }
+
+        runBootSequence();
+
+        // ── Network Node Canvas ──
+
+        function initNetworkCanvas() {
+            const canvas = document.getElementById("network-canvas");
+            if (!canvas || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+            const ctx = canvas.getContext("2d");
+            let w, h;
+
+            function resize() {
+                w = canvas.width = window.innerWidth;
+                h = canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener("resize", resize);
+
+            const nodes = [];
+            const NODE_COUNT = Math.min(40, Math.floor((w * h) / 30000));
+            const CONNECT_DIST = 180;
+
+            for (let i = 0; i < NODE_COUNT; i++) {
+                nodes.push({
+                    x: Math.random() * w,
+                    y: Math.random() * h,
+                    vx: (Math.random() - 0.5) * 0.3,
+                    vy: (Math.random() - 0.5) * 0.3,
+                    r: 1.5 + Math.random() * 1.5,
+                    pulse: Math.random() * Math.PI * 2,
+                });
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, w, h);
+
+                // Draw connections
+                for (let i = 0; i < nodes.length; i++) {
+                    for (let j = i + 1; j < nodes.length; j++) {
+                        const dx = nodes[i].x - nodes[j].x;
+                        const dy = nodes[i].y - nodes[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < CONNECT_DIST) {
+                            const alpha = (1 - dist / CONNECT_DIST) * 0.08;
+                            ctx.strokeStyle = `rgba(63, 185, 80, ${alpha})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.beginPath();
+                            ctx.moveTo(nodes[i].x, nodes[i].y);
+                            ctx.lineTo(nodes[j].x, nodes[j].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+
+                // Draw nodes
+                for (const n of nodes) {
+                    n.pulse += 0.02;
+                    const glow = 0.3 + Math.sin(n.pulse) * 0.2;
+                    ctx.fillStyle = `rgba(63, 185, 80, ${glow})`;
+                    ctx.beginPath();
+                    ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    // Move
+                    n.x += n.vx;
+                    n.y += n.vy;
+                    if (n.x < 0 || n.x > w) n.vx *= -1;
+                    if (n.y < 0 || n.y > h) n.vy *= -1;
+                }
+
+                requestAnimationFrame(draw);
+            }
+
+            draw();
+        }
+
+        initNetworkCanvas();
+    </script>
+</body>
+</html>
