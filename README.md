@@ -1,92 +1,36 @@
 # Michael McKeithen Jr.
-**myel shaddah key**
 
-Charlotte, NC
-[myelshaddahkey@gmail.com](mailto:myelshaddahkey@gmail.com)
-[linkedin.com/in/michael-mckeithen-jr-79b182161](https://linkedin.com/in/michael-mckeithen-jr-79b182161)
+Charlotte, NC · [myelshaddahkey@gmail.com](mailto:myelshaddahkey@gmail.com) · [Portfolio](https://mck31th3n.github.io/-Portfolio-/) · [GitHub](https://github.com/mck31th3n)
 
 ---
 
-## Summary
-
-R&D-focused creative technologist building AI systems, autonomous trading engines, and financial tools with LLMs. Creator of **S.A.F.E. (Secure Autonomous Financial Engine)**, a patent-pending autonomous AI portfolio manager with multi-agent architecture validated on extensive historical market data with verified audit integrity. I use no-code/low-code tools plus emerging coding skills to prototype working products quickly: designing behavior specs, wiring APIs, and iterating on UX until the system feels explainable and trustworthy to real users.
+Governance-first AI engineer. I build systems where AI cannot take external actions without explicit approval, a paper trail, and structured validation — then probe those systems adversarially to find what breaks.
 
 ---
 
-## Core Skills & Focus
+## Projects
 
-- Design thinking & rapid prototyping for LLM-driven tools
-- AI agent behavior, personality mapping, and long-term memory design
-- Multi-agent orchestration & autonomous decision-making systems
-- Backtesting methodology & system validation for AI trading systems
-- Concept-to-prototype strategy for no-code/low-code stacks
-- System architecture for single-user and small-team AI assistants
-- Algorithmic trading systems, portfolio management, and risk analysis
-- Client-style communication & explanation of complex systems
+### [The Owl](https://github.com/mck31th3n/The-Owl) — Governance Kernel
+Proposal-first action gating for AI systems. Every action is routed PERMIT / DENY / ESCALATE through a multi-checker judge before execution. Hash-chained audit trail, 9 guard modules, 64-test suite (35 adversarial regression, 25 security, 4 protocol integration).
 
----
+### [Cyber Agent](https://github.com/mck31th3n/Cyber-Agent) — Adversarial Evaluation Framework
+Tests whether AI systems can be tricked or bypassed. 130 tests across 12 attack categories — prompt injection, auth bypass, encoding evasion, RAG poisoning, tool abuse, and more. Red Brain generates attacks; Blue Brain plans defenses; 8-checker judge scores results.
 
-## Tools & Platforms
+### [0N3](https://github.com/mck31th3n/0N3) — Governed Orchestration Layer
+Actor → Judge → Verifier pipeline with risk-classifier-triggered governance gate and hash-chained audit log. Blue Journal governance specification (non-public).
 
-ChatGPT / OpenAI API · Ollama · Claude Sonnet · Python · Visual Studio Code · REST APIs · JSON · Yahoo Finance · Coinbase API · Alpaca Markets · Google Drive · No-code/low-code builders
-
----
-
-## Selected Projects
-
-### A. S.A.F.E. — Secure Autonomous Financial Engine
-**2025 – Present**
-
-Autonomous AI portfolio manager with patent-pending multi-agent architecture. Manages multi-asset portfolios (crypto, equities, forex, commodities) with verified audit integrity and validated performance on historical data.
-
-- Designed patent-pending AI architecture for autonomous portfolio management across cryptocurrency, equities, forex, and commodities markets
-
-- Developed rigorous validation methodology preventing data leakage during backtesting and ensuring complete audit integrity across all decisions
-
-- Implemented adaptive risk management system with automated safety controls, real-time monitoring, and multi-layer defense protocols
-
-- Built learning system that evolves trading strategies based on market performance while maintaining comprehensive decision audit trails
-
-- Integrated live market data across multiple exchanges and data providers with automatic failover handling and connection resilience
-
-- Currently validating full-system performance through extended live observation with production-grade monitoring and recovery mechanisms
-
----
-
-### B. Dual-Mind Framework — Multi-Persona ChatGPT Experiment
-**2025 – Present**
-
-Experimental prompt engineering approach for simulating multiple distinct AI personalities within a single ChatGPT conversation, each providing different perspectives and reasoning on the same question.
-
-- Developed a prompt structure enabling two AI personas with complementary roles: one exploratory and creative, the other analytical and constraint-focused
-
-- Created protocols where each "mind" announces itself, presents independent reasoning, and highlights disagreements rather than converging to a single answer
-
-- Applied this multi-perspective approach to creative projects, financial system design, and decision-making workflows requiring balanced viewpoints
-
-- Demonstrated that single-session multi-agent reasoning is achievable through careful prompt engineering without requiring external frameworks
+### [composer-agent](https://github.com/mck31th3n/composer-agent) — Music Notation Tool
+Notation-to-MIDI measure-aware diff tool. Background in music composition (MFA, UNCSA).
 
 ---
 
 ## Education
 
-**MFA, Music Composition** — 2022
-University of North Carolina School of the Arts
-
-**BA, Music Composition** — 2019
-Queens University of Charlotte
-
-**Undergraduate Studies** — 2014–2016
-Gardner–Webb University (transferred)
+**MFA, Music Composition** — University of North Carolina School of the Arts
+**BA, Music Composition** — Queens University of Charlotte
 
 ---
 
-## Notes
+## Live Portfolio
 
-- **Patent Status:** Provisional patent application filed for S.A.F.E. multi-agent architecture
-- **Current Focus:** Validating autonomous trading systems and AI-driven decision support tools
-- **Location:** Charlotte, NC (open to remote opportunities)
-
----
-
-*Resume Version: Dec 2025 (Patent-Protected Edition)*
+[mck31th3n.github.io/-Portfolio-/](https://mck31th3n.github.io/-Portfolio-/)
