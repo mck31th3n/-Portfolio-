@@ -820,7 +820,7 @@
             { role: "owl",      label: "Owl",      text: "System healthy. Queue: 0 pending ops.\nProposals: 2 awaiting review.\nAudit chain: intact (847 events).\nTrash: 3/100 items (0.4% full).", delay: 2000 },
 
             { role: "user",     label: ">",        text: "audit last 3",                                                                           delay: 1200 },
-            { role: "owl",      label: "Owl",      text: "Audit log (847 total, showing 3):\n  #847 12:04:22 file_modify — operator\n  #846 11:58:10 resource_check — owl_daemon\n  #845 11:52:03 proposal_submit — user", delay: 2200 },
+            { role: "owl",      label: "Owl",      text: "Audit log (847 total, showing 3):\n  #847 12:04:22 file_modify — operator\n  #846 11:58:10 resource_check — system\n  #845 11:52:03 proposal_submit — user", delay: 2200 },
 
             { role: "user",     label: ">",        text: "pending",                                                                                delay: 1200 },
             { role: "owl",      label: "Owl",      text: "2 pending proposals (showing 2):\n  [pend] modify_file → config.yaml (a3f8b2c1)\n  [pend] create_file → new_module.py (7e4d9f06)",     delay: 2000 },
@@ -829,7 +829,7 @@
             { role: "owl",      label: "Owl",      text: "Trash: 3 active items (12.4 KB, 0.4% full).\nLifetime: 8 items processed.\nAccepting items.", delay: 1800 },
 
             { role: "user",     label: ">",        text: "domains",                                                                                delay: 1200 },
-            { role: "owl",      label: "Owl",      text: "5 domains registered:\n  filesystem (4 proposals)\n  security\n  configuration (1 proposals)\n  workspace\n  governance", delay: 1800 },
+            { role: "owl",      label: "Owl",      text: "5 domains registered.", delay: 1800 },
 
             { role: "user",     label: ">",        text: "scan workspace",                                                                         delay: 1200 },
             { role: "owl",      label: "Owl",      text: "Workspace profiled.\n60 Python files across 5 domains.\nPrimary: governance pipeline.\nTest coverage: 79 tests (35 adversarial regression, 25 security, 4 protocol, 15 end-to-end daemon).", delay: 2000 }
@@ -916,13 +916,12 @@
         const RAIN_WORDS = [
             "guards: 8 modules",
             "protocols: 4 enforced",
-            "organizer: 6 modules",
             "regression: 35 passed",
-            "approval_authority: enabled",
             "audit_chain: enabled",
-            "input_guard: enabled",
-            "resource_guard: enabled",
-            "halt_guard: enabled",
+            "components: active",
+            "guard: active",
+            "check: passed",
+            "boundary: enforced",
             "pill_interface: enabled",
             "controls: 7/7 active",
             "proposal: pending review",
@@ -958,13 +957,13 @@
         const RAIN_QA = [
             { q: "> status",                              a: "System healthy. Queue: 0 pending ops. Audit chain: intact." },
             { q: "> proposals",                           a: "2 pending proposals. modify_file → config.yaml. create_file → module.py." },
-            { q: "> audit last 5",                        a: "#847 12:04 file_modify — operator. #846 11:58 resource_check — owl_daemon." },
+            { q: "> audit last 5",                        a: "#847 12:04 file_modify — operator. #846 11:58 resource_check — system." },
             { q: "> trash",                               a: "Trash: 3 active items (12.4 KB, 0.4% full). Accepting items." },
-            { q: "> trash list",                          a: "3 trashed: draft_v3.md (2.1 KB) — user. old_config.yaml (890 B) — organizer." },
+            { q: "> trash list",                          a: "3 trashed: draft_v3.md (2.1 KB) — user. old_config.yaml (890 B) — system." },
             { q: "> explain report.pdf",                  a: "Deleted by: operator. Proposal: prop_4a2. Reason: superseded by v2." },
             { q: "> scan workspace",                      a: "Profiled. 60 Python files across 5 domains. Primary: governance pipeline." },
             { q: "> pending",                             a: "2 pending: [pend] modify_file → config.yaml. [pend] create_file → module.py." },
-            { q: "> domains",                             a: "5 domains: filesystem | security | configuration | workspace | governance" },
+            { q: "> domains",                             a: "5 domains active." },
             { q: "> approve prop_a3f8",                   a: "Approved: prop_a3f8b2c1." },
             { q: "> find /path/to/file",                  a: "Found: file.txt. Status: trashed. Deleted: 2026-02-20 by operator." },
             { q: "> help",                                a: "status | proposals | audit | trash | domains | scan workspace | help" }
