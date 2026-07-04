@@ -727,6 +727,151 @@
         @media (prefers-reduced-motion: reduce) and (max-width: 900px) {
             .carousel-ring { grid-template-columns: 1fr; gap: 1rem; }
         }
+
+        /* ── Systems Thinking Case Studies ── */
+
+        .proposals-section {
+            margin-top: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .proposals-header {
+            text-align: center;
+            max-width: 56ch;
+            margin: 0 auto 2rem;
+        }
+
+        .proposals-title {
+            font-family: "Sora", sans-serif;
+            font-size: clamp(1.3rem, 3vw, 1.7rem);
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: var(--ink-0);
+            margin-bottom: 0.6rem;
+        }
+
+        .proposals-subtitle {
+            font-size: 0.92rem;
+            line-height: 1.6;
+            color: var(--ink-1);
+        }
+
+        .proposal-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+        }
+
+        @media (max-width: 900px) {
+            .proposal-grid { grid-template-columns: 1fr; }
+        }
+
+        .proposal-card {
+            position: relative;
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 1.4rem 1.3rem 1.2rem;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
+        }
+
+        .proposal-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+        }
+
+        /* Domain accents — calmer than the carousel, same palette family */
+        .proposal-governance {
+            background: rgba(91, 233, 255, 0.045);
+            border: 1.5px solid rgba(91, 233, 255, 0.18);
+        }
+        .proposal-governance::before { background: linear-gradient(90deg, var(--owl-cyan), var(--owl-aurora)); }
+        .proposal-governance .proposal-tag { color: var(--owl-cyan); border-color: rgba(91, 233, 255, 0.25); background: rgba(91, 233, 255, 0.06); }
+
+        .proposal-labor {
+            background: rgba(212, 175, 55, 0.045);
+            border: 1.5px solid rgba(212, 175, 55, 0.18);
+        }
+        .proposal-labor::before { background: linear-gradient(90deg, var(--safe-gold), var(--safe-teal)); }
+        .proposal-labor .proposal-tag { color: var(--safe-gold); border-color: rgba(212, 175, 55, 0.25); background: rgba(212, 175, 55, 0.06); }
+
+        .proposal-creative {
+            background: rgba(139, 45, 58, 0.07);
+            border: 1.5px solid rgba(139, 45, 58, 0.24);
+        }
+        .proposal-creative::before { background: linear-gradient(90deg, var(--ask-accent), #d98a97); }
+        .proposal-creative .proposal-tag { color: #e0919c; border-color: rgba(139, 45, 58, 0.32); background: rgba(139, 45, 58, 0.08); }
+
+        .proposal-tag {
+            display: inline-block;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.6rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border: 1px solid;
+            border-radius: 999px;
+            padding: 0.16rem 0.5rem;
+            margin-bottom: 0.7rem;
+            width: fit-content;
+        }
+
+        .proposal-name {
+            font-family: "Sora", sans-serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--ink-0);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .proposal-desc {
+            font-size: 0.78rem;
+            line-height: 1.62;
+            color: var(--ink-1);
+            margin-bottom: 0.8rem;
+        }
+
+        .proposal-meta {
+            margin-top: auto;
+            padding-top: 0.7rem;
+            border-top: 1px solid var(--line-light);
+        }
+
+        .proposal-meta-label {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.55rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--ink-3);
+            margin-bottom: 0.15rem;
+        }
+
+        .proposal-meta-value {
+            font-size: 0.72rem;
+            line-height: 1.5;
+            color: var(--ink-2);
+            margin-bottom: 0.6rem;
+        }
+
+        .proposal-status-label {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.55rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--ink-3);
+            margin-top: 0.5rem;
+            margin-bottom: 0.15rem;
+        }
+
+        .proposal-status {
+            font-size: 0.7rem;
+            line-height: 1.55;
+            color: var(--ink-2);
+        }
     </style>
 </head>
 <body>
@@ -819,6 +964,54 @@
             </div>
         </section>
         <p class="carousel-hint" id="carousel-hint">swipe or drag to explore</p>
+
+        <div class="section-divider"></div>
+
+        <!-- Systems Thinking Case Studies -->
+        <section class="proposals-section">
+            <div class="proposals-header">
+                <h2 class="proposals-title">Systems Thinking Case Studies</h2>
+                <p class="proposals-subtitle">Public-facing proposal cards exploring how AI-era platforms can replace blunt friction with structured, accountable workflows.</p>
+            </div>
+
+            <div class="proposal-grid">
+                <div class="proposal-card proposal-governance">
+                    <span class="proposal-tag">AI Governance Systems</span>
+                    <h3 class="proposal-name">The Global AI Capability Floor</h3>
+                    <p class="proposal-desc">AI is becoming civilization-level infrastructure, but current governance debates often collapse into a narrow choice between acceleration, moratorium, or self-regulation. This proposal explores a third path: a treaty-bound capability floor that accepts frontier AI advantage as a reality while rejecting permanent AI exclusion as an acceptable global outcome. The framework proposes delayed access to audited, prior-generation civilian AI capability through governed international pools, tiered use categories, conditional accountability, independent audit capacity, and escalation rules for verified hostile use. The public case study focuses on the system architecture &mdash; how to balance safety, sovereignty, access, and accountability.</p>
+                    <div class="proposal-meta">
+                        <div class="proposal-meta-label">Demonstrates</div>
+                        <div class="proposal-meta-value">AI policy design, global infrastructure thinking, safety/access tradeoff analysis, institutional architecture, governance workflow design.</div>
+                        <div class="proposal-status-label">Status</div>
+                        <p class="proposal-status">Adversarially reviewed through v2. Required fixes manually confirmed as addressed. Formal v3 pipeline re-review not yet run.</p>
+                    </div>
+                </div>
+
+                <div class="proposal-card proposal-creative">
+                    <span class="proposal-tag">Platform Labor Systems</span>
+                    <h3 class="proposal-name">Reliability-Gated Dasher Earnings Floor</h3>
+                    <p class="proposal-desc">Gig platforms typically optimize for order coverage while drivers absorb the volatility of demand swings, dead zones, and unpaid waiting. This concept proposes a narrow, opt-in alternative: a time-and-location-scoped earnings floor triggered only during operationally-justified coverage gaps, tiered by driver standing, with real fraud/abuse controls and a legally-sound early-exit mechanism that avoids retroactive pay clawback.</p>
+                    <div class="proposal-meta">
+                        <div class="proposal-meta-label">Demonstrates</div>
+                        <div class="proposal-meta-value">Marketplace incentive design, labor-platform governance, cost/abuse-control modeling, operational fairness under an independent-contractor legal structure.</div>
+                        <div class="proposal-status-label">Status</div>
+                        <p class="proposal-status">Unsolicited concept proposal. Not submitted to, reviewed by, or endorsed by DoorDash. No pilot has been run.</p>
+                    </div>
+                </div>
+
+                <div class="proposal-card proposal-labor">
+                    <span class="proposal-tag">Creative AI Systems</span>
+                    <h3 class="proposal-name">Consent-Based Reference Rails for AI Music Platforms</h3>
+                    <p class="proposal-desc">AI music platforms often treat artist references as a blunt restriction problem: block the prompt, hide the reasoning, or push users into coded language. This concept explores a more structured alternative: keep broad musical descriptors open, while routing explicit named artist, project, or song references through opt-in licensed pathways with clear user review, reference scope, and lineage tracking. The concept also explores a lightweight independent-artist discovery lane, where artists can voluntarily make selected style references available for visibility and usage analytics rather than immediate licensing revenue.</p>
+                    <div class="proposal-meta">
+                        <div class="proposal-meta-label">Demonstrates</div>
+                        <div class="proposal-meta-value">Creative AI governance, rights-aware UX, consent-based workflow design, creator-platform incentive modeling.</div>
+                        <div class="proposal-status-label">Status</div>
+                        <p class="proposal-status">Early concept exploration. Not submitted to, reviewed by, or endorsed by Suno. No legal, rights-holder, or platform validation has been conducted.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- Footer -->
         <footer class="footer">
