@@ -1,0 +1,57 @@
+# macOS
+.DS_Store
+
+# Not part of this portfolio
+resume*
+*-resume-*.md
+Michael_McKeithen_*.pdf
+_private/
+_private*/
+*_backup_*/
+
+# Old/backup pages
+index-original.html
+index-zelle-original.html
+safe/demo-dashboard.html
+safe/index-old.html
+
+# Local development files
+safe/safe-live-data.json
+safe/safe-data-bridge.py
+safe/update-live-data.sh
+
+# Old standalone SAFE assets (now inline single-file)
+safe/demo-data.json
+safe/safe-demo-data.json
+safe/script-v4.js
+safe/styles-v4.css
+safe/live-data-connector.js
+safe/test-comparison-loader.js
+safe/test_comparison_data.json
+
+# Large media files (exceed GitHub 100MB limit)
+*.mov
+
+# Old Owl boot files (now inline single-file)
+nest/owl_boot.css
+nest/owl_boot.html
+nest/owl_boot.js
+nest/owl_demo_snapshot.json
+
+# Development notes & personal docs
+*AUDIT*.md
+BUGS_FIXED_ANIMATIONS.md
+PORTFOLIO_UPDATES_COMPLETE.md
+PORTFOLIO_UPDATES_*.md
+DEPLOYMENT*.md
+DEPLOY*.md
+*_Application_*.md
+*_Cover_Letter*.md
+*_Sheet_*.md
+
+# Scripts with local paths
+scripts/
+
+# Worker dev config + cache
+wrangler.toml
+.wrangler/
