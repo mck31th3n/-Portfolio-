@@ -14,7 +14,7 @@ Governance-first AI engineer. I build systems where AI cannot take external acti
 Autonomous risk assessment across crypto, equities, forex, and commodities. Watches markets, evaluates conditions, and logs every decision. No execution capability. Closed-source.
 
 ### [The Owl](https://github.com/mck31th3n/The-Owl) — Governance Kernel
-Proposal-first action gating for AI systems. Every action is routed PERMIT / DENY / ESCALATE through a multi-checker judge before execution. Hash-chained audit trail, guard stack, 79-test suite (35 adversarial regression, 25 security, 4 protocol integration, 15 end-to-end daemon).
+Proposal-first action gating for AI systems. Every action is routed APPROVE / REFUSE / DELAY / ESCALATE through a multi-checker judge before execution. Hash-chained audit trail, guard stack, 114-test suite (35 adversarial regression, 25 security guards, 4 governance protocols, 50 end-to-end daemon tests).
 
 ### Cyber Agent — Adversarial Evaluation Framework
 Tests whether AI systems can be tricked or bypassed. 130 tests across 12 attack categories — prompt injection, auth bypass, encoding evasion, RAG poisoning, tool abuse, and more. Red Brain generates attacks; Blue Brain plans defenses; 8-checker judge scores results. Closed-source.
