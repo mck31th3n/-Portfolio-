@@ -10,17 +10,24 @@ Governance-first AI engineer. I build systems where AI cannot take external acti
 
 ## Projects
 
-### [The Owl](https://github.com/mck31th3n/The-Owl) — Governance Kernel
-Proposal-first action gating for AI systems. Every action is routed PERMIT / DENY / ESCALATE through a multi-checker judge before execution. Hash-chained audit trail, guard stack, 64-test suite (35 adversarial regression, 25 security, 4 protocol integration).
+### SAFE — Observer-Only Risk Assessment
+Autonomous risk assessment across crypto, equities, forex, and commodities. Watches markets, evaluates conditions, and logs every decision. No execution capability. Closed-source.
 
-### LunarSim — Resilience Simulation Kernel
-Deterministic, audit-logged resilience kernel for constraint-gated simulation, policy benchmarking, and reproducible Monte Carlo failure attribution across scenario adapters. Closed-source.
+### [The Owl](https://github.com/mck31th3n/The-Owl) — Governance Kernel
+Proposal-first action gating for AI systems. Every action is routed PERMIT / DENY / ESCALATE through a multi-checker judge before execution. Hash-chained audit trail, guard stack, 79-test suite (35 adversarial regression, 25 security, 4 protocol integration, 15 end-to-end daemon).
 
 ### Cyber Agent — Adversarial Evaluation Framework
 Tests whether AI systems can be tricked or bypassed. 130 tests across 12 attack categories — prompt injection, auth bypass, encoding evasion, RAG poisoning, tool abuse, and more. Red Brain generates attacks; Blue Brain plans defenses; 8-checker judge scores results. Closed-source.
 
-### [composer-agent](https://github.com/mck31th3n/composer-agent) — Music Notation Tool
-Notation-to-MIDI measure-aware diff tool. Background in music composition (MFA, UNCSA).
+---
+
+## Systems Thinking Case Studies
+
+Public-facing proposal explorations in AI governance, platform labor systems, and creative AI — concept-stage, not shipped products. Full write-ups on the [live portfolio](https://mck31th3n.github.io/-Portfolio-/):
+
+- The Global AI Capability Floor — AI governance systems
+- Reliability-Gated Dasher Earnings Floor — platform labor systems
+- Consent-Based Reference Rails for AI Music Platforms — creative AI systems
 
 ---
 
