@@ -338,6 +338,14 @@
             opacity: 1;
         }
 
+        .card-inactive {
+            cursor: default;
+        }
+
+        .card-inactive .card-nav-hint {
+            display: none;
+        }
+
         .carousel-hint {
             text-align: center;
             font-family: "JetBrains Mono", monospace;
@@ -890,27 +898,18 @@
         <!-- Project Carousel -->
         <section class="carousel-scene" id="carousel-scene">
             <div class="carousel-ring" id="carousel-ring">
-                <div class="carousel-card card-owl" data-href="nest/index.html" data-index="0">
+                <div class="carousel-card card-owl card-inactive" data-index="0">
                     <span class="card-tag">AI Action Governance</span>
-                    <h2 class="card-name">The Owl</h2>
-                    <p class="card-desc">Before AI can act, it submits a proposal. 8 security guard modules inspect it, the action is logged, and a human approves or denies. Nothing executes without a paper trail.</p>
+                    <h2 class="card-name">Owl</h2>
+                    <p class="card-desc">Owl is a local-first demonstration of proposal review, deterministic risk classification, human decisions, and hash-chained audit records.</p>
                     <div class="card-stats">
                         <div class="card-stat">
-                            <span class="card-stat-value">8</span>
-                            <span class="card-stat-label">Guards</span>
-                        </div>
-                        <div class="card-stat">
-                            <span class="card-stat-value">114</span>
-                            <span class="card-stat-label">Tests</span>
-                        </div>
-                        <div class="card-stat">
-                            <span class="card-stat-value">Tested</span>
-                            <span class="card-stat-label">Cyber Agent</span>
+                            <span class="card-stat-value">In Prep</span>
+                            <span class="card-stat-label">Public Repository</span>
                         </div>
                     </div>
                     <div class="card-preview">
-                        <p class="card-preview-text">8 security guard modules validate every AI action before human approval.</p>
-                        <p class="card-nav-hint">tap to enter &rarr;</p>
+                        <p class="card-preview-text">Public repository access is forthcoming.</p>
                     </div>
                 </div>
 
@@ -1050,7 +1049,7 @@
                     type="text"
                     class="ask-input"
                     id="ask-input"
-                    placeholder="Ask about SAFE, The Owl, or Cyber Agent..."
+                    placeholder="Ask about SAFE, Owl, or Cyber Agent..."
                     maxlength="300"
                     autocomplete="off"
                     spellcheck="false"
@@ -1078,7 +1077,10 @@
             if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
                 cards.forEach(card => {
                     card.addEventListener("click", () => {
-                        window.location = card.dataset.href;
+                        const href = card.dataset.href;
+                        if (href) {
+                            window.location = href;
+                        }
                     });
                 });
                 return;
@@ -1170,8 +1172,11 @@
                 if (Math.abs(dragDelta) > 8) return; // Was a drag, not a click
 
                 if (locked && lockedIndex === index) {
-                    // Second click on locked card — navigate
-                    window.location = card.dataset.href;
+                    // Second click on locked card — navigate only if a destination exists
+                    const href = card.dataset.href;
+                    if (href) {
+                        window.location = href;
+                    }
                 } else {
                     // First click — lock and expand
                     snapToCard(index);
@@ -1288,7 +1293,7 @@
                 if (!greeted) {
                     greeted = true;
                     setTimeout(() => {
-                        addMsg("ask", "I\u2019m a guide to this portfolio. I can explain what\u2019s here or point you to the right page.\n\nTry asking about SAFE, The Owl, or Cyber Agent.");
+                        addMsg("ask", "I\u2019m a guide to this portfolio. I can explain what\u2019s here or point you to the right page.\n\nTry asking about SAFE, Owl, or Cyber Agent.");
                     }, 300);
                 }
                 setTimeout(() => inputEl.focus(), 350);
@@ -1343,8 +1348,6 @@
         // Mock responses
         const NAV_MAP = {
             safe: { label: "Open SAFE Dashboard", url: "safe/index.html" },
-            owl: { label: "Open The Owl", url: "nest/index.html" },
-            "the owl": { label: "Open The Owl", url: "nest/index.html" },
             cyber: { label: "Open Cyber Agent", url: "cyber-agent/index.html" },
             "cyber agent": { label: "Open Cyber Agent", url: "cyber-agent/index.html" },
         };
@@ -1355,15 +1358,15 @@
                 nav: NAV_MAP.safe,
             },
             owl: {
-                text: "The Owl is a supervisor for AI. Before AI can do anything, it has to ask first. The Owl checks if it\u2019s safe, logs the request, and waits for human approval.\n\n8 security guard modules, 79 tests passing (35 adversarial regression, 25 security guards, 4 governance protocols, 15 end-to-end daemon).",
-                nav: NAV_MAP.owl,
+                text: "Owl is being rebuilt as a smaller, local-first governance demonstration with proposal review, deterministic risk classification, human decision gates, and hash-chained audit records. Public repository access is forthcoming.",
+                nav: null,
             },
             cyber: {
                 text: "Cyber Agent tests whether AI systems can be tricked or bypassed. 130 tests, 12 categories, and a defense rating from 0 to 5. It has a Red Brain (attacker) and Blue Brain (defender).",
                 nav: NAV_MAP.cyber,
             },
             guards: {
-                text: "Guards are safety checkpoints inside The Owl. Before any action goes through, 8 security guard modules inspect it from different angles \u2014 is the input safe? Is it within bounds? Is there a proper record?",
+                text: "Every proposal in Owl is checked against a risk classifier before a human reviews it \u2014 is it reversible? Does it touch sensitive resources? High-risk or blocked actions are flagged automatically, but a human always makes the final call.",
                 nav: null,
             },
             castle: {
@@ -1395,15 +1398,15 @@
                 nav: null,
             },
             proposal: {
-                text: "A proposal is how AI requests permission. Instead of just acting, it submits a proposal, the guards check it, it gets logged, and a human approves or denies.",
+                text: "A proposal is how AI requests permission to act. Instead of just acting, it submits a proposal, the action is risk-classified and logged, and a human approves, denies, or escalates it.",
                 nav: null,
             },
             michael: {
-                text: "Michael McKeithen \u2014 Human-AI Systems & Governance Designer in Charlotte, NC. Background in music composition. Builds The Owl and Cyber Agent. SAFE is a closed prototype.",
+                text: "Michael McKeithen \u2014 Human-AI Systems & Governance Designer in Charlotte, NC. Background in music composition. Builds human-reviewed AI workflows, governance prototypes, and protected operational tools. SAFE is a closed prototype.",
                 nav: null,
             },
             default: {
-                text: "I can explain what SAFE, The Owl, or Cyber Agent do, or point you to the right page. What are you interested in?",
+                text: "I can explain what SAFE, Owl, or Cyber Agent do, or point you to the right page. What are you interested in?",
                 nav: null,
             },
             refused: {
