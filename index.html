@@ -35,6 +35,9 @@
             --cyber-green-m:rgba(63, 185, 80, 0.12);
             --cyber-amber:  #D29922;
             --cyber-red:    #F85149;
+            --circle-violet:  #b98bff;
+            --circle-violet-m:rgba(185, 139, 255, 0.12);
+            --circle-rose:    #ff8fc7;
 
             /* Ask (dark glass + burgundy) */
             --ask-bg:       #0E0C10;
@@ -243,6 +246,17 @@
         .card-cyber .card-tag { color: var(--cyber-green); border-color: rgba(63, 185, 80, 0.25); background: rgba(63, 185, 80, 0.06); }
         .card-cyber .card-stat-value { color: var(--cyber-green); }
         .card-cyber .card-nav-hint { color: var(--cyber-green); }
+
+        /* Circle card */
+        .card-circle {
+            background: rgba(185, 139, 255, 0.05);
+            border: 1.5px solid rgba(185, 139, 255, 0.2);
+        }
+        .card-circle::before { background: linear-gradient(90deg, var(--circle-violet), var(--circle-rose)); }
+        .card-circle.expanded { border-color: rgba(185, 139, 255, 0.5); box-shadow: 0 0 50px rgba(185, 139, 255, 0.12), 0 16px 48px rgba(0, 0, 0, 0.35); }
+        .card-circle .card-tag { color: var(--circle-violet); border-color: rgba(185, 139, 255, 0.25); background: rgba(185, 139, 255, 0.06); }
+        .card-circle .card-stat-value { color: var(--circle-violet); }
+        .card-circle .card-nav-hint { color: var(--circle-violet); }
 
         .card-tag {
             display: inline-block;
@@ -960,6 +974,30 @@
                         <p class="card-nav-hint">tap to enter &rarr;</p>
                     </div>
                 </div>
+
+                <div class="carousel-card card-circle" data-href="circle/index.html" data-index="3">
+                    <span class="card-tag">Music Lesson Operations</span>
+                    <h2 class="card-name">The Circle</h2>
+                    <p class="card-desc">Protected music lesson operations hub with parent/student access, attendance tracking, lesson logs, scheduling requests, and privacy-scoped notes.</p>
+                    <div class="card-stats">
+                        <div class="card-stat">
+                            <span class="card-stat-value">2</span>
+                            <span class="card-stat-label">Login Flows</span>
+                        </div>
+                        <div class="card-stat">
+                            <span class="card-stat-value">Server-Side</span>
+                            <span class="card-stat-label">Field Exclusion</span>
+                        </div>
+                        <div class="card-stat">
+                            <span class="card-stat-value">Sanitized</span>
+                            <span class="card-stat-label">Local Demo Data</span>
+                        </div>
+                    </div>
+                    <div class="card-preview">
+                        <p class="card-preview-text">Private, protected deployment / sanitized walkthrough.</p>
+                        <p class="card-nav-hint">tap to enter &rarr;</p>
+                    </div>
+                </div>
             </div>
         </section>
         <p class="carousel-hint" id="carousel-hint">swipe or drag to explore</p>
@@ -1070,8 +1108,8 @@
             const cards = ring.querySelectorAll(".carousel-card");
             const hint = document.getElementById("carousel-hint");
             const RADIUS = window.innerWidth <= 640 ? 220 : 300;
-            const CARD_COUNT = 3;
-            const ANGLE_STEP = 360 / CARD_COUNT; // 120°
+            const CARD_COUNT = 4;
+            const ANGLE_STEP = 360 / CARD_COUNT; // 90°
 
             // Reduced motion — skip all carousel JS
             if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {

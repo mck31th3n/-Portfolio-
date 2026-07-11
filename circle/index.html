@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <title>The Circle — Music Lesson Operations Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep:    #08090E;
+            --bg-surface: #0E1017;
+            --bg-card:    #13151D;
+            --bg-raised:  #191C26;
+            --ink-0:      #E8ECF2;
+            --ink-1:      #A0AAB8;
+            --ink-2:      #6B7585;
+            --ink-3:      #464E5C;
+            --line:       rgba(120, 135, 155, 0.14);
+            --line-light: rgba(120, 135, 155, 0.08);
+            --violet:     #b98bff;
+            --violet-m:   rgba(185, 139, 255, 0.12);
+            --rose:       #ff8fc7;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--ink-0);
+            background: var(--bg-deep);
+            overflow-x: hidden;
+        }
+
+        .ambient {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .ambient::before {
+            content: "";
+            position: absolute;
+            top: -20%;
+            left: 25%;
+            width: 60%;
+            height: 50%;
+            background: radial-gradient(ellipse at center,
+                rgba(185, 139, 255, 0.05) 0%,
+                rgba(255, 143, 199, 0.03) 45%,
+                transparent 70%);
+            filter: blur(80px);
+        }
+
+        .page { max-width: 900px; margin: 0 auto; padding: 3rem 1.5rem 4rem; position: relative; z-index: 2; }
+
+        .eyebrow {
+            display: inline-block;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--violet);
+            border: 1px solid rgba(185, 139, 255, 0.25);
+            background: var(--violet-m);
+            border-radius: 999px;
+            padding: 0.3rem 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-family: "Sora", sans-serif;
+            font-weight: 600;
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            letter-spacing: -0.01em;
+            margin-bottom: 0.6rem;
+        }
+
+        .subtitle {
+            color: var(--ink-1);
+            font-size: 1.05rem;
+            line-height: 1.6;
+            max-width: 640px;
+            margin-bottom: 1.4rem;
+        }
+
+        .status-strip {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .status-pill {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.7rem;
+            color: var(--ink-1);
+            border: 1px solid var(--line);
+            background: var(--bg-card);
+            border-radius: 999px;
+            padding: 0.35rem 0.75rem;
+        }
+        .status-pill strong { color: var(--ink-0); }
+
+        section { margin-bottom: 2.6rem; }
+
+        h2.section-title {
+            font-family: "Sora", sans-serif;
+            font-weight: 600;
+            font-size: 1.15rem;
+            margin-bottom: 0.9rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 1px solid var(--line);
+        }
+
+        p, li {
+            color: var(--ink-1);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        p + p { margin-top: 0.8rem; }
+
+        ol, ul { padding-left: 1.3rem; }
+        li { margin-bottom: 0.5rem; }
+        li strong { color: var(--ink-0); }
+
+        .privacy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 0.9rem;
+        }
+
+        .privacy-item {
+            background: var(--bg-card);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 1rem 1.1rem;
+        }
+        .privacy-item h3 {
+            font-size: 0.85rem;
+            color: var(--violet);
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+        }
+        .privacy-item p { font-size: 0.87rem; margin-top: 0; }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
+        }
+
+        figure {
+            background: var(--bg-card);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            overflow: hidden;
+        }
+        figure img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        figcaption {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.7rem;
+            color: var(--ink-2);
+            padding: 0.6rem 0.85rem;
+            border-top: 1px solid var(--line-light);
+        }
+
+        .gif-wrap {
+            background: var(--bg-card);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            overflow: hidden;
+            max-width: 640px;
+        }
+        .gif-wrap img { display: block; width: 100%; height: auto; }
+        .gif-caption {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.7rem;
+            color: var(--ink-2);
+            padding: 0.6rem 0.85rem;
+            border-top: 1px solid var(--line-light);
+        }
+
+        .safety-note {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.72rem;
+            color: var(--ink-2);
+            line-height: 1.6;
+            border-left: 2px solid rgba(185, 139, 255, 0.3);
+            padding: 0.7rem 0 0.7rem 1rem;
+            margin-bottom: 2rem;
+        }
+
+        nav.links {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--line);
+        }
+        nav.links a {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.78rem;
+            color: var(--ink-1);
+            text-decoration: none;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 0.5rem 0.9rem;
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
+        nav.links a:hover { color: var(--violet); border-color: rgba(185, 139, 255, 0.4); }
+    </style>
+</head>
+<body>
+    <div class="ambient" aria-hidden="true"></div>
+
+    <div class="page">
+        <span class="eyebrow">Music Lesson Operations</span>
+        <h1>The Circle</h1>
+        <p class="subtitle">Protected music lesson operations hub with parent/student access, attendance tracking, lesson logs, scheduling requests, and privacy-scoped notes.</p>
+
+        <div class="status-strip">
+            <span class="status-pill"><strong>Status:</strong> Private, protected deployment</span>
+            <span class="status-pill"><strong>Access:</strong> Auth-gated, no public login</span>
+            <span class="status-pill"><strong>This page:</strong> Sanitized walkthrough</span>
+        </div>
+
+        <p class="safety-note">All screenshots and the walkthrough below use synthetic, locally-seeded demo data captured in an isolated local environment — never the operational deployment or real records. The live application is not linked from this page and has no public login.</p>
+
+        <section>
+            <h2 class="section-title">Problem</h2>
+            <p>Independent music teachers manage lessons, attendance, and parent communication across scattered tools — texts, spreadsheets, paper notes — with no single source of truth for either side of the relationship. Parents want to know what happened in a lesson and what's coming next; teachers want a fast way to log it without extra admin overhead.</p>
+        </section>
+
+        <section>
+            <h2 class="section-title">Design Principle</h2>
+            <p>Everyone sees exactly what they're supposed to see, nothing more. A teacher's private working notes stay private. A parent's portal access is scoped to their own child, by session, never by URL parameter. A public referral page shows only what a teacher explicitly approved.</p>
+        </section>
+
+        <section>
+            <h2 class="section-title">Architecture</h2>
+            <p>Next.js 16 (App Router) on Vercel, PostgreSQL via Neon, Prisma as the ORM. Authentication uses separate teacher and parent sign-in flows tailored to each role.</p>
+        </section>
+
+        <section>
+            <h2 class="section-title">Primary Flows</h2>
+            <ol>
+                <li><strong>Teacher</strong> logs in, manages students, calendar, and lesson logs.</li>
+                <li>Each completed lesson gets a log: what was worked on, homework, and two separate note fields — one visible to the parent, one private to the teacher.</li>
+                <li><strong>Parent/student</strong> logs in with a teacher-issued code and PIN, sees their own upcoming lesson, attendance, and the parent-visible portion of the last lesson log only.</li>
+                <li>Schedule changes go through a request-and-confirm flow — the parent requests or accepts a time, the teacher confirms it. Nothing is booked unilaterally.</li>
+                <li>A public, unauthenticated referral page lists independently-vetted teachers the studio trusts, each with an explicit disclaimer that they're independent professionals, not staff — reviews are submitted publicly but held for moderation before appearing.</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2 class="section-title">Privacy-by-Design Decisions</h2>
+            <div class="privacy-grid">
+                <div class="privacy-item">
+                    <h3>Server-side field exclusion, not UI hiding</h3>
+                    <p>The parent portal's database query never selects the teacher's private note field at all — it isn't fetched, so there's no code path where it could leak, versus a UI that merely doesn't render a field it already has in hand.</p>
+                </div>
+                <div class="privacy-item">
+                    <h3>Session-scoped data access</h3>
+                    <p>The parent portal reads the student ID from the authenticated session, never from a URL parameter — there's no way to view another family's data by editing an address bar.</p>
+                </div>
+                <div class="privacy-item">
+                    <h3>Server-enforced contact visibility</h3>
+                    <p>On the public referral page, each contact's email/phone/website visibility toggle is enforced in the database query itself (fields are nulled server-side before the response is ever built), not just hidden with CSS.</p>
+                </div>
+                <div class="privacy-item">
+                    <h3>Moderated public submissions</h3>
+                    <p>Public review submissions remain pending until they are reviewed and approved. Nothing is published automatically.</p>
+                </div>
+                <div class="privacy-item">
+                    <h3>Separate teacher and parent access</h3>
+                    <p>Teacher and parent access use distinct authentication flows designed around their respective roles.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">What This Proves</h2>
+            <p>Privacy-conscious product design carried all the way through the data layer, not just the UI — a real, working operations tool built with the same rigor applied to security review, deployment protection, and public-exposure boundaries.</p>
+        </section>
+
+        <section>
+            <h2 class="section-title">Screenshots</h2>
+            <p style="margin-bottom: 1rem;">Captured against a local, isolated instance seeded with synthetic data — never the production database.</p>
+            <div class="gallery">
+                <figure>
+                    <img src="screenshots/01-teacher-dashboard.png" alt="Teacher dashboard view, synthetic demo data" loading="lazy">
+                    <figcaption>Teacher dashboard</figcaption>
+                </figure>
+                <figure>
+                    <img src="screenshots/02-calendar.png" alt="Teacher calendar view, synthetic demo data" loading="lazy">
+                    <figcaption>Calendar</figcaption>
+                </figure>
+                <figure>
+                    <img src="screenshots/03-students-list.png" alt="Students list view, synthetic demo data" loading="lazy">
+                    <figcaption>Students list</figcaption>
+                </figure>
+                <figure>
+                    <img src="screenshots/04-lesson-logs.png" alt="Lesson logs view, synthetic demo data" loading="lazy">
+                    <figcaption>Lesson logs</figcaption>
+                </figure>
+                <figure>
+                    <img src="screenshots/05-parent-portal.png" alt="Parent portal view, synthetic demo data" loading="lazy">
+                    <figcaption>Parent portal — schedule request flow</figcaption>
+                </figure>
+                <figure>
+                    <img src="screenshots/06-contacts-referral.png" alt="Public contacts and referral page, synthetic demo data" loading="lazy">
+                    <figcaption>Public contacts / referral page</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Walkthrough</h2>
+            <div class="gif-wrap">
+                <img src="circle-demo.gif" alt="Scoped walkthrough: teacher login through dashboard, calendar, and lesson logs, then parent login through the parent portal — synthetic demo data" loading="lazy">
+                <p class="gif-caption">~11s scoped walkthrough · teacher flow → parent flow · synthetic local data</p>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Tradeoffs</h2>
+            <ul>
+                <li><strong>Text-based scheduling, not a booking calendar.</strong> Schedule changes are a teacher-confirmed request/accept flow. A guided calendar where parents browse open slots and self-book is a deliberately separate, not-yet-built phase — the current flow never implies more automation than exists.</li>
+                <li><strong>Single-teacher model.</strong> Built for one studio/teacher's real workflow first, not a multi-tenant platform. Multi-teacher support is a real extension, not a current claim.</li>
+                <li><strong>No public demo login.</strong> Because this product's entire purpose involves real minors' scheduling and attendance data once it has real users, there is no public-facing way to log in and explore it — a fundamentally different posture than a code-only demo. Public proof here means screenshots, a recorded walkthrough, and a written explanation of the system, all built on synthetic local data, with the live product itself kept private and access-protected.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="section-title">Limitations</h2>
+            <ul>
+                <li>Referral network population currently has no self-service intake path — contacts are added directly, by design, until a moderated intake flow is built.</li>
+                <li>No calendar-based self-booking (see Tradeoffs).</li>
+                <li>Single points of privacy enforcement (query-level field exclusion, session scoping) are the actual guarantee; there's no separate defense-in-depth layer beyond the database query itself yet.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="section-title">Outcome</h2>
+            <p>A real, privately-deployed tool, validated through live protected smoke testing and ready for controlled private use. The application underwent a dedicated privacy, access-control, and security review before its current deployment checkpoint, verified clean of secrets and unrelated internal references across the tracked project files reviewed for this public-proof pass, and deliberately kept private rather than stretched into a public demo it was never designed to safely be.</p>
+        </section>
+
+        <p class="safety-note">Deterministic capture. No live targets. No production data. No public login surface exists for this application.</p>
+
+        <nav class="links">
+            <a href="../index.html">Portfolio</a>
+        </nav>
+    </div>
+</body>
+</html>
