@@ -131,26 +131,6 @@
         li { margin-bottom: 0.5rem; }
         li strong { color: var(--ink-0); }
 
-        .privacy-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 0.9rem;
-        }
-
-        .privacy-item {
-            background: var(--bg-card);
-            border: 1px solid var(--line);
-            border-radius: 12px;
-            padding: 1rem 1.1rem;
-        }
-        .privacy-item h3 {
-            font-size: 0.85rem;
-            color: var(--violet);
-            margin-bottom: 0.4rem;
-            font-weight: 600;
-        }
-        .privacy-item p { font-size: 0.87rem; margin-top: 0; }
-
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -228,7 +208,7 @@
     <div class="page">
         <span class="eyebrow">Music Lesson Operations</span>
         <h1>The Circle</h1>
-        <p class="subtitle">Protected music lesson operations hub with parent/student access, attendance tracking, lesson logs, scheduling requests, and privacy-scoped notes.</p>
+        <p class="subtitle">The Circle is a private music-lesson hub that gives a teacher one place to manage students, attendance, lesson notes, and schedule changes. Parents and students get their own protected view, so they can see what they need without seeing the teacher's private notes or another family's information.</p>
 
         <div class="status-strip">
             <span class="status-pill"><strong>Status:</strong> Private, protected deployment</span>
@@ -239,22 +219,17 @@
         <p class="safety-note">All screenshots and the walkthrough below use synthetic, locally-seeded demo data captured in an isolated local environment — never the operational deployment or real records. The live application is not linked from this page and has no public login.</p>
 
         <section>
-            <h2 class="section-title">Problem</h2>
-            <p>Independent music teachers manage lessons, attendance, and parent communication across scattered tools — texts, spreadsheets, paper notes — with no single source of truth for either side of the relationship. Parents want to know what happened in a lesson and what's coming next; teachers want a fast way to log it without extra admin overhead.</p>
+            <h2 class="section-title">What Each Side Can Do</h2>
+            <p>Teachers manage the full lesson workflow — students, calendar, attendance, and lesson logs. Parents and students see only their own schedule, attendance, homework, and approved lesson notes. Private teacher notes stay on the teacher side, while family access is scoped through each authenticated session.</p>
         </section>
 
         <section>
-            <h2 class="section-title">Design Principle</h2>
-            <p>Everyone sees exactly what they're supposed to see, nothing more. A teacher's private working notes stay private. A parent's portal access is scoped to their own child, by session, never by URL parameter. A public referral page shows only what a teacher explicitly approved.</p>
+            <h2 class="section-title">Why There's No Public Login</h2>
+            <p>Because this handles real minors' scheduling and attendance data once it has real users, there's no public-facing way to log in and try it — a different posture than a code-only demo. Public proof here means real screenshots, a recorded walkthrough, and this written explanation, all built on synthetic local data, while the live application itself stays private and access-protected.</p>
         </section>
 
         <section>
-            <h2 class="section-title">Architecture</h2>
-            <p>Next.js 16 (App Router) on Vercel, PostgreSQL via Neon, Prisma as the ORM. Authentication uses separate teacher and parent sign-in flows tailored to each role.</p>
-        </section>
-
-        <section>
-            <h2 class="section-title">Primary Flows</h2>
+            <h2 class="section-title">What's Already Working</h2>
             <ol>
                 <li><strong>Teacher</strong> logs in, manages students, calendar, and lesson logs.</li>
                 <li>Each completed lesson gets a log: what was worked on, homework, and two separate note fields — one visible to the parent, one private to the teacher.</li>
@@ -262,37 +237,6 @@
                 <li>Schedule changes go through a request-and-confirm flow — the parent requests or accepts a time, the teacher confirms it. Nothing is booked unilaterally.</li>
                 <li>A public, unauthenticated referral page lists independently-vetted teachers the studio trusts, each with an explicit disclaimer that they're independent professionals, not staff — reviews are submitted publicly but held for moderation before appearing.</li>
             </ol>
-        </section>
-
-        <section>
-            <h2 class="section-title">Privacy-by-Design Decisions</h2>
-            <div class="privacy-grid">
-                <div class="privacy-item">
-                    <h3>Server-side field exclusion, not UI hiding</h3>
-                    <p>The parent portal's database query never selects the teacher's private note field at all — it isn't fetched, so there's no code path where it could leak, versus a UI that merely doesn't render a field it already has in hand.</p>
-                </div>
-                <div class="privacy-item">
-                    <h3>Session-scoped data access</h3>
-                    <p>The parent portal reads the student ID from the authenticated session, never from a URL parameter — there's no way to view another family's data by editing an address bar.</p>
-                </div>
-                <div class="privacy-item">
-                    <h3>Server-enforced contact visibility</h3>
-                    <p>On the public referral page, each contact's email/phone/website visibility toggle is enforced in the database query itself (fields are nulled server-side before the response is ever built), not just hidden with CSS.</p>
-                </div>
-                <div class="privacy-item">
-                    <h3>Moderated public submissions</h3>
-                    <p>Public review submissions remain pending until they are reviewed and approved. Nothing is published automatically.</p>
-                </div>
-                <div class="privacy-item">
-                    <h3>Separate teacher and parent access</h3>
-                    <p>Teacher and parent access use distinct authentication flows designed around their respective roles.</p>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2 class="section-title">What This Proves</h2>
-            <p>Privacy-conscious product design carried all the way through the data layer, not just the UI — a real, working operations tool built with the same rigor applied to security review, deployment protection, and public-exposure boundaries.</p>
         </section>
 
         <section>
@@ -335,11 +279,27 @@
         </section>
 
         <section>
+            <h2 class="section-title">Technical Notes</h2>
+            <ul>
+                <li>Next.js application on Vercel, with PostgreSQL (via Neon) and Prisma as the ORM.</li>
+                <li>Separate teacher and parent authentication flows, each scoped to its own role.</li>
+                <li>The parent portal's database query does not select the teacher's private note field — it is excluded before the response is built, not just hidden in the interface.</li>
+                <li>The parent portal derives the student ID from the authenticated session rather than a URL parameter, so changing the address bar cannot select another family's record.</li>
+                <li>On the public referral page, contact visibility (email, phone, website) is enforced server-side in the database query, not just hidden with CSS.</li>
+                <li>Public review submissions remain pending until reviewed and approved — nothing publishes automatically.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="section-title">What This Proves</h2>
+            <p>Privacy-conscious product design carried all the way through the data layer, not just the UI — a real, working operations tool built with the same rigor applied to security review, deployment protection, and public-exposure boundaries.</p>
+        </section>
+
+        <section>
             <h2 class="section-title">Tradeoffs</h2>
             <ul>
                 <li><strong>Text-based scheduling, not a booking calendar.</strong> Schedule changes are a teacher-confirmed request/accept flow. A guided calendar where parents browse open slots and self-book is a deliberately separate, not-yet-built phase — the current flow never implies more automation than exists.</li>
                 <li><strong>Single-teacher model.</strong> Built for one studio/teacher's real workflow first, not a multi-tenant platform. Multi-teacher support is a real extension, not a current claim.</li>
-                <li><strong>No public demo login.</strong> Because this product's entire purpose involves real minors' scheduling and attendance data once it has real users, there is no public-facing way to log in and explore it — a fundamentally different posture than a code-only demo. Public proof here means screenshots, a recorded walkthrough, and a written explanation of the system, all built on synthetic local data, with the live product itself kept private and access-protected.</li>
             </ul>
         </section>
 

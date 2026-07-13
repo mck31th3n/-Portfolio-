@@ -31,6 +31,8 @@
             --owl-cyan:     #5be9ff;
             --owl-cyan-m:   rgba(91, 233, 255, 0.12);
             --owl-aurora:   #7bffbe;
+            --float-blue:   #5b8dff;
+            --float-blue-m: rgba(91, 141, 255, 0.12);
             --cyber-green:  #3FB950;
             --cyber-green-m:rgba(63, 185, 80, 0.12);
             --cyber-amber:  #D29922;
@@ -38,6 +40,9 @@
             --circle-violet:  #b98bff;
             --circle-violet-m:rgba(185, 139, 255, 0.12);
             --circle-rose:    #ff8fc7;
+            --covered-coral:  #ff8a65;
+            --covered-coral-m:rgba(255, 138, 101, 0.12);
+            --covered-sand:   #e8c290;
 
             /* Ask (dark glass + burgundy) */
             --ask-bg:       #0E0C10;
@@ -206,6 +211,11 @@
             will-change: opacity;
         }
 
+        .carousel-card:focus-visible {
+            outline: 2px solid var(--ink-0);
+            outline-offset: 3px;
+        }
+
         .carousel-card::before {
             content: "";
             position: absolute;
@@ -214,35 +224,13 @@
             border-radius: 20px 20px 0 0;
         }
 
-        /* SAFE card */
-        .card-safe {
-            background: rgba(212, 175, 55, 0.05);
-            border: 1.5px solid rgba(212, 175, 55, 0.2);
-        }
-        .card-safe::before { background: linear-gradient(90deg, var(--safe-gold), var(--safe-teal)); }
-        .card-safe.expanded { border-color: rgba(212, 175, 55, 0.5); box-shadow: 0 0 50px rgba(212, 175, 55, 0.12), 0 16px 48px rgba(0, 0, 0, 0.35); }
-        .card-safe .card-tag { color: var(--safe-gold); border-color: rgba(212, 175, 55, 0.25); background: rgba(212, 175, 55, 0.06); }
-        .card-safe .card-stat-value { color: var(--safe-gold); }
-        .card-safe .card-nav-hint { color: var(--safe-gold); }
-
-        /* Owl card */
-        .card-owl {
-            background: rgba(91, 233, 255, 0.05);
-            border: 1.5px solid rgba(91, 233, 255, 0.2);
-        }
-        .card-owl::before { background: linear-gradient(90deg, var(--owl-cyan), var(--owl-aurora)); }
-        .card-owl.expanded { border-color: rgba(91, 233, 255, 0.5); box-shadow: 0 0 50px rgba(91, 233, 255, 0.12), 0 16px 48px rgba(0, 0, 0, 0.35); }
-        .card-owl .card-tag { color: var(--owl-cyan); border-color: rgba(91, 233, 255, 0.25); background: rgba(91, 233, 255, 0.06); }
-        .card-owl .card-stat-value { color: var(--owl-cyan); }
-        .card-owl .card-nav-hint { color: var(--owl-cyan); }
-
         /* Cyber card */
         .card-cyber {
             background: rgba(63, 185, 80, 0.05);
             border: 1.5px solid rgba(63, 185, 80, 0.2);
         }
         .card-cyber::before { background: linear-gradient(90deg, var(--cyber-green), var(--cyber-amber)); }
-        .card-cyber.expanded { border-color: rgba(63, 185, 80, 0.5); box-shadow: 0 0 50px rgba(63, 185, 80, 0.12), 0 16px 48px rgba(0, 0, 0, 0.35); }
+        .card-cyber.expanded { border-color: rgba(63, 185, 80, 0.5); box-shadow: 0 0 22px rgba(63, 185, 80, 0.07), 0 10px 28px rgba(0, 0, 0, 0.3); }
         .card-cyber .card-tag { color: var(--cyber-green); border-color: rgba(63, 185, 80, 0.25); background: rgba(63, 185, 80, 0.06); }
         .card-cyber .card-stat-value { color: var(--cyber-green); }
         .card-cyber .card-nav-hint { color: var(--cyber-green); }
@@ -253,10 +241,32 @@
             border: 1.5px solid rgba(185, 139, 255, 0.2);
         }
         .card-circle::before { background: linear-gradient(90deg, var(--circle-violet), var(--circle-rose)); }
-        .card-circle.expanded { border-color: rgba(185, 139, 255, 0.5); box-shadow: 0 0 50px rgba(185, 139, 255, 0.12), 0 16px 48px rgba(0, 0, 0, 0.35); }
+        .card-circle.expanded { border-color: rgba(185, 139, 255, 0.5); box-shadow: 0 0 22px rgba(185, 139, 255, 0.07), 0 10px 28px rgba(0, 0, 0, 0.3); }
         .card-circle .card-tag { color: var(--circle-violet); border-color: rgba(185, 139, 255, 0.25); background: rgba(185, 139, 255, 0.06); }
         .card-circle .card-stat-value { color: var(--circle-violet); }
         .card-circle .card-nav-hint { color: var(--circle-violet); }
+
+        /* Covered card */
+        .card-covered {
+            background: rgba(255, 138, 101, 0.05);
+            border: 1.5px solid rgba(255, 138, 101, 0.2);
+        }
+        .card-covered::before { background: linear-gradient(90deg, var(--covered-coral), var(--covered-sand)); }
+        .card-covered.expanded { border-color: rgba(255, 138, 101, 0.5); box-shadow: 0 0 22px rgba(255, 138, 101, 0.07), 0 10px 28px rgba(0, 0, 0, 0.3); }
+        .card-covered .card-tag { color: var(--covered-coral); border-color: rgba(255, 138, 101, 0.25); background: rgba(255, 138, 101, 0.06); }
+        .card-covered .card-stat-value { color: var(--covered-coral); }
+        .card-covered .card-nav-hint { color: var(--covered-coral); }
+
+        /* Owl / Float combined card */
+        .card-owlfloat {
+            background: rgba(91, 190, 255, 0.05);
+            border: 1.5px solid rgba(91, 190, 255, 0.2);
+        }
+        .card-owlfloat::before { background: linear-gradient(90deg, var(--owl-cyan), var(--float-blue)); }
+        .card-owlfloat.expanded { border-color: rgba(91, 190, 255, 0.5); box-shadow: 0 0 22px rgba(91, 190, 255, 0.07), 0 10px 28px rgba(0, 0, 0, 0.3); }
+        .card-owlfloat .card-tag { color: var(--owl-cyan); border-color: rgba(91, 233, 255, 0.25); background: rgba(91, 233, 255, 0.06); }
+        .card-owlfloat .card-stat-value { color: var(--float-blue); }
+        .card-owlfloat .card-nav-hint { color: var(--float-blue); }
 
         .card-tag {
             display: inline-block;
@@ -894,6 +904,39 @@
             line-height: 1.55;
             color: var(--ink-2);
         }
+
+        /* Closed Research Archive — deliberately muted, non-interactive,
+           lower visual weight than the primary carousel. Not a link, not
+           a boxed card — left-aligned paragraph text only. */
+        .closed-beta-section {
+            max-width: 560px;
+            margin: 0 0 3rem;
+        }
+        .closed-beta-header { text-align: left; margin-bottom: 1rem; }
+        .closed-beta-title {
+            font-family: "Sora", sans-serif;
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--ink-1);
+            margin-bottom: 0.4rem;
+        }
+        .closed-beta-card {
+            display: block;
+            text-align: left;
+        }
+        .closed-beta-name {
+            font-family: "Sora", sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #f0dca8;
+            margin-bottom: 0.6rem;
+        }
+        .closed-beta-desc {
+            font-size: 0.87rem;
+            line-height: 1.65;
+            color: #cbb98c;
+            margin-bottom: 0;
+        }
     </style>
 </head>
 <body>
@@ -903,7 +946,7 @@
         <!-- Hero -->
         <section class="hero">
             <h1 class="hero-name">Michael McKeithen Jr.</h1>
-            <p class="hero-title">AI Workflow Architect &amp; Human-in-the-Loop Systems Designer</p>
+            <p class="hero-title">Human-AI Systems &amp; Governance Designer</p>
             <p class="hero-intro">I design AI-supported workflows with review gates, structured outputs, audit logs, and clear handoffs so teams can adopt AI without losing human judgment.</p>
         </section>
 
@@ -912,70 +955,31 @@
         <!-- Project Carousel -->
         <section class="carousel-scene" id="carousel-scene">
             <div class="carousel-ring" id="carousel-ring">
-                <div class="carousel-card card-owl card-inactive" data-index="0">
-                    <span class="card-tag">AI Action Governance</span>
-                    <h2 class="card-name">Owl</h2>
-                    <p class="card-desc">Owl is a local-first demonstration of proposal review, deterministic risk classification, human decisions, and hash-chained audit records.</p>
+                <div class="carousel-card card-covered" data-href="https://www.covered.consulting" data-index="0" tabindex="0" role="button" aria-label="Covered — AI Workflow Advisory. Visit Covered.">
+                    <span class="card-tag">AI Workflow Advisory</span>
+                    <h2 class="card-name">Covered</h2>
+                    <p class="card-desc">AI Workflow Audit + Readiness Blueprint. A diagnostic and advisory engagement that maps a workflow, assesses AI fit, and documents review gates and risk boundaries &mdash; before any tool commitment.</p>
                     <div class="card-stats">
                         <div class="card-stat">
-                            <span class="card-stat-value">In Prep</span>
-                            <span class="card-stat-label">Public Repository</span>
-                        </div>
-                    </div>
-                    <div class="card-preview">
-                        <p class="card-preview-text">Public repository access is forthcoming.</p>
-                    </div>
-                </div>
-
-                <div class="carousel-card card-cyber" data-href="cyber-agent/index.html" data-index="1">
-                    <span class="card-tag">AI Security Audit</span>
-                    <h2 class="card-name">Cyber Agent</h2>
-                    <p class="card-desc">Tests whether AI systems can be tricked or bypassed. 130 tests across 12 categories &mdash; an attacker brain finds weaknesses, a defender brain recommends fixes, and a judge scores the result.</p>
-                    <div class="card-stats">
-                        <div class="card-stat">
-                            <span class="card-stat-value">130</span>
-                            <span class="card-stat-label">Tests</span>
+                            <span class="card-stat-value">$250</span>
+                            <span class="card-stat-label">Flat Fee</span>
                         </div>
                         <div class="card-stat">
-                            <span class="card-stat-value">12</span>
-                            <span class="card-stat-label">Suites</span>
+                            <span class="card-stat-value">5 Days</span>
+                            <span class="card-stat-label">Delivery</span>
                         </div>
                         <div class="card-stat">
-                            <span class="card-stat-value">L0-L5</span>
-                            <span class="card-stat-label">Scale</span>
-                        </div>
-                    </div>
-                    <div class="card-preview">
-                        <p class="card-preview-text">Red/blue brain architecture. 130 tests across 12 suites.</p>
-                        <p class="card-nav-hint">tap to enter &rarr;</p>
-                    </div>
-                </div>
-
-                <div class="carousel-card card-safe" data-href="safe/index.html" data-index="2">
-                    <span class="card-tag">Trading AI Observer</span>
-                    <h2 class="card-name">SAFE</h2>
-                    <p class="card-desc">Observer-only risk assessment across crypto, equities, forex, and commodities. Watches markets, evaluates conditions, and logs every decision. No execution.</p>
-                    <div class="card-stats">
-                        <div class="card-stat">
-                            <span class="card-stat-value">54K+</span>
-                            <span class="card-stat-label">Predictions</span>
-                        </div>
-                        <div class="card-stat">
-                            <span class="card-stat-value">18</span>
-                            <span class="card-stat-label">Assets</span>
-                        </div>
-                        <div class="card-stat">
-                            <span class="card-stat-value">Observer</span>
+                            <span class="card-stat-value">Diagnostic</span>
                             <span class="card-stat-label">Only</span>
                         </div>
                     </div>
                     <div class="card-preview">
-                        <p class="card-preview-text">Observer-only. Monitors 18 assets across crypto, equities, forex &amp; commodities.</p>
-                        <p class="card-nav-hint">tap to enter &rarr;</p>
+                        <p class="card-preview-text">Diagnostic and advisory only &mdash; no software implementation or vendor management.</p>
+                        <p class="card-nav-hint">visit covered &rarr;</p>
                     </div>
                 </div>
 
-                <div class="carousel-card card-circle" data-href="circle/index.html" data-index="3">
+                <div class="carousel-card card-circle" data-href="circle/index.html" data-index="1" tabindex="0" role="button" aria-label="The Circle — Music Lesson Operations. Open case study.">
                     <span class="card-tag">Music Lesson Operations</span>
                     <h2 class="card-name">The Circle</h2>
                     <p class="card-desc">Protected music lesson operations hub with parent/student access, attendance tracking, lesson logs, scheduling requests, and privacy-scoped notes.</p>
@@ -996,6 +1000,30 @@
                     <div class="card-preview">
                         <p class="card-preview-text">Private, protected deployment / sanitized walkthrough.</p>
                         <p class="card-nav-hint">tap to enter &rarr;</p>
+                    </div>
+                </div>
+
+                <div class="carousel-card card-owlfloat" data-href="https://github.com/mck31th3n" data-index="2" tabindex="0" role="button" aria-label="Owl and Float — governed execution and bounded analysis. View on GitHub.">
+                    <span class="card-tag">Governance &amp; Structural Analysis</span>
+                    <h2 class="card-name">Owl / Float</h2>
+                    <p class="card-desc">Governed execution and bounded analysis. Owl places human review between proposed actions and execution. Float reads supported MusicXML and reports only declared musical structure &mdash; without generation or unsupported inference.</p>
+                    <div class="card-stats">
+                        <div class="card-stat">
+                            <span class="card-stat-value">Review-Gated</span>
+                            <span class="card-stat-label">Governance</span>
+                        </div>
+                        <div class="card-stat">
+                            <span class="card-stat-value">Deterministic</span>
+                            <span class="card-stat-label">Analysis</span>
+                        </div>
+                        <div class="card-stat">
+                            <span class="card-stat-value">Evidence-Backed</span>
+                            <span class="card-stat-label">Builds</span>
+                        </div>
+                    </div>
+                    <div class="card-preview">
+                        <p class="card-preview-text">Independent, evidence-backed local builds.</p>
+                        <p class="card-nav-hint">view on github &rarr;</p>
                     </div>
                 </div>
             </div>
@@ -1050,11 +1078,26 @@
             </div>
         </section>
 
+        <div class="section-divider"></div>
+
+        <!-- Closed Research Archive -->
+        <section class="closed-beta-section">
+            <div class="closed-beta-header">
+                <h2 class="closed-beta-title">Closed Research Archive</h2>
+            </div>
+            <div class="closed-beta-card">
+                <h3 class="closed-beta-name">SAFE</h3>
+                <p class="closed-beta-desc">SAFE is an earlier observer-oriented market-risk research prototype retained privately for future review, sanitization, or redevelopment. It is not presented as a live service, trading system, production-ready product, or current flagship project.</p>
+            </div>
+        </section>
+
         <!-- Footer -->
         <footer class="footer">
             <p class="footer-note">Demos include real validation data and sample outputs. Internals redacted. No financial advice.</p>
             <div class="footer-links">
                 <a href="https://github.com/mck31th3n" target="_blank" rel="noopener">GitHub</a>
+                <a href="mailto:myelshaddahkey@gmail.com">Email</a>
+                <a href="https://www.covered.consulting" target="_blank" rel="noopener">Covered</a>
             </div>
         </footer>
     </div>
@@ -1077,7 +1120,7 @@
                     <span class="ask-bar-title">Ask</span>
                 </div>
                 <div style="display:flex;align-items:center;gap:0.6rem;">
-                    <span class="ask-bar-status" id="ask-status">online</span>
+                    <span class="ask-bar-status" id="ask-status">demo</span>
                     <button class="ask-close" id="ask-close" aria-label="Close">&times;</button>
                 </div>
             </div>
@@ -1087,7 +1130,7 @@
                     type="text"
                     class="ask-input"
                     id="ask-input"
-                    placeholder="Ask about SAFE, Owl, or Cyber Agent..."
+                    placeholder="Ask about Covered, The Circle, Owl, or Float..."
                     maxlength="300"
                     autocomplete="off"
                     spellcheck="false"
@@ -1108,16 +1151,25 @@
             const cards = ring.querySelectorAll(".carousel-card");
             const hint = document.getElementById("carousel-hint");
             const RADIUS = window.innerWidth <= 640 ? 220 : 300;
-            const CARD_COUNT = 4;
-            const ANGLE_STEP = 360 / CARD_COUNT; // 90°
+            const CARD_COUNT = 3;
+            const ANGLE_STEP = 360 / CARD_COUNT; // 120°
 
-            // Reduced motion — skip all carousel JS
+            // Reduced motion — skip all carousel JS, but keep both click and
+            // keyboard (Enter/Space) activation so reduced-motion users can
+            // still reach every card, not only mouse/touch users.
             if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
                 cards.forEach(card => {
-                    card.addEventListener("click", () => {
+                    const navigate = () => {
                         const href = card.dataset.href;
                         if (href) {
                             window.location = href;
+                        }
+                    };
+                    card.addEventListener("click", navigate);
+                    card.addEventListener("keydown", (e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            navigate();
                         }
                     });
                 });
@@ -1226,6 +1278,13 @@
                     e.stopPropagation();
                     handleCardClick(card, i);
                 });
+                card.addEventListener("keydown", (e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        handleCardClick(card, i);
+                    }
+                });
             });
 
             // Click outside cards unlocks
@@ -1317,7 +1376,7 @@
         const closeBtn = document.getElementById("ask-close");
 
         let sending = false;
-        let useApi = true;
+        let useApi = false; // demo mode until the OPTIONS probe below confirms the endpoint is actually reachable and healthy
         let askOpen = false;
         let greeted = false;
 
@@ -1331,7 +1390,7 @@
                 if (!greeted) {
                     greeted = true;
                     setTimeout(() => {
-                        addMsg("ask", "I\u2019m a guide to this portfolio. I can explain what\u2019s here or point you to the right page.\n\nTry asking about SAFE, Owl, or Cyber Agent.");
+                        addMsg("ask", "I\u2019m a guide to this portfolio. I can explain what\u2019s here or point you to the right page.\n\nTry asking about Covered, The Circle, Owl, or Float.");
                     }, 300);
                 }
                 setTimeout(() => inputEl.focus(), 350);
@@ -1383,112 +1442,119 @@
             if (el) el.remove();
         }
 
-        // Mock responses
+        // Mock responses \u2014 portfolio guide only. Content is derived solely
+        // from current tracked public portfolio copy, independently
+        // verified against each project's own tracked source before being
+        // written here. Never sourced from private systems, sessions,
+        // audit records, or local files.
         const NAV_MAP = {
-            safe: { label: "Open SAFE Dashboard", url: "safe/index.html" },
-            cyber: { label: "Open Cyber Agent", url: "cyber-agent/index.html" },
-            "cyber agent": { label: "Open Cyber Agent", url: "cyber-agent/index.html" },
+            covered: { label: "Visit Covered", url: "https://www.covered.consulting" },
+            circle: { label: "Open The Circle", url: "circle/index.html" },
+            owlfloat: { label: "View on GitHub", url: "https://github.com/mck31th3n" },
         };
 
         const MOCK = {
-            safe: {
-                text: "SAFE watches financial markets and tells you whether to act or wait. It doesn\u2019t trade \u2014 it assesses risk across crypto, stocks, and commodities. The dashboard shows real validation data alongside sample assessments.",
-                nav: NAV_MAP.safe,
+            covered: {
+                text: "Covered is an AI Workflow Audit + Readiness Blueprint \u2014 a diagnostic and advisory service model that maps an existing workflow, evaluates where AI fits, and documents review gates, risks, and implementation priorities before a team commits to tools or automation. It does not implement software or manage vendors. Covered is a defined public offer; no client case studies or testimonials are claimed.",
+                nav: NAV_MAP.covered,
+            },
+            circle: {
+                text: "The Circle is a protected music-lesson operations system for parent and student access, attendance, lesson records, and scheduling requests. Its access boundaries are enforced at the data layer rather than relying only on hidden interface elements. The portfolio presents a sanitized walkthrough using synthetic demonstration data.",
+                nav: NAV_MAP.circle,
             },
             owl: {
-                text: "Owl is being rebuilt as a smaller, local-first governance demonstration with proposal review, deterministic risk classification, human decision gates, and hash-chained audit records. Public repository access is forthcoming.",
+                text: "Owl is a local-first governance demonstration. Actions submitted through its governed workflow become reviewable proposals, receive deterministic risk classification, and require a human approve, deny, or escalate decision before execution. It is evidence-backed and remains local-only.",
+                nav: NAV_MAP.owlfloat,
+            },
+            float: {
+                text: "Float is a human-guided MusicXML analysis system built around explicit capability boundaries. It validates supported MusicXML files, extracts declared structure and note events, and reports a declared encoded pitch range without generating music or inferring unsupported meaning. That pitch range is not necessarily the sounding, concert, performed, or audible-frequency range. At its frozen evidence checkpoint, 274/274 repository tests passed. The evidence runner uses only the Python standard library. It is evidence-backed and remains local-only, without a dedicated public repository yet.",
+                nav: NAV_MAP.owlfloat,
+            },
+            safe: {
+                text: "SAFE is an earlier observer-oriented market-risk research prototype retained privately for future review, sanitization, or redevelopment. It is not presented as a live service, trading system, production-ready product, or current flagship project.",
                 nav: null,
             },
             cyber: {
-                text: "Cyber Agent tests whether AI systems can be tricked or bypassed. 130 tests, 12 categories, and a defense rating from 0 to 5. It has a Red Brain (attacker) and Blue Brain (defender).",
-                nav: NAV_MAP.cyber,
+                text: "Cyber Agent is a retired demonstration framework and is no longer part of the active portfolio lineup.",
+                nav: null,
             },
             guards: {
-                text: "Every proposal in Owl is checked against a risk classifier before a human reviews it \u2014 is it reversible? Does it touch sensitive resources? High-risk or blocked actions are flagged automatically, but a human always makes the final call.",
-                nav: null,
-            },
-            castle: {
-                text: "Castle Level is Cyber Agent\u2019s defense rating, scored 0 to 5:\n\nLevel 0 \u2014 No defenses.\nLevel 1 \u2014 Basic filtering.\nLevel 2 \u2014 Pattern-based guards.\nLevel 3 \u2014 Context-aware defenses.\nLevel 4 \u2014 Multi-layer defense.\nLevel 5 \u2014 Comprehensive resilience.\n\nScores vary by judge mode, suite scope, and target configuration. The same system can score differently under baseline vs. strict evaluation.",
-                nav: null,
-            },
-            toolabuse: {
-                text: "Tool abuse is when someone tries to get an AI to misuse its own capabilities \u2014 for example, tricking it into reading files it shouldn\u2019t, calling APIs it shouldn\u2019t, or running commands outside its scope. Cyber Agent tests for this to make sure the AI only uses tools as intended.",
-                nav: NAV_MAP.cyber,
-            },
-            redbrain: {
-                text: "Red Brain is the attacker side of Cyber Agent. It thinks like someone trying to break in \u2014 finding weaknesses, crafting test scenarios, and probing defenses. It works alongside Blue Brain, which recommends fixes for what Red Brain finds.",
-                nav: NAV_MAP.cyber,
-            },
-            bluebrain: {
-                text: "Blue Brain is the defender side of Cyber Agent. After Red Brain finds a weakness, Blue Brain recommends how to fix it \u2014 what defenses to add, what rules to tighten, what to monitor. Together they give a complete picture.",
-                nav: NAV_MAP.cyber,
-            },
-            judge: {
-                text: "The Judge is Cyber Agent\u2019s scoring engine. After each test runs, the Judge looks at the response and decides: did the attack work, or did the defense hold? It makes the pass/fail call for every test.",
-                nav: NAV_MAP.cyber,
-            },
-            suites: {
-                text: "Cyber Agent organizes its 130 tests into 12 suites, each targeting a different attack type: prompt injection, auth bypass, encoding tricks, RAG poisoning, tool abuse, data exfiltration, multi-turn social engineering, and more. Each suite runs independently and contributes to the overall Castle Level score.",
-                nav: NAV_MAP.cyber,
-            },
-            hold: {
-                text: "SAFE holds most of the time. It only signals action when everything lines up. Most systems try to trade constantly \u2014 SAFE does the opposite.",
-                nav: null,
+                text: "Every proposal submitted through Owl's workflow is checked against a risk classifier before a human reviews it \u2014 is it reversible? Does it touch sensitive resources? High-risk actions are flagged automatically, but a human always makes the final call.",
+                nav: NAV_MAP.owlfloat,
             },
             proposal: {
-                text: "A proposal is how AI requests permission to act. Instead of just acting, it submits a proposal, the action is risk-classified and logged, and a human approves, denies, or escalates it.",
+                text: "A proposal is how an action requests permission to happen in Owl's workflow. Instead of just executing, it's submitted as a proposal, risk-classified and logged, and a human approves, denies, or escalates it before anything happens.",
+                nav: NAV_MAP.owlfloat,
+            },
+            systems: {
+                text: "Systems-level thinking here means defining boundaries before automation, preserving human review where consequences matter, grounding claims in evidence, and making failure visible rather than pretending success. Across the portfolio, implemented capability is kept separate from roadmap ambition, and systems are designed around the people who remain accountable for their use.",
                 nav: null,
             },
+            status: {
+                text: "Covered is a live public offer. The Circle is a protected system shown through a sanitized walkthrough. Owl and Float are local-only and evidence-backed, without a dedicated public repository yet. SAFE is an earlier research prototype retained privately for future review. Cyber Agent is retired.",
+                nav: null,
+            },
+            contact: {
+                text: "Use the contact links in the portfolio footer, or visit Covered to submit an inquiry about an AI Workflow Audit + Readiness Blueprint.",
+                nav: NAV_MAP.covered,
+            },
             michael: {
-                text: "Michael McKeithen \u2014 Human-AI Systems & Governance Designer in Charlotte, NC. Background in music composition. Builds human-reviewed AI workflows, governance prototypes, and protected operational tools. SAFE is a closed prototype.",
+                text: "Michael McKeithen \u2014 Human-AI Systems & Governance Designer in Charlotte, NC. Background in music composition. Builds human-reviewed AI workflows, governance prototypes, and protected operational tools.",
                 nav: null,
             },
             default: {
-                text: "I can explain what SAFE, Owl, or Cyber Agent do, or point you to the right page. What are you interested in?",
+                text: "I can explain the public portfolio, its case studies, and current capability boundaries \u2014 Covered, The Circle, Owl, or Float. What are you interested in?",
                 nav: null,
             },
             refused: {
-                text: "That\u2019s outside what I can help with. I\u2019m a guide to this portfolio \u2014 want me to show you around?",
+                text: "I can explain the public portfolio, documented case studies, and current capability boundaries, but I can't provide private system internals, credentials, local development details, or unpublished architecture.",
                 nav: null,
             },
         };
 
+        // Generic sensitive-request categories only — no private project
+        // names, session/proposal ID formats, or internal identifiers are
+        // embedded here. Anything matching routes to the public-safe
+        // refusal response.
+        // "architecture" and "blueprint" are deliberately NOT bare-word
+        // blocked - Covered's own product is named "Readiness Blueprint"
+        // and The Circle's page openly documents its stack, so a bare
+        // trigger on those words refused legitimate questions about the
+        // site's own published content (confirmed directly before this
+        // fix). The narrower, private/internal-scoped patterns below
+        // still catch requests for anything not already public.
         const BLOCKED = [
-            /system.?prompt/i, /ignore.*previous/i,
+            /system.?prompt/i, /hidden.?prompt/i, /ignore.*previous/i,
             /pretend|roleplay|act\s+as|you\s+are\s+now/i,
             /repeat.*everything|show.*config|dump/i,
-            /source.?code|git.*repo|file.*structure/i,
+            /source.?code|git.*repo|file.*structure|local.?path/i,
             /worker.?code|worker.?file/i,
-            /api.?key|\btoken\b|credential|password/i,
-            /architecture|blueprint|how.*built/i,
+            /api.?key|\btoken\b|credential|\bsecret\b|password/i,
             /clone|replicate|copy.*system/i,
-            /\bconfig(uration)?\b/i,
             /\.env\b|\.git\b|\.ssh\b/i,
+            /audit.?(record|log|trail).*\b(id|session|internal)\b|session.?id|proposal.?id/i,
+            /private.?(memory|architecture|system|file|session|relationship)/i,
+            /internal.?(file|system|doctrine|voice|reviewer)/i,
+            /unreleased|unpublished.*(system|architecture|code)/i,
         ];
 
         function classify(text) {
             const l = text.toLowerCase().trim();
             for (const p of BLOCKED) { if (p.test(l)) return "refused"; }
-            for (const [k] of Object.entries(NAV_MAP)) {
-                if (l.includes(k)) {
-                    if (k === "safe" || l.includes("safe")) return "safe";
-                    if (k.includes("owl")) return "owl";
-                    if (k.includes("cyber")) return "cyber";
-                }
-            }
-            if (/guard|checkpoint|safety check/i.test(l)) return "guards";
-            if (/castle|defense.*level|level.*[0-5]/i.test(l)) return "castle";
-            if (/tool.?abuse/i.test(l)) return "toolabuse";
-            if (/red.?brain/i.test(l)) return "redbrain";
-            if (/blue.?brain/i.test(l)) return "bluebrain";
-            if (/\bjudge\b/i.test(l)) return "judge";
-            if (/\bsuites?\b.*test|test.*\bsuites?\b|12.*categor|categor.*12/i.test(l)) return "suites";
-            if (/hold|restraint|patience|wait/i.test(l)) return "hold";
-            if (/proposal|request|approval/i.test(l)) return "proposal";
-            if (/observer|risk.*assess|market|predict|trading/i.test(l)) return "safe";
-            if (/governance|supervisor|audit/i.test(l)) return "owl";
-            if (/security|test|attack|red.*brain|blue.*brain|suite/i.test(l)) return "cyber";
-            if (/michael|engineer|charlotte|who/i.test(l)) return "michael";
+
+            if (/\bcovered\b/i.test(l)) return "covered";
+            if (/\bcircle\b/i.test(l)) return "circle";
+            if (/\bfloat\b|musicxml|pitch.?range/i.test(l)) return "float";
+            if (/\bowl\b/i.test(l)) return "owl";
+            if (/\bsafe\b|observer|risk.*assess|market|trading/i.test(l)) return "safe";
+            if (/cyber.?agent|\bcyber\b/i.test(l)) return "cyber";
+
+            if (/guard|checkpoint|safety check|blocked.?risk/i.test(l)) return "guards";
+            if (/proposal|request|approval|risk.?classif/i.test(l)) return "proposal";
+            if (/systems?.?level|systems?.?think|governance.*philosophy|how.*(reason|approach|think)/i.test(l)) return "systems";
+            if (/status|available|public|local.?only|which.*(public|live)/i.test(l)) return "status";
+            if (/contact|reach|email|inquiry|hire/i.test(l)) return "contact";
+            if (/michael|engineer|charlotte|who.*(are|is)/i.test(l)) return "michael";
             return "default";
         }
 
@@ -1556,9 +1622,19 @@
             }
         });
 
-        // Probe API
+        // Probe API. A resolved-but-non-OK response (e.g. GitHub Pages
+        // answering OPTIONS with 404/405) is not a network error and
+        // would not hit .catch() - it must be handled explicitly here too,
+        // or the status badge silently stays on its default rather than
+        // ever confirming "online" without real evidence.
         fetch(API_ENDPOINT, { method: "OPTIONS" }).then(r => {
-            if (r.ok) { useApi = true; statusText.textContent = "online"; }
+            if (r.ok) {
+                useApi = true;
+                statusText.textContent = "online";
+            } else {
+                useApi = false;
+                statusText.textContent = "demo";
+            }
         }).catch(() => {
             useApi = false;
             statusText.textContent = "demo";
