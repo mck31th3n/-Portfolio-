@@ -16,11 +16,11 @@ Live public advisory service: AI workflow audits and readiness blueprints. [www.
 ### The Circle — Music Lesson Operations
 Protected production system shown through a sanitized public walkthrough on the [live portfolio](https://mck31th3n.github.io/-Portfolio-/).
 
-### Owl — Review-Gated Action Governance
-Proposal-first action gating for AI systems: every action is routed through a review gate (approve / refuse / delay / escalate) with a hash-chained audit trail before execution.
+### [Owl](https://github.com/mck31th3n/Owl) — Review-Gated Action Governance
+Proposal-first action gating for AI systems: every action is routed through a review gate (approve / deny / escalate) with a hash-chained audit trail before execution. 162/162 tests passing.
 
-### Float — Bounded MusicXML Structural Analysis
-Deterministic analysis of supported MusicXML structure — declared note events and pitch range. Does not generate music or claim unsupported interpretation.
+### [Float](https://github.com/mck31th3n/Float) — Bounded MusicXML Structural Analysis
+Deterministic analysis of supported MusicXML structure — declared note events and pitch range. Does not generate music or claim unsupported interpretation. 274/274 tests passing.
 
 ### SAFE — Closed Research Archive
 Earlier observer-oriented market-risk research prototype, retained privately for future review. Not a live service, trading system, or current flagship project.

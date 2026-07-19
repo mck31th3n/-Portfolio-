@@ -383,6 +383,26 @@
             opacity: 1;
         }
 
+        .card-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 0.3rem;
+        }
+
+        .card-links a.card-nav-hint {
+            margin-top: 0;
+            color: inherit;
+            text-decoration: none;
+            padding: 0.15rem 0.3rem;
+            border-radius: 4px;
+        }
+
+        .card-links a.card-nav-hint:focus-visible {
+            outline: 2px solid var(--ink-0);
+            outline-offset: 2px;
+        }
+
         .card-inactive {
             cursor: default;
         }
@@ -1024,10 +1044,10 @@
                     </div>
                 </div>
 
-                <div class="carousel-card card-owlfloat" data-href="https://github.com/mck31th3n" data-index="2" tabindex="0" role="button" aria-label="Owl and Float — governed execution and bounded analysis. View on GitHub.">
+                <div class="carousel-card card-owlfloat" data-index="2" tabindex="0" role="button" aria-label="Owl and Float — two bounded, evidence-backed systems. Tap to view repository links.">
                     <span class="card-tag">Governance &amp; Structural Analysis</span>
                     <h2 class="card-name">Owl / Float</h2>
-                    <p class="card-desc">Governed execution and bounded analysis. Owl places human review between proposed actions and execution. Float reads supported MusicXML and reports only declared musical structure &mdash; without generation or unsupported inference.</p>
+                    <p class="card-desc">Two bounded, evidence-backed systems. Owl demonstrates review-gated action governance. Float performs deterministic analysis of supported MusicXML structure without generating music or claiming unsupported interpretation.</p>
                     <div class="card-stats">
                         <div class="card-stat">
                             <span class="card-stat-value">Review-Gated</span>
@@ -1043,8 +1063,11 @@
                         </div>
                     </div>
                     <div class="card-preview">
-                        <p class="card-preview-text">Independent, evidence-backed local builds.</p>
-                        <p class="card-nav-hint">view on github &rarr;</p>
+                        <p class="card-preview-text">Independent public evidence builds, separate repositories.</p>
+                        <div class="card-links">
+                            <a class="card-nav-hint" href="https://github.com/mck31th3n/Owl" target="_blank" rel="noopener" onclick="event.stopPropagation();">view owl &rarr;</a>
+                            <a class="card-nav-hint" href="https://github.com/mck31th3n/Float" target="_blank" rel="noopener" onclick="event.stopPropagation();">view float &rarr;</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1502,7 +1525,8 @@
         const NAV_MAP = {
             covered: { label: "Visit Covered", url: "https://www.covered.consulting" },
             circle: { label: "Open The Circle", url: "circle/index.html" },
-            owlfloat: { label: "View on GitHub", url: "https://github.com/mck31th3n" },
+            owl: { label: "View Owl on GitHub", url: "https://github.com/mck31th3n/Owl" },
+            float: { label: "View Float on GitHub", url: "https://github.com/mck31th3n/Float" },
         };
 
         const MOCK = {
@@ -1515,12 +1539,12 @@
                 nav: NAV_MAP.circle,
             },
             owl: {
-                text: "Owl is a local-first governance demonstration. Actions submitted through its governed workflow become reviewable proposals, receive deterministic risk classification, and require a human approve, deny, or escalate decision before execution. It is evidence-backed and remains local-only.",
-                nav: NAV_MAP.owlfloat,
+                text: "Owl is a review-gated action governance demonstration. Actions submitted through its governed workflow become reviewable proposals, receive deterministic risk classification, and require a human approve, deny, or escalate decision before execution, with a hash-chained audit trail. 162/162 repository tests pass at the current checkpoint. Public repository: github.com/mck31th3n/Owl.",
+                nav: NAV_MAP.owl,
             },
             float: {
-                text: "Float is a human-guided MusicXML analysis system built around explicit capability boundaries. It validates supported MusicXML files, extracts declared structure and note events, and reports a declared encoded pitch range without generating music or inferring unsupported meaning. That pitch range is not necessarily the sounding, concert, performed, or audible-frequency range. At its frozen evidence checkpoint, 274/274 repository tests passed. The evidence runner uses only the Python standard library. It is evidence-backed and remains local-only, without a dedicated public repository yet.",
-                nav: NAV_MAP.owlfloat,
+                text: "Float is a human-guided MusicXML analysis system built around explicit capability boundaries. It validates supported MusicXML files, extracts declared structure and note events, and reports a declared encoded pitch range without generating music or inferring unsupported meaning. That pitch range is not necessarily the sounding, concert, performed, or audible-frequency range. At its current checkpoint, 274/274 repository tests pass. The evidence runner uses only the Python standard library. Public repository: github.com/mck31th3n/Float.",
+                nav: NAV_MAP.float,
             },
             safe: {
                 text: "SAFE is an earlier observer-oriented market-risk research prototype retained privately for future review, sanitization, or redevelopment. It is not presented as a live service, trading system, production-ready product, or current flagship project.",
@@ -1532,18 +1556,18 @@
             },
             guards: {
                 text: "Every proposal submitted through Owl's workflow is checked against a risk classifier before a human reviews it \u2014 is it reversible? Does it touch sensitive resources? High-risk actions are flagged automatically, but a human always makes the final call.",
-                nav: NAV_MAP.owlfloat,
+                nav: NAV_MAP.owl,
             },
             proposal: {
                 text: "A proposal is how an action requests permission to happen in Owl's workflow. Instead of just executing, it's submitted as a proposal, risk-classified and logged, and a human approves, denies, or escalates it before anything happens.",
-                nav: NAV_MAP.owlfloat,
+                nav: NAV_MAP.owl,
             },
             systems: {
                 text: "Systems-level thinking here means defining boundaries before automation, preserving human review where consequences matter, grounding claims in evidence, and making failure visible rather than pretending success. Across the portfolio, implemented capability is kept separate from roadmap ambition, and systems are designed around the people who remain accountable for their use.",
                 nav: null,
             },
             status: {
-                text: "Covered is a live public offer. The Circle is a protected system shown through a sanitized walkthrough. Owl and Float are local-only and evidence-backed, without a dedicated public repository yet. SAFE is an earlier research prototype retained privately for future review. Cyber Agent is retired.",
+                text: "Covered is a live public offer. The Circle is a protected system shown through a sanitized walkthrough. Owl and Float are independent public evidence builds with separate repositories and documented capability boundaries. SAFE is an earlier research prototype retained privately for future review. Cyber Agent is retired.",
                 nav: null,
             },
             contact: {
