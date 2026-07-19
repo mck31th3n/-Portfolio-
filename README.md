@@ -22,9 +22,6 @@ Proposal-first action gating for AI systems: every action is routed through a re
 ### [Float](https://github.com/mck31th3n/Float) — Bounded MusicXML Structural Analysis
 Deterministic analysis of supported MusicXML structure — declared note events and pitch range. Does not generate music or claim unsupported interpretation. 274/274 tests passing.
 
-### SAFE — Closed Research Archive
-Earlier observer-oriented market-risk research prototype, retained privately for future review. Not a live service, trading system, or current flagship project.
-
 ---
 
 ## Systems Thinking Case Studies
