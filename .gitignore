@@ -55,3 +55,9 @@ scripts/
 # Worker dev config + cache
 wrangler.toml
 .wrangler/
+
+# Draft standalone pages superseded by the published Owl/Float repos
+# (source of truth: ~/repos/Owl and ~/repos/Float) — not wired into the
+# live site; kept out of git to avoid an accidental future `git add .`
+/float/
+/owl/

@@ -1092,7 +1092,7 @@
 
         <!-- Footer -->
         <footer class="footer">
-            <p class="footer-note">Demos include real validation data and sample outputs. Internals redacted. No financial advice.</p>
+            <p class="footer-note">Public claims are limited to documented evidence. Protected data and private implementation details are excluded.</p>
             <div class="footer-links">
                 <a href="https://github.com/mck31th3n" target="_blank" rel="noopener">GitHub</a>
                 <a href="mailto:myelshaddahkey@gmail.com">Email</a>
@@ -1501,10 +1501,6 @@
                 text: "Float is a human-guided MusicXML analysis system built around explicit capability boundaries. It validates supported MusicXML files, extracts declared structure and note events, and reports a declared encoded pitch range without generating music or inferring unsupported meaning. That pitch range is not necessarily the sounding, concert, performed, or audible-frequency range. At its current checkpoint, 274/274 repository tests pass. The evidence runner uses only the Python standard library. Public repository: github.com/mck31th3n/Float.",
                 nav: NAV_MAP.float,
             },
-            safe: {
-                text: "SAFE is an earlier observer-oriented market-risk research prototype retained privately for future review, sanitization, or redevelopment. It is not presented as a live service, trading system, production-ready product, or current flagship project.",
-                nav: null,
-            },
             cyber: {
                 text: "Cyber Agent is a retired demonstration framework and is no longer part of the active portfolio lineup.",
                 nav: null,
@@ -1522,7 +1518,7 @@
                 nav: null,
             },
             status: {
-                text: "Covered is a live public offer. The Circle is a protected system shown through a sanitized walkthrough. Owl and Float are independent public evidence builds with separate repositories and documented capability boundaries. SAFE is an earlier research prototype retained privately for future review. Cyber Agent is retired.",
+                text: "Covered is a live public offer. The Circle is a protected system shown through a sanitized walkthrough. Owl and Float are independent public evidence builds with separate repositories and documented capability boundaries. Cyber Agent is retired.",
                 nav: null,
             },
             contact: {
@@ -1577,7 +1573,6 @@
             if (/\bcircle\b/i.test(l)) return "circle";
             if (/\bfloat\b|musicxml|pitch.?range/i.test(l)) return "float";
             if (/\bowl\b/i.test(l)) return "owl";
-            if (/\bsafe\b|observer|risk.*assess|market|trading/i.test(l)) return "safe";
             if (/cyber.?agent|\bcyber\b/i.test(l)) return "cyber";
 
             if (/guard|checkpoint|safety check|blocked.?risk/i.test(l)) return "guards";
