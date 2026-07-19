@@ -57,12 +57,27 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        html,
+        body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: clip;
+            overscroll-behavior-x: none;
+        }
+
+        @supports not (overflow: clip) {
+            html,
+            body {
+                overflow-x: hidden;
+            }
+        }
+
         body {
             min-height: 100vh;
+            position: relative;
             font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
             color: var(--ink-0);
             background: var(--bg-deep);
-            overflow-x: hidden;
         }
 
         /* ── Ambient Background ── */
@@ -115,6 +130,7 @@
         .page {
             position: relative;
             z-index: 1;
+            width: 100%;
             max-width: 1100px;
             margin: 0 auto;
             padding: 3rem 1.5rem 2rem;
@@ -168,6 +184,9 @@
         .carousel-scene {
             perspective: 1200px;
             height: 480px;
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -176,6 +195,8 @@
             user-select: none;
             -webkit-user-select: none;
             -webkit-tap-highlight-color: transparent;
+            touch-action: pan-y;
+            overscroll-behavior-x: contain;
         }
 
         .carousel-scene:active { cursor: grabbing; }
@@ -1321,33 +1342,64 @@
                 dragging = false;
             });
 
-            // Drag / Swipe (touch)
+            // Drag / Swipe (touch) — horizontal gestures rotate the carousel,
+            // vertical gestures are released back to the page so it can scroll.
+            let dragStartY = 0;
+            let intentLocked = false;
+            let horizontalIntent = false;
+            const INTENT_THRESHOLD = 10; // px before we commit to a direction
+
             scene.addEventListener("touchstart", (e) => {
                 if (locked) return;
                 const touch = e.touches[0];
                 dragging = true;
                 dragStartX = touch.clientX;
+                dragStartY = touch.clientY;
                 dragStartAngle = currentAngle;
                 dragDelta = 0;
                 lastDragX = touch.clientX;
                 velocity = 0;
+                intentLocked = false;
+                horizontalIntent = false;
             }, { passive: true });
 
             scene.addEventListener("touchmove", (e) => {
                 if (!dragging) return;
                 const touch = e.touches[0];
                 const dx = touch.clientX - dragStartX;
+                const dy = touch.clientY - dragStartY;
+
+                if (!intentLocked) {
+                    if (Math.abs(dx) < INTENT_THRESHOLD && Math.abs(dy) < INTENT_THRESHOLD) return;
+                    intentLocked = true;
+                    horizontalIntent = Math.abs(dx) > Math.abs(dy);
+                    if (!horizontalIntent) {
+                        dragging = false; // vertical gesture — release to the page
+                        return;
+                    }
+                }
+
+                if (!horizontalIntent) return;
+
+                e.preventDefault(); // claim the horizontal gesture now that intent is confirmed
                 dragDelta = dx;
                 const dragVel = touch.clientX - lastDragX;
                 lastDragX = touch.clientX;
                 velocity = dragVel * 0.3;
                 currentAngle = dragStartAngle + dx * 0.4;
                 applyRotation();
-            }, { passive: true });
+            }, { passive: false });
 
             scene.addEventListener("touchend", () => {
-                if (!dragging) return;
                 dragging = false;
+                intentLocked = false;
+                horizontalIntent = false;
+            });
+
+            scene.addEventListener("touchcancel", () => {
+                dragging = false;
+                intentLocked = false;
+                horizontalIntent = false;
             });
 
             // Initialize

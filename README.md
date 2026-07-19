@@ -4,20 +4,26 @@ Charlotte, NC · [myelshaddahkey@gmail.com](mailto:myelshaddahkey@gmail.com) · 
 
 ---
 
-Governance-first AI engineer. I build systems where AI cannot take external actions without explicit approval, a paper trail, and structured validation — then probe those systems adversarially to find what breaks.
+Human-AI Systems & Governance Designer. I design AI-supported workflows with review gates, structured outputs, audit logs, and clear handoffs so teams can adopt AI without losing human judgment.
 
 ---
 
 ## Projects
 
-### SAFE — Observer-Only Risk Assessment
-Autonomous risk assessment across crypto, equities, forex, and commodities. Watches markets, evaluates conditions, and logs every decision. No execution capability. Closed-source.
+### Covered — AI Workflow Advisory
+Live public advisory service: AI workflow audits and readiness blueprints. [www.covered.consulting](https://www.covered.consulting)
 
-### [The Owl](https://github.com/mck31th3n/The-Owl) — Governance Kernel
-Proposal-first action gating for AI systems. Every action is routed APPROVE / REFUSE / DELAY / ESCALATE through a multi-checker judge before execution. Hash-chained audit trail, guard stack, 114-test suite (35 adversarial regression, 25 security guards, 4 governance protocols, 50 end-to-end daemon tests).
+### The Circle — Music Lesson Operations
+Protected production system shown through a sanitized public walkthrough on the [live portfolio](https://mck31th3n.github.io/-Portfolio-/).
 
-### Cyber Agent — Adversarial Evaluation Framework
-Tests whether AI systems can be tricked or bypassed. 130 tests across 12 attack categories — prompt injection, auth bypass, encoding evasion, RAG poisoning, tool abuse, and more. Red Brain generates attacks; Blue Brain plans defenses; 8-checker judge scores results. Closed-source.
+### Owl — Review-Gated Action Governance
+Proposal-first action gating for AI systems: every action is routed through a review gate (approve / refuse / delay / escalate) with a hash-chained audit trail before execution.
+
+### Float — Bounded MusicXML Structural Analysis
+Deterministic analysis of supported MusicXML structure — declared note events and pitch range. Does not generate music or claim unsupported interpretation.
+
+### SAFE — Closed Research Archive
+Earlier observer-oriented market-risk research prototype, retained privately for future review. Not a live service, trading system, or current flagship project.
 
 ---
 
